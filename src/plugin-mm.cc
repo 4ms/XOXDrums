@@ -1,5 +1,6 @@
 #include "CoreModules/register_module.hh"
 #include "core/Clave.hh"
+#include "core/Cowbell.hh"
 
 extern "C" __attribute__((__visibility__("default"))) void init() {
 	using namespace MetaModule;
@@ -7,4 +8,5 @@ extern "C" __attribute__((__visibility__("default"))) void init() {
 	std::string_view brand = "4msDrums";
 
 	register_module<Clave, ClaveInfo>(brand);
+	register_module<Cowbell, CowbellInfo>(brand);
 }
