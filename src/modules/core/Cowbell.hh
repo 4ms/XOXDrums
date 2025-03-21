@@ -77,10 +77,10 @@ float sumOutput = ((squareWave + squareWave2) * 0.5) * amplitudeEnvelope;
 sumOutput = std::clamp(sumOutput, -5.0f, 5.0f);
 
 // Low-pass filter
-float lowpassOutput = (lowpassAlpha * sumOutput) + ((1.0f - lowpassAlpha) * lowpassOutput);
+lowpassOutput = (lowpassAlpha * sumOutput) + ((1.0f - lowpassAlpha) * lowpassOutput);
 
 // High-pass filter (after low-pass)
-float highpassOutput = highpassAlpha * (highpassOutput + lowpassOutput - prevHighpassOutput);
+highpassOutput = highpassAlpha * (highpassOutput + lowpassOutput - prevHighpassOutput);
 prevHighpassOutput = lowpassOutput;
 
 float finalOutput = (highpassOutput * 5.0f);
@@ -111,6 +111,8 @@ private:
 	float lowpassAlpha = 0.1f;    
 
 	// High-pass filter variables
+	float lowpassOutput = 0.f; 
+	float highpassOutput = 0.f; 
 	float highpassAlpha = 0.6f; // Filter cutoff highpass, lower number = more filtering
 	float prevHighpassOutput = 0.0f;
 
