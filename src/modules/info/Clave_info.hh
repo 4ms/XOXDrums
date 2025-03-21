@@ -16,8 +16,8 @@ struct ClaveInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<25>(9.912), to_mm<25>(45.41), Center, "Decay", ""}, 0.5f},
-		Knob9mm{{to_mm<25>(9.912), to_mm<25>(19.535), Center, "Pitch", ""}, 0.5f},
+		Knob9mm{{to_mm<25>(9.912), to_mm<25>(45), Center, "Decay", ""}, 0.5f},
+		Knob9mm{{to_mm<25>(9.912), to_mm<25>(19), Center, "Pitch", ""}, 0.5f},
 		AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(93.021), Center, "Trig", ""}},
 		AnalogJackOutput4ms{{to_mm<25>(9.912), to_mm<25>(110.168), Center, "Clave", ""}},
         AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(33.947), Center, "Pitch CV", ""}},
