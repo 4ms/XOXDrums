@@ -1,19 +1,15 @@
 {
-  "MetaModuleBrandName": "My Plugin",
-  "MetaModuleBrandSlug": "MyPlugin",
-  "MetaModulePluginMaintainer": "My Name",
-  "MetaModulePluginMaintainerEmail": "me@example.com",
-  "MetaModulePluginMaintainerUrl": "https://example.com/modules",
-  "MetaModuleDescription": "A brief description of the plugin. If ported from another work, mention that here.",
+  "MetaModuleBrandName": "4msDrums",
+  "MetaModuleBrandSlug": "4msDrums",
+  "MetaModulePluginMaintainer": "4ms",
+  "MetaModulePluginMaintainerEmail": "4mscompany@gmail.com",
+  "MetaModulePluginMaintainerUrl": "",
+  "MetaModuleDescription": "Drums with attitude",
   "MetaModuleIncludedModules":
   [
     {
-      "slug": "MyModule",
-      "name": "Test Module Number One"
+      "slug": "Clave",
+      "name": "Clave inspired by XOX style"
     },
-    {
-      "slug": "MyModule2",
-      "name": "Test Module Number Two"
-    }
   ]
 }

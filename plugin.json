@@ -1,21 +1,14 @@
 {
-  "slug": "MyPlugin",
+  "slug": "4msDrums",
   "version": "2.0.0",
   "license": "GPL-3.0-or-later",
-  "name": "MyPlugin",
-  "brand": "MyPlugin",
+  "name": "4msDrums",
+  "brand": "4ms",
   "modules": [
     {
-      "slug": "MyModule",
-      "name": "MyModule",
-      "description": "Test module",
-      "tags": [
-      ]
-    },
-    {
-      "slug": "MyModule2",
-      "name": "My Module Two",
-      "description": "Test module 2",
+      "slug": "Clave",
+      "name": "Clave",
+      "description": "Clave inspired by XOX style.",
       "tags": [
       ]
     }
