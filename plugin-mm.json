@@ -46,6 +46,10 @@
     {
       "slug": "Snare",
       "name": "Snare inspired by XOX style"
+    },
+    {
+      "slug": "Tom",
+      "name": "Tom inspired by XOX style"
     }
   ]
 }
