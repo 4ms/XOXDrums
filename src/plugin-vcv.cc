@@ -13,7 +13,9 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 
 	rack::Model *modelClave = GenericModule<ClaveInfo, Clave>::create();
 	rack::Model *modelCowbell = GenericModule<CowbellInfo, Cowbell>::create();
+	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
+	p->addModel(modelAccent);
 }

@@ -1,0 +1,80 @@
+#pragma once
+#include "CoreModules/SmartCoreProcessor.hh"
+#include "info/Accent_info.hh"
+
+namespace MetaModule
+{
+
+class Accent : public SmartCoreProcessor<AccentInfo> {
+	using Info = AccentInfo;
+	using enum Info::Elem;
+
+public:
+	Accent() = default;
+
+	template<Info::Elem Knob, Info::Elem CV>
+	float offset10vppSum() {
+		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
+		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
+		return std::clamp(cvSum, 0.0f, 1.0f);
+	}
+
+	void update(void) override {
+
+		float controlValue = offset10vppSum<AmountKnob, AmountCvIn>();
+		controlValue = 0.2f + (controlValue * 0.9f);
+
+		// Check if the trigger input is high
+		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
+		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
+		triggerStates[0] = triggerStates[1];
+		triggerStates[1] = currentTriggerState;
+
+		// Trigger handling
+		if (bangRisingEdge) {
+			pulseTriggered = true;
+			amplitudeEnvelope = 1.0f;
+		}
+
+		ampDecayTime = 70.f;
+		ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		amplitudeEnvelope *= ampDecayAlpha;
+
+		if (pulseTriggered) {
+			if (amplitudeEnvelope < 0.0f) {
+				amplitudeEnvelope = 0.0f;
+				pulseTriggered = false;
+			}
+		} else {
+			amplitudeEnvelope = 0.0f;
+		}
+
+		scaled = ((amplitudeEnvelope * controlValue) + (1.f - controlValue));
+
+		VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled);
+		finalOutput = VCAOut;
+
+		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
+
+		setOutput<AccentedOut>(finalOutput);
+	}
+
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+	}
+
+private:
+	float sampleRate = 44100.0f;
+	float ampDecayTime = 70.f; 
+	float amplitudeEnvelope = 1.0f;
+	float ampDecayAlpha = 0.0f;
+	float scaled = 0.f;
+	float VCAOut = 0.f; 
+	float finalOutput = 0.f; 
+
+	bool pulseTriggered = false;
+
+	bool triggerStates[2] = {false, false};  
+};
+
+} // namespace MetaModule

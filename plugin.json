@@ -18,6 +18,13 @@
       "description": "Cowbell inspired by XOX style.",
       "tags": [
       ]
+    },
+    {
+      "slug": "Accent",
+      "name": "Accent",
+      "description": "A drum utility for adding dynamics to drums.",
+      "tags": [
+      ]
     }
   ]
 }

@@ -15,5 +15,9 @@
       "slug": "Cowbell",
       "name": "Cowbell inspired by XOX style"
     },
+    {
+      "slug": "Accent",
+      "name": "A helpful tool for adding dynamics to drums"
+    },
   ]
 }
