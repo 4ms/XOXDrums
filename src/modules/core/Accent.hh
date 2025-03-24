@@ -21,7 +21,7 @@ public:
 
 	void update(void) override {
 
-		float controlValue = offset10vppSum<AmountKnob, AmountCvIn>();
+		controlValue = offset10vppSum<AmountKnob, AmountCvIn>();
 		controlValue = 0.2f + (controlValue * 0.9f);
 
 		// Check if the trigger input is high
@@ -64,6 +64,7 @@ public:
 	}
 
 private:
+	float controlValue = 0.f;
 	float sampleRate = 44100.0f;
 	float ampDecayTime = 70.f; 
 	float amplitudeEnvelope = 1.0f;

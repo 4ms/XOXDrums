@@ -29,7 +29,11 @@
     },
     {
       "slug": "HiHat",
-      "name": "HiHat inspired by XOX style with added slap inputs"
+      "name": "HiHat inspired by XOX style"
+    },
+    {
+      "slug": "Maraca",
+      "name": "Maraca inspired by XOX style"
     }
   ]
 }

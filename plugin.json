@@ -43,7 +43,14 @@
     {
       "slug": "HiHat",
       "name": "HiHat",
-      "description": "Hi-hat inspired by XOX style with added slap inputs",
+      "description": "Hi-hat inspired by XOX style",
+      "tags": [
+      ]
+    },
+    {
+      "slug": "Maraca",
+      "name": "Maraca",
+      "description": "Maraca inspired by XOX style",
       "tags": [
       ]
     }

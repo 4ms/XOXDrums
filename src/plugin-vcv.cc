@@ -7,6 +7,7 @@
 #include "core/Clap.hh"
 #include "core/Congabongo.hh"
 #include "core/HiHat.hh"
+#include "core/Maraca.hh"
 
 using namespace MetaModule;
 
@@ -21,6 +22,7 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	rack::Model *modelClap = GenericModule<ClapInfo, Clap>::create();
 	rack::Model *modelCongabongo = GenericModule<CongabongoInfo, Congabongo>::create();
 	rack::Model *modelHiHat = GenericModule<HiHatInfo, HiHat>::create();
+	rack::Model *modelMaraca = GenericModule<MaracaInfo, Maraca>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
@@ -28,4 +30,5 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	p->addModel(modelClap);
 	p->addModel(modelCongabongo);
 	p->addModel(modelHiHat);
+	p->addModel(modelMaraca);
 }
