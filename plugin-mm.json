@@ -22,6 +22,10 @@
     {
       "slug": "Clap",
       "name": "Clap inspired by XOX style"
+    },
+    {
+      "slug": "Congabongo",
+      "name": "Conga/bongo inspired by XOX style with added slap inputs"
     }
   ]
 }

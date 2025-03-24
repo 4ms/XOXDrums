@@ -32,6 +32,13 @@
       "description": "Clap inspired by XOX style.",
       "tags": [
       ]
+    },
+    {
+      "slug": "Congabongo",
+      "name": "Congabongo",
+      "description": "Conga/Bongo inspired by XOX style with added slap inputs",
+      "tags": [
+      ]
     }
   ]
 }

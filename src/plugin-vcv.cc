@@ -5,6 +5,7 @@
 #include "core/Cowbell.hh"
 #include "core/Accent.hh"
 #include "core/Clap.hh"
+#include "core/Congabongo.hh"
 
 using namespace MetaModule;
 
@@ -17,9 +18,11 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	rack::Model *modelCowbell = GenericModule<CowbellInfo, Cowbell>::create();
 	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
 	rack::Model *modelClap = GenericModule<ClapInfo, Clap>::create();
+	rack::Model *modelCongabongo = GenericModule<CongabongoInfo, Congabongo>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
 	p->addModel(modelAccent);
 	p->addModel(modelClap);
+	p->addModel(modelCongabongo);
 }
