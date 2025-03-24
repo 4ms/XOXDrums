@@ -8,6 +8,7 @@
 #include "core/Maraca.hh"
 #include "core/Rimshot.hh"
 #include "core/Kick.hh"
+#include "core/Snare.hh"
 
 extern "C" __attribute__((__visibility__("default"))) void init() {
 	using namespace MetaModule;
@@ -23,4 +24,5 @@ extern "C" __attribute__((__visibility__("default"))) void init() {
 	register_module<Maraca, MaracaInfo>(brand);
 	register_module<Rimshot, RimshotInfo>(brand);
 	register_module<Kick, KickInfo>(brand);
+	register_module<Snare, SnareInfo>(brand);
 }

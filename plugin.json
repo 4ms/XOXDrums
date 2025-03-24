@@ -67,6 +67,13 @@
       "description": "Kick inspired by XOX style",
       "tags": [
       ]
+    },
+    {
+      "slug": "Snare",
+      "name": "Snare",
+      "description": "Snare inspired by XOX style",
+      "tags": [
+      ]
     }
   ]
 }

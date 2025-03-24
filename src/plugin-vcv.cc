@@ -10,6 +10,7 @@
 #include "core/Maraca.hh"
 #include "core/Rimshot.hh"
 #include "core/Kick.hh"
+#include "core/Snare.hh"
 
 using namespace MetaModule;
 
@@ -37,4 +38,5 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	p->addModel(modelMaraca);
 	p->addModel(modelRimshot);
 	p->addModel(modelKick);
+	p->addModel(modelSnare);
 }
