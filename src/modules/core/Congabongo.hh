@@ -82,30 +82,17 @@ public:
 		}
 		lastbangState4 = bangState4;
 
-			/*
-			// Bongo / conga switch 
-			if(getState<RangeSwitch>() == 1) {
-				select = 1;
-			}
-			else{
-				select = 0;
-			}
-			*/
-
-			// How do I get the switch to work???
-			select = 1; 
-	
-			switch(select){
-			case 0:
-			frequency1 = 98 + (pitchControl * 100.0f); //  
-			ampDecayTime = 40.0f + (ampDecayControl * 80.0f); // amp decay range (5ms - 25ms)
-			break;
-			case 1:
+		
+		//Congabongo switch
+		if(getState<RangeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
 			frequency1 = 200 + (pitchControl * 250.0f); //  
-			ampDecayTime = 15.0f + (ampDecayControl * 25.0f); // amp decay range (5ms - 25ms)
-			break;
-			}
-
+			ampDecayTime = 15.0f + (ampDecayControl * 25.0f); // amp decay range (5ms - 25ms)		
+			}			
+			else{
+			frequency1 = 98 + (pitchControl * 100.0f); //  
+			ampDecayTime = 40.0f + (ampDecayControl * 80.0f); // amp decay range (5ms - 25ms)				
+			}	
+					
 			// Osc 1
 			float dt = 1.0f / sampleRate; 
 			phase1 += frequency1 * TWO_PI * dt;
