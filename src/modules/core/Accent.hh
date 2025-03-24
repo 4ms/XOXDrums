@@ -21,7 +21,7 @@ public:
 
 	void update(void) override {
 
-		controlValue = offset10vppSum<AmountKnob, AmountCvIn>();
+		float controlValue = offset10vppSum<AmountKnob, AmountCvIn>();
 		controlValue = 0.2f + (controlValue * 0.9f);
 
 		// Check if the trigger input is high
@@ -36,8 +36,8 @@ public:
 			amplitudeEnvelope = 1.0f;
 		}
 
-		ampDecayTime = 70.f;
-		ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayTime = 70.f;
+		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		if (pulseTriggered) {
@@ -49,10 +49,10 @@ public:
 			amplitudeEnvelope = 0.0f;
 		}
 
-		scaled = ((amplitudeEnvelope * controlValue) + (1.f - controlValue));
+		float scaled = ((amplitudeEnvelope * controlValue) + (1.f - controlValue));
 
-		VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled);
-		finalOutput = VCAOut;
+		float VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled);
+		float finalOutput = VCAOut;
 
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
@@ -64,17 +64,10 @@ public:
 	}
 
 private:
-	float controlValue = 0.f;
-	float sampleRate = 44100.0f;
-	float ampDecayTime = 70.f; 
-	float amplitudeEnvelope = 1.0f;
-	float ampDecayAlpha = 0.0f;
-	float scaled = 0.f;
-	float VCAOut = 0.f; 
-	float finalOutput = 0.f; 
+	float amplitudeEnvelope = 0.f; 
 
 	bool pulseTriggered = false;
-
+	float sampleRate = 44100.0f;
 	bool triggerStates[2] = {false, false};  
 };
 
