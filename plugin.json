@@ -81,6 +81,13 @@
       "description": "Tom inspired by XOX style",
       "tags": [
       ]
+    },
+    {
+      "slug": "Duck",
+      "name": "Duck",
+      "description": "A ducking module for sidechain effect",
+      "tags": [
+      ]
     }
   ]
 }

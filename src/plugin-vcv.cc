@@ -12,6 +12,7 @@
 #include "core/Kick.hh"
 #include "core/Snare.hh"
 #include "core/Tom.hh"
+#include "core/Duck.hh"
 
 using namespace MetaModule;
 
@@ -30,6 +31,7 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	rack::Model *modelRimshot = GenericModule<RimshotInfo, Rimshot>::create();
 	rack::Model *modelKick = GenericModule<KickInfo, Kick>::create();
 	rack::Model *modelTom = GenericModule<TomInfo, Tom>::create();
+	rack::Model *modelDuck = GenericModule<DuckInfo, Duck>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
@@ -42,4 +44,5 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	p->addModel(modelKick);
 	p->addModel(modelSnare);
 	p->addModel(modelTom);
+	p->addModel(modelDuck);
 }

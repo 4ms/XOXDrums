@@ -1,0 +1,90 @@
+#pragma once
+#include "CoreModules/SmartCoreProcessor.hh"
+#include "info/Duck_info.hh"
+
+#include <cmath> // for sine wave
+#define TWO_PI (2.0 * M_PI)
+
+namespace MetaModule
+{
+
+class Duck : public SmartCoreProcessor<DuckInfo> {
+	using Info = DuckInfo;
+	using enum Info::Elem;
+
+public:
+	Duck() = default;
+
+	template<Info::Elem Knob, Info::Elem CV>
+	float offset10vppSum() {
+		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
+		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
+		return std::clamp(cvSum, 0.0f, 1.0f);
+	}
+
+	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
+		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
+	}
+
+	void update(void) override {
+
+	float amountControl = offset10vppSum<AmountKnob, AmountCvIn>();; 
+	float timeControl = offset10vppSum<TimeKnob, TimeCvIn>();; 
+			// Trig input 
+			bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
+			if (bangState) {
+				pulseTriggered = true;
+				amplitudeEnvelope = 1.0f;
+				}
+				lastBangState = bangState;
+	
+			// Envelopes 
+			ampDecayTime = 50.0f + (timeControl * 1950.0f); 
+			ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+			amplitudeEnvelope *= ampDecayAlpha;
+	
+			if (pulseTriggered) {
+				if (amplitudeEnvelope < 0.0f) {
+					amplitudeEnvelope = 0.0f;
+					pulseTriggered = false;
+				}
+			} else {
+				amplitudeEnvelope = 0.0f;
+			}
+
+			agc = mapToRange(amountControl, 0.f, 1.f, 0.5f, 1.f);
+	
+			scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope) * amountControl));
+	
+			VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc; 
+	
+			finalOutput = VCAOut; 
+			finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
+		setOutput<DuckedOut>(finalOutput);
+	}
+
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+	}
+
+private:
+
+// Amp decay envelope 
+float amplitudeEnvelope = 1.0f;  // Envelope output value (for volume control)
+float ampDecayTime = 5.0f;      // Decay time in ms (5ms as requested)
+float ampDecayAlpha = 0.0f;     // Exponential decay coefficient
+
+// Trig
+bool pulseTriggered = false; // Flag to check if pulse was triggered
+bool lastBangState = false;  // Previous state of the Bang input
+
+// Output 
+float VCAOut = 0.f;
+float finalOutput = 0.f; 
+float scaled = 0.f; 
+float agc = 0.f;
+
+	float sampleRate = 44100.0f;
+};
+
+} // namespace MetaModule
