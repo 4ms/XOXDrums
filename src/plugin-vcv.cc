@@ -9,6 +9,7 @@
 #include "core/HiHat.hh"
 #include "core/Maraca.hh"
 #include "core/Rimshot.hh"
+#include "core/Kick.hh"
 
 using namespace MetaModule;
 
@@ -25,6 +26,7 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	rack::Model *modelHiHat = GenericModule<HiHatInfo, HiHat>::create();
 	rack::Model *modelMaraca = GenericModule<MaracaInfo, Maraca>::create();
 	rack::Model *modelRimshot = GenericModule<RimshotInfo, Rimshot>::create();
+	rack::Model *modelRimshot = GenericModule<KickInfo, Kick>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
@@ -34,4 +36,5 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	p->addModel(modelHiHat);
 	p->addModel(modelMaraca);
 	p->addModel(modelRimshot);
+	p->addModel(modelKick);
 }
