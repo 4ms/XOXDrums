@@ -73,21 +73,16 @@ public:
 		}
        
        // Final output 
-	   //int range = (int)params[RANGE_PARAM].getValue(); // Read the RANGE_PARAM value
-
-	   int range = 0; 
-
-		switch (range) {
-		case 0:
-		saturation = 1 + (saturationControl * 2);
-		break;
-		case 1:
-		saturation = 1 + (saturationControl * 10);
-		break;
-		case 2:
-		saturation = 1 + (saturationControl * 100);
-		break;
+		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
+			saturation = 1 + (saturationControl * 100);
 		}
+		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) 
+		{
+			saturation = 1 + (saturationControl * 10);
+		}
+		if (getState<RangeSwitch>() == Toggle3pos::State_t::DOWN) {
+			saturation = 1 + (saturationControl * 2);
+		} 
 
 		finalOutput = (sineWave * amplitudeEnvelope) * saturation; 
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);

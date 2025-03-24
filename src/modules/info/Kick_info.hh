@@ -21,7 +21,8 @@ struct KickInfo : ModuleInfoBase {
         Davies1900hBlackKnob{{to_mm<25>(43.281), to_mm<25>(36.908), Center, "Amp Decay", ""}, 0.0f},
         Davies1900hBlackKnob{{to_mm<25>(43.2818), to_mm<25>(16.377), Center, "Pitch Depth", ""}, 0.0f},
         Davies1900hBlackKnob{{to_mm<25>(19.101), to_mm<25>(16.377), Center, "Pitch", ""}, 0.0f},
-		Toggle2pos{{to_mm<25>(43.281), to_mm<25>(57.44), Center, "Range", ""}},
+		Toggle3pos{{to_mm<25>(43.281), to_mm<25>(57.44), Center, "Range", ""}, {"2x", "10x", "100x"}, Toggle3pos::State_t::DOWN},
+
 		AnalogJackOutput4ms{{to_mm<25>(46.866), to_mm<25>(111.215), Center, "Kick", ""}},
 		AnalogJackInput4ms{{to_mm<25>(46.866), to_mm<25>(96.538), Center, "Saturation CV", ""}},
 		AnalogJackInput4ms{{to_mm<25>(31.691), to_mm<25>(96.538), Center, "Amp Decay CV", ""}},
