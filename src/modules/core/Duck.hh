@@ -39,8 +39,8 @@ public:
 				lastBangState = bangState;
 	
 			// Envelopes 
-			ampDecayTime = 50.0f + (timeControl * 1950.0f); 
-			ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+			float ampDecayTime = 50.0f + (timeControl * 1950.0f); 
+			float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 			amplitudeEnvelope *= ampDecayAlpha;
 	
 			if (pulseTriggered) {
@@ -52,13 +52,13 @@ public:
 				amplitudeEnvelope = 0.0f;
 			}
 
-			agc = mapToRange(amountControl, 0.f, 1.f, 0.5f, 1.f);
+			float agc = mapToRange(amountControl, 0.f, 1.f, 0.5f, 1.f);
 	
-			scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope) * amountControl));
+			float scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope) * amountControl));
 	
-			VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc; 
+			float VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc; 
 	
-			finalOutput = VCAOut; 
+			float finalOutput = VCAOut; 
 			finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 		setOutput<DuckedOut>(finalOutput);
 	}
@@ -68,21 +68,12 @@ public:
 	}
 
 private:
-
 // Amp decay envelope 
 float amplitudeEnvelope = 1.0f;  // Envelope output value (for volume control)
-float ampDecayTime = 5.0f;      // Decay time in ms (5ms as requested)
-float ampDecayAlpha = 0.0f;     // Exponential decay coefficient
 
 // Trig
 bool pulseTriggered = false; // Flag to check if pulse was triggered
 bool lastBangState = false;  // Previous state of the Bang input
-
-// Output 
-float VCAOut = 0.f;
-float finalOutput = 0.f; 
-float scaled = 0.f; 
-float agc = 0.f;
 
 	float sampleRate = 44100.0f;
 };
