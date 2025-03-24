@@ -6,6 +6,7 @@
 #include "core/Congabongo.hh"
 #include "core/HiHat.hh"
 #include "core/Maraca.hh"
+#include "core/Rimshot.hh"
 
 extern "C" __attribute__((__visibility__("default"))) void init() {
 	using namespace MetaModule;
@@ -19,4 +20,5 @@ extern "C" __attribute__((__visibility__("default"))) void init() {
 	register_module<Congabongo, CongabongoInfo>(brand);
 	register_module<HiHat, HiHatInfo>(brand);
 	register_module<Maraca, MaracaInfo>(brand);
+	register_module<Rimshot, RimshotInfo>(brand);
 }
