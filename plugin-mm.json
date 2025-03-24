@@ -19,5 +19,9 @@
       "slug": "Accent",
       "name": "A helpful tool for adding dynamics to drums"
     },
+    {
+      "slug": "Clap",
+      "name": "Clap inspired by XOX style"
+    }
   ]
 }

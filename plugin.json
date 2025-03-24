@@ -25,6 +25,13 @@
       "description": "A drum utility for adding dynamics to drums.",
       "tags": [
       ]
+    },
+    {
+      "slug": "Clap",
+      "name": "Clap",
+      "description": "Clap inspired by XOX style.",
+      "tags": [
+      ]
     }
   ]
 }

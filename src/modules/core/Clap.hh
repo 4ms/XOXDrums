@@ -1,0 +1,236 @@
+#pragma once
+#include "CoreModules/SmartCoreProcessor.hh"
+#include "info/Clap_info.hh"
+
+#include <cmath> // for sine wave
+#define TWO_PI (2.0 * M_PI)
+
+namespace MetaModule
+{
+
+class Clap : public SmartCoreProcessor<ClapInfo> {
+	using Info = ClapInfo;
+	using enum Info::Elem;
+
+public:
+	Clap() = default;
+
+	template<Info::Elem Knob, Info::Elem CV>
+	float offset10vppSum() {
+		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
+		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
+		return std::clamp(cvSum, 0.0f, 1.0f);
+	}
+
+	// Function to generate white noise
+	float whiteNoise() {
+        return (rand() / (float)RAND_MAX) * 10.0f - 5.0f;  // Random between -5V and +5V
+    }
+
+	 // Function to apply a biquad bandpass filter
+	 float biquadBandpassFilter(float input, float cutoff, float sampleRate) {
+        // Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
+        float omega = 2.0f * M_PI * cutoff / sampleRate;
+        float sn = sinf(omega);
+        float cs = cosf(omega);
+        float alpha1 = sn / (2.0f * resonance);
+
+        // Compute the bandpass filter coefficients (Biquad)
+        filterB0 = alpha1;
+        filterB1 = 0.0f;
+        filterB2 = -alpha1;
+        filterA0 = 1.0f + alpha1;
+        filterA1 = -2.0f * cs;
+        filterA2 = 1.0f - alpha1;
+
+        // Normalize coefficients
+        filterB0 /= filterA0;
+        filterB1 /= filterA0;
+        filterB2 /= filterA0;
+        filterA1 /= filterA0;
+        filterA2 /= filterA0;
+
+        // Apply the filter to the input signal
+        float output1 = filterB0 * input + filterB1 * filterX1 + filterB2 * filterX2
+                       - filterA1 * filterY1 - filterA2 * filterY2;
+
+        // Update the filter states
+        filterX2 = filterX1;
+        filterX1 = input;
+        filterY2 = filterY1;
+        filterY1 = output1;
+
+        return output1;
+    }
+
+	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
+		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
+	}
+
+	void update(void) override {
+
+		float energyControl = offset10vppSum<EnergyKnob, EnergyCvIn>();
+		float spreadControl = offset10vppSum<SpreadKnob, SpreadCvIn>();
+		float verbDecayControl = offset10vppSum<VerbDecayKnob, VerbDecayCvIn>();
+		float colorControl = offset10vppSum<ColorKnob, ColorCvIn>();
+		float verbVolumeControl = offset10vppSum<VerbVolumeKnob, VerbVolumeCvIn>();
+		float saturationControl = offset10vppSum<SaturationKnob, SaturationCvIn>();
+
+		// Check if the trigger input is high
+		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
+		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
+		triggerStates[0] = triggerStates[1];
+		triggerStates[1] = currentTriggerState;
+
+		// Envelope decay times 1-3 (short) 5-15ms 
+		float decayTime1 = mapToRange(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
+		decayAlpha1 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		decayAlpha2 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		decayAlpha3 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+
+		// Last envelope (reverb time)
+		float decayTime2 = mapToRange(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
+		decayAlpha4 = exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
+
+		// Spread knob (delay times between each envelope)
+		delayTime1 = mapToRange(spreadControl, 0.0f, 1.0f, 20.0f, 40.f); 
+		delayTime2 = mapToRange(spreadControl, 0.0f, 1.0f, 35.0f, 50.f); 
+		delayTime3 = mapToRange(spreadControl, 0.0f, 1.0f, 45.0f, 60.f); 
+
+		// Delay counters
+		delayCounter1++; 
+		delayCounter2++; 
+		delayCounter3++; 
+
+		// Samples to ms conversion 
+		delayInSamples1 = delayTime1 * (sampleRate / 1000);
+		delayInSamples2 = delayTime2 * (sampleRate / 1000);
+		delayInSamples3 = delayTime3 * (sampleRate / 1000);
+
+			// Envelope logic 
+		if (bangRisingEdge) {
+		pulseTriggered1 = true;
+		envelopeValue1 = 1.0f;
+		delayCounter1 = 0; 
+		delayCounter2 = 0; 
+		delayCounter3 = 0; 
+		}
+
+		// Env 2 delay 
+		if (delayCounter1 == delayInSamples1) {
+			pulseTriggered2 = true;
+			envelopeValue2 = 1.0f;	
+		}
+		
+		// Env 3 delay 
+		if (delayCounter2 == delayInSamples2) {
+		pulseTriggered3 = true;
+		envelopeValue3 = 1.0f;	
+		}
+
+		// Env 4 delay 
+		if (delayCounter3 == delayInSamples3) {
+		pulseTriggered4 = true;
+		envelopeValue4 = 1.0f;	
+		}
+		
+		// Env 1 (short)
+		if (pulseTriggered1) {
+			envelopeValue1 *= decayAlpha1;
+		} else {
+			envelopeValue1 = 0.0f;
+		}
+
+		// Env 2 (short)
+		if (pulseTriggered2) {
+			envelopeValue2 *= decayAlpha2;
+		} else {
+			envelopeValue2 = 0.0f;
+		}
+
+		// Env 3 (short)
+		if (pulseTriggered3) {
+			envelopeValue3 *= decayAlpha3;
+			} else {
+			envelopeValue3 = 0.0f;
+			}
+
+			// Env 4 (long)
+		if (pulseTriggered4) {
+			envelopeValue4 *= decayAlpha4;
+			} 
+			else {
+			envelopeValue4 = 0.0f;
+			}
+
+		// Filtered noise 
+		float cutoffFrequency = mapToRange(colorControl, 0.f, 1.f, 800.f, 1600.f);
+		float filteredNoise = biquadBandpassFilter(whiteNoise(), cutoffFrequency, sampleRate);
+
+		// Apply envelopes 
+		float outputSignal1 = filteredNoise * envelopeValue1;
+		float outputSignal2 = filteredNoise * envelopeValue2;
+		float outputSignal3 = filteredNoise * envelopeValue3;
+		float outputSignal4 = filteredNoise * envelopeValue4;
+
+		// Mixer 
+		float saturation = mapToRange(saturationControl, 0.f, 1.f, 1.f, 10.f);
+		float finalOutput = ((outputSignal1 + outputSignal2 + outputSignal3 + ((outputSignal4 * verbVolumeControl)) * 0.75f) * 5.f) * saturation; 
+
+		finalOutput = std::clamp(finalOutput, -5.f, 5.f);
+
+		setOutput<ClapOut>(finalOutput);
+	}
+
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+	}
+
+private:
+
+	// Filter
+	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
+    float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
+	float resonance = 2.f;
+
+	// Decay envelopes
+	float decayAlpha1 = 0.0f;
+	float envelopeValue1 = 0.0f;
+	bool pulseTriggered1 = false;
+	float decayTime1 = 0.0f;  // Time in milliseconds for decay
+
+	float decayAlpha2 = 0.0f;
+	float envelopeValue2 = 0.0f;
+	bool pulseTriggered2 = false;
+	float decayTime2 = 0.0f;  // Time in milliseconds for decay
+
+	float decayAlpha3 = 0.0f;
+	float envelopeValue3 = 0.0f;
+	bool pulseTriggered3 = false;
+	float decayTime3 = 0.0f;  // Time in milliseconds for decay
+
+	float decayAlpha4 = 0.0f;
+	float envelopeValue4 = 0.0f;
+	bool pulseTriggered4 = false;
+	float decayTime4 = 0.0f;  // Time in milliseconds for decay
+    
+	// Delay counters for envelopes 
+	int delayInSamples1 = 0; 
+	int delayInSamples2 = 0; 
+	int delayInSamples3 = 0; 
+	int delayCounter1 = 0; 
+	int delayCounter2 = 0; 
+	int delayCounter3 = 0; 
+	int delayTime1 = 0; 
+	int delayTime2 = 0; 
+	int delayTime3 = 0; 
+
+	// Final output and mixing 
+	float finalOutput = 0; 
+
+	bool triggerStates[2] = {false, false};  // triggerStates[0] = last state, triggerStates[1] = current state
+
+	float sampleRate = 44100.0f;
+};
+
+} // namespace MetaModule

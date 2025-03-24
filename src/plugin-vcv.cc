@@ -3,6 +3,8 @@
 
 #include "core/Clave.hh"
 #include "core/Cowbell.hh"
+#include "core/Accent.hh"
+#include "core/Clap.hh"
 
 using namespace MetaModule;
 
@@ -14,8 +16,10 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	rack::Model *modelClave = GenericModule<ClaveInfo, Clave>::create();
 	rack::Model *modelCowbell = GenericModule<CowbellInfo, Cowbell>::create();
 	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
+	rack::Model *modelClap = GenericModule<ClapInfo, Clap>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
 	p->addModel(modelAccent);
+	p->addModel(modelClap);
 }
