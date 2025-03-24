@@ -39,6 +39,13 @@
       "description": "Conga/Bongo inspired by XOX style with added slap inputs",
       "tags": [
       ]
+    },
+    {
+      "slug": "HiHat",
+      "name": "HiHat",
+      "description": "Hi-hat inspired by XOX style with added slap inputs",
+      "tags": [
+      ]
     }
   ]
 }
