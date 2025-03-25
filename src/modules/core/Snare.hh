@@ -137,8 +137,8 @@ public:
 			saturation = 1 + (saturationControl * 2);
 		} 
 		
-		finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation; 
-		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
+		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation; 
+		finalOutput = std::clamp(finalOutput, -2.5f, 2.5f);
 
 		setOutput<SnareOut>(finalOutput);
 	}
@@ -175,8 +175,7 @@ private:
 	float pulseTime = 0.0f;      // Time tracking for pulse duration
 
 	// Output 
-	float saturation;
-	float finalOutput; 
+	float saturation = 0.0f;
 
 	// Bandpass 
 	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;

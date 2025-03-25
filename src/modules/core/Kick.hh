@@ -86,6 +86,7 @@ public:
 
 		finalOutput = (sineWave * amplitudeEnvelope) * saturation; 
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
+
 		setOutput<KickOut>(finalOutput);
 	}
 
@@ -115,9 +116,8 @@ private:
 	float pulseTime = 0.0f;      // Time tracking for pulse duration
 
 	// Output 
-	float saturation;
-	float finalOutput; 
-	float ledBrightness; 
+	float saturation = 0.0f;
+	float finalOutput = 0.0f; 
 
 	// INTERFACE 
 	float pitchControl = 0.0f;
