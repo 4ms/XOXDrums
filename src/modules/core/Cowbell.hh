@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Cowbell_info.hh"
 #include <cmath> // for sine wave
 #define TWO_PI (2.0 * M_PI)
@@ -23,8 +24,8 @@ public:
 
 	void update(void) override {
 
-		float pitchControl = offset10vppSum<PitchKnob, PitchCvIn>();
-		float ampDecayControl = offset10vppSum<DecayKnob, DecayCvIn>();
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Check if the trigger input is high
 		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;

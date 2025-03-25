@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Rimshot_info.hh"
 
 namespace MetaModule
@@ -11,13 +12,6 @@ class Rimshot : public SmartCoreProcessor<RimshotInfo> {
 
 public:
 	Rimshot() = default;
-
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
 
 	float highpass(float input,
 				   float &prevInput1,
@@ -66,8 +60,8 @@ public:
 
 	void update(void) override {
 
-		float cutoffControl = offset10vppSum<PitchKnob, PitchCvIn>();
-		float resonanceControl = offset10vppSum<RingKnob, RingCvIn>();
+		float cutoffControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float resonanceControl = combineKnobBipolarCV(getState<RingKnob>(), getInput<RingCvIn>());
 
 		// Check if the trigger input is high
 		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;

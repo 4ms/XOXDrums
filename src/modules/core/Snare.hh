@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
 
 #include <cmath> // for sine wave
@@ -14,13 +15,6 @@ class Snare : public SmartCoreProcessor<SnareInfo> {
 
 public:
 	Snare() = default;
-
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
 
 	float biquadBandpassFilter1(float input, float cutoff, float sampleRate1) {
 		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
@@ -59,14 +53,14 @@ public:
 
 	void update(void) override {
 
-		float pitchControl = offset10vppSum<PitchKnob, PitchIn>();
-		float envDepthControl = offset10vppSum<PitchEnvAmountKnob, PitchEnvAmountCvIn>();
-		float pitchDecayControl = offset10vppSum<PitchDecayKnob, PitchDecayCvIn>();
-		float ampDecayControl = offset10vppSum<BodyDecayKnob, BodyDecayCvIn>();
-		float saturationControl = offset10vppSum<SaturationKnob, SaturationCvIn>();
-		float noiseVolumeControl = offset10vppSum<Body_NoiseKnob, Body_NoiseCvIn>();
-		float noiseColorControl = offset10vppSum<NoiseColorKnob, NoiseColorCvIn>();
-		float noiseDecayControl = offset10vppSum<NoiseDecayKnob, NoiseDecayCvIn>();
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PitchEnvAmountCvIn>());
+		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		float ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BodyDecayCvIn>());
+		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
+		float noiseVolumeControl = combineKnobBipolarCV(getState<Body_NoiseKnob>(), getInput<Body_NoiseCvIn>());
+		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
+		float noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NoiseDecayCvIn>());
 
 		// Trig input
 		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;

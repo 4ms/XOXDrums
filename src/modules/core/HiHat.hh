@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
 
 namespace MetaModule
@@ -12,12 +13,6 @@ class HiHat : public SmartCoreProcessor<HiHatInfo> {
 public:
 	HiHat() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
 
 	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
 		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
@@ -146,10 +141,10 @@ public:
 
 	void update(void) override {
 
-		float pitchControl = offset10vppSum<PitchKnob, PitchCvIn>();
-		float decayControl = offset10vppSum<DecayKnob, DecayCvIn>();
-		float thicknessControl = offset10vppSum<ThicknessKnob, ThicknessCvIn>();
-		float brightnessControl = offset10vppSum<BrightnessKnob, BrightnessCvIn>();
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		float thicknessControl = combineKnobBipolarCV(getState<ThicknessKnob>(), getInput<ThicknessCvIn>());
+		float brightnessControl = combineKnobBipolarCV(getState<BrightnessKnob>(), getInput<BrightnessCvIn>());
 
 		// Check if the trigger input is high
 		bool currentTriggerState1 = getInput<ClosedTrigIn>().value_or(0.f) > 0.5f;

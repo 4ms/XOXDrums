@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
 
 namespace MetaModule
@@ -11,13 +12,6 @@ class Maraca : public SmartCoreProcessor<MaracaInfo> {
 
 public:
 	Maraca() = default;
-
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
 
 	float highpass(float input,
 				   float &prevInput1,
@@ -62,7 +56,7 @@ public:
 
 	void update(void) override {
 		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
-		float decayControl = offset10vppSum<DecayKnob, DecayCvIn>();
+		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Trig input
 		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;

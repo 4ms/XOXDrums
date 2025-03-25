@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Duck_info.hh"
 
 #include <cmath> // for sine wave
@@ -15,23 +16,14 @@ class Duck : public SmartCoreProcessor<DuckInfo> {
 public:
 	Duck() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
-
 	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
 		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
 	}
 
 	void update(void) override {
 
-		float amountControl = offset10vppSum<AmountKnob, AmountCvIn>();
-		;
-		float timeControl = offset10vppSum<TimeKnob, TimeCvIn>();
-		;
+		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
+		float timeControl = combineKnobBipolarCV(getState<TimeKnob>(), getInput<TimeCvIn>());
 
 		// Check if the trigger input is high
 		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;

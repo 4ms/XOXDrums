@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Clave_info.hh"
 
 #include <cmath> // for sine wave
@@ -15,17 +16,10 @@ class Clave : public SmartCoreProcessor<ClaveInfo> {
 public:
 	Clave() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
-
 	void update(void) override {
 
-		float pitchControl = offset10vppSum<PitchKnob, PitchCvIn>();
-		float ampDecayControl = offset10vppSum<DecayKnob, DecayCvIn>();
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Check if the trigger input is high
 		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;

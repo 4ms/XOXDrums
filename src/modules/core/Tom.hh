@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Tom_info.hh"
 
 #include <cmath> // for sine wave
@@ -15,13 +16,6 @@ class Tom : public SmartCoreProcessor<TomInfo> {
 public:
 	Tom() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
-
 	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
 		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
 	}
@@ -29,11 +23,10 @@ public:
 	void update(void) override {
 
 		// Interface
-		float pitchControl = offset10vppSum<PitchKnob, PitchCvIn>();
-		;
-		float ampDecayControl = offset10vppSum<AmpDecayKnob, AmpDecayCvIn>();
-		float pitchDecayControl = offset10vppSum<PitchDecayKnob, PitchDecayCvIn>();
-		float envDepthControl = offset10vppSum<EnvDepthKnob, EnvDepthCvIn>();
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<AmpDecayCvIn>());
+		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<EnvDepthKnob>(), getInput<EnvDepthCvIn>());
 
 		bool currentBangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
 		bool bangRisingEdge = !bangStates[0] && currentBangState;

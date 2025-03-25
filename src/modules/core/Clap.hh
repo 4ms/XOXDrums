@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Clap_info.hh"
 
 #include <cmath> // for sine wave
@@ -14,13 +15,6 @@ class Clap : public SmartCoreProcessor<ClapInfo> {
 
 public:
 	Clap() = default;
-
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
 
 	// Function to generate white noise
 	float whiteNoise() {
@@ -69,12 +63,12 @@ public:
 
 	void update(void) override {
 
-		float energyControl = offset10vppSum<EnergyKnob, EnergyCvIn>();
-		float spreadControl = offset10vppSum<SpreadKnob, SpreadCvIn>();
-		float verbDecayControl = offset10vppSum<VerbDecayKnob, VerbDecayCvIn>();
-		float colorControl = offset10vppSum<ColorKnob, ColorCvIn>();
-		float verbVolumeControl = offset10vppSum<VerbVolumeKnob, VerbVolumeCvIn>();
-		float saturationControl = offset10vppSum<SaturationKnob, SaturationCvIn>();
+		float energyControl = combineKnobBipolarCV(getState<EnergyKnob>(), getInput<EnergyCvIn>());
+		float spreadControl = combineKnobBipolarCV(getState<SpreadKnob>(), getInput<SpreadCvIn>());
+		float verbDecayControl = combineKnobBipolarCV(getState<VerbDecayKnob>(), getInput<VerbDecayCvIn>());
+		float colorControl = combineKnobBipolarCV(getState<ColorKnob>(), getInput<ColorCvIn>());
+		float verbVolumeControl = combineKnobBipolarCV(getState<VerbVolumeKnob>(), getInput<VerbVolumeCvIn>());
+		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
 		// Check if the trigger input is high
 		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;

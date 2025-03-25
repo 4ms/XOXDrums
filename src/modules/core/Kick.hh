@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Kick_info.hh"
 
 #include <cmath> // for sine wave
@@ -15,20 +16,13 @@ class Kick : public SmartCoreProcessor<KickInfo> {
 public:
 	Kick() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
-
 	void update(void) override {
 
-		float pitchControl = offset10vppSum<PitchKnob, PitchCvIn>();
-		float pitchDecayControl = offset10vppSum<PitchDecayKnob, PitchDecayCvIn>();
-		float ampDecayControl = offset10vppSum<AmpDecayKnob, AmpDecayCvIn>();
-		float envDepthControl = offset10vppSum<PitchDepthKnob, DepthCvIn>();
-		float saturationControl = offset10vppSum<SaturationKnob, SaturationCvIn>();
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		float ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<AmpDecayCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PitchDepthKnob>(), getInput<DepthCvIn>());
+		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
 		// Trig input
 		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;

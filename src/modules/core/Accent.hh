@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "helpers/param_cv.hh"
 #include "info/Accent_info.hh"
 
 namespace MetaModule
@@ -12,16 +13,9 @@ class Accent : public SmartCoreProcessor<AccentInfo> {
 public:
 	Accent() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
-
 	void update(void) override {
 
-		float controlValue = offset10vppSum<AmountKnob, AmountCvIn>();
+		float controlValue = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		controlValue = 0.2f + (controlValue * 0.9f);
 
 		// Check if the trigger input is high
