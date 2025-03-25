@@ -14,11 +14,11 @@ include(${METAMODULE_SDK_DIR}/plugin.cmake)
 
 project(CoreModule_MetaModulePlugin 
     VERSION     0.1
-    DESCRIPTION "CoreModule Template Plugin for MetaModule"
+    DESCRIPTION "4ms Drums Plugin for MetaModule"
     LANGUAGES   C CXX ASM
 )
 
-add_library(MyPlugin STATIC)
+add_library(4msDrums STATIC)
 
 
 file(GLOB sources 
@@ -26,30 +26,30 @@ file(GLOB sources
     src/modules/core/*.cpp
 )
 
-target_sources(MyPlugin
+target_sources(4msDrums
     PRIVATE
     ${sources}
     src/plugin-mm.cc
 )
 
-target_include_directories(MyPlugin PRIVATE
+target_include_directories(4msDrums PRIVATE
     src/
     src/helpers/
     src/modules/
 )
 
-target_compile_options(MyPlugin
+target_compile_options(4msDrums
     PRIVATE
 )
 
-set_property(TARGET MyPlugin PROPERTY CXX_STANDARD 20)
+set_property(TARGET 4msDrums PROPERTY CXX_STANDARD 20)
 
 if("${INSTALL_DIR}" STREQUAL "")
     set(INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/metamodule-plugins)
 endif()
 
 create_plugin(
-    SOURCE_LIB      MyPlugin                                # This is the cmake target name (defined in add_target)
+    SOURCE_LIB      4msDrums                                # This is the cmake target name (defined in add_target)
     PLUGIN_NAME     4msDrums                                # This must match the brand "slug" used in VCV Rack
     PLUGIN_JSON     ${CMAKE_CURRENT_LIST_DIR}/plugin.json   # Path to the plugin.json file used by VCV Rack
     SOURCE_ASSETS   ${CMAKE_CURRENT_LIST_DIR}/assets        # Path to the assets/ dir containing the PNGs
