@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Rimshot_info.hh"
+#include "util/math.hh"
 
 namespace MetaModule
 {
@@ -54,10 +55,6 @@ public:
 		return output;
 	}
 
-	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
-		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
-	}
-
 	void update(void) override {
 
 		float cutoffControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
@@ -90,8 +87,10 @@ public:
 			trigger = 0.f;
 		}
 
-		highpassResonance = mapToRange(resonanceControl, 0.f, 1.f, 1.f, 10.f);
-		hpCutoffFreq = mapToRange(cutoffControl, 0.f, 1.f, 200.f, 2000.f); // Base frequency for high-pass filter
+		highpassResonance = MathTools::map_value(resonanceControl, 0.f, 1.f, 1.f, 10.f);
+
+		// Base frequency for high-pass filter
+		hpCutoffFreq = MathTools::map_value(cutoffControl, 0.f, 1.f, 200.f, 2000.f);
 
 		highpassOut =
 			highpass(trigger, prevIn1, prevIn2, prevOut1, prevOut2, hpCutoffFreq, sampleRate, highpassResonance);
@@ -117,7 +116,6 @@ private:
 	float finalOutput;
 
 	// INTERFACE
-
 	float timerMs = 0.0f;
 	float sampleTimeMs = 0.0f;
 	float trigTime = 0.0f;

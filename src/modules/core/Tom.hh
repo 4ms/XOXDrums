@@ -15,10 +15,6 @@ class Tom : public SmartCoreProcessor<TomInfo> {
 public:
 	Tom() = default;
 
-	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
-		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
-	}
-
 	void update(void) override {
 
 		// Interface
@@ -31,8 +27,8 @@ public:
 		bool bangRisingEdge = !bangStates[0] && currentBangState;
 		bangStates[0] = currentBangState;
 
-		decayTimeAmp = mapToRange(ampDecayControl, 0.0f, 1.0f, 25.0f, 100.f);
-		decayTimePitch = mapToRange(pitchDecayControl, 0.0f, 1.0f, 5.0f, 50.f);
+		decayTimeAmp = MathTools::map_value(ampDecayControl, 0.0f, 1.0f, 25.0f, 100.f);
+		decayTimePitch = MathTools::map_value(pitchDecayControl, 0.0f, 1.0f, 5.0f, 50.f);
 
 		decayAlphaAmp = exp(-1.0f / (sampleRate * (decayTimeAmp / 1000.0f)));
 		decayAlphaPitch = exp(-1.0f / (sampleRate * (decayTimePitch / 1000.0f)));

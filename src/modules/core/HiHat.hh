@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
+#include "util/math.hh"
 
 namespace MetaModule
 {
@@ -12,11 +13,6 @@ class HiHat : public SmartCoreProcessor<HiHatInfo> {
 
 public:
 	HiHat() = default;
-
-
-	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
-		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
-	}
 
 	// Function to apply a biquad bandpass filter
 	float biquadBandpassFilter(float input, float cutoff, float sampleRate1) {
@@ -158,7 +154,7 @@ public:
 		triggerStates2[1] = currentTriggerState2;
 
 		// Square wave VCO x6 for two channels
-		frequency = mapToRange(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
+		frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
 
 		for (int i = 0; i < 6; ++i) {
 			phases[i] += (frequency + offsets[i]) * (1 / sampleRate);
@@ -178,11 +174,11 @@ public:
 
 		// Bandpass
 		resonance = 1.f;
-		bandpassCutoffFrequency = mapToRange(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
+		bandpassCutoffFrequency = MathTools::map_value(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
 		bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency, sampleRate);
 
 		// Envelopes
-		decayTimeOpen = mapToRange(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
+		decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
 		decayAlpha1 = exp(-1.0f / (sampleRate * (decayTimeClosed / 1000.0f)));
 		decayAlpha2 = exp(-1.0f / (sampleRate * (decayTimeOpen / 1000.0f)));
 
@@ -222,7 +218,8 @@ public:
 
 		// Highpass Resonant Filter (12dB/octave)
 		highpassResonance = 1.f;
-		hpCutoffFreq = mapToRange(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
+		hpCutoffFreq =
+			MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
 
 		closedHighpassOut = closedHighpass(closedVCAOut,
 										   closedPrevIn1,
@@ -242,7 +239,7 @@ public:
 									   highpassResonance);
 
 		// Post highpass makeup gain automatic compensation as cutoff decreases
-		finalMakeup = mapToRange(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
+		finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
 
 		finalOutputClosed = (closedHighpassOut * finalMakeup); // Makeup gain
 		finalOutputOpen = (openHighpassOut * finalMakeup);	   // Makeup gain

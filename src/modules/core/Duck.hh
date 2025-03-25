@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Duck_info.hh"
+#include "util/math.hh"
 #include <cmath>
 
 namespace MetaModule
@@ -13,10 +14,6 @@ class Duck : public SmartCoreProcessor<DuckInfo> {
 
 public:
 	Duck() = default;
-
-	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
-		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
-	}
 
 	void update(void) override {
 
@@ -48,7 +45,7 @@ public:
 			amplitudeEnvelope = 0.0f;
 		}
 
-		float agc = mapToRange(amountControl, 0.f, 1.f, 0.5f, 1.f);
+		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
 
 		float scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope)*amountControl));
 
