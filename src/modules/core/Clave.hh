@@ -4,7 +4,6 @@
 #include "info/Clave_info.hh"
 
 #include <cmath> // for sine wave
-#define TWO_PI (2.0 * M_PI)
 
 namespace MetaModule
 {
@@ -37,10 +36,10 @@ public:
 		// Osc
 		float dt = 1.0f / sampleRate;
 		float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
-		phase += frequency * TWO_PI * dt;
-		phase += frequency * TWO_PI * dt;
-		if (phase >= TWO_PI) {
-			phase -= TWO_PI;
+		phase += frequency * 2.f * M_PI * dt;
+		phase += frequency * 2.f * M_PI * dt;
+		if (phase >= 2.f * M_PI) {
+			phase -= 2.f * M_PI;
 		}
 		float sineWave = 5.0f * sinf(phase);
 

@@ -2,9 +2,8 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Tom_info.hh"
-
-#include <cmath> // for sine wave
-#define TWO_PI (2.0 * M_PI)
+#include "util/math.hh"
+#include <cmath>
 
 namespace MetaModule
 {
@@ -67,10 +66,10 @@ public:
 		// Osc
 		float dt = 1.0f / sampleRate;
 		modulatedFrequency = frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * TWO_PI * dt;
-		phase += frequency * TWO_PI * dt;
-		if (phase >= TWO_PI) {
-			phase -= TWO_PI;
+		phase += modulatedFrequency * 2.f * M_PI * dt;
+		phase += frequency * 2.f * M_PI * dt;
+		if (phase >= 2.f * M_PI) {
+			phase -= 2.f * M_PI;
 		}
 		float sineWave = 5.0f * sinf(phase);
 

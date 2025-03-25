@@ -2,9 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Congabongo_info.hh"
-
-#include <cmath> // for sine wave
-#define TWO_PI (2.0 * M_PI)
+#include <cmath>
 
 namespace MetaModule
 {
@@ -84,19 +82,19 @@ public:
 
 		// Osc 1
 		float dt = 1.0f / sampleRate;
-		phase1 += frequency1 * TWO_PI * dt;
-		phase1 += frequency1 * TWO_PI * dt;
-		if (phase1 >= TWO_PI) {
-			phase1 -= TWO_PI;
+		phase1 += frequency1 * 2.f * M_PI * dt;
+		phase1 += frequency1 * 2.f * M_PI * dt;
+		if (phase1 >= 2.f * M_PI) {
+			phase1 -= 2.f * M_PI;
 		}
 		float sineWave1 = 5.0f * sinf(phase1);
 
 		// Osc 2
 		frequency2 = frequency1 * (3.0f / 4.0f); // Low
-		phase2 += frequency2 * TWO_PI * dt;
-		phase2 += frequency2 * TWO_PI * dt;
-		if (phase2 >= TWO_PI) {
-			phase2 -= TWO_PI;
+		phase2 += frequency2 * 2.f * M_PI * dt;
+		phase2 += frequency2 * 2.f * M_PI * dt;
+		if (phase2 >= 2.f * M_PI) {
+			phase2 -= 2.f * M_PI;
 		}
 		float sineWave2 = 5.0f * sinf(phase2);
 

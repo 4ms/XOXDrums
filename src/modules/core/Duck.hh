@@ -2,9 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Duck_info.hh"
-
-#include <cmath> // for sine wave
-#define TWO_PI (2.0 * M_PI)
+#include <cmath>
 
 namespace MetaModule
 {
