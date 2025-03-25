@@ -21,12 +21,12 @@ struct CongabongoInfo : ModuleInfoBase {
         Davies1900hBlackKnob{{to_mm<25>(25.44), to_mm<25>(20.169), Center, "Pitch", ""}, 0.0f},
 		AnalogJackOutput4ms{{to_mm<25>(11.063), to_mm<25>(111.127), Center, "Out HI", ""}},
 		AnalogJackOutput4ms{{to_mm<25>(41.129), to_mm<25>(111.127), Center, "Out LO", ""}},
-		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(96.45), Center, "Tone HI Gate", ""}},
+		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(96.45), Center, "Tone LO Gate", ""}},
 		AnalogJackInput4ms{{to_mm<25>(25.44), to_mm<25>(96.45), Center, "Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(96.45), Center, "Tone LO Gate", ""}},
-		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(82.292), Center, "Slap HI Gate", ""}},
+		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(96.45), Center, "Tone HI Gate", ""}},
+		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(82.292), Center, "Slap LO Gate", ""}},
 		AnalogJackInput4ms{{to_mm<25>(25.44), to_mm<25>(82.292), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(82.292), Center, "Slap LO Gate", ""}},
+		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(82.292), Center, "Slap HI Gate", ""}},
 }};
 
     enum class Elem {
