@@ -174,7 +174,6 @@ return outputOpen;
 			bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency, sampleRate);
 
 			// Envelopes 
-			decayTimeClosed = 10.f; 
 			decayTimeOpen = mapToRange(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
 			decayAlpha1 = exp(-1.0f / (sampleRate * (decayTimeClosed / 1000.0f)));
 			decayAlpha2 = exp(-1.0f / (sampleRate * (decayTimeOpen / 1000.0f)));
@@ -266,7 +265,7 @@ private:
 		bool pulseTriggered2 = false;
 		float decayTime2 = 0.0f;  // Time in milliseconds for decay
 
-		float decayTimeClosed = 0.f; 
+		float decayTimeClosed = 10.f; 
 		float decayTimeOpen = 0.f; 
 
 		float closedVCAOut = 0.f;
