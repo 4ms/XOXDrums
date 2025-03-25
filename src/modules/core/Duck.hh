@@ -74,7 +74,7 @@ private:
 
 	bool triggerStates[2] = {false, false};
 
-	float sampleRate = 44100.0f;
+	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

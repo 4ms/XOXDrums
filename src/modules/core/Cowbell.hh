@@ -116,7 +116,7 @@ private:
 	float highpassAlpha = 0.6f; // Filter cutoff highpass, lower number = more filtering
 	float prevHighpassOutput = 0.0f;
 
-	float sampleRate = 44100.0f;
+	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

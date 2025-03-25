@@ -60,7 +60,7 @@ public:
 private:
 	float amplitudeEnvelope = 0.f;
 	bool pulseTriggered = false;
-	float sampleRate = 44100.0f;
+	float sampleRate = 48000.0f;
 	bool triggerStates[2] = {false, false};
 };
 

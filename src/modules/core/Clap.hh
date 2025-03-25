@@ -224,7 +224,7 @@ private:
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 
-	float sampleRate = 44100.0f;
+	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

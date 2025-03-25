@@ -174,7 +174,7 @@ private:
 	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
 	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
 
-	float sampleRate = 44100.0f;
+	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

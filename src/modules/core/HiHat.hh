@@ -303,7 +303,7 @@ private:
 	float prevOut1Open = 0.0f, prevOut2Open = 0.0f;
 
 	float hpCutoffFreq = 0.f;
-	float sampleRate = 44100.0f; // Assume 44.1 kHz sample rate
+	float sampleRate = 48000.0f;
 	float closedHighpassOut = 0.f;
 	float openHighpassOut = 0.f;
 	float highpassResonance = 0.f;

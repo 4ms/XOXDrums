@@ -119,7 +119,7 @@ private:
 	float highpassOut = 0.f;
 	float highpassResonance = 0.f;
 
-	float sampleRate = 44100.0f;
+	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule
