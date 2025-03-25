@@ -30,13 +30,17 @@ public:
 
 	float amountControl = offset10vppSum<AmountKnob, AmountCvIn>();; 
 	float timeControl = offset10vppSum<TimeKnob, TimeCvIn>();; 
-			// Trig input 
-			bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
-			if (bangState) {
+
+			// Check if the trigger input is high
+		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
+		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
+		triggerStates[0] = triggerStates[1];
+		triggerStates[1] = currentTriggerState;
+
+			if (bangRisingEdge) {
 				pulseTriggered = true;
 				amplitudeEnvelope = 1.0f;
 				}
-				lastBangState = bangState;
 	
 			// Envelopes 
 			float ampDecayTime = 50.0f + (timeControl * 1950.0f); 
@@ -73,7 +77,9 @@ float amplitudeEnvelope = 1.0f;  // Envelope output value (for volume control)
 
 // Trig
 bool pulseTriggered = false; // Flag to check if pulse was triggered
-bool lastBangState = false;  // Previous state of the Bang input
+
+bool triggerStates[2] = {false, false};  
+
 
 	float sampleRate = 44100.0f;
 };
