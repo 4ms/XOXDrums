@@ -109,8 +109,6 @@ public:
 private:
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
-	float ampDecayAlpha = 0.0f;		// Exponential decay coefficient
 
 	// Trig
 	bool pulseTriggered = false; // Flag to check if pulse was triggered
@@ -119,8 +117,6 @@ private:
 	float finalOutput;
 
 	// INTERFACE
-	float cutoffControl = 0.0f;
-	float resonanceControl = 0.0f;
 
 	float timerMs = 0.0f;
 	float sampleTimeMs = 0.0f;

@@ -112,13 +112,6 @@ private:
 	float saturation = 0.0f;
 	float finalOutput = 0.0f;
 
-	// INTERFACE
-	float pitchControl = 0.0f;
-	float envDepthControl = 0.0f;
-	float pitchDecayControl = 0.0f;
-	float ampDecayControl = 0.0f;
-	float saturationControl = 0.0f;
-
 	float sampleRate = 48000.0f;
 };
 

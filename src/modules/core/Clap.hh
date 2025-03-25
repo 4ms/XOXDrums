@@ -191,22 +191,18 @@ private:
 	float decayAlpha1 = 0.0f;
 	float envelopeValue1 = 0.0f;
 	bool pulseTriggered1 = false;
-	float decayTime1 = 0.0f; // Time in milliseconds for decay
 
 	float decayAlpha2 = 0.0f;
 	float envelopeValue2 = 0.0f;
 	bool pulseTriggered2 = false;
-	float decayTime2 = 0.0f; // Time in milliseconds for decay
 
 	float decayAlpha3 = 0.0f;
 	float envelopeValue3 = 0.0f;
 	bool pulseTriggered3 = false;
-	float decayTime3 = 0.0f; // Time in milliseconds for decay
 
 	float decayAlpha4 = 0.0f;
 	float envelopeValue4 = 0.0f;
 	bool pulseTriggered4 = false;
-	float decayTime4 = 0.0f; // Time in milliseconds for decay
 
 	// Delay counters for envelopes
 	int delayInSamples1 = 0;
@@ -218,9 +214,6 @@ private:
 	int delayTime1 = 0;
 	int delayTime2 = 0;
 	int delayTime3 = 0;
-
-	// Final output and mixing
-	float finalOutput = 0;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 

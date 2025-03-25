@@ -278,12 +278,10 @@ private:
 	float decayAlpha1 = 0.0f;
 	float envelopeValue1 = 0.0f;
 	bool pulseTriggered1 = false;
-	float decayTime1 = 0.0f; // Time in milliseconds for decay
 
 	float decayAlpha2 = 0.0f;
 	float envelopeValue2 = 0.0f;
 	bool pulseTriggered2 = false;
-	float decayTime2 = 0.0f; // Time in milliseconds for decay
 
 	float decayTimeClosed = 10.f;
 	float decayTimeOpen = 0.f;
@@ -310,7 +308,6 @@ private:
 
 	float finalMakeup = 0.f;
 
-	int select = 0;
 	float choke = 0.f;
 
 	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state

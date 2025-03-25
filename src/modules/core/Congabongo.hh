@@ -158,7 +158,6 @@ public:
 	}
 
 private:
-	int select = 0;
 	// Sine oscillator
 	float phase1 = 0.0f;
 	float frequency1 = 100.0f;
