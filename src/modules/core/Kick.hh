@@ -30,8 +30,8 @@ public:
 		float envDepthControl = offset10vppSum<PitchDepthKnob, DepthCvIn>();
 		float saturationControl = offset10vppSum<SaturationKnob, SaturationCvIn>();
 
-		// Trig input 
-		bool bangState =  getInput<TrigIn>().value_or(0.f) > 0.5f;
+		// Trig input
+		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
 		if (bangState && !lastBangState) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			pulseTriggered = true;
@@ -43,7 +43,7 @@ public:
 
 		// Osc
 		float dt = 1.0f / sampleRate;
-		frequency = 10 + (pitchControl * 40.0f); // 10hz - 40hz range 
+		frequency = 10 + (pitchControl * 40.0f);									   // 10hz - 40hz range
 		modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
 		phase += modulatedFrequency * TWO_PI * dt;
 		phase += frequency * TWO_PI * dt;
@@ -51,40 +51,39 @@ public:
 			phase -= TWO_PI;
 		}
 		float sineWave = 5.0f * sinf(phase);
-		
-		// Envelopes 
+
+		// Envelopes
 		ampDecayTime = 5.0f + (ampDecayControl * 300.0f); // amp decay range (5ms - 300ms)
 		ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
-		pitchDecayTime = 5.0f + (pitchDecayControl* 30.0f); // pitch decay range (5ms - 30ms)
+		pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
 		pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
 		if (pulseTriggered) {
 			if (amplitudeEnvelope < 0.0f) {
-				pitchEnvelope = 0.0f;			
+				pitchEnvelope = 0.0f;
 				amplitudeEnvelope = 0.0f;
 				pulseTriggered = false;
 			}
 		} else {
-			pitchEnvelope = 0.0f; 
+			pitchEnvelope = 0.0f;
 			amplitudeEnvelope = 0.0f;
 		}
-       
-       // Final output 
+
+		// Final output
 		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
 			saturation = 1 + (saturationControl * 100);
 		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) 
-		{
+		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) {
 			saturation = 1 + (saturationControl * 10);
 		}
 		if (getState<RangeSwitch>() == Toggle3pos::State_t::DOWN) {
 			saturation = 1 + (saturationControl * 2);
-		} 
+		}
 
-		finalOutput = (sineWave * amplitudeEnvelope) * saturation; 
+		finalOutput = (sineWave * amplitudeEnvelope) * saturation;
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
 		setOutput<KickOut>(finalOutput);
@@ -95,31 +94,31 @@ public:
 	}
 
 private:
-	// Sine oscillator 
+	// Sine oscillator
 	float phase = 0.0f;
-	float frequency = 100.0f; 
+	float frequency = 100.0f;
 	float modulatedFrequency;
 
-    // Amp decay envelope 
-    float amplitudeEnvelope = 1.0f;  // Envelope output value (for volume control)
-    float ampDecayTime = 5.0f;      // Decay time in ms (5ms as requested)
-    float ampDecayAlpha = 0.0f;     // Exponential decay coefficient
+	// Amp decay envelope
+	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
+	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
+	float ampDecayAlpha = 0.0f;		// Exponential decay coefficient
 
-    // Pitch decay envelope 
-	float pitchEnvelope = 1.0f;  // Envelope output value (for volume control)
-    float pitchDecayTime = 5.0f;      // Decay time in ms (5ms as requested)
-    float pitchDecayAlpha = 0.0f;     // Exponential decay coefficient
+	// Pitch decay envelope
+	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
+	float pitchDecayTime = 5.0f;  // Decay time in ms (5ms as requested)
+	float pitchDecayAlpha = 0.0f; // Exponential decay coefficient
 
 	// Trig
-    bool pulseTriggered = false; // Flag to check if pulse was triggered
-    bool lastBangState = false;  // Previous state of the Bang input
-	float pulseTime = 0.0f;      // Time tracking for pulse duration
+	bool pulseTriggered = false; // Flag to check if pulse was triggered
+	bool lastBangState = false;	 // Previous state of the Bang input
+	float pulseTime = 0.0f;		 // Time tracking for pulse duration
 
-	// Output 
+	// Output
 	float saturation = 0.0f;
-	float finalOutput = 0.0f; 
+	float finalOutput = 0.0f;
 
-	// INTERFACE 
+	// INTERFACE
 	float pitchControl = 0.0f;
 	float envDepthControl = 0.0f;
 	float pitchDecayControl = 0.0f;

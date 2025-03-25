@@ -1,18 +1,18 @@
 #include "plugin-vcv.hh"
 #include "vcv/generic_module.hh"
 
-#include "core/Clave.hh"
-#include "core/Cowbell.hh"
 #include "core/Accent.hh"
 #include "core/Clap.hh"
+#include "core/Clave.hh"
 #include "core/Congabongo.hh"
+#include "core/Cowbell.hh"
+#include "core/Duck.hh"
 #include "core/HiHat.hh"
+#include "core/Kick.hh"
 #include "core/Maraca.hh"
 #include "core/Rimshot.hh"
-#include "core/Kick.hh"
 #include "core/Snare.hh"
 #include "core/Tom.hh"
-#include "core/Duck.hh"
 
 using namespace MetaModule;
 
