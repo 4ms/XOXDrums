@@ -32,6 +32,7 @@ __attribute__((__visibility__("default"))) void init(rack::Plugin *p) {
 	rack::Model *modelKick = GenericModule<KickInfo, Kick>::create();
 	rack::Model *modelTom = GenericModule<TomInfo, Tom>::create();
 	rack::Model *modelDuck = GenericModule<DuckInfo, Duck>::create();
+	rack::Model *modelSnare = GenericModule<SnareInfo, Snare>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
