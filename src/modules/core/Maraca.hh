@@ -67,8 +67,8 @@ public:
 		lastBangState = bangState;
 
 		// Envelopes
-		ampDecayTime = 2.5f + (decayControl * 10.0f); //
-		ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayTime = 2.5f + (decayControl * 10.0f); //
+		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		if (pulseTriggered) {
@@ -80,14 +80,14 @@ public:
 			amplitudeEnvelope = 0.0f;
 		}
 
-		VCAOut = (noise * amplitudeEnvelope);
+		float VCAOut = (noise * amplitudeEnvelope);
 
-		highpassResonance = 1.f;
-		hpCutoffFreq = 6000.f; // Base frequency for high-pass filter
-		highpassOut =
+		float highpassResonance = 1.f;
+		float hpCutoffFreq = 6000.f; // Base frequency for high-pass filter
+		float highpassOut =
 			highpass(VCAOut, prevIn1, prevIn2, prevOut1, prevOut2, hpCutoffFreq, sampleRate, highpassResonance);
 
-		finalOutput = (highpassOut * 0.75f); // Apply makeup gain post filter
+		float finalOutput = (highpassOut * 0.75f); // Apply makeup gain post filter
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
 		setOutput<MaracaOut>(finalOutput);
@@ -100,24 +100,14 @@ public:
 private:
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
-	float ampDecayAlpha = 0.0f;		// Exponential decay coefficient
 
 	// Trig
 	bool pulseTriggered = false; // Flag to check if pulse was triggered
 	bool lastBangState = false;	 // Previous state of the Bang input
 
-	// Output
-	float VCAOut = 0.f;
-	float finalOutput = 0.f;
-
 	// High-pass filter variables
 	float prevIn1 = 0.0f, prevIn2 = 0.0f;
 	float prevOut1 = 0.0f, prevOut2 = 0.0f;
-
-	float hpCutoffFreq = 0.f;
-	float highpassOut = 0.f;
-	float highpassResonance = 0.f;
 
 	float sampleRate = 48000.0f;
 };
