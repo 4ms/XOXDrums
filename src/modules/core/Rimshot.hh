@@ -66,9 +66,9 @@ public:
 		triggerStates[0] = triggerStates[1];
 		triggerStates[1] = currentTriggerState;
 
-		trigTime = 5.0f; // Trigger pulse length of 5ms
+		float trigTime = 5.0f; // Trigger pulse length of 5ms
 
-		sampleTimeMs = (sampleRate * 1000.0f);
+		float sampleTimeMs = (sampleRate * 1000.0f);
 
 		// Trig input
 		if (bangRisingEdge) {
@@ -87,15 +87,14 @@ public:
 			trigger = 0.f;
 		}
 
-		highpassResonance = MathTools::map_value(resonanceControl, 0.f, 1.f, 1.f, 10.f);
+		float highpassResonance = MathTools::map_value(resonanceControl, 0.f, 1.f, 1.f, 10.f);
 
 		// Base frequency for high-pass filter
-		hpCutoffFreq = MathTools::map_value(cutoffControl, 0.f, 1.f, 200.f, 2000.f);
+		float hpCutoffFreq = MathTools::map_value(cutoffControl, 0.f, 1.f, 200.f, 2000.f);
 
-		highpassOut =
-			highpass(trigger, prevIn1, prevIn2, prevOut1, prevOut2, hpCutoffFreq, sampleRate, highpassResonance);
+		float highpassOut = highpass(trigger, prevIn1, prevIn2, prevOut1, prevOut2, hpCutoffFreq, sampleRate, highpassResonance);
 
-		finalOutput = (highpassOut * 3.f); // Give it some crunch
+		float finalOutput = (highpassOut * 3.f); // Give it some crunch
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
 		setOutput<RimshotOut>(finalOutput);
@@ -112,13 +111,8 @@ private:
 	// Trig
 	bool pulseTriggered = false; // Flag to check if pulse was triggered
 
-	// Output
-	float finalOutput;
-
 	// INTERFACE
 	float timerMs = 0.0f;
-	float sampleTimeMs = 0.0f;
-	float trigTime = 0.0f;
 	float trigger = 0.f;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
@@ -126,10 +120,6 @@ private:
 	// High-pass filter variables
 	float prevIn1 = 0.0f, prevIn2 = 0.0f;
 	float prevOut1 = 0.0f, prevOut2 = 0.0f;
-
-	float hpCutoffFreq = 0.f;
-	float highpassOut = 0.f;
-	float highpassResonance = 0.f;
 
 	float sampleRate = 48000.0f;
 };
