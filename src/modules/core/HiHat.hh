@@ -154,7 +154,7 @@ public:
 		triggerStates2[1] = currentTriggerState2;
 
 		// Square wave VCO x6 for two channels
-		frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
+		float frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
 
 		for (int i = 0; i < 6; ++i) {
 			phases[i] += (frequency + offsets[i]) * (1 / sampleRate);
@@ -164,7 +164,7 @@ public:
 			squareWaves[i] = (phases[i] < 0.5f) ? 1.0f : -1.0f;
 		}
 
-		oscSum = 0.f;
+		float oscSum = 0.f;
 
 		for (int i = 0; i < 6; ++i) {
 			oscSum += squareWaves[i];
@@ -173,14 +173,14 @@ public:
 		oscSum = std::clamp(oscSum, -5.f, 5.f);
 
 		// Bandpass
-		resonance = 1.f;
-		bandpassCutoffFrequency = MathTools::map_value(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
-		bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency, sampleRate);
+		float bandpassCutoffFrequency = MathTools::map_value(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
+		float bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency, sampleRate);
 
 		// Envelopes
-		decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
-		decayAlpha1 = exp(-1.0f / (sampleRate * (decayTimeClosed / 1000.0f)));
-		decayAlpha2 = exp(-1.0f / (sampleRate * (decayTimeOpen / 1000.0f)));
+		float decayTimeClosed = 10.f;
+		float decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
+		float decayAlpha1 = exp(-1.0f / (sampleRate * (decayTimeClosed / 1000.0f)));
+		float decayAlpha2 = exp(-1.0f / (sampleRate * (decayTimeOpen / 1000.0f)));
 
 		//Choke <
 		if (getState<ChokeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
@@ -213,15 +213,14 @@ public:
 		}
 
 		// Apply envelope to bandpass output
-		closedVCAOut = (bandpassOut * envelopeValue1);
-		openVCAOut = (bandpassOut * envelopeValue2);
+		float closedVCAOut = (bandpassOut * envelopeValue1);
+		float openVCAOut = (bandpassOut * envelopeValue2);
 
 		// Highpass Resonant Filter (12dB/octave)
-		highpassResonance = 1.f;
-		hpCutoffFreq =
-			MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
+		float highpassResonance = 1.f;
+		float hpCutoffFreq = MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
 
-		closedHighpassOut = closedHighpass(closedVCAOut,
+		float closedHighpassOut = closedHighpass(closedVCAOut,
 										   closedPrevIn1,
 										   closedPrevIn2,
 										   closedPrevOut1,
@@ -229,7 +228,7 @@ public:
 										   hpCutoffFreq,
 										   sampleRate,
 										   highpassResonance);
-		openHighpassOut = openHighpass(openVCAOut,
+		float openHighpassOut = openHighpass(openVCAOut,
 									   prevIn1Open,
 									   prevIn2Open,
 									   prevOut1Open,
@@ -239,10 +238,10 @@ public:
 									   highpassResonance);
 
 		// Post highpass makeup gain automatic compensation as cutoff decreases
-		finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
+		float finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
 
-		finalOutputClosed = (closedHighpassOut * finalMakeup); // Makeup gain
-		finalOutputOpen = (openHighpassOut * finalMakeup);	   // Makeup gain
+		float finalOutputClosed = (closedHighpassOut * finalMakeup); // Makeup gain
+		float finalOutputOpen = (openHighpassOut * finalMakeup);	   // Makeup gain
 		finalOutputClosed = std::clamp(finalOutputClosed, -5.f, 5.f);
 		finalOutputOpen = std::clamp(finalOutputOpen, -5.f, 5.f);
 
@@ -256,39 +255,22 @@ public:
 
 private:
 	// Oscillator
-	float frequency = 0.f;											// Base frequency
 	float offsets[6] = {100.f, 250.f, 400.f, 550.f, 600.f, 1000.f}; // Offsets for each oscillator
 	float phases[6] = {0.f, 0.f, 0.f, 0.f, 0.f, 0.f};				// Phases for each oscillator
 	float squareWaves[6] = {0.f, 0.f, 0.f, 0.f, 0.f, 0.f};			// Square wave outputs
 
-	// Oscillator mixer
-	float oscSum = 0.f;
-	float bandpassOut = 0.f;
-	float bandpassCutoffFrequency = 0.f; // bandpass
-
 	// Bandpass Filter
 	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
 	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
-	float resonance = 0.f;
 
 	// Decay envelopes
-	float decayAlpha1 = 0.0f;
 	float envelopeValue1 = 0.0f;
 	bool pulseTriggered1 = false;
 
-	float decayAlpha2 = 0.0f;
 	float envelopeValue2 = 0.0f;
 	bool pulseTriggered2 = false;
 
-	float decayTimeClosed = 10.f;
-	float decayTimeOpen = 0.f;
-
-	float closedVCAOut = 0.f;
-	float openVCAOut = 0.f;
-
-	// Output section
-	float finalOutputClosed = 0.f;
-	float finalOutputOpen = 0.f;
+	float resonance = 1.f;
 
 	// High-pass filter variables
 	float closedPrevIn1 = 0.0f, closedPrevIn2 = 0.0f;
@@ -297,18 +279,12 @@ private:
 	float prevIn1Open = 0.0f, prevIn2Open = 0.0f;
 	float prevOut1Open = 0.0f, prevOut2Open = 0.0f;
 
-	float hpCutoffFreq = 0.f;
-	float sampleRate = 48000.0f;
-	float closedHighpassOut = 0.f;
-	float openHighpassOut = 0.f;
-	float highpassResonance = 0.f;
-
-	float finalMakeup = 0.f;
-
 	float choke = 0.f;
 
 	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 	bool triggerStates2[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
+	float sampleRate = 48000.0f;
+
 };
 
 } // namespace MetaModule
