@@ -12,7 +12,7 @@
 #include "core/Snare.hh"
 #include "core/Tom.hh"
 
-void init() {
+extern "C" void init() {
 	using namespace MetaModule;
 
 	std::string_view brand = "4msDrums";
