@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Congabongo_info.hh"
+#include "util/math.hh"
 #include <cmath>
 
 namespace MetaModule
@@ -20,7 +21,7 @@ public:
 		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Tone Hi input
-		bool bangState1 = getInput<ToneHiGateIn>().value_or(0.f) > 0.5f;
+		bool bangState1 = getInput<ToneLoGateIn>().value_or(0.f) > 0.5f;
 		if (bangState1 && !lastbangState1) {
 			phase1 = 0.0f; // reset sine phase1 for 0 crossing
 			pulseTriggered1 = true;
@@ -30,7 +31,7 @@ public:
 		lastbangState1 = bangState1;
 
 		// Slap Hi input
-		bool bangState3 = getInput<SlapHiGateIn>().value_or(0.f) > 0.5f;
+		bool bangState3 = getInput<SlapLoGateIn>().value_or(0.f) > 0.5f;
 		if (bangState3 && !lastbangState3 && pulseTriggered1) {
 			amplitudeEnvelope1 *= 0;
 			phase1 = 0.0f; // reset sine phase1 for 0 crossing
@@ -46,7 +47,7 @@ public:
 		lastbangState3 = bangState3;
 
 		// Lo trig input
-		bool bangState2 = getInput<ToneLoGateIn>().value_or(0.f) > 0.5f;
+		bool bangState2 = getInput<ToneHiGateIn>().value_or(0.f) > 0.5f;
 		if (bangState2 && !lastbangState2) {
 			phase2 = 0.0f; // reset sine phase1 for 0 crossing
 			pulseTriggered2 = true;
@@ -56,7 +57,7 @@ public:
 		lastbangState2 = bangState2;
 
 		// Slap LO input
-		bool bangState4 = getInput<SlapLoGateIn>().value_or(0.f) > 0.5f;
+		bool bangState4 = getInput<SlapHiGateIn>().value_or(0.f) > 0.5f;
 		if (bangState4 && !lastbangState4 && pulseTriggered2) {
 			amplitudeEnvelope2 *= 0;
 			phase2 = 0.0f; // reset sine phase1 for 0 crossing
@@ -147,8 +148,8 @@ public:
 		finalOutput2 = (sineWave2 * amplitudeEnvelope2) + ((sineWave2 * amplitudeEnvelope4) * 2);
 		finalOutput2 = std::clamp(finalOutput2, -5.0f, 5.0f);
 
-		setOutput<OutHiOut>(finalOutput1);
-		setOutput<OutLoOut>(finalOutput2);
+		setOutput<OutLoOut>(finalOutput1);
+		setOutput<OutHiOut>(finalOutput2);
 	}
 
 	void set_samplerate(float sr) override {
