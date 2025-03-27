@@ -36,7 +36,7 @@ public:
 		// Osc
 		float dt = 1.0f / sampleRate;
 		float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
-		phase += frequency * 2.f * M_PI * dt;
+		phase += frequency * 4.f * M_PI * dt;
 		if (phase >= 2.f * M_PI) {
 			phase -= 2.f * M_PI;
 		}
