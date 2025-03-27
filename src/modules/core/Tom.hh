@@ -27,11 +27,11 @@ public:
 		bool bangRisingEdge = !bangStates[0] && currentBangState;
 		bangStates[0] = currentBangState;
 
-		decayTimeAmp = MathTools::map_value(ampDecayControl, 0.0f, 1.0f, 25.0f, 100.f);
-		decayTimePitch = MathTools::map_value(pitchDecayControl, 0.0f, 1.0f, 5.0f, 50.f);
+		float decayTimeAmp = MathTools::map_value(ampDecayControl, 0.0f, 1.0f, 25.0f, 100.f);
+		float decayTimePitch = MathTools::map_value(pitchDecayControl, 0.0f, 1.0f, 5.0f, 50.f);
 
-		decayAlphaAmp = exp(-1.0f / (sampleRate * (decayTimeAmp / 1000.0f)));
-		decayAlphaPitch = exp(-1.0f / (sampleRate * (decayTimePitch / 1000.0f)));
+		float decayAlphaAmp = exp(-1.0f / (sampleRate * (decayTimeAmp / 1000.0f)));
+		float decayAlphaPitch = exp(-1.0f / (sampleRate * (decayTimePitch / 1000.0f)));
 
 		if (bangRisingEdge) {
 			pulseTriggered = true;
@@ -61,7 +61,7 @@ public:
 
 		// Osc
 		float dt = 1.0f / sampleRate;
-		modulatedFrequency = frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
+		float modulatedFrequency = frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
 		phase += modulatedFrequency * 2.f * M_PI * dt;
 		phase += frequency * 2.f * M_PI * dt;
 		if (phase >= 2.f * M_PI) {
@@ -69,7 +69,7 @@ public:
 		}
 		float sineWave = 5.0f * sinf(phase);
 
-		finalOutput = (sineWave * envelopeValueAmp);
+		float finalOutput = (sineWave * envelopeValueAmp);
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
 		setOutput<TomOut>(finalOutput);
@@ -83,20 +83,13 @@ private:
 	// Sine oscillator
 	float phase = 0.0f;
 	float frequency = 100.0f;
-	float modulatedFrequency;
 
 	// Decay envelopes
-	float decayAlphaAmp = 0.0f;
 	float envelopeValueAmp = 0.0f;
 	bool pulseTriggered = false;
-	float decayTimeAmp = 0.0f; // Time in milliseconds for decay
 
-	float decayAlphaPitch = 0.0f;
 	float envelopeValuePitch = 0.0f;
-	float decayTimePitch = 0.0f; // Time in milliseconds for decay
-
-	float finalOutput = 0.f;
-
+	
 	bool bangStates[2] = {false, false};
 
 	float sampleRate = 48000.0f;
