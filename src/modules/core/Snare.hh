@@ -74,8 +74,8 @@ public:
 
 		// Osc
 		float dt = 1.0f / sampleRate;
-		frequency = 80 + (pitchControl * 100.0f);									   // Body pitch range
-		modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
+		float frequency = 80 + (pitchControl * 100.0f);									   // Body pitch range
+		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
 		phase += modulatedFrequency * 2.f * M_PI * dt;
 		phase += frequency * 2.f * M_PI * dt;
 		if (phase >= 2.f * M_PI) {
@@ -86,15 +86,15 @@ public:
 
 		// Envelopes
 		ampDecayTime = 5.0f + (ampDecayControl * 50.0f); // amp decay range
-		ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
-		pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
-		pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
+		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
+		float pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
-		noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
-		noiseDecayAlpha = exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
+		float noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
+		float noiseDecayAlpha = exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
 		noiseEnvelope *= noiseDecayAlpha;
 
 		if (pulseTriggered) {
@@ -142,23 +142,16 @@ public:
 private:
 	// Sine oscillator
 	float phase = 0.0f;
-	float frequency = 100.0f;
-	float modulatedFrequency;
 
 	// Body decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
 	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
-	float ampDecayAlpha = 0.0f;		// Exponential decay coefficient
 
 	// Pitch decay envelope
 	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
-	float pitchDecayTime = 5.0f;  // Decay time in ms (5ms as requested)
-	float pitchDecayAlpha = 0.0f; // Exponential decay coefficient
 
 	// Noise decay envelope
 	float noiseEnvelope = 1.0f;
-	float noiseDecayTime = 5.0f;  // Decay time in ms (5ms as requested)
-	float noiseDecayAlpha = 0.0f; // Exponential decay coefficient
 
 	// Trig
 	bool pulseTriggered = false; // Flag to check if pulse was triggered
