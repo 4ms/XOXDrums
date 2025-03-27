@@ -3,6 +3,7 @@
 #include "helpers/param_cv.hh"
 #include "info/Clap_info.hh"
 #include <cmath>
+#include "util/math.hh"
 
 namespace MetaModule
 {
@@ -55,10 +56,6 @@ public:
 		return output1;
 	}
 
-	float mapToRange(float value, float oldMin, float oldMax, float newMin, float newMax) {
-		return newMin + (newMax - newMin) * ((value - oldMin) / (oldMax - oldMin));
-	}
-
 	void update(void) override {
 
 		float energyControl = combineKnobBipolarCV(getState<EnergyKnob>(), getInput<EnergyCvIn>());
@@ -75,19 +72,19 @@ public:
 		triggerStates[1] = currentTriggerState;
 
 		// Envelope decay times 1-3 (short) 5-15ms
-		float decayTime1 = mapToRange(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
-		decayAlpha1 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		decayAlpha2 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		decayAlpha3 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayTime1 = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
+		float decayAlpha1 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayAlpha2 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayAlpha3 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
 
 		// Last envelope (reverb time)
-		float decayTime2 = mapToRange(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
-		decayAlpha4 = exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
+		float decayTime2 = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
+		float decayAlpha4 = exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
 
 		// Spread knob (delay times between each envelope)
-		delayTime1 = mapToRange(spreadControl, 0.0f, 1.0f, 20.0f, 40.f);
-		delayTime2 = mapToRange(spreadControl, 0.0f, 1.0f, 35.0f, 50.f);
-		delayTime3 = mapToRange(spreadControl, 0.0f, 1.0f, 45.0f, 60.f);
+		float delayTime1 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 20.0f, 40.f);
+		float delayTime2 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 35.0f, 50.f);
+		float delayTime3 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 45.0f, 60.f);
 
 		// Delay counters
 		delayCounter1++;
@@ -95,9 +92,9 @@ public:
 		delayCounter3++;
 
 		// Samples to ms conversion
-		delayInSamples1 = delayTime1 * (sampleRate / 1000);
-		delayInSamples2 = delayTime2 * (sampleRate / 1000);
-		delayInSamples3 = delayTime3 * (sampleRate / 1000);
+		int delayInSamples1 = delayTime1 * (sampleRate / 1000);
+		int delayInSamples2 = delayTime2 * (sampleRate / 1000);
+		int delayInSamples3 = delayTime3 * (sampleRate / 1000);
 
 		// Envelope logic
 		if (bangRisingEdge) {
@@ -155,7 +152,7 @@ public:
 		}
 
 		// Filtered noise
-		float cutoffFrequency = mapToRange(colorControl, 0.f, 1.f, 800.f, 1600.f);
+		float cutoffFrequency = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
 		float filteredNoise = biquadBandpassFilter(whiteNoise(), cutoffFrequency, sampleRate);
 
 		// Apply envelopes
@@ -165,7 +162,7 @@ public:
 		float outputSignal4 = filteredNoise * envelopeValue4;
 
 		// Mixer
-		float saturation = mapToRange(saturationControl, 0.f, 1.f, 1.f, 10.f);
+		float saturation = MathTools::map_value(saturationControl, 0.f, 1.f, 1.f, 10.f);
 		float finalOutput =
 			((outputSignal1 + outputSignal2 + outputSignal3 + ((outputSignal4 * verbVolumeControl)) * 0.75f) * 5.f) *
 			saturation;
@@ -185,33 +182,20 @@ private:
 	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
 	float resonance = 2.f;
 
-	// Decay envelopes
-	float decayAlpha1 = 0.0f;
 	float envelopeValue1 = 0.0f;
-	bool pulseTriggered1 = false;
-
-	float decayAlpha2 = 0.0f;
 	float envelopeValue2 = 0.0f;
-	bool pulseTriggered2 = false;
-
-	float decayAlpha3 = 0.0f;
 	float envelopeValue3 = 0.0f;
-	bool pulseTriggered3 = false;
-
-	float decayAlpha4 = 0.0f;
 	float envelopeValue4 = 0.0f;
+
+	bool pulseTriggered1 = false;
+	bool pulseTriggered2 = false;
+	bool pulseTriggered3 = false;
 	bool pulseTriggered4 = false;
 
-	// Delay counters for envelopes
-	int delayInSamples1 = 0;
-	int delayInSamples2 = 0;
-	int delayInSamples3 = 0;
-	int delayCounter1 = 0;
-	int delayCounter2 = 0;
-	int delayCounter3 = 0;
-	int delayTime1 = 0;
-	int delayTime2 = 0;
-	int delayTime3 = 0;
+	int delayCounter1 = 0; 
+	int delayCounter2 = 0; 
+	int delayCounter3 = 0; 
+	int delayCounter4 = 0; 
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 
