@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
+#include "util/math.hh"
 #include <cmath>
 
 namespace MetaModule
@@ -16,9 +17,9 @@ public:
 
 	float biquadBandpassFilter1(float input, float cutoff, float sampleRate1) {
 		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		float omega = 2.0f * M_PI * cutoff / sampleRate1;
-		float sn = sinf(omega);
-		float cs = cosf(omega);
+		const auto omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate1;
+		float sn = std::sin(omega);
+		float cs = std::cos(omega);
 		float alpha = sn / (2.0f); // Resonance is last number
 
 		// Compute the bandpass filter coefficients (Biquad)
@@ -73,28 +74,29 @@ public:
 		lastBangState = bangState;
 
 		// Osc
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
 		float frequency = 80 + (pitchControl * 100.0f);									   // Body pitch range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PI * dt;
-		phase += frequency * 2.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		phase += modulatedFrequency * 2.f * M_PIF * dt;
+		phase += frequency * 2.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
-		float sineWave = 5.0f * sinf(phase);
+		float sineWave = 5.0f * std::sin(phase);
 		sineWave = (sineWave * ((1.f - noiseVolumeControl) / 2.f));
 
 		// Envelopes
 		ampDecayTime = 5.0f + (ampDecayControl * 50.0f); // amp decay range
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
-		float pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
+		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
 		float noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
-		float noiseDecayAlpha = exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
+		float noiseDecayAlpha = std::exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
 		noiseEnvelope *= noiseDecayAlpha;
 
 		if (pulseTriggered) {

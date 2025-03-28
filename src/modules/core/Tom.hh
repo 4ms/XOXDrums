@@ -30,8 +30,8 @@ public:
 		float decayTimeAmp = MathTools::map_value(ampDecayControl, 0.0f, 1.0f, 25.0f, 100.f);
 		float decayTimePitch = MathTools::map_value(pitchDecayControl, 0.0f, 1.0f, 5.0f, 50.f);
 
-		float decayAlphaAmp = exp(-1.0f / (sampleRate * (decayTimeAmp / 1000.0f)));
-		float decayAlphaPitch = exp(-1.0f / (sampleRate * (decayTimePitch / 1000.0f)));
+		float decayAlphaAmp = std::exp(-1.0f / (sampleRate * (decayTimeAmp / 1000.0f)));
+		float decayAlphaPitch = std::exp(-1.0f / (sampleRate * (decayTimePitch / 1000.0f)));
 
 		if (bangRisingEdge) {
 			pulseTriggered = true;
@@ -60,12 +60,15 @@ public:
 		}
 
 		// Osc
+		using MathTools::M_PIF;
+
 		float dt = 1.0f / sampleRate;
-		float modulatedFrequency = frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PI * dt;
-		phase += frequency * 2.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		float modulatedFrequency =
+			frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
+		phase += modulatedFrequency * 2.f * M_PIF * dt;
+		phase += frequency * 2.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
 		float sineWave = 5.0f * sinf(phase);
 

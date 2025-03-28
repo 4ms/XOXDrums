@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Clave_info.hh"
+#include "util/math.hh"
 
 #include <cmath> // for sine wave
 
@@ -34,17 +35,18 @@ public:
 		}
 
 		// Osc
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
 		float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
-		phase += frequency * 4.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		phase += frequency * 4.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
 		float sineWave = 5.0f * sinf(phase);
 
 		// Envelopes
 		float ampDecayTime = 5.0f + (ampDecayControl * 20.0f); // amp decay range (5ms - 25ms)
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		if (pulseTriggered) {

@@ -31,7 +31,7 @@ public:
 		}
 
 		float ampDecayTime = 70.f;
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		if (pulseTriggered) {

@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
+#include "util/math.hh"
 
 namespace MetaModule
 {
@@ -22,9 +23,9 @@ public:
 				   float sampleRate1,
 				   float resonance) {
 		// Calculate the filter coefficients for the 12dB/octave high-pass filter
-		float omega = 2.0f * M_PI * cutoffFreq / sampleRate1; // Angular frequency
-		float sinOmega = sinf(omega);
-		float cosOmega = cosf(omega);
+		float omega = 2.0f * MathTools::M_PIF * cutoffFreq / sampleRate1; // Angular frequency
+		float sinOmega = std::sin(omega);
+		float cosOmega = std::cos(omega);
 		float alpha = sinOmega / (2.0f * resonance); // Q factor
 
 		// Coefficients for the high-pass filter (resonant, 12dB per octave)
@@ -68,7 +69,7 @@ public:
 
 		// Envelopes
 		float ampDecayTime = 2.5f + (decayControl * 10.0f); //
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		if (pulseTriggered) {

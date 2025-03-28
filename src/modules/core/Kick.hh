@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Kick_info.hh"
+#include "util/math.hh"
 #include <cmath>
 
 namespace MetaModule
@@ -34,23 +35,24 @@ public:
 		lastBangState = bangState;
 
 		// Osc
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
 		float frequency = 10 + (pitchControl * 40.0f);									   // 10hz - 40hz range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PI * dt;
-		phase += frequency * 2.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		phase += modulatedFrequency * 2.f * M_PIF * dt;
+		phase += frequency * 2.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
-		float sineWave = 5.0f * sinf(phase);
+		float sineWave = 5.0f * std::sin(phase);
 
 		// Envelopes
 		ampDecayTime = 5.0f + (ampDecayControl * 300.0f); // amp decay range (5ms - 300ms)
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
-		float pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
+		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
 		if (pulseTriggered) {

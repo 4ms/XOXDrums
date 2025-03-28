@@ -23,9 +23,9 @@ public:
 	// Function to apply a biquad bandpass filter
 	float biquadBandpassFilter(float input, float cutoff, float sampleRate) {
 		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		float omega = 2.0f * M_PI * cutoff / sampleRate;
-		float sn = sinf(omega);
-		float cs = cosf(omega);
+		float omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate;
+		float sn = std::sin(omega);
+		float cs = std::cos(omega);
 		float alpha1 = sn / (2.0f * resonance);
 
 		// Compute the bandpass filter coefficients (Biquad)
@@ -73,13 +73,13 @@ public:
 
 		// Envelope decay times 1-3 (short) 5-15ms
 		float decayTime1 = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
-		float decayAlpha1 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		float decayAlpha2 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		float decayAlpha3 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayAlpha1 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayAlpha2 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayAlpha3 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
 
 		// Last envelope (reverb time)
 		float decayTime2 = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
-		float decayAlpha4 = exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
+		float decayAlpha4 = std::exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
 
 		// Spread knob (delay times between each envelope)
 		float delayTime1 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 20.0f, 40.f);
