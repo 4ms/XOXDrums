@@ -107,14 +107,17 @@ public:
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
-			saturation = 1 + (saturationControl * 100);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) {
-			saturation = 1 + (saturationControl * 10);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::DOWN) {
-			saturation = 1 + (saturationControl * 2);
+		switch (getState<RangeSwitch>()) {
+			using enum Toggle3pos::State_t;
+			case UP:
+				saturation = 1 + (saturationControl * 100);
+				break;
+			case CENTER:
+				saturation = 1 + (saturationControl * 10);
+				break;
+			case DOWN:
+				saturation = 1 + (saturationControl * 2);
+				break;
 		}
 
 		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
