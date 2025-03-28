@@ -30,7 +30,6 @@ public:
 		// Trig input
 		if (bangRisingEdge) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 		}
 
@@ -49,15 +48,6 @@ public:
 		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			amplitudeEnvelope = 0.0f;
-		}
-
 		float finalOutput = (sineWave * amplitudeEnvelope);
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
@@ -72,7 +62,6 @@ private:
 	// Sine oscillator
 	float phase = 0.0f;
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-	bool pulseTriggered = false;	// Flag to check if pulse was triggered
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 
