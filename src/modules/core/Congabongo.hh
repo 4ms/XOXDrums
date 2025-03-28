@@ -89,7 +89,7 @@ public:
 		if (phase1 >= 2.f * M_PIF) {
 			phase1 -= 2.f * M_PIF;
 		}
-		float sineWave1 = 5.0f * sinf(phase1);
+		float sineWave1 = 5.0f * std::sin(phase1);
 
 		// Osc 2
 		frequency2 = frequency1 * (3.0f / 4.0f); // Low
@@ -98,7 +98,7 @@ public:
 		if (phase2 >= 2.f * M_PIF) {
 			phase2 -= 2.f * M_PIF;
 		}
-		float sineWave2 = 5.0f * sinf(phase2);
+		float sineWave2 = 5.0f * std::sin(phase2);
 
 		// Slap 1
 		ampDecayAlpha3 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
