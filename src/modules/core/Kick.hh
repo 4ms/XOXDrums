@@ -27,7 +27,6 @@ public:
 		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
 		if (bangState && !lastBangState) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			pulseTime = ampDecayTime * (sampleRate / 1000.0f);
@@ -54,17 +53,6 @@ public:
 		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
 		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				pitchEnvelope = 0.0f;
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			pitchEnvelope = 0.0f;
-			amplitudeEnvelope = 0.0f;
-		}
 
 		// Final output
 		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
@@ -99,7 +87,6 @@ private:
 	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
 
 	// Trig
-	bool pulseTriggered = false; // Flag to check if pulse was triggered
 	bool lastBangState = false;	 // Previous state of the Bang input
 	float pulseTime = 0.0f;		 // Time tracking for pulse duration
 

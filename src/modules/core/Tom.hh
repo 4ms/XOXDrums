@@ -34,18 +34,12 @@ public:
 		float decayAlphaPitch = std::exp(-1.0f / (sampleRate * (decayTimePitch / 1000.0f)));
 
 		if (bangRisingEdge) {
-			pulseTriggered = true;
 			envelopeValueAmp = 1.0f;
 			envelopeValuePitch = 1.0f;
 		}
 
-		if (pulseTriggered) {
-			envelopeValueAmp *= decayAlphaAmp;
-			envelopeValuePitch *= decayAlphaPitch;
-		} else {
-			envelopeValueAmp = 0.0f;
-			envelopeValuePitch = 0.0f;
-		}
+		envelopeValueAmp *= decayAlphaAmp;
+		envelopeValuePitch *= decayAlphaPitch;
 
 		//Range switch
 		// Final output
@@ -89,7 +83,6 @@ private:
 
 	// Decay envelopes
 	float envelopeValueAmp = 0.0f;
-	bool pulseTriggered = false;
 
 	float envelopeValuePitch = 0.0f;
 	

@@ -62,7 +62,6 @@ public:
 		// Trig input
 		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
 		if (bangState) {
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 		}
 		lastBangState = bangState;
@@ -71,15 +70,6 @@ public:
 		float ampDecayTime = 2.5f + (decayControl * 10.0f); //
 		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			amplitudeEnvelope = 0.0f;
-		}
 
 		float VCAOut = (noise * amplitudeEnvelope);
 
@@ -103,7 +93,6 @@ private:
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
 
 	// Trig
-	bool pulseTriggered = false; // Flag to check if pulse was triggered
 	bool lastBangState = false;	 // Previous state of the Bang input
 
 	// High-pass filter variables

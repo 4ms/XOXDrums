@@ -27,7 +27,6 @@ public:
 		triggerStates[1] = currentTriggerState;
 
 		if (bangRisingEdge) {
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 		}
 
@@ -35,15 +34,6 @@ public:
 		float ampDecayTime = 50.0f + (timeControl * 1950.0f);
 		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			amplitudeEnvelope = 0.0f;
-		}
 
 		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
 
@@ -63,9 +53,6 @@ public:
 private:
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-
-	// Trig
-	bool pulseTriggered = false; // Flag to check if pulse was triggered
 
 	bool triggerStates[2] = {false, false};
 

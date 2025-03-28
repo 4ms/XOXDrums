@@ -40,7 +40,6 @@ public:
 
 		if (bangRisingEdge) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 		}
 
@@ -63,15 +62,6 @@ public:
 			phase2 -= 2.f * M_PIF;
 		}
 		float squareWave2 = (phase2 < M_PIF) ? 5.0f : -5.0f;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			amplitudeEnvelope = 0.0f;
-		}
 
 		// Combine Oscillators
 		float sumOutput = ((squareWave + squareWave2) * 0.5f) * amplitudeEnvelope;
@@ -100,9 +90,6 @@ private:
 	float amplitudeEnvelope = 1.0f;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
-
-	// Trig
-	bool pulseTriggered = false;
 
 	// Sine oscillator
 	float phase = 0.0f;

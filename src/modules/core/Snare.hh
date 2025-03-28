@@ -65,7 +65,6 @@ public:
 		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
 		if (bangState && !lastBangState) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			noiseEnvelope = 1.0f;
@@ -98,19 +97,6 @@ public:
 		float noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
 		float noiseDecayAlpha = std::exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
 		noiseEnvelope *= noiseDecayAlpha;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				pitchEnvelope = 0.0f;
-				amplitudeEnvelope = 0.0f;
-				noiseEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			pitchEnvelope = 0.0f;
-			amplitudeEnvelope = 0.0f;
-			noiseEnvelope = 0.0f;
-		}
 
 		// Noise + filter
 		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
@@ -156,7 +142,6 @@ private:
 	float noiseEnvelope = 1.0f;
 
 	// Trig
-	bool pulseTriggered = false; // Flag to check if pulse was triggered
 	bool lastBangState = false;	 // Previous state of the Bang input
 	float pulseTime = 0.0f;		 // Time tracking for pulse duration
 
