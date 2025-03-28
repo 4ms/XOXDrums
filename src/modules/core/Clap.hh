@@ -74,8 +74,6 @@ public:
 		// Envelope decay times 1-3 (short) 5-15ms
 		float decayTime1 = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
 		float decayAlpha1 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		float decayAlpha2 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		float decayAlpha3 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
 
 		// Last envelope (reverb time)
 		float decayTime2 = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
@@ -123,10 +121,10 @@ public:
 		envelopeValue1 *= decayAlpha1;
 
 		// Env 2 (short)
-		envelopeValue2 *= decayAlpha2;
+		envelopeValue2 *= decayAlpha1;
 
 		// Env 3 (short)
-		envelopeValue3 *= decayAlpha3;
+		envelopeValue3 *= decayAlpha1;
 
 		// Env 4 (long)
 		envelopeValue4 *= decayAlpha4;
