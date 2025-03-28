@@ -98,7 +98,6 @@ public:
 
 		// Envelope logic
 		if (bangRisingEdge) {
-			pulseTriggered1 = true;
 			envelopeValue1 = 1.0f;
 			delayCounter1 = 0;
 			delayCounter2 = 0;
@@ -107,49 +106,30 @@ public:
 
 		// Env 2 delay
 		if (delayCounter1 == delayInSamples1) {
-			pulseTriggered2 = true;
 			envelopeValue2 = 1.0f;
 		}
 
 		// Env 3 delay
 		if (delayCounter2 == delayInSamples2) {
-			pulseTriggered3 = true;
 			envelopeValue3 = 1.0f;
 		}
 
 		// Env 4 delay
 		if (delayCounter3 == delayInSamples3) {
-			pulseTriggered4 = true;
 			envelopeValue4 = 1.0f;
 		}
 
 		// Env 1 (short)
-		if (pulseTriggered1) {
-			envelopeValue1 *= decayAlpha1;
-		} else {
-			envelopeValue1 = 0.0f;
-		}
+		envelopeValue1 *= decayAlpha1;
 
 		// Env 2 (short)
-		if (pulseTriggered2) {
-			envelopeValue2 *= decayAlpha2;
-		} else {
-			envelopeValue2 = 0.0f;
-		}
+		envelopeValue2 *= decayAlpha2;
 
 		// Env 3 (short)
-		if (pulseTriggered3) {
-			envelopeValue3 *= decayAlpha3;
-		} else {
-			envelopeValue3 = 0.0f;
-		}
+		envelopeValue3 *= decayAlpha3;
 
 		// Env 4 (long)
-		if (pulseTriggered4) {
-			envelopeValue4 *= decayAlpha4;
-		} else {
-			envelopeValue4 = 0.0f;
-		}
+		envelopeValue4 *= decayAlpha4;
 
 		// Filtered noise
 		float cutoffFrequency = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
@@ -187,15 +167,9 @@ private:
 	float envelopeValue3 = 0.0f;
 	float envelopeValue4 = 0.0f;
 
-	bool pulseTriggered1 = false;
-	bool pulseTriggered2 = false;
-	bool pulseTriggered3 = false;
-	bool pulseTriggered4 = false;
-
-	int delayCounter1 = 0; 
-	int delayCounter2 = 0; 
-	int delayCounter3 = 0; 
-	int delayCounter4 = 0; 
+	int delayCounter1 = 0;
+	int delayCounter2 = 0;
+	int delayCounter3 = 0;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 
