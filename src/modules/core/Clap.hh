@@ -72,12 +72,12 @@ public:
 		triggerStates[1] = currentTriggerState;
 
 		// Envelope decay times 1-3 (short) 5-15ms
-		float decayTime1 = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
-		float decayAlpha1 = std::exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayTimeShort = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
+		float decayAlphaShort = std::exp(-1.0f / (sampleRate * (decayTimeShort / 1000.0f)));
 
 		// Last envelope (reverb time)
-		float decayTime2 = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
-		float decayAlpha4 = std::exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
+		float decayTimeLong = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
+		float decayAlphaLong = std::exp(-1.0f / (sampleRate * (decayTimeLong / 1000.0f)));
 
 		// Spread knob (delay times between each envelope)
 		float delayTime1 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 20.0f, 40.f);
@@ -117,17 +117,13 @@ public:
 			envelopeValue4 = 1.0f;
 		}
 
-		// Env 1 (short)
-		envelopeValue1 *= decayAlpha1;
+		// Short envs
+		envelopeValue1 *= decayAlphaShort;
+		envelopeValue2 *= decayAlphaShort;
+		envelopeValue3 *= decayAlphaShort;
 
-		// Env 2 (short)
-		envelopeValue2 *= decayAlpha1;
-
-		// Env 3 (short)
-		envelopeValue3 *= decayAlpha1;
-
-		// Env 4 (long)
-		envelopeValue4 *= decayAlpha4;
+		// Long env
+		envelopeValue4 *= decayAlphaLong;
 
 		// Filtered noise
 		float cutoffFrequency = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
