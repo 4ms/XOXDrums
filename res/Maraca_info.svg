@@ -22,7 +22,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0466466"
-     inkscape:cx="38.355426"
+     inkscape:cx="38.355425"
      inkscape:cy="246.50079"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
@@ -172,77 +172,78 @@
     </g>
   </g>
   <g
-     id="components">
+     id="components"
+     style="display:none">
     <circle
        id="Out"
-       cx="28.8"
+       cx="28.799999"
        cy="313.84"
        r="11.34"
-       style="fill: blue;" />
+       style="fill:#0000ff" />
     <circle
        id="Trigger"
-       cx="28.8"
-       cy="265.04"
+       cx="28.799999"
+       cy="265.04001"
        r="11.34"
-       style="fill: #80ff80;" />
+       style="fill:#80ff80" />
     <circle
        id="Decay_CV"
        data-name="Decay CV"
        cx="28.92"
-       cy="94.96"
+       cy="94.959999"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Decay_SmallBlackKnob"
        data-name="Decay#SmallBlackKnob"
        cx="28.92"
        cy="46.77"
        r="8.5"
-       style="fill: #ff0040;"
+       style="fill:#ff0040"
        inkscape:label="Decay_Knob9mm" />
     <text
        id="slug"
-       transform="translate(17.44 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(17.44,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan20">M</tspan><tspan
-         x="2.43"
+         x="2.4300001"
          y="0"
          id="tspan21">a</tspan><tspan
-         x="3.88"
+         x="3.8800001"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan22">r</tspan><tspan
-         x="4.84"
+         x="4.8400002"
          y="0"
          id="tspan23">aca</tspan></text>
     <text
        id="modulename"
-       transform="translate(29.01 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(29.01,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan24">M</tspan><tspan
-         x="2.43"
+         x="2.4300001"
          y="0"
          id="tspan25">a</tspan><tspan
-         x="3.88"
+         x="3.8800001"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan26">r</tspan><tspan
-         x="4.84"
+         x="4.8400002"
          y="0"
-         id="tspan27">aca Drum </tspan><tspan
+         id="tspan27">aca Drum</tspan><tspan
          x="17.48"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan28">M</tspan><tspan
          x="19.91"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan29">odule</tspan></text>
   </g>
 </svg>

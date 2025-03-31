@@ -10,8 +10,8 @@ struct CowbellInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Cowbell"};
     static constexpr std::string_view description{"Cowbell Drum Module"};
     static constexpr uint32_t width_hp = 4;
-    static constexpr std::string_view svg_filename{"res/Cowbell.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Cowbell.png"};
+    static constexpr std::string_view svg_filename{"res/Cowbell_info.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Cowbell_info.png"};
 
     using enum Coords;
 

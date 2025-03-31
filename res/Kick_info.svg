@@ -323,54 +323,55 @@
          id="tspan66">Out</tspan></text>
   </g>
   <g
-     id="components">
+     id="components"
+     style="display:none">
     <circle
        id="Out"
        cx="114.74"
        cy="313.84"
        r="11.34"
-       style="fill: blue;" />
+       style="fill:#0000ff" />
     <circle
        id="Saturation_CV"
        data-name="Saturation CV"
        cx="114.74"
-       cy="272.23"
+       cy="272.23001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Amp_Decay_CV"
        data-name="Amp Decay CV"
-       cx="71.7"
-       cy="272.23"
+       cx="71.699997"
+       cy="272.23001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="P_Decay_CV"
        data-name="P Decay CV"
        cx="29.51"
-       cy="272.23"
+       cy="272.23001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Depth_CV"
        data-name="Depth CV"
        cx="114.74"
-       cy="232.1"
+       cy="232.10001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV"
-       cx="71.7"
-       cy="232.1"
+       cx="71.699997"
+       cy="232.10001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Trig"
        cx="29.51"
-       cy="232.1"
+       cy="232.10001"
        r="11.34"
-       style="fill: #80ff80;" />
+       style="fill:#80ff80" />
     <rect
        id="Range_Switch_Off_On"
        data-name="Range Switch@Off@On"
@@ -378,15 +379,15 @@
        y="154.67"
        width="11.34"
        height="17.01"
-       transform="translate(212.79 326.35) rotate(180)"
-       style="fill: #ff8080;" />
+       transform="rotate(180,106.395,163.175)"
+       style="fill:#ff8080" />
     <circle
        id="Saturation_MediumBlackKnob"
        data-name="Saturation#MediumBlackKnob"
-       cx="37.85"
-       cy="162.82"
+       cx="37.849998"
+       cy="162.82001"
        r="17.01"
-       style="fill:#ff002A"
+       style="fill:#ff002a"
        inkscape:label="Saturation_Davies1900hBlackKnob" />
     <circle
        id="Amp_Decay_MediumBlackKnob"
@@ -394,57 +395,57 @@
        cx="106.4"
        cy="104.62"
        r="17.01"
-       style="fill:#ff002A"
+       style="fill:#ff002a"
        inkscape:label="Amp_Decay_Davies1900hBlackKnob" />
     <circle
        id="P_Decay_MediumBlackKnob"
        data-name="P Decay#MediumBlackKnob"
-       cx="37.85"
+       cx="37.849998"
        cy="104.62"
        r="17.01"
-       style="fill: #ff0020;"
+       style="fill:#ff0020"
        inkscape:label="P_Decay_Davies1900hBlackKnob" />
     <circle
        id="P_Depth_MediumBlackKnob"
        data-name="P Depth#MediumBlackKnob"
        cx="106.4"
-       cy="46.42"
+       cy="46.419998"
        r="17.01"
        style="fill:#ff0040"
        inkscape:label="P_Depth_Davies1900hBlackKnob" />
     <circle
        id="Pitch_MediumBlackKnob"
        data-name="Pitch#MediumBlackKnob"
-       cx="37.85"
+       cx="37.849998"
        cy="46.52"
        r="17.01"
-       style="fill:#ff002A"
+       style="fill:#ff002a"
        inkscape:label="Pitch_Davies1900hBlackKnob" />
     <text
        id="slug"
-       transform="translate(103.4 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(103.4,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
-         style="letter-spacing: .01em;"
+         style="letter-spacing:0.01em"
          id="tspan67">K</tspan><tspan
          x="1.66"
          y="0"
          id="tspan68">ick</tspan></text>
     <text
        id="modulename"
-       transform="translate(111.96 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(111.96,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
-         style="letter-spacing: .01em;"
+         style="letter-spacing:0.01em"
          id="tspan69">K</tspan><tspan
          x="1.66"
          y="0"
-         id="tspan70">ick Drum </tspan><tspan
+         id="tspan70">ick Drum</tspan><tspan
          x="13.51"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan71">M</tspan><tspan
          x="15.94"
          y="0"
