@@ -8,74 +8,73 @@ namespace MetaModule
 {
 struct KickInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Kick"};
-    static constexpr std::string_view description{"Kick"};
-    static constexpr uint32_t width_hp = 12;
+    static constexpr std::string_view description{"Kick Drum Module"};
+    static constexpr uint32_t width_hp = 10;
     static constexpr std::string_view svg_filename{"res/Kick.svg"};
     static constexpr std::string_view png_filename{"4msDrums/Kick.png"};
 
     using enum Coords;
 
     static constexpr std::array<Element, 13> Elements{{
-        Davies1900hBlackKnob{{to_mm<25>(19.101), to_mm<25>(57.44), Center, "Saturation", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(19.101), to_mm<25>(36.908), Center, "Pitch Decay", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(43.281), to_mm<25>(36.908), Center, "Amp Decay", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(43.2818), to_mm<25>(16.377), Center, "Pitch Depth", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(19.101), to_mm<25>(16.377), Center, "Pitch", ""}, 0.0f},
-		Toggle3pos{{to_mm<25>(43.281), to_mm<25>(57.44), Center, "Range", ""}, {"2x", "10x", "100x"}, Toggle3pos::State_t::DOWN},
-
-		AnalogJackOutput4ms{{to_mm<25>(46.866), to_mm<25>(111.215), Center, "Kick", ""}},
-		AnalogJackInput4ms{{to_mm<25>(46.866), to_mm<25>(96.538), Center, "Saturation CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(31.691), to_mm<25>(96.538), Center, "Amp Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(16.810), to_mm<25>(96.538), Center, "Pitch Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(46.876), to_mm<25>(82.38), Center, "Depth CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(31.691), to_mm<25>(82.38), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(16.81), to_mm<25>(82.38), Center, "Trig", ""}},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(46.52), Center, "Pitch", ""}, 0.328125f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(46.42), Center, "P Depth", ""}, 0.5f},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(104.62), Center, "P Decay", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(104.62), Center, "Amp Decay", ""}, 0.328125f},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(162.82), Center, "Saturation", ""}, 0.328125f},
+		Toggle2pos{{to_mm<72>(106.4), to_mm<72>(163.175), Center, "Range Switch", ""}, {"Off", "On"}},
+		GateJackInput4ms{{to_mm<72>(29.51), to_mm<72>(232.1), Center, "Trig", ""}},
+		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(232.1), Center, "Pitch CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(114.74), to_mm<72>(232.1), Center, "Depth CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(29.51), to_mm<72>(272.23), Center, "P Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(272.23), Center, "Amp Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(114.74), to_mm<72>(272.23), Center, "Saturation CV", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(114.74), to_mm<72>(313.84), Center, "Out", ""}},
 }};
 
     enum class Elem {
-        SaturationKnob,
-        PitchDecayKnob,
-        AmpDecayKnob,
-        PitchDepthKnob,
         PitchKnob,
+        PDepthKnob,
+        PDecayKnob,
+        AmpDecayKnob,
+        SaturationKnob,
         RangeSwitch,
-        KickOut,
-        SaturationCvIn,
-        AmpDecayCvIn,
-        PitchDecayCvIn,
-        DepthCvIn,
-        PitchCvIn,
         TrigIn,
+        PitchCvIn,
+        DepthCvIn,
+        PDecayCvIn,
+        AmpDecayCvIn,
+        SaturationCvIn,
+        Out,
     };
 
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
     
     enum {
-        KnobSaturation, 
-        KnobPitch_Decay, 
-        KnobAmp_Decay, 
-        KnobPitch_Depth, 
         KnobPitch, 
+        KnobP_Depth, 
+        KnobP_Decay, 
+        KnobAmp_Decay, 
+        KnobSaturation, 
         NumKnobs,
     };
     
     enum {
-        SwitchRange, 
+        SwitchRange_Switch, 
         NumSwitches,
     };
     
     enum {
-        InputSaturation_Cv, 
-        InputAmp_Decay_Cv, 
-        InputPitch_Decay_Cv, 
-        InputDepth_Cv, 
-        InputPitch_Cv, 
         InputTrig, 
+        InputPitch_Cv, 
+        InputDepth_Cv, 
+        InputP_Decay_Cv, 
+        InputAmp_Decay_Cv, 
+        InputSaturation_Cv, 
         NumInJacks,
     };
     
     enum {
-        OutputKick, 
+        OutputOut, 
         NumOutJacks,
     };
     

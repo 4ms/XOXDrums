@@ -8,7 +8,7 @@ namespace MetaModule
 {
 struct HiHatInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"HiHat"};
-    static constexpr std::string_view description{"HiHat"};
+    static constexpr std::string_view description{"Hi Hat Drum Module"};
     static constexpr uint32_t width_hp = 10;
     static constexpr std::string_view svg_filename{"res/HiHat.svg"};
     static constexpr std::string_view png_filename{"4msDrums/HiHat.png"};
@@ -16,65 +16,65 @@ struct HiHatInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 13> Elements{{
-		Toggle2posHoriz{{to_mm<25>(26), to_mm<25>(41), Center, "Off | On", ""}},
-		Davies1900hBlackKnob{{to_mm<25>(38.3), to_mm<25>(54.8), Center, "Thickness", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<25>(13.3), to_mm<25>(54.8), Center, "Brightness", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<25>(38.3), to_mm<25>(24.8), Center, "Decay", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<25>(13.3), to_mm<25>(24.8), Center, "Pitch", ""}, 0.0f},
-		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(96.45), Center, "Closed Trig", ""}},
-		AnalogJackOutput4ms{{to_mm<25>(41.129), to_mm<25>(111.127), Center, "Open Out", ""}},
-		AnalogJackOutput4ms{{to_mm<25>(11.063), to_mm<25>(111.127), Center, "Closed Out", ""}},
-		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(82.292), Center, "Brightness CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(96.45), Center, "Open Trig", ""}},
-		AnalogJackInput4ms{{to_mm<25>(25.44), to_mm<25>(96.45), Center, "Thickness CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(25.44), to_mm<25>(82.292), Center, "Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(82.292), Center, "Pitch CV", ""}},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(57.85), Center, "Pitch", ""}, 0.5f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(57.85), Center, "Decay", ""}, 0.5f},
+		Toggle2posHoriz{{to_mm<72>(72.13), to_mm<72>(110.335), Center, "Choke Switch", ""}, {"Off", "On"}},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(162.82), Center, "Brightness", ""}, 1.0f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(162.82), Center, "Thickness", ""}, 0.0f},
+		GateJackInput4ms{{to_mm<72>(29.51), to_mm<72>(232.1), Center, "CH Trig", ""}},
+		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(232.1), Center, "Pitch CV", ""}},
+		GateJackInput4ms{{to_mm<72>(114.74), to_mm<72>(232.1), Center, "OH Trig", ""}},
+		AnalogJackInput4ms{{to_mm<72>(29.51), to_mm<72>(272.23), Center, "Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(272.23), Center, "Brightness CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(114.74), to_mm<72>(272.23), Center, "Thickness CV", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(29.47), to_mm<72>(313.84), Center, "CH Out", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(114.78), to_mm<72>(313.84), Center, "OH Out", ""}},
 }};
 
     enum class Elem {
-        ChokeSwitch,
-        ThicknessKnob,
-        BrightnessKnob,
-        DecayKnob,
         PitchKnob,
-        ClosedTrigIn,
-        OpenOut,
-        ClosedOut,
-        BrightnessCvIn,
-        OpenTrigIn,
-        ThicknessCvIn,
-        DecayCvIn,
+        DecayKnob,
+        ChokeSwitch,
+        BrightnessKnob,
+        ThicknessKnob,
+        ChTrigIn,
         PitchCvIn,
+        OhTrigIn,
+        DecayCvIn,
+        BrightnessCvIn,
+        ThicknessCvIn,
+        ChOut,
+        OhOut,
     };
 
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
     
     enum {
-        KnobThickness, 
-        KnobBrightness, 
-        KnobDecay, 
         KnobPitch, 
+        KnobDecay, 
+        KnobBrightness, 
+        KnobThickness, 
         NumKnobs,
     };
     
     enum {
-        SwitchChoke, 
+        SwitchChoke_Switch, 
         NumSwitches,
     };
     
     enum {
-        InputClosed_Trig, 
-        InputBrightness_Cv, 
-        InputOpen_Trig, 
-        InputThickness_Cv, 
-        InputDecay_Cv, 
+        InputCh_Trig, 
         InputPitch_Cv, 
+        InputOh_Trig, 
+        InputDecay_Cv, 
+        InputBrightness_Cv, 
+        InputThickness_Cv, 
         NumInJacks,
     };
     
     enum {
-        OutputOpen_Out, 
-        OutputClosed_Out, 
+        OutputCh_Out, 
+        OutputOh_Out, 
         NumOutJacks,
     };
     

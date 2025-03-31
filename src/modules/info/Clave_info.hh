@@ -8,7 +8,7 @@ namespace MetaModule
 {
 struct ClaveInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Clave"};
-    static constexpr std::string_view description{"Clave"};
+    static constexpr std::string_view description{"Clave Drum Module"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Clave.svg"};
     static constexpr std::string_view png_filename{"4msDrums/Clave.png"};
@@ -16,21 +16,44 @@ struct ClaveInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<25>(9.912), to_mm<25>(44.8), Center, "Decay", ""}, 0.5f},
-		Knob9mm{{to_mm<25>(9.912), to_mm<25>(19), Center, "Pitch", ""}, 0.5f},
-		AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(93.021), Center, "Trig", ""}},
-		AnalogJackOutput4ms{{to_mm<25>(9.912), to_mm<25>(110.168), Center, "Clave", ""}},
-        AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(33.947), Center, "Pitch CV", ""}},
-        AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(60.097), Center, "Decay CV", ""}},
+		Knob9mm{{to_mm<72>(28.92), to_mm<72>(46.77), Center, "Pitch", ""}, 0.5f},
+		Knob9mm{{to_mm<72>(28.92), to_mm<72>(143.15), Center, "Decay", ""}, 0.5f},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(94.96), Center, "Pitch CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.93), to_mm<72>(191.34), Center, "Decay CV", ""}},
+		GateJackInput4ms{{to_mm<72>(28.8), to_mm<72>(265.04), Center, "Trigger", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(28.8), to_mm<72>(313.84), Center, "Out", ""}},
 }};
 
     enum class Elem {
-        DecayKnob,
         PitchKnob,
-        TrigIn,
-        ClaveOut,
+        DecayKnob,
         PitchCvIn,
         DecayCvIn,
+        TriggerIn,
+        Out,
     };
+
+    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
+    
+    enum {
+        KnobPitch, 
+        KnobDecay, 
+        NumKnobs,
+    };
+    
+    
+    enum {
+        InputPitch_Cv, 
+        InputDecay_Cv, 
+        InputTrigger, 
+        NumInJacks,
+    };
+    
+    enum {
+        OutputOut, 
+        NumOutJacks,
+    };
+    
+    
 };
 } // namespace MetaModule

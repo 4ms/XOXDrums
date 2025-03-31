@@ -112,7 +112,7 @@ public:
 
 		finalOutput = std::clamp(finalOutput, -5.f, 5.f);
 
-		setOutput<ClapOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

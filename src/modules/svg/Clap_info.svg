@@ -24,14 +24,14 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0466466"
-     inkscape:cx="11.970802"
+     inkscape:cx="227.93383"
      inkscape:cy="246.50079"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
-     inkscape:window-x="2035"
+     inkscape:window-x="2240"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg83" />
+     inkscape:current-layer="components" />
   <g
      id="faceplate">
     <rect
@@ -425,53 +425,47 @@
        r="11.34"
        style="fill: #80ff80;" />
     <circle
-       id="Saturation_MediumBlackKnob"
-       data-name="Saturation#MediumBlackKnob"
+       id="Saturation_Davies1900hBlackKnob"
+       data-name="Saturation#Davies1900hBlackKnob"
        cx="106.4"
        cy="162.82"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Saturation_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <circle
-       id="Verb_Volume_MediumBlackKnob"
-       data-name="Verb Volume#MediumBlackKnob"
+       id="Verb_Volume_Davies1900hBlackKnob"
+       data-name="Verb Volume#Davies1900hBlackKnob"
        cx="37.85"
        cy="162.82"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Verb_Volume_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <circle
-       id="Verb_Decay_MediumBlackKnob"
-       data-name="Verb Decay#MediumBlackKnob"
+       id="Verb_Decay_Davies1900hBlackKnob"
+       data-name="Verb Decay#Davies1900hBlackKnob"
        cx="106.4"
        cy="104.62"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Verb_Decay_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <circle
-       id="Color_MediumBlackKnob"
-       data-name="Color#MediumBlackKnob"
+       id="Color_Davies1900hBlackKnob"
+       data-name="Color#Davies1900hBlackKnob"
        cx="37.85"
        cy="104.62"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Color_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <circle
-       id="Spread_MediumBlackKnob"
-       data-name="Spread#MediumBlackKnob"
+       id="Spread_Davies1900hBlackKnob"
+       data-name="Spread#Davies1900hBlackKnob"
        cx="106.4"
        cy="46.42"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Spread_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <circle
-       id="Energy_MediumBlackKnob"
-       data-name="Energy#MediumBlackKnob"
+       id="Energy_Davies1900hBlackKnob"
+       data-name="Energy#Davies1900hBlackKnob"
        cx="37.85"
        cy="46.52"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Energy_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <text
        id="slug"
        transform="translate(109.39 369)"

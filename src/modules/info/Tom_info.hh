@@ -16,17 +16,17 @@ struct TomInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 11> Elements{{
-		Toggle3pos{{to_mm<25>(26), to_mm<25>(41), Center, "Range", ""}, {"Low", "Med", "High"}, Toggle3pos::State_t::DOWN},
-		Davies1900hBlackKnob{{to_mm<25>(13.3), to_mm<25>(54.8), Center, "Pitch Decay", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<25>(38.3), to_mm<25>(54.8), Center, "Env Depth", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<25>(38.3), to_mm<25>(24.8), Center, "Amp Decay", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<25>(13.3), to_mm<25>(24.8), Center, "Pitch", ""}, 0.0f},
-		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(96.45), Center, "Pitch Decay CV", ""}},
-		AnalogJackOutput4ms{{to_mm<25>(41.129), to_mm<25>(111.127), Center, "Tom", ""}},
-		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(96.45), Center, "Env Depth CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(41.129), to_mm<25>(82.292), Center, "Amp Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(25.44), to_mm<25>(82.292), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(11.063), to_mm<25>(82.292), Center, "Trig", ""}},
+		Toggle2posHoriz{{to_mm<25>(-93.591), to_mm<25>(155.903), Center, "Range", ""}},
+		Knob9mm{{to_mm<25>(-140.726), to_mm<25>(207.669), Center, "Pitch Decay", ""}, 0.0f},
+		Knob9mm{{to_mm<25>(-46.428), to_mm<25>(207.316), Center, "Env Depth", ""}, 0.0f},
+		Knob9mm{{to_mm<25>(-46.428), to_mm<25>(93.493), Center, "Amp Decay", ""}, 0.0f},
+		Knob9mm{{to_mm<25>(-141.042), to_mm<25>(93.918), Center, "Pitch", ""}, 0.0f},
+		AnalogJackInput4ms{{to_mm<25>(-151.19), to_mm<25>(362.725), Center, "Pitch Decay CV", ""}},
+		AnalogJackOutput4ms{{to_mm<25>(-37.671), to_mm<25>(418.023), Center, "Tom", ""}},
+		AnalogJackInput4ms{{to_mm<25>(-37.726), to_mm<25>(362.841), Center, "Env Depth CV", ""}},
+		AnalogJackInput4ms{{to_mm<25>(-37.549), to_mm<25>(308.902), Center, "Amp Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<25>(-94.898), to_mm<25>(309.078), Center, "Pitch CV", ""}},
+		AnalogJackInput4ms{{to_mm<25>(-151.372), to_mm<25>(309.084), Center, "Trig", ""}},
 }};
 
     enum class Elem {

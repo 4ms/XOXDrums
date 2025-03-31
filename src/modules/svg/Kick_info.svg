@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0466466"
-     inkscape:cx="96.010713"
+     inkscape:cx="96.010715"
      inkscape:cy="246.50079"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
@@ -386,40 +386,35 @@
        cx="37.85"
        cy="162.82"
        r="17.01"
-       style="fill:#ff002A"
-       inkscape:label="Saturation_Davies1900hBlackKnob" />
+       style="fill:#ff002A" />
     <circle
        id="Amp_Decay_MediumBlackKnob"
        data-name="Amp Decay#MediumBlackKnob"
        cx="106.4"
        cy="104.62"
        r="17.01"
-       style="fill:#ff002A"
-       inkscape:label="Amp_Decay_Davies1900hBlackKnob" />
+       style="fill:#ff002A" />
     <circle
        id="P_Decay_MediumBlackKnob"
        data-name="P Decay#MediumBlackKnob"
        cx="37.85"
        cy="104.62"
        r="17.01"
-       style="fill: #ff0020;"
-       inkscape:label="P_Decay_Davies1900hBlackKnob" />
+       style="fill: #ff0020;" />
     <circle
        id="P_Depth_MediumBlackKnob"
        data-name="P Depth#MediumBlackKnob"
        cx="106.4"
        cy="46.42"
        r="17.01"
-       style="fill:#ff0040"
-       inkscape:label="P_Depth_Davies1900hBlackKnob" />
+       style="fill:#ff0040" />
     <circle
        id="Pitch_MediumBlackKnob"
        data-name="Pitch#MediumBlackKnob"
        cx="37.85"
        cy="46.52"
        r="17.01"
-       style="fill:#ff002A"
-       inkscape:label="Pitch_Davies1900hBlackKnob" />
+       style="fill:#ff002A" />
     <text
        id="slug"
        transform="translate(103.4 369)"
