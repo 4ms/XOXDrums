@@ -10,8 +10,8 @@ struct SnareInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Snare"};
     static constexpr std::string_view description{"Snare Drum Module"};
     static constexpr uint32_t width_hp = 15;
-    static constexpr std::string_view svg_filename{"res/Snare.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Snare.png"};
+    static constexpr std::string_view svg_filename{"res/Snare_info.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Snare_info.png"};
 
     using enum Coords;
 

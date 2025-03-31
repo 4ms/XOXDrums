@@ -10,8 +10,8 @@ struct TomInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Tom"};
     static constexpr std::string_view description{"Tom"};
     static constexpr uint32_t width_hp = 10;
-    static constexpr std::string_view svg_filename{"res/Tom.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Tom.png"};
+    static constexpr std::string_view svg_filename{"res/Tom_info.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Tom_info.png"};
 
     using enum Coords;
 

@@ -610,82 +610,83 @@
     </g>
   </g>
   <g
-     id="components">
+     id="components"
+     style="display:none">
     <circle
        id="Out"
        cx="180.38"
-       cy="313.95"
+       cy="313.95001"
        r="11.34"
-       style="fill: blue;" />
+       style="fill:#0000ff" />
     <circle
        id="Saturation_CV"
        data-name="Saturation CV"
-       cx="132.1"
-       cy="313.95"
+       cx="132.10001"
+       cy="313.95001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="BN_CV"
        data-name="BN CV"
        cx="180.38"
        cy="272.34"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="B_Decay_CV"
        data-name="B Decay CV"
-       cx="132.1"
+       cx="132.10001"
        cy="272.34"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="N_Decay_CV"
        data-name="N Decay CV"
        cx="83.82"
        cy="272.34"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="N_Color_CV"
        data-name="N Color CV"
-       cx="35.54"
+       cx="35.540001"
        cy="272.34"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="P_Amt_CV"
        data-name="P Amt CV"
        cx="180.38"
-       cy="232.21"
+       cy="232.21001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="P_Decay_CV"
        data-name="P Decay CV"
-       cx="132.1"
-       cy="232.21"
+       cx="132.10001"
+       cy="232.21001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV"
        cx="83.82"
-       cy="232.21"
+       cy="232.21001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Trigger"
-       cx="35.54"
-       cy="232.21"
+       cx="35.540001"
+       cy="232.21001"
        r="11.34"
-       style="fill: #80ff80;" />
+       style="fill:#80ff80" />
     <circle
        id="Saturation_MediumBlackKnob"
        data-name="Saturation#MediumBlackKnob"
        cx="172.39"
-       cy="163.21"
+       cy="163.21001"
        r="17.01"
-       style="fill: red;" />
+       style="fill:#ff0000" />
     <rect
        id="Range_Switch_Low_High"
        data-name="Range Switch@Low@High"
@@ -693,8 +694,8 @@
        y="154.67"
        width="11.34"
        height="17.01"
-       transform="translate(216 326.36) rotate(180)"
-       style="fill: #ff8080;" />
+       transform="rotate(180,108,163.18)"
+       style="fill:#ff8080" />
     <circle
        id="Body_Noise_MediumBlackKnob"
        data-name="Body Noise#MediumBlackKnob"
@@ -741,7 +742,7 @@
        cx="108"
        cy="46.41"
        r="17.01"
-       style="fill:#ff000F"
+       style="fill:#ff000f"
        inkscape:label="Pitch_Decay_Davies1900hBlackKnob" />
     <circle
        id="Pitch_MediumBlackKnob"
@@ -753,39 +754,39 @@
        inkscape:label="Pitch_Davies1900hBlackKnob" />
     <text
        id="slug"
-       transform="translate(177.11 369.11)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(177.11,369.11)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
          id="tspan136">Sna</tspan><tspan
-         x="4.59"
+         x="4.5900002"
          y="0"
-         style="letter-spacing: -.01em;"
+         style="letter-spacing:-0.01em"
          id="tspan137">r</tspan><tspan
          x="5.54"
          y="0"
          id="tspan138">e</tspan></text>
     <text
        id="modulename"
-       transform="translate(185.67 369.11)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(185.67,369.11)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
          id="tspan139">Sna</tspan><tspan
-         x="4.59"
+         x="4.5900002"
          y="0"
-         style="letter-spacing: -.01em;"
+         style="letter-spacing:-0.01em"
          id="tspan140">r</tspan><tspan
          x="5.54"
          y="0"
-         id="tspan141">e Drum </tspan><tspan
+         id="tspan141">e Drum</tspan><tspan
          x="15.45"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan142">M</tspan><tspan
-         x="17.88"
+         x="17.879999"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan143">odule</tspan></text>
   </g>
 </svg>

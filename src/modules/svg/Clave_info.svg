@@ -5,8 +5,31 @@
    viewBox="0 0 57.85 369.75"
    version="1.1"
    id="svg45"
+   sodipodi:docname="Clave_info.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0466466"
+     inkscape:cx="38.355426"
+     inkscape:cy="246.50079"
+     inkscape:window-width="1200"
+     inkscape:window-height="1186"
+     inkscape:window-x="2240"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg45" />
   <defs
      id="defs4">
     <clipPath
@@ -208,90 +231,91 @@
        id="line36" />
   </g>
   <g
-     id="components">
+     id="components"
+     style="display:none">
     <circle
        id="Out"
-       cx="28.8"
+       cx="28.799999"
        cy="313.84"
        r="11.34"
-       style="fill: blue;" />
+       style="fill:#0000ff" />
     <circle
        id="Trigger"
-       cx="28.8"
-       cy="265.04"
+       cx="28.799999"
+       cy="265.04001"
        r="11.34"
-       style="fill: #80ff80;" />
+       style="fill:#80ff80" />
     <circle
        id="Decay_CV"
        data-name="Decay CV"
        cx="28.93"
        cy="191.34"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Decay_SmallBlackKnob"
        data-name="Decay#SmallBlackKnob"
        cx="28.92"
-       cy="143.15"
+       cy="143.14999"
        r="8.5"
-       style="fill: #ff0040;" />
+       style="fill:#ff0040" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV"
        cx="28.92"
-       cy="94.96"
+       cy="94.959999"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Pitch_SmallBlackKnob"
        data-name="Pitch#SmallBlackKnob"
        cx="28.92"
        cy="46.77"
        r="8.5"
-       style="fill: #ff0040;" />
+       style="fill:#ff0040" />
     <text
        id="slug"
-       transform="translate(21.44 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(21.44,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
          id="tspan36">Cl</tspan><tspan
          x="2.45"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan37">a</tspan><tspan
-         x="3.87"
+         x="3.8699999"
          y="0"
-         style="letter-spacing: -.01em;"
+         style="letter-spacing:-0.01em"
          id="tspan38">v</tspan><tspan
-         x="5.28"
+         x="5.2800002"
          y="0"
          id="tspan39">e</tspan></text>
     <text
        id="modulename"
-       transform="translate(30.01 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(30.01,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
          id="tspan40">Cl</tspan><tspan
          x="2.45"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan41">a</tspan><tspan
-         x="3.87"
+         x="3.8699999"
          y="0"
-         style="letter-spacing: -.01em;"
+         style="letter-spacing:-0.01em"
          id="tspan42">v</tspan><tspan
-         x="5.28"
+         x="5.2800002"
          y="0"
-         id="tspan43">e Drum </tspan><tspan
+         id="tspan43">e Drum</tspan><tspan
          x="15.19"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan44">M</tspan><tspan
-         x="17.62"
+         x="17.620001"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan45">odule</tspan></text>
   </g>
 </svg>

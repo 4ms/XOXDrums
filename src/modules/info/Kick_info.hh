@@ -10,8 +10,8 @@ struct KickInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Kick"};
     static constexpr std::string_view description{"Kick Drum Module"};
     static constexpr uint32_t width_hp = 10;
-    static constexpr std::string_view svg_filename{"res/Kick.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Kick.png"};
+    static constexpr std::string_view svg_filename{"res/Kick_info.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Kick_info.png"};
 
     using enum Coords;
 

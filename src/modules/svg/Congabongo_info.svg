@@ -24,7 +24,7 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0466466"
-     inkscape:cx="96.010715"
+     inkscape:cx="96.010713"
      inkscape:cy="246.50079"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
@@ -243,125 +243,126 @@
          id="tspan43">NGO</tspan></text>
   </g>
   <g
-     id="components">
+     id="components"
+     style="display:none">
     <circle
        id="Out_HI"
        data-name="Out HI"
        cx="114.74"
        cy="313.84"
        r="11.34"
-       style="fill: blue;" />
+       style="fill:#0000ff" />
     <circle
        id="Out_LO"
        data-name="Out LO"
        cx="29.51"
        cy="313.84"
        r="11.34"
-       style="fill: blue;" />
+       style="fill:#0000ff" />
     <circle
        id="Tone_HI"
        data-name="Tone HI"
        cx="114.74"
-       cy="272.23"
+       cy="272.23001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Decay_CV"
        data-name="Decay CV"
-       cx="71.7"
-       cy="272.23"
+       cx="71.699997"
+       cy="272.23001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Tone_LO"
        data-name="Tone LO"
        cx="29.51"
-       cy="272.23"
+       cy="272.23001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Slap_HI"
        data-name="Slap HI"
        cx="114.74"
-       cy="232.1"
+       cy="232.10001"
        r="11.34"
-       style="fill: #80ff80;" />
+       style="fill:#80ff80" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV"
-       cx="71.7"
-       cy="232.1"
+       cx="71.699997"
+       cy="232.10001"
        r="11.34"
-       style="fill: lime;" />
+       style="fill:#00ff00" />
     <circle
        id="Slap_LO"
        data-name="Slap LO"
        cx="29.51"
        cy="232.2"
        r="11.34"
-       style="fill: #80ff80;" />
+       style="fill:#80ff80" />
     <rect
        id="Mode_Switch_Conga_Bongo"
        data-name="Mode Switch@Conga@Bongo"
-       x="66.44"
-       y="165.32"
+       x="66.440002"
+       y="165.32001"
        width="11.34"
        height="17.01"
-       transform="translate(-101.71 245.93) rotate(-90)"
-       style="fill: #ff8080;" />
+       transform="rotate(-90,72.11,173.82)"
+       style="fill:#ff8080" />
     <circle
        id="Decay_MediumBlackKnob"
        data-name="Decay#MediumBlackKnob"
-       cx="72.11"
+       cx="72.110001"
        cy="119.09"
        r="17.01"
-       style="fill: #ff0020;" />
+       style="fill:#ff0020" />
     <circle
        id="Pitch_MediumBlackKnob"
        data-name="Pitch#MediumBlackKnob"
-       cx="72.11"
-       cy="57.85"
+       cx="72.110001"
+       cy="57.849998"
        r="17.01"
        style="fill:#ff0000" />
     <text
        id="slug"
-       transform="translate(86.27 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(86.27,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
-         style="letter-spacing: -.01em;"
+         style="letter-spacing:-0.01em"
          id="tspan44">C</tspan><tspan
          x="1.71"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan45">ongabongo</tspan></text>
     <text
        id="modulename"
-       transform="translate(106.45 369)"
-       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+       transform="translate(106.45,369)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
          x="0"
          y="0"
-         style="letter-spacing: -.01em;"
+         style="letter-spacing:-0.01em"
          id="tspan46">C</tspan><tspan
          x="1.71"
          y="0"
-         style="letter-spacing: 0em;"
-         id="tspan47">onga &amp; </tspan><tspan
+         style="letter-spacing:0em"
+         id="tspan47">onga &amp;</tspan><tspan
          x="11.23"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan48">B</tspan><tspan
          x="12.87"
          y="0"
-         style="letter-spacing: 0em;"
-         id="tspan49">ongo Drum </tspan><tspan
+         style="letter-spacing:0em"
+         id="tspan49">ongo Drum</tspan><tspan
          x="27.91"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan50">M</tspan><tspan
          x="30.34"
          y="0"
-         style="letter-spacing: 0em;"
+         style="letter-spacing:0em"
          id="tspan51">odule</tspan></text>
   </g>
 </svg>
