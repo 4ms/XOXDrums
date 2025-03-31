@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0466466"
-     inkscape:cx="96.010713"
-     inkscape:cy="207.41246"
+     inkscape:cx="96.010715"
+     inkscape:cy="246.50079"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
      inkscape:window-x="2240"
@@ -315,16 +315,14 @@
        cx="72.11"
        cy="119.09"
        r="17.01"
-       style="fill: #ff0020;"
-       inkscape:label="Decay_Davies1900hBlackKnob" />
+       style="fill: #ff0020;" />
     <circle
        id="Pitch_MediumBlackKnob"
        data-name="Pitch#MediumBlackKnob"
        cx="72.11"
        cy="57.85"
        r="17.01"
-       style="fill:#ff0000"
-       inkscape:label="Pitch_Davies1900hBlackKnob" />
+       style="fill:#ff0000" />
     <text
        id="slug"
        transform="translate(86.27 369)"

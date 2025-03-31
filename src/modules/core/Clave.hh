@@ -21,7 +21,7 @@ public:
 		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Check if the trigger input is high
-		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
+		bool currentTriggerState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
 		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
 		triggerStates[0] = triggerStates[1];
 		triggerStates[1] = currentTriggerState;
@@ -59,7 +59,7 @@ public:
 		float finalOutput = (sineWave * amplitudeEnvelope);
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<ClaveOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

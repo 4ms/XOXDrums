@@ -8,7 +8,7 @@ namespace MetaModule
 {
 struct SnareInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Snare"};
-    static constexpr std::string_view description{"Snare"};
+    static constexpr std::string_view description{"Snare Drum Module"};
     static constexpr uint32_t width_hp = 15;
     static constexpr std::string_view svg_filename{"res/Snare.svg"};
     static constexpr std::string_view png_filename{"4msDrums/Snare.png"};
@@ -16,85 +16,83 @@ struct SnareInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 19> Elements{{
-        Toggle3pos{{to_mm<25>(38.537), to_mm<25>(57.823), Center, "Range", ""}, {"2x", "10x", "100x"}, Toggle3pos::State_t::DOWN},
-        Davies1900hBlackKnob{{to_mm<25>(61.279), to_mm<25>(57.823), Center, "Saturation", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(15.783), to_mm<25>(57.823), Center, "Body/Noise", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(15.783), to_mm<25>(37.122), Center, "Noise Color", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(38.537), to_mm<25>(37.122), Center, "Noise Decay", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(61.279), to_mm<25>(37.122), Center, "Body Decay", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(61.279), to_mm<25>(16.465), Center, "Pitch Env Amount", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(38.537), to_mm<25>(16.465), Center, "Pitch Decay", ""}, 0.0f},
-        Davies1900hBlackKnob{{to_mm<25>(15.783), to_mm<25>(16.465), Center, "Pitch", ""}, 0.0f},
-
-		AnalogJackInput4ms{{to_mm<25>(13.784), to_mm<25>(93.55), Center, "Noise Color CV", ""}},
-		AnalogJackOutput4ms{{to_mm<25>(64.883), to_mm<25>(110.738), Center, "Snare", ""}},
-		AnalogJackInput4ms{{to_mm<25>(39.037), to_mm<25>(110.973), Center, "Saturation CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(30.817), to_mm<25>(93.55), Center, "Noise Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(47.585), to_mm<25>(93.55), Center, "Body Decay CV", ""}},
-
-		AnalogJackInput4ms{{to_mm<25>(64.883), to_mm<25>(93.55), Center, "Body/Noise CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(64.883), to_mm<25>(76.362), Center, "Pitch Env Amount CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(47.585), to_mm<25>(76.362), Center, "Pitch Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(30.817), to_mm<25>(76.362), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(13.784), to_mm<25>(76.362), Center, "Trigger", ""}},
+		Davies1900hBlackKnob{{to_mm<72>(43.5), to_mm<72>(46.41), Center, "Pitch", ""}, 0.1953125f},
+		Davies1900hBlackKnob{{to_mm<72>(108.0), to_mm<72>(46.41), Center, "Pitch Decay", ""}, 0.1171875f},
+		Davies1900hBlackKnob{{to_mm<72>(172.5), to_mm<72>(46.41), Center, "Pitch Env Amount", ""}, 0.1953125f},
+		Davies1900hBlackKnob{{to_mm<72>(43.5), to_mm<72>(104.62), Center, "Noise Color", ""}, 0.1953125f},
+		Davies1900hBlackKnob{{to_mm<72>(108.0), to_mm<72>(104.62), Center, "Noise Decay", ""}, 0.2578125f},
+		Davies1900hBlackKnob{{to_mm<72>(172.5), to_mm<72>(104.62), Center, "Body Decay", ""}, 0.3125f},
+		Davies1900hBlackKnob{{to_mm<72>(43.5), to_mm<72>(163.3), Center, "Body Noise", ""}, 0.3125f},
+		Toggle2pos{{to_mm<72>(108.0), to_mm<72>(163.175), Center, "Range Switch", ""}, {"Low", "High"}},
+		Davies1900hBlackKnob{{to_mm<72>(172.39), to_mm<72>(163.21), Center, "Saturation", ""}, 0.0f},
+		GateJackInput4ms{{to_mm<72>(35.54), to_mm<72>(232.21), Center, "Trigger", ""}},
+		AnalogJackInput4ms{{to_mm<72>(83.82), to_mm<72>(232.21), Center, "Pitch CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(132.1), to_mm<72>(232.21), Center, "P Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(180.38), to_mm<72>(232.21), Center, "P Amt CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(35.54), to_mm<72>(272.34), Center, "N Color CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(83.82), to_mm<72>(272.34), Center, "N Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(132.1), to_mm<72>(272.34), Center, "B Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(180.38), to_mm<72>(272.34), Center, "BN CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(132.1), to_mm<72>(313.95), Center, "Saturation CV", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(180.38), to_mm<72>(313.95), Center, "Out", ""}},
 }};
 
     enum class Elem {
-        RangeSwitch,
-        SaturationKnob,
-        Body_NoiseKnob,
+        PitchKnob,
+        PitchDecayKnob,
+        PitchEnvAmountKnob,
         NoiseColorKnob,
         NoiseDecayKnob,
         BodyDecayKnob,
-        PitchEnvAmountKnob,
-        PitchDecayKnob,
-        PitchKnob,
-        NoiseColorCvIn,
-        SnareOut,
-        SaturationCvIn,
-        NoiseDecayCvIn,
-        BodyDecayCvIn,
-        Body_NoiseCvIn,
-        PitchEnvAmountCvIn,
-        PitchDecayCvIn,
-        PitchIn,
+        BodyNoiseKnob,
+        RangeSwitch,
+        SaturationKnob,
         TriggerIn,
+        PitchCvIn,
+        PDecayCvIn,
+        PAmtCvIn,
+        NColorCvIn,
+        NDecayCvIn,
+        BDecayCvIn,
+        BnCvIn,
+        SaturationCvIn,
+        Out,
     };
 
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
     
     enum {
-        KnobSaturation, 
-        KnobBody_Noise, 
+        KnobPitch, 
+        KnobPitch_Decay, 
+        KnobPitch_Env_Amount, 
         KnobNoise_Color, 
         KnobNoise_Decay, 
         KnobBody_Decay, 
-        KnobPitch_Env_Amount, 
-        KnobPitch_Decay, 
-        KnobPitch, 
+        KnobBody_Noise, 
+        KnobSaturation, 
         NumKnobs,
     };
     
     enum {
-        SwitchRange, 
+        SwitchRange_Switch, 
         NumSwitches,
     };
     
     enum {
-        InputNoise_Color_Cv, 
-        InputSaturation_Cv, 
-        InputNoise_Decay_Cv, 
-        InputBody_Decay_Cv, 
-        InputBody_Noise_Cv, 
-        InputPitch_Env_Amount_Cv, 
-        InputPitch_Decay_Cv, 
-        InputPitch, 
         InputTrigger, 
+        InputPitch_Cv, 
+        InputP_Decay_Cv, 
+        InputP_Amt_Cv, 
+        InputN_Color_Cv, 
+        InputN_Decay_Cv, 
+        InputB_Decay_Cv, 
+        InputBn_Cv, 
+        InputSaturation_Cv, 
         NumInJacks,
     };
     
     enum {
-        OutputSnare, 
+        OutputOut, 
         NumOutJacks,
     };
     

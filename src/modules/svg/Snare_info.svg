@@ -685,7 +685,8 @@
        cx="172.39"
        cy="163.21"
        r="17.01"
-       style="fill: red;" />
+       style="fill: red;"
+       inkscape:label="Saturation_Davies1900hBlackKnob" />
     <rect
        id="Range_Switch_Low_High"
        data-name="Range Switch@Low@High"

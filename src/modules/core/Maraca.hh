@@ -59,7 +59,7 @@ public:
 		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Trig input
-		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
+		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
 		if (bangState) {
 			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
@@ -90,7 +90,7 @@ public:
 		float finalOutput = (highpassOut * 0.75f); // Apply makeup gain post filter
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<MaracaOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

@@ -21,7 +21,7 @@ public:
 		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
 		// Tone Hi input
-		bool bangState1 = getInput<ToneLoGateIn>().value_or(0.f) > 0.5f;
+		bool bangState1 = getInput<ToneLoIn>().value_or(0.f) > 0.5f;
 		if (bangState1 && !lastbangState1) {
 			phase1 = 0.0f; // reset sine phase1 for 0 crossing
 			pulseTriggered1 = true;
@@ -31,7 +31,7 @@ public:
 		lastbangState1 = bangState1;
 
 		// Slap Hi input
-		bool bangState3 = getInput<SlapLoGateIn>().value_or(0.f) > 0.5f;
+		bool bangState3 = getInput<SlapLoIn>().value_or(0.f) > 0.5f;
 		if (bangState3 && !lastbangState3 && pulseTriggered1) {
 			amplitudeEnvelope1 *= 0;
 			phase1 = 0.0f; // reset sine phase1 for 0 crossing
@@ -47,7 +47,7 @@ public:
 		lastbangState3 = bangState3;
 
 		// Lo trig input
-		bool bangState2 = getInput<ToneHiGateIn>().value_or(0.f) > 0.5f;
+		bool bangState2 = getInput<ToneHiIn>().value_or(0.f) > 0.5f;
 		if (bangState2 && !lastbangState2) {
 			phase2 = 0.0f; // reset sine phase1 for 0 crossing
 			pulseTriggered2 = true;
@@ -57,7 +57,7 @@ public:
 		lastbangState2 = bangState2;
 
 		// Slap LO input
-		bool bangState4 = getInput<SlapHiGateIn>().value_or(0.f) > 0.5f;
+		bool bangState4 = getInput<SlapHiIn>().value_or(0.f) > 0.5f;
 		if (bangState4 && !lastbangState4 && pulseTriggered2) {
 			amplitudeEnvelope2 *= 0;
 			phase2 = 0.0f; // reset sine phase1 for 0 crossing
@@ -73,7 +73,7 @@ public:
 		lastbangState4 = bangState4;
 
 		//Congabongo switch
-		if (getState<RangeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
+		if (getState<ModeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
 			frequency1 = 200 + (pitchControl * 250.0f);		  //
 			ampDecayTime = 15.0f + (ampDecayControl * 25.0f); // amp decay range (5ms - 25ms)
 		} else {

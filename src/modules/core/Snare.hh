@@ -51,14 +51,14 @@ public:
 
 	void update(void) override {
 
-		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchIn>());
-		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PitchEnvAmountCvIn>());
-		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
-		float ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BodyDecayCvIn>());
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PAmtCvIn>());
+		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PDecayCvIn>());
+		float ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BDecayCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
-		float noiseVolumeControl = combineKnobBipolarCV(getState<Body_NoiseKnob>(), getInput<Body_NoiseCvIn>());
-		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
-		float noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NoiseDecayCvIn>());
+		float noiseVolumeControl = combineKnobBipolarCV(getState<BodyNoiseKnob>(), getInput<BnCvIn>());
+		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NColorCvIn>());
+		float noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NDecayCvIn>());
 
 		// Trig input
 		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
@@ -132,7 +132,7 @@ public:
 		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
 		finalOutput = std::clamp(finalOutput, -2.5f, 2.5f);
 
-		setOutput<SnareOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

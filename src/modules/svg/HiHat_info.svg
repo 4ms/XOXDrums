@@ -24,12 +24,12 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="2.0466466"
-     inkscape:cx="96.010713"
+     inkscape:cx="96.010715"
      inkscape:cy="246.50079"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
-     inkscape:window-x="2484"
-     inkscape:window-y="25"
+     inkscape:window-x="3273"
+     inkscape:window-y="208"
      inkscape:window-maximized="0"
      inkscape:current-layer="components" />
   <g
@@ -368,16 +368,14 @@
        cx="106.4"
        cy="162.82"
        r="17.01"
-       style="fill:#ff0000"
-       inkscape:label="Thickness_Davies1900hBlackKnob" />
+       style="fill:#ff0000" />
     <circle
        id="Brightness_MediumBlackKnob"
        data-name="Brightness#MediumBlackKnob"
        cx="37.85"
        cy="162.82"
        r="17.01"
-       style="fill:#ff0080"
-       inkscape:label="Brightness_Davies1900hBlackKnob" />
+       style="fill:#ff0080" />
     <rect
        id="Choke_Switch_Off_On"
        data-name="Choke Switch@Off@On"
@@ -393,16 +391,14 @@
        cx="106.4"
        cy="57.85"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Decay_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <circle
        id="Pitch_MediumBlackKnob"
        data-name="Pitch#MediumBlackKnob"
        cx="37.85"
        cy="57.85"
        r="17.01"
-       style="fill: #ff0040;"
-       inkscape:label="Pitch_Davies1900hBlackKnob" />
+       style="fill: #ff0040;" />
     <text
        id="slug"
        transform="translate(105.29 369)"

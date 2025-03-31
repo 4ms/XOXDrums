@@ -8,7 +8,7 @@ namespace MetaModule
 {
 struct MaracaInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Maraca"};
-    static constexpr std::string_view description{"Maraca"};
+    static constexpr std::string_view description{"Maraca Drum Module"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Maraca.svg"};
     static constexpr std::string_view png_filename{"4msDrums/Maraca.png"};
@@ -16,17 +16,17 @@ struct MaracaInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 4> Elements{{
-		Knob9mm{{to_mm<25>(9.912), to_mm<25>(19.535), Center, "Decay", ""}, 0.0f},
-		AnalogJackOutput4ms{{to_mm<25>(9.912), to_mm<25>(110.168), Center, "Maraca", ""}},
-		AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(93.021), Center, "Trig", ""}},
-		AnalogJackInput4ms{{to_mm<25>(9.912), to_mm<25>(33.947), Center, "Decay CV", ""}},
+		Knob9mm{{to_mm<72>(28.92), to_mm<72>(46.77), Center, "Decay", ""}, 0.5f},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(94.96), Center, "Decay CV", ""}},
+		GateJackInput4ms{{to_mm<72>(28.8), to_mm<72>(265.04), Center, "Trigger", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(28.8), to_mm<72>(313.84), Center, "Out", ""}},
 }};
 
     enum class Elem {
         DecayKnob,
-        MaracaOut,
-        TrigIn,
         DecayCvIn,
+        TriggerIn,
+        Out,
     };
 
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
@@ -38,13 +38,13 @@ struct MaracaInfo : ModuleInfoBase {
     
     
     enum {
-        InputTrig, 
         InputDecay_Cv, 
+        InputTrigger, 
         NumInJacks,
     };
     
     enum {
-        OutputMaraca, 
+        OutputOut, 
         NumOutJacks,
     };
     

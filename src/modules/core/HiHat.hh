@@ -143,12 +143,12 @@ public:
 		float brightnessControl = combineKnobBipolarCV(getState<BrightnessKnob>(), getInput<BrightnessCvIn>());
 
 		// Check if the trigger input is high
-		bool currentTriggerState1 = getInput<ClosedTrigIn>().value_or(0.f) > 0.5f;
+		bool currentTriggerState1 = getInput<ChTrigIn>().value_or(0.f) > 0.5f;
 		bool bangRisingEdge1 = !triggerStates1[0] && currentTriggerState1;
 		triggerStates1[0] = triggerStates1[1];
 		triggerStates1[1] = currentTriggerState1;
 
-		bool currentTriggerState2 = getInput<OpenTrigIn>().value_or(0.f) > 0.5f;
+		bool currentTriggerState2 = getInput<OhTrigIn>().value_or(0.f) > 0.5f;
 		bool bangRisingEdge2 = !triggerStates2[0] && currentTriggerState2;
 		triggerStates2[0] = triggerStates2[1];
 		triggerStates2[1] = currentTriggerState2;
@@ -245,8 +245,8 @@ public:
 		finalOutputClosed = std::clamp(finalOutputClosed, -5.f, 5.f);
 		finalOutputOpen = std::clamp(finalOutputOpen, -5.f, 5.f);
 
-		setOutput<ClosedOut>(finalOutputClosed);
-		setOutput<OpenOut>(finalOutputOpen);
+		setOutput<ChOut>(finalOutputClosed);
+		setOutput<OhOut>(finalOutputOpen);
 	}
 
 	void set_samplerate(float sr) override {

@@ -17,9 +17,9 @@ public:
 	void update(void) override {
 
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		float pitchDecayControl = combineKnobBipolarCV(getState<PDecayKnob>(), getInput<PDecayCvIn>());
 		float ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<AmpDecayCvIn>());
-		float envDepthControl = combineKnobBipolarCV(getState<PitchDepthKnob>(), getInput<DepthCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PDepthKnob>(), getInput<DepthCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
 		// Trig input
@@ -78,7 +78,7 @@ public:
 		float finalOutput = (sineWave * amplitudeEnvelope) * saturation;
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<KickOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

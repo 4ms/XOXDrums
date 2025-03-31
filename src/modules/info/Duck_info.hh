@@ -16,13 +16,13 @@ struct DuckInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 7> Elements{{
-		Knob9mm{{to_mm<25>(10.309), to_mm<25>(42.895), Center, "Time", ""}, 0.0f},
-		Knob9mm{{to_mm<25>(10.309), to_mm<25>(16.645), Center, "Amount", ""}, 0.0f},
-		AnalogJackOutput4ms{{to_mm<25>(10.309), to_mm<25>(110.361), Center, "Ducked", ""}},
-		AnalogJackInput4ms{{to_mm<25>(10.309), to_mm<25>(92.883), Center, "Audio", ""}},
-		AnalogJackInput4ms{{to_mm<25>(10.309), to_mm<25>(57.456), Center, "Time CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(10.309), to_mm<25>(31.143), Center, "Amount CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(10.309), to_mm<25>(76.072), Center, "Trig", ""}},
+		Knob9mm{{to_mm<72>(28.562), to_mm<72>(121.586), Center, "Time", ""}, 0.0f},
+		Knob9mm{{to_mm<72>(29.22), to_mm<72>(47.182), Center, "Amount", ""}, 0.0f},
+		AnalogJackOutput4ms{{to_mm<72>(28.865), to_mm<72>(312.821), Center, "Accented", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.115), to_mm<72>(263.279), Center, "Audio", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.201), to_mm<72>(162.862), Center, "Time CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.56), to_mm<72>(88.276), Center, "Amount CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.56), to_mm<72>(215.63), Center, "Trig", ""}},
 }};
 
     enum class Elem {
@@ -53,7 +53,7 @@ struct DuckInfo : ModuleInfoBase {
     };
     
     enum {
-        OutputDucked, 
+        OutputAccented, 
         NumOutJacks,
     };
     
