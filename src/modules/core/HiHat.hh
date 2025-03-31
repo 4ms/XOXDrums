@@ -85,8 +85,8 @@ public:
 		finalOutputClosed = std::clamp(finalOutputClosed, -5.f, 5.f);
 		finalOutputOpen = std::clamp(finalOutputOpen, -5.f, 5.f);
 
-		setOutput<ClosedOut>(finalOutputClosed);
-		setOutput<OpenOut>(finalOutputOpen);
+		setOutput<ChOut>(finalOutputClosed);
+		setOutput<OhOut>(finalOutputOpen);
 	}
 
 	void set_samplerate(float sr) override {

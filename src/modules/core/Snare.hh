@@ -88,7 +88,7 @@ public:
 		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
 		finalOutput = std::clamp(finalOutput, -2.5f, 2.5f);
 
-		setOutput<SnareOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

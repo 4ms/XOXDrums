@@ -58,7 +58,7 @@ public:
 
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<MaracaOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

@@ -50,7 +50,7 @@ public:
 
 		const auto finalOutput = std::clamp(sineWave, -5.0f, 5.0f);
 
-		setOutput<ClaveOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

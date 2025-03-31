@@ -75,7 +75,7 @@ public:
 		float finalOutput = (sineWave * amplitudeEnvelope) * saturation;
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<KickOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
