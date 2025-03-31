@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="50.89mm"
+   height="130.44mm"
+   viewBox="0 0 144.25 369.75"
+   version="1.1"
+   id="svg67"
+   sodipodi:docname="HiHat_info.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs67" />
+  <sodipodi:namedview
+     id="namedview67"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0466466"
+     inkscape:cx="96.010715"
+     inkscape:cy="246.50079"
+     inkscape:window-width="1200"
+     inkscape:window-height="1186"
+     inkscape:window-x="3273"
+     inkscape:window-y="208"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="components" />
+  <g
+     id="faceplate">
+    <rect
+       x=".12"
+       y=".12"
+       width="144"
+       height="364.25"
+       style="fill: #ededed; stroke: #9d9d9e; stroke-miterlimit: 10; stroke-width: .25px;"
+       id="rect1" />
+    <path
+       d="M12.61,291.83v-62.01c0-7.82,6.4-14.22,14.22-14.22h90.62c7.82,0,14.22,6.4,14.22,14.22v62.01-.93,45.22c0,3.11-2.54,5.65-5.65,5.65H18.25c-3.11,0-5.65-2.54-5.65-5.65v-45.22"
+       style="fill: #d1d3d4; stroke: #d1d3d4; stroke-miterlimit: 10;"
+       id="path1" />
+    <path
+       d="M132.19,318.66v-21.52h-21.54c-7.49,0-13.57,6.52-13.57,14.57v30.53h15.07s0,0,0,0h14.39c3.12,0,5.64-2.36,5.64-5.25v-18.39.08Z"
+       id="path2" />
+    <path
+       d="M12.19,318.63v-21.52h1.14s20.4,0,20.4,0c7.49,0,13.57,6.52,13.57,14.57v30.07s0,.46,0,.46h-15.07s0,0,0,0h-14.39c-3.12,0-5.64-2.36-5.64-5.25v-9.31s0-9.08,0-9.08v.08Z"
+       id="path3" />
+    <g
+       id="g13">
+      <path
+         d="M46.85,145.6l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+         id="path4" />
+      <path
+         d="M54.43,152.45l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+         id="path5" />
+      <path
+         d="M27.13,146.6l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+         id="path6" />
+      <path
+         d="M57.57,162.18h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+         id="path7" />
+      <path
+         d="M36.85,143.46v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+         id="path8" />
+      <path
+         d="M21.27,173.9l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+         id="path9" />
+      <path
+         d="M48.58,179.76l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+         id="path10" />
+      <path
+         d="M57.57,164.18c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+         id="path11" />
+      <path
+         d="M18.14,164.18h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+         id="path12" />
+      <path
+         d="M20.27,154.18l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+         id="path13" />
+    </g>
+    <g
+       id="g23">
+      <path
+         d="M115.39,145.6l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+         id="path14" />
+      <path
+         d="M122.98,152.45l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+         id="path15" />
+      <path
+         d="M95.67,146.6l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+         id="path16" />
+      <path
+         d="M126.11,162.18h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+         id="path17" />
+      <path
+         d="M105.4,143.46v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+         id="path18" />
+      <path
+         d="M89.82,173.9l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+         id="path19" />
+      <path
+         d="M117.12,179.76l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+         id="path20" />
+      <path
+         d="M126.11,164.18c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+         id="path21" />
+      <path
+         d="M86.68,164.18h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+         id="path22" />
+      <path
+         d="M88.82,154.18l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+         id="path23" />
+    </g>
+    <text
+       transform="translate(15.6 193.06) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text23"><tspan
+         x="0"
+         y="0"
+         id="tspan23">Brightness</tspan></text>
+    <text
+       transform="translate(85.5 193.06) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text24"><tspan
+         x="0"
+         y="0"
+         id="tspan24">Thickness</tspan></text>
+    <text
+       transform="translate(58.47 127.51) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text25"><tspan
+         x="0"
+         y="0"
+         id="tspan25">Choke</tspan></text>
+    <text
+       transform="translate(16.29 253.89) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text26"><tspan
+         x="0"
+         y="0"
+         id="tspan26">CH. Trig</tspan></text>
+    <text
+       transform="translate(63.1 253.72) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text27"><tspan
+         x="0"
+         y="0"
+         id="tspan27">Pitch</tspan></text>
+    <text
+       transform="translate(99.16 253.89) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text28"><tspan
+         x="0"
+         y="0"
+         id="tspan28">OH. Trig</tspan></text>
+    <text
+       transform="translate(19.38 294.82) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text29"><tspan
+         x="0"
+         y="0"
+         id="tspan29">Decay</tspan></text>
+    <text
+       transform="translate(53.93 294.82) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text30"><tspan
+         x="0"
+         y="0"
+         id="tspan30">Brightness</tspan></text>
+    <text
+       transform="translate(96.54 294.82) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text31"><tspan
+         x="0"
+         y="0"
+         id="tspan31">Thickness</tspan></text>
+    <text
+       transform="translate(15.82 336.34) scale(.82 1)"
+       style="fill: #fff; font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text32"><tspan
+         x="0"
+         y="0"
+         id="tspan32">CH. Out</tspan></text>
+    <text
+       transform="translate(100.77 335.76) scale(.82 1)"
+       style="fill: #fff; font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text33"><tspan
+         x="0"
+         y="0"
+         id="tspan33">OH. Out</tspan></text>
+    <g
+       id="g42">
+      <path
+         d="M115.39,40.4l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+         id="path33" />
+      <path
+         d="M122.98,47.26l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+         id="path34" />
+      <path
+         d="M95.67,41.4l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+         id="path35" />
+      <path
+         d="M126.11,56.98h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+         id="path36" />
+      <path
+         d="M105.4,38.27v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+         id="path37" />
+      <path
+         d="M89.82,68.71l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+         id="path38" />
+      <path
+         d="M117.12,74.56l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+         id="path39" />
+      <path
+         d="M126.11,58.98c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+         id="path40" />
+      <path
+         d="M86.68,58.98h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+         id="path41" />
+      <path
+         d="M88.82,48.99l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+         id="path42" />
+    </g>
+    <text
+       transform="translate(93.51 87.76) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text42"><tspan
+         x="0"
+         y="0"
+         id="tspan42">Decay</tspan></text>
+    <g
+       id="g52">
+      <path
+         d="M46.85,40.4l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+         id="path43" />
+      <path
+         d="M54.43,47.26l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+         id="path44" />
+      <path
+         d="M27.13,41.4l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+         id="path45" />
+      <path
+         d="M57.57,56.98h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+         id="path46" />
+      <path
+         d="M36.85,38.27v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+         id="path47" />
+      <path
+         d="M21.27,68.71l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+         id="path48" />
+      <path
+         d="M48.58,74.56l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+         id="path49" />
+      <path
+         d="M57.57,58.98c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+         id="path50" />
+      <path
+         d="M18.14,58.98h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+         id="path51" />
+      <path
+         d="M20.27,48.99l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+         id="path52" />
+    </g>
+    <text
+       transform="translate(27.1 87.76) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text52"><tspan
+         x="0"
+         y="0"
+         id="tspan52">Pitch</tspan></text>
+    <g
+       id="g55">
+      <path
+         d="M63.93,18.19c-.37,0-.71-.17-.97-.47-.51-.6-.52-1.54-.04-2.16l6.97-8.88c.38-.48,1.05-.65,1.57-.39.5.25.79.82.79,1.45v4.77l4.64-5.85c.38-.48,1.01-.64,1.53-.38.5.25.83.81.83,1.44v8.82c0,.86-.61,1.57-1.36,1.57s-1.36-.7-1.36-1.57v-4.79l-4.64,5.85c-.38.48-1.01.64-1.54.38-.5-.24-.83-.81-.83-1.44v-4.67l-4.61,5.8c-.26.32-.62.51-1,.51h0Z"
+         style="fill: #2cabe1;"
+         id="path53" />
+      <path
+         d="M63.92,18.19c-.75,0-1.35-.7-1.35-1.57v-4.93l-2.26,2.84c-.5.63-1.44.65-1.97.04-.51-.6-.52-1.53-.03-2.15l4.61-5.76c.26-.32.63-.5,1-.5.18,0,.37.04.54.12.5.25.82.81.82,1.44v8.89c0,.86-.61,1.57-1.36,1.57h0Z"
+         style="fill: #ea2228;"
+         id="path54" />
+      <path
+         d="M80.52,18.21h0c-.35,0-.68-.15-.94-.42-.76-.78-.14-1.84.29-2.3l1.95-2.36-1.26-.02c-.56-.01-1.04-.4-1.24-1-.19-.56-.07-1.21.29-1.64l3.16-3.83c.23-.28.55-.48,1.13-.47.33,0,.67.17.92.4.71.66.29,1.7-.07,2.2l-1.04,1.26,1.26.02c.56.01,1.04.4,1.24,1,.19.56.07,1.21-.29,1.64l-4.1,4.97c-.35.35-.65.55-1.3.54h0Z"
+         style="fill: #00a650;"
+         id="path55" />
+    </g>
+    <text
+       transform="translate(54.34 357.18) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 11px; font-weight: 700;"
+       id="text57"><tspan
+         x="0"
+         y="0"
+         id="tspan55">HI H</tspan><tspan
+         x="26.87"
+         y="0"
+         style="letter-spacing: -.1em;"
+         id="tspan56">A</tspan><tspan
+         x="34.93"
+         y="0"
+         id="tspan57">T</tspan></text>
+  </g>
+  <g
+     id="components">
+    <circle
+       id="OH_Out"
+       data-name="OH Out"
+       cx="114.78"
+       cy="313.84"
+       r="11.34"
+       style="fill: blue;" />
+    <circle
+       id="CH_Out"
+       data-name="CH Out"
+       cx="29.47"
+       cy="313.84"
+       r="11.34"
+       style="fill: blue;" />
+    <circle
+       id="Thickness_CV"
+       data-name="Thickness CV"
+       cx="114.74"
+       cy="272.23"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="Brightness_CV"
+       data-name="Brightness CV"
+       cx="71.7"
+       cy="272.23"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="Decay_CV"
+       data-name="Decay CV"
+       cx="29.51"
+       cy="272.23"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="OH_Trig"
+       data-name="OH Trig"
+       cx="114.74"
+       cy="232.1"
+       r="11.34"
+       style="fill: #80ff80;" />
+    <circle
+       id="Pitch_CV"
+       data-name="Pitch CV"
+       cx="71.7"
+       cy="232.1"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="CH_Trig"
+       data-name="CH Trig"
+       cx="29.51"
+       cy="232.1"
+       r="11.34"
+       style="fill: #80ff80;" />
+    <circle
+       id="Thickness_MediumBlackKnob"
+       data-name="Thickness#MediumBlackKnob"
+       cx="106.4"
+       cy="162.82"
+       r="17.01"
+       style="fill:#ff0000" />
+    <circle
+       id="Brightness_MediumBlackKnob"
+       data-name="Brightness#MediumBlackKnob"
+       cx="37.85"
+       cy="162.82"
+       r="17.01"
+       style="fill:#ff0080" />
+    <rect
+       id="Choke_Switch_Off_On"
+       data-name="Choke Switch@Off@On"
+       x="66.46"
+       y="101.83"
+       width="11.34"
+       height="17.01"
+       transform="translate(-38.21 182.46) rotate(-90)"
+       style="fill: #ff8080;" />
+    <circle
+       id="Decay_MediumBlackKnob"
+       data-name="Decay#MediumBlackKnob"
+       cx="106.4"
+       cy="57.85"
+       r="17.01"
+       style="fill: #ff0040;" />
+    <circle
+       id="Pitch_MediumBlackKnob"
+       data-name="Pitch#MediumBlackKnob"
+       cx="37.85"
+       cy="57.85"
+       r="17.01"
+       style="fill: #ff0040;" />
+    <text
+       id="slug"
+       transform="translate(105.29 369)"
+       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+         x="0"
+         y="0"
+         style="letter-spacing: .01em;"
+         id="tspan58">H</tspan><tspan
+         x="1.99"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan59">i H</tspan><tspan
+         x="5.28"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan60">a</tspan><tspan
+         x="6.71"
+         y="0"
+         id="tspan61">t</tspan></text>
+    <text
+       id="modulename"
+       transform="translate(116.85 369)"
+       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+         x="0"
+         y="0"
+         style="letter-spacing: .01em;"
+         id="tspan62">H</tspan><tspan
+         x="1.99"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan63">i H</tspan><tspan
+         x="5.28"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan64">a</tspan><tspan
+         x="6.71"
+         y="0"
+         id="tspan65">t Drum </tspan><tspan
+         x="16.11"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan66">M</tspan><tspan
+         x="18.54"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan67">odule</tspan></text>
+  </g>
+</svg>

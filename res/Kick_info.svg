@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="50.89mm"
+   height="130.44mm"
+   viewBox="0 0 144.25 369.75"
+   version="1.1"
+   id="svg72"
+   sodipodi:docname="Kick_info.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs72" />
+  <sodipodi:namedview
+     id="namedview72"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0466466"
+     inkscape:cx="96.010715"
+     inkscape:cy="246.50079"
+     inkscape:window-width="1200"
+     inkscape:window-height="1186"
+     inkscape:window-x="1808"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="components" />
+  <g
+     id="faceplate">
+    <rect
+       x=".12"
+       y=".12"
+       width="144"
+       height="364.25"
+       style="fill: #ededed; stroke: #9d9d9e; stroke-miterlimit: 10; stroke-width: .25px;"
+       id="rect1" />
+    <path
+       d="M12.61,291.83v-62.01c0-7.82,6.4-14.22,14.22-14.22h90.62c7.82,0,14.22,6.4,14.22,14.22v62.01-.93,45.22c0,3.11-2.54,5.65-5.65,5.65H18.25c-3.11,0-5.65-2.54-5.65-5.65v-45.22"
+       style="fill: #d1d3d4; stroke: #d1d3d4; stroke-miterlimit: 10;"
+       id="path1" />
+    <path
+       d="M132.19,318.66v-21.52h-21.54c-7.49,0-13.57,6.52-13.57,14.57v30.53h15.07s0,0,0,0h14.39c3.12,0,5.64-2.36,5.64-5.25v-18.39.08Z"
+       id="path2" />
+    <path
+       d="M126.11,45.78h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+       id="path3" />
+    <path
+       d="M126.11,47.78c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+       id="path4" />
+    <g
+       id="g14">
+      <path
+         d="M46.85,29.2l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+         id="path5" />
+      <path
+         d="M54.43,36.05l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+         id="path6" />
+      <path
+         d="M27.13,30.2l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+         id="path7" />
+      <path
+         d="M57.57,45.78h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+         id="path8" />
+      <path
+         d="M36.85,27.06v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+         id="path9" />
+      <path
+         d="M21.27,57.51l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+         id="path10" />
+      <path
+         d="M48.58,63.36l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+         id="path11" />
+      <path
+         d="M57.57,47.78c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+         id="path12" />
+      <path
+         d="M18.14,47.78h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+         id="path13" />
+      <path
+         d="M20.27,37.78l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+         id="path14" />
+    </g>
+    <path
+       d="M115.39,29.2l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+       id="path15" />
+    <path
+       d="M122.98,36.05l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+       id="path16" />
+    <path
+       d="M95.67,30.2l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+       id="path17" />
+    <path
+       d="M105.4,27.06v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+       id="path18" />
+    <path
+       d="M89.82,57.51l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+       id="path19" />
+    <path
+       d="M117.12,63.36l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+       id="path20" />
+    <path
+       d="M86.68,47.78h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+       id="path21" />
+    <path
+       d="M88.82,37.78l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+       id="path22" />
+    <path
+       d="M46.85,87.14l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+       id="path23" />
+    <path
+       d="M54.43,93.99l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+       id="path24" />
+    <path
+       d="M27.13,88.14l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+       id="path25" />
+    <path
+       d="M57.57,103.72h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+       id="path26" />
+    <path
+       d="M36.85,85v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+       id="path27" />
+    <path
+       d="M21.27,115.44l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+       id="path28" />
+    <path
+       d="M48.58,121.3l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+       id="path29" />
+    <path
+       d="M57.57,105.72c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+       id="path30" />
+    <path
+       d="M18.14,105.72h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+       id="path31" />
+    <path
+       d="M20.27,95.72l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+       id="path32" />
+    <path
+       d="M115.39,87.14l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+       id="path33" />
+    <path
+       d="M122.98,93.99l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+       id="path34" />
+    <path
+       d="M95.67,88.14l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+       id="path35" />
+    <path
+       d="M126.11,103.72h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+       id="path36" />
+    <path
+       d="M105.4,85v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+       id="path37" />
+    <path
+       d="M89.82,115.44l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+       id="path38" />
+    <path
+       d="M117.12,121.3l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+       id="path39" />
+    <path
+       d="M126.11,105.72c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+       id="path40" />
+    <path
+       d="M86.68,105.72h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+       id="path41" />
+    <path
+       d="M88.82,95.72l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+       id="path42" />
+    <path
+       d="M46.85,145.6l1.13-1.95c-2.75-1.43-5.84-2.3-9.12-2.44v2.26c2.87.14,5.57.89,7.99,2.14Z"
+       id="path43" />
+    <path
+       d="M54.43,152.45l1.95-1.13c-1.72-2.68-4-4.96-6.68-6.68l-1.13,1.95c2.34,1.52,4.33,3.51,5.85,5.85Z"
+       id="path44" />
+    <path
+       d="M27.13,146.6l-1.13-1.95c-2.68,1.72-4.96,4-6.68,6.68l1.95,1.13c1.52-2.34,3.51-4.33,5.85-5.85Z"
+       id="path45" />
+    <path
+       d="M57.57,162.18h2.26c-.15-3.28-1.01-6.37-2.44-9.12l-1.95,1.13c1.24,2.42,1.99,5.13,2.14,8Z"
+       id="path46" />
+    <path
+       d="M36.85,143.46v-2.26c-3.28.15-6.37,1.01-9.12,2.44l1.13,1.95c2.42-1.24,5.13-1.99,8-2.14Z"
+       id="path47" />
+    <path
+       d="M21.27,173.9l-1.95,1.13c1.72,2.68,4,4.96,6.68,6.68l1.13-1.95c-2.34-1.52-4.33-3.51-5.85-5.85Z"
+       id="path48" />
+    <path
+       d="M48.58,179.76l1.13,1.95c2.68-1.72,4.96-4,6.68-6.68l-1.95-1.13c-1.52,2.34-3.51,4.33-5.85,5.85Z"
+       id="path49" />
+    <path
+       d="M57.57,164.18c-.14,2.87-.89,5.57-2.14,8l1.95,1.13c1.43-2.75,2.3-5.84,2.44-9.12h-2.26Z"
+       id="path50" />
+    <path
+       d="M18.14,164.18h-2.26c.15,3.28,1.01,6.37,2.44,9.12l1.95-1.13c-1.24-2.42-1.99-5.13-2.14-8Z"
+       id="path51" />
+    <path
+       d="M20.27,154.18l-1.95-1.13c-1.43,2.75-2.3,5.84-2.44,9.12h2.26c.14-2.87.89-5.57,2.14-8Z"
+       id="path52" />
+    <text
+       transform="translate(27.02 76.6) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text52"><tspan
+         x="0"
+         y="0"
+         id="tspan52">Pitch</tspan></text>
+    <text
+       transform="translate(88.1 76.5) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text53"><tspan
+         x="0"
+         y="0"
+         id="tspan53">P. Depth</tspan></text>
+    <text
+       transform="translate(19.88 134.2) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text54"><tspan
+         x="0"
+         y="0"
+         id="tspan54">P. Decay</tspan></text>
+    <text
+       transform="translate(82.08 134.2) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text55"><tspan
+         x="0"
+         y="0"
+         id="tspan55">Amp Decay</tspan></text>
+    <text
+       transform="translate(15.66 193.06) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text56"><tspan
+         x="0"
+         y="0"
+         id="tspan56">Saturation</tspan></text>
+    <text
+       transform="translate(93.4 193.06) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text57"><tspan
+         x="0"
+         y="0"
+         id="tspan57">Range</tspan></text>
+    <text
+       transform="translate(17.1 253.89) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text58"><tspan
+         x="0"
+         y="0"
+         id="tspan58">Trigger</tspan></text>
+    <text
+       transform="translate(63.1 253.72) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text59"><tspan
+         x="0"
+         y="0"
+         id="tspan59">Pitch</tspan></text>
+    <text
+       transform="translate(104.37 253.89) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text60"><tspan
+         x="0"
+         y="0"
+         id="tspan60">Depth</tspan></text>
+    <text
+       transform="translate(15.21 294.82) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text61"><tspan
+         x="0"
+         y="0"
+         id="tspan61">P. Decay</tspan></text>
+    <text
+       transform="translate(52.52 294.82) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text62"><tspan
+         x="0"
+         y="0"
+         id="tspan62">Amp Decay</tspan></text>
+    <text
+       transform="translate(108.4 294.82) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text63"><tspan
+         x="0"
+         y="0"
+         id="tspan63">Sat.</tspan></text>
+    <g
+       id="g65">
+      <path
+         d="M63.93,18.19c-.37,0-.71-.17-.97-.47-.51-.6-.52-1.54-.04-2.16l6.97-8.88c.38-.48,1.05-.65,1.57-.39.5.25.79.82.79,1.45v4.77l4.64-5.85c.38-.48,1.01-.64,1.53-.38.5.25.83.81.83,1.44v8.82c0,.86-.61,1.57-1.36,1.57s-1.36-.7-1.36-1.57v-4.79l-4.64,5.85c-.38.48-1.01.64-1.54.38-.5-.24-.83-.81-.83-1.44v-4.67l-4.61,5.8c-.26.32-.62.51-1,.51h0Z"
+         style="fill: #2cabe1;"
+         id="path63" />
+      <path
+         d="M63.92,18.19c-.75,0-1.35-.7-1.35-1.57v-4.93l-2.26,2.84c-.5.63-1.44.65-1.97.04-.51-.6-.52-1.53-.03-2.15l4.61-5.76c.26-.32.63-.5,1-.5.18,0,.37.04.54.12.5.25.82.81.82,1.44v8.89c0,.86-.61,1.57-1.36,1.57h0Z"
+         style="fill: #ea2228;"
+         id="path64" />
+      <path
+         d="M80.52,18.21h0c-.35,0-.68-.15-.94-.42-.76-.78-.14-1.84.29-2.3l1.95-2.36-1.26-.02c-.56-.01-1.04-.4-1.24-1-.19-.56-.07-1.21.29-1.64l3.16-3.83c.23-.28.55-.48,1.13-.47.33,0,.67.17.92.4.71.66.29,1.7-.07,2.2l-1.04,1.26,1.26.02c.56.01,1.04.4,1.24,1,.19.56.07,1.21-.29,1.64l-4.1,4.97c-.35.35-.65.55-1.3.54h0Z"
+         style="fill: #00a650;"
+         id="path65" />
+    </g>
+    <text
+       transform="translate(59.85 357.18) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 11px; font-weight: 700;"
+       id="text65"><tspan
+         x="0"
+         y="0"
+         id="tspan65">KICK</tspan></text>
+    <line
+       x1="102.06"
+       y1="163.19"
+       x2="64.54"
+       y2="163.19"
+       style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"
+       id="line65" />
+    <text
+       transform="translate(108.32 336.34) scale(.82 1)"
+       style="fill: #fff; font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700;"
+       id="text66"><tspan
+         x="0"
+         y="0"
+         id="tspan66">Out</tspan></text>
+  </g>
+  <g
+     id="components">
+    <circle
+       id="Out"
+       cx="114.74"
+       cy="313.84"
+       r="11.34"
+       style="fill: blue;" />
+    <circle
+       id="Saturation_CV"
+       data-name="Saturation CV"
+       cx="114.74"
+       cy="272.23"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="Amp_Decay_CV"
+       data-name="Amp Decay CV"
+       cx="71.7"
+       cy="272.23"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="P_Decay_CV"
+       data-name="P Decay CV"
+       cx="29.51"
+       cy="272.23"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="Depth_CV"
+       data-name="Depth CV"
+       cx="114.74"
+       cy="232.1"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="Pitch_CV"
+       data-name="Pitch CV"
+       cx="71.7"
+       cy="232.1"
+       r="11.34"
+       style="fill: lime;" />
+    <circle
+       id="Trig"
+       cx="29.51"
+       cy="232.1"
+       r="11.34"
+       style="fill: #80ff80;" />
+    <rect
+       id="Range_Switch_Off_On"
+       data-name="Range Switch@Off@On"
+       x="100.73"
+       y="154.67"
+       width="11.34"
+       height="17.01"
+       transform="translate(212.79 326.35) rotate(180)"
+       style="fill: #ff8080;" />
+    <circle
+       id="Saturation_MediumBlackKnob"
+       data-name="Saturation#MediumBlackKnob"
+       cx="37.85"
+       cy="162.82"
+       r="17.01"
+       style="fill:#ff002A" />
+    <circle
+       id="Amp_Decay_MediumBlackKnob"
+       data-name="Amp Decay#MediumBlackKnob"
+       cx="106.4"
+       cy="104.62"
+       r="17.01"
+       style="fill:#ff002A" />
+    <circle
+       id="P_Decay_MediumBlackKnob"
+       data-name="P Decay#MediumBlackKnob"
+       cx="37.85"
+       cy="104.62"
+       r="17.01"
+       style="fill: #ff0020;" />
+    <circle
+       id="P_Depth_MediumBlackKnob"
+       data-name="P Depth#MediumBlackKnob"
+       cx="106.4"
+       cy="46.42"
+       r="17.01"
+       style="fill:#ff0040" />
+    <circle
+       id="Pitch_MediumBlackKnob"
+       data-name="Pitch#MediumBlackKnob"
+       cx="37.85"
+       cy="46.52"
+       r="17.01"
+       style="fill:#ff002A" />
+    <text
+       id="slug"
+       transform="translate(103.4 369)"
+       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+         x="0"
+         y="0"
+         style="letter-spacing: .01em;"
+         id="tspan67">K</tspan><tspan
+         x="1.66"
+         y="0"
+         id="tspan68">ick</tspan></text>
+    <text
+       id="modulename"
+       transform="translate(111.96 369)"
+       style="fill: #010101; font-family: MyriadPro-Regular, 'Myriad Pro'; font-size: 3px;"><tspan
+         x="0"
+         y="0"
+         style="letter-spacing: .01em;"
+         id="tspan69">K</tspan><tspan
+         x="1.66"
+         y="0"
+         id="tspan70">ick Drum </tspan><tspan
+         x="13.51"
+         y="0"
+         style="letter-spacing: 0em;"
+         id="tspan71">M</tspan><tspan
+         x="15.94"
+         y="0"
+         id="tspan72">odule</tspan></text>
+  </g>
+</svg>
