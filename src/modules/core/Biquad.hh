@@ -57,24 +57,24 @@ public:
 private:
 	void calcBiquad(void) {
 		const auto K = std::tan(MathTools::M_PIF * Fc);
-		const auto norm = 1 / (1 + K / Q + K * K);
-		b2 = (1 - K / Q + K * K) * norm;
-		b1 = 2 * (K * K - 1) * norm;
+		const auto Ksqr = K * K;
+		const auto KdivQ = K / Q;
+		const auto norm = 1 / (1 + KdivQ + Ksqr);
+		b2 = (1 - KdivQ + Ksqr) * norm;
+		b1 = 2 * (Ksqr - 1) * norm;
 
 		switch (type) {
 			using enum BiquadType;
 			case LPF:
-				a0 = K * K * norm;
+				a0 = a2 = Ksqr * norm;
 				a1 = 2 * a0;
-				a2 = a0;
 				break;
 			case HPF:
-				a0 = 1 * norm;
+				a0 = a2 = norm;
 				a1 = -2 * a0;
-				a2 = a0;
 				break;
 			case BPF:
-				a0 = K / Q * norm;
+				a0 = KdivQ * norm;
 				a1 = 0;
 				a2 = -a0;
 				break;
