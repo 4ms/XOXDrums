@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Cowbell_info.hh"
+#include "util/math.hh"
 #include <cmath> // for sine wave
 
 namespace MetaModule
@@ -34,45 +35,36 @@ public:
 
 		// Envelopes
 		float ampDecayTime = 20.0f + (ampDecayControl * 100.0f);
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		if (bangRisingEdge) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 		}
 
 		// Osc 1
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
 		float frequency = 500.0f + (pitchControl * 300.0f);
-		phase += frequency * 2.f * M_PI * dt;
-		phase += frequency * 2.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		phase += frequency * 2.f * M_PIF * dt;
+		phase += frequency * 2.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
-		float squareWave = (phase < M_PI) ? 5.0f : -5.0f;
+		float squareWave = (phase < M_PIF) ? 5.0f : -5.0f;
 
 		// Osc 2
 		float frequency2 = (frequency - 260.0f);
-		phase2 += frequency2 * 2.f * M_PI * dt;
-		phase2 += frequency2 * 2.f * M_PI * dt;
-		if (phase2 >= 2.f * M_PI) {
-			phase2 -= 2.f * M_PI;
+		phase2 += frequency2 * 2.f * M_PIF * dt;
+		phase2 += frequency2 * 2.f * M_PIF * dt;
+		if (phase2 >= 2.f * M_PIF) {
+			phase2 -= 2.f * M_PIF;
 		}
-		float squareWave2 = (phase2 < M_PI) ? 5.0f : -5.0f;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			amplitudeEnvelope = 0.0f;
-		}
+		float squareWave2 = (phase2 < M_PIF) ? 5.0f : -5.0f;
 
 		// Combine Oscillators
-		float sumOutput = ((squareWave + squareWave2) * 0.5) * amplitudeEnvelope;
+		float sumOutput = ((squareWave + squareWave2) * 0.5f) * amplitudeEnvelope;
 		sumOutput = std::clamp(sumOutput, -5.0f, 5.0f);
 
 		// Low-pass filter
@@ -98,9 +90,6 @@ private:
 	float amplitudeEnvelope = 1.0f;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
-
-	// Trig
-	bool pulseTriggered = false;
 
 	// Sine oscillator
 	float phase = 0.0f;
