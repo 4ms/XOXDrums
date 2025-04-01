@@ -23,9 +23,9 @@ public:
 				   float sampleRate,
 				   float resonance) {
 		// Calculate the filter coefficients for the 12dB/octave high-pass filter
-		float omega = 2.0f * M_PI * cutoffFreq / sampleRate; // Angular frequency
-		float sinOmega = sinf(omega);
-		float cosOmega = cosf(omega);
+		float omega = 2.0f * MathTools::M_PIF * cutoffFreq / sampleRate; // Angular frequency
+		float sinOmega = std::sin(omega);
+		float cosOmega = std::cos(omega);
 		float alpha = sinOmega / (2.0f * resonance); // Q factor
 
 		// Coefficients for the high-pass filter (resonant, 12dB per octave)
