@@ -1,5 +1,7 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "core/Biquad.hh"
+#include "debug_raw.h"
 #include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
 #include "util/math.hh"
@@ -11,128 +13,29 @@ class HiHat : public SmartCoreProcessor<HiHatInfo> {
 	using Info = HiHatInfo;
 	using enum Info::Elem;
 
+	static constexpr auto filter_q = 1.f;
+
 public:
-	HiHat() = default;
-
-	// Function to apply a biquad bandpass filter
-	float biquadBandpassFilter(float input, float cutoff, float sampleRate1) {
-		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		float omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate1;
-		float sn = std::sin(omega);
-		float cs = std::cos(omega);
-		float alpha1 = sn / (2.0f * resonance);
-
-		// Compute the bandpass filter coefficients (Biquad)
-		filterB0 = alpha1;
-		filterB1 = 0.0f;
-		filterB2 = -alpha1;
-		filterA0 = 1.0f + alpha1;
-		filterA1 = -2.0f * cs;
-		filterA2 = 1.0f - alpha1;
-
-		// Normalize coefficients
-		filterB0 /= filterA0;
-		filterB1 /= filterA0;
-		filterB2 /= filterA0;
-		filterA1 /= filterA0;
-		filterA2 /= filterA0;
-
-		// Apply the filter to the input signal
-		float output1 =
-			filterB0 * input + filterB1 * filterX1 + filterB2 * filterX2 - filterA1 * filterY1 - filterA2 * filterY2;
-
-		// Update the filter states
-		filterX2 = filterX1;
-		filterX1 = input;
-		filterY2 = filterY1;
-		filterY1 = output1;
-
-		return output1;
+	HiHat() {
+		bpf.setQ(filter_q);
+		chh_hpf.setQ(filter_q);
+		ohh_hpf.setQ(filter_q);
 	}
 
-	// Closed high-pass filter with 'closed' prefix for variables
-	float closedHighpass(float input,
-						 float &closedPrevInput1,
-						 float &closedPrevInput2,
-						 float &closedPrevOutput1,
-						 float &closedPrevOutput2,
-						 float cutoffFreq,
-						 float sampleRate2,
-						 float resonance) {
-		// Calculate the filter coefficients for the 12dB/octave high-pass filter
-		float omegaClosed = 2.0f * MathTools::M_PIF * cutoffFreq / sampleRate2; // Angular frequency
-		float sinOmegaClosed = std::sin(omegaClosed);
-		float cosOmegaClosed = std::cos(omegaClosed);
-		float alphaClosed = sinOmegaClosed / (2.0f * resonance); // Q factor
+	float biquadBandpassFilter(float input, float cutoff) {
+		bpf.setFc(cutoff, sampleRate);
+		return bpf.process(input);
+	}
 
-		// Coefficients for the high-pass filter (resonant, 12dB per octave)
-		float b0Closed = (1.0f + cosOmegaClosed) / 2.0f;
-		float b1Closed = -(1.0f + cosOmegaClosed);
-		float b2Closed = b0Closed;
-		float a0Closed = 1.0f + alphaClosed;
-		float a1Closed = -2.0f * cosOmegaClosed;
-		float a2Closed = 1.0f - alphaClosed;
-
-		// Normalize coefficients
-		b0Closed /= a0Closed;
-		b1Closed /= a0Closed;
-		b2Closed /= a0Closed;
-		a1Closed /= a0Closed;
-		a2Closed /= a0Closed;
-
-		// Apply the high-pass filter (biquad filter)
-		float outputClosed = b0Closed * input + b1Closed * closedPrevInput1 + b2Closed * closedPrevInput2 -
-							 a1Closed * closedPrevOutput1 - a2Closed * closedPrevOutput2;
-
-		// Update the filter state variables
-		closedPrevInput2 = closedPrevInput1;
-		closedPrevInput1 = input;
-		closedPrevOutput2 = closedPrevOutput1;
-		closedPrevOutput1 = outputClosed;
-
-		return outputClosed;
+	float closedHighpass(float input, float cutoffFreq) {
+		chh_hpf.setFc(cutoffFreq, sampleRate);
+		return chh_hpf.process(input);
 	}
 
 	// Open high-pass filter with different variable names
-	float openHighpass(float input,
-					   float &prevIn1,
-					   float &prevIn2,
-					   float &prevOut1,
-					   float &prevOut2,
-					   float cutoffFreq,
-					   float sampleRate3,
-					   float resonance) {
-		// Calculate the filter coefficients for the 12dB/octave high-pass filter
-		float omegaOpen = 2.0f * MathTools::M_PIF * cutoffFreq / sampleRate3; // Angular frequency
-		float sinOmegaOpen = std::sin(omegaOpen);
-		float cosOmegaOpen = std::cos(omegaOpen);
-		float alphaOpen = sinOmegaOpen / (2.0f * resonance); // Q factor
-
-		// Coefficients for the high-pass filter (resonant, 12dB per octave)
-		float b0Open = (1.0f + cosOmegaOpen) / 2.0f;
-		float b1Open = -(1.0f + cosOmegaOpen);
-		float b2Open = b0Open;
-		float a0Open = 1.0f + alphaOpen;
-		float a1Open = -2.0f * cosOmegaOpen;
-		float a2Open = 1.0f - alphaOpen;
-
-		// Normalize coefficients
-		b0Open /= a0Open;
-		b1Open /= a0Open;
-		b2Open /= a0Open;
-		a1Open /= a0Open;
-		a2Open /= a0Open;
-
-		// Apply the high-pass filter (biquad filter)
-		float outputOpen = b0Open * input + b1Open * prevIn1 + b2Open * prevIn2 - a1Open * prevOut1 - a2Open * prevOut2;
-
-		// Update the filter state variables
-		prevIn2 = prevIn1;
-		prevIn1 = input;
-		prevOut2 = prevOut1;
-		prevOut1 = outputOpen;
-
-		return outputOpen;
+	float openHighpass(float input, float cutoffFreq) {
+		ohh_hpf.setFc(cutoffFreq, sampleRate);
+		return ohh_hpf.process(input);
 	}
 
 	void update(void) override {
@@ -174,7 +77,7 @@ public:
 
 		// Bandpass
 		float bandpassCutoffFrequency = MathTools::map_value(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
-		float bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency, sampleRate);
+		float bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency);
 
 		// Envelopes
 		float decayTimeClosed = 10.f;
@@ -209,31 +112,17 @@ public:
 		float openVCAOut = (bandpassOut * envelopeValue2);
 
 		// Highpass Resonant Filter (12dB/octave)
-		float highpassResonance = 1.f;
-		float hpCutoffFreq = MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
+		float hpCutoffFreq =
+			MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
 
-		float closedHighpassOut = closedHighpass(closedVCAOut,
-										   closedPrevIn1,
-										   closedPrevIn2,
-										   closedPrevOut1,
-										   closedPrevOut2,
-										   hpCutoffFreq,
-										   sampleRate,
-										   highpassResonance);
-		float openHighpassOut = openHighpass(openVCAOut,
-									   prevIn1Open,
-									   prevIn2Open,
-									   prevOut1Open,
-									   prevOut2Open,
-									   hpCutoffFreq,
-									   sampleRate,
-									   highpassResonance);
+		float closedHighpassOut = closedHighpass(closedVCAOut, hpCutoffFreq);
+		float openHighpassOut = openHighpass(openVCAOut, hpCutoffFreq);
 
 		// Post highpass makeup gain automatic compensation as cutoff decreases
 		float finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
 
 		float finalOutputClosed = (closedHighpassOut * finalMakeup); // Makeup gain
-		float finalOutputOpen = (openHighpassOut * finalMakeup);	   // Makeup gain
+		float finalOutputOpen = (openHighpassOut * finalMakeup);	 // Makeup gain
 		finalOutputClosed = std::clamp(finalOutputClosed, -5.f, 5.f);
 		finalOutputOpen = std::clamp(finalOutputOpen, -5.f, 5.f);
 
@@ -252,29 +141,20 @@ private:
 	float squareWaves[6] = {0.f, 0.f, 0.f, 0.f, 0.f, 0.f};			// Square wave outputs
 
 	// Bandpass Filter
-	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
-	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
+	BiquadBPF bpf{};
+	BiquadHPF chh_hpf{};
+	BiquadHPF ohh_hpf{};
 
 	// Decay envelopes
 	float envelopeValue1 = 0.0f;
 
 	float envelopeValue2 = 0.0f;
 
-	float resonance = 1.f;
-
-	// High-pass filter variables
-	float closedPrevIn1 = 0.0f, closedPrevIn2 = 0.0f;
-	float closedPrevOut1 = 0.0f, closedPrevOut2 = 0.0f;
-
-	float prevIn1Open = 0.0f, prevIn2Open = 0.0f;
-	float prevOut1Open = 0.0f, prevOut2Open = 0.0f;
-
 	float choke = 0.f;
 
 	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 	bool triggerStates2[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 	float sampleRate = 48000.0f;
-
 };
 
 } // namespace MetaModule

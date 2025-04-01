@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "core/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
 #include "util/math.hh"
@@ -12,42 +13,16 @@ class Snare : public SmartCoreProcessor<SnareInfo> {
 	using Info = SnareInfo;
 	using enum Info::Elem;
 
+	static constexpr auto filter_q = 1.f;
+
 public:
-	Snare() = default;
+	Snare() {
+		bpf.setQ(filter_q);
+	}
 
-	float biquadBandpassFilter1(float input, float cutoff, float sampleRate1) {
-		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		const auto omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate1;
-		float sn = std::sin(omega);
-		float cs = std::cos(omega);
-		float alpha = sn / (2.0f); // Resonance is last number
-
-		// Compute the bandpass filter coefficients (Biquad)
-		filterB0 = alpha;
-		filterB1 = 0.0f;
-		filterB2 = -alpha;
-		filterA0 = 1.0f + alpha;
-		filterA1 = -2.0f * cs;
-		filterA2 = 1.0f - alpha;
-
-		// Normalize coefficients
-		filterB0 /= filterA0;
-		filterB1 /= filterA0;
-		filterB2 /= filterA0;
-		filterA1 /= filterA0;
-		filterA2 /= filterA0;
-
-		// Apply the filter to the input signal
-		float output =
-			filterB0 * input + filterB1 * filterX1 + filterB2 * filterX2 - filterA1 * filterY1 - filterA2 * filterY2;
-
-		// Update the filter states
-		filterX2 = filterX1;
-		filterX1 = input;
-		filterY2 = filterY1;
-		filterY1 = output;
-
-		return output;
+	float biquadBandpassFilter1(float input, float cutoff) {
+		bpf.setFc(cutoff, sampleRate);
+		return bpf.process(input);
 	}
 
 	void update(void) override {
@@ -75,7 +50,7 @@ public:
 		// Osc
 		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
-		float frequency = 80 + (pitchControl * 100.0f);									   // Body pitch range
+		float frequency = 80 + (pitchControl * 100.0f);										 // Body pitch range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
 		phase += modulatedFrequency * 2.f * M_PIF * dt;
 		phase += frequency * 2.f * M_PIF * dt;
@@ -99,11 +74,12 @@ public:
 		noiseEnvelope *= noiseDecayAlpha;
 
 		// Noise + filter
-		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
+		float noise =
+			(std::rand() / static_cast<float>(std::numeric_limits<decltype(std::rand())>::max())) * 10.0f - 5.0f;
 		float cutoffFrequency = 1000.0f + (noiseColorControl * 5000.0f);
 		float modulatedCutoffFrequency =
 			cutoffFrequency + (pitchEnvelope * (envDepthControl * 5000.0f)); // Envelope depth range
-		float filteredNoise = (biquadBandpassFilter1(noise, modulatedCutoffFrequency, sampleRate)) * 2.0f;
+		float filteredNoise = (biquadBandpassFilter1(noise, modulatedCutoffFrequency)) * 2.0f;
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
@@ -131,6 +107,7 @@ public:
 	}
 
 private:
+	BiquadBPF bpf{};
 	// Sine oscillator
 	float phase = 0.0f;
 
@@ -139,21 +116,17 @@ private:
 	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
 
 	// Pitch decay envelope
-	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
+	float pitchEnvelope = 1.0f; // Envelope output value (for volume control)
 
 	// Noise decay envelope
 	float noiseEnvelope = 1.0f;
 
 	// Trig
-	bool lastBangState = false;	 // Previous state of the Bang input
-	float pulseTime = 0.0f;		 // Time tracking for pulse duration
+	bool lastBangState = false; // Previous state of the Bang input
+	float pulseTime = 0.0f;		// Time tracking for pulse duration
 
 	// Output
 	float saturation = 0.0f;
-
-	// Bandpass
-	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
-	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
 
 	float sampleRate = 48000.0f;
 };

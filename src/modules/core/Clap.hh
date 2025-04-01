@@ -1,9 +1,10 @@
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "core/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/Clap_info.hh"
-#include <cmath>
 #include "util/math.hh"
+#include <cmath>
 
 namespace MetaModule
 {
@@ -12,8 +13,12 @@ class Clap : public SmartCoreProcessor<ClapInfo> {
 	using Info = ClapInfo;
 	using enum Info::Elem;
 
+	static constexpr auto filter_q = 2.f;
+
 public:
-	Clap() = default;
+	Clap() {
+		bpf.setQ(filter_q);
+	}
 
 	// Function to generate white noise
 	float whiteNoise() {
@@ -21,39 +26,9 @@ public:
 	}
 
 	// Function to apply a biquad bandpass filter
-	float biquadBandpassFilter(float input, float cutoff, float sampleRate) {
-		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		float omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate;
-		float sn = std::sin(omega);
-		float cs = std::cos(omega);
-		float alpha1 = sn / (2.0f * resonance);
-
-		// Compute the bandpass filter coefficients (Biquad)
-		filterB0 = alpha1;
-		filterB1 = 0.0f;
-		filterB2 = -alpha1;
-		filterA0 = 1.0f + alpha1;
-		filterA1 = -2.0f * cs;
-		filterA2 = 1.0f - alpha1;
-
-		// Normalize coefficients
-		filterB0 /= filterA0;
-		filterB1 /= filterA0;
-		filterB2 /= filterA0;
-		filterA1 /= filterA0;
-		filterA2 /= filterA0;
-
-		// Apply the filter to the input signal
-		float output1 =
-			filterB0 * input + filterB1 * filterX1 + filterB2 * filterX2 - filterA1 * filterY1 - filterA2 * filterY2;
-
-		// Update the filter states
-		filterX2 = filterX1;
-		filterX1 = input;
-		filterY2 = filterY1;
-		filterY1 = output1;
-
-		return output1;
+	float biquadBandpassFilter(float input, float cutoff) {
+		bpf.setFc(cutoff, sampleRate);
+		return bpf.process(input);
 	}
 
 	void update(void) override {
@@ -127,7 +102,7 @@ public:
 
 		// Filtered noise
 		float cutoffFrequency = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
-		float filteredNoise = biquadBandpassFilter(whiteNoise(), cutoffFrequency, sampleRate);
+		float filteredNoise = biquadBandpassFilter(whiteNoise(), cutoffFrequency);
 
 		// Apply envelopes
 		float outputSignal1 = filteredNoise * envelopeValue1;
@@ -152,9 +127,7 @@ public:
 
 private:
 	// Filter
-	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
-	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
-	float resonance = 2.f;
+	BiquadBPF bpf{};
 
 	float envelopeValue1 = 0.0f;
 	float envelopeValue2 = 0.0f;
