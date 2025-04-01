@@ -23,9 +23,9 @@ public:
 	// Function to apply a biquad bandpass filter
 	float biquadBandpassFilter(float input, float cutoff, float sampleRate) {
 		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		float omega = 2.0f * M_PI * cutoff / sampleRate;
-		float sn = sinf(omega);
-		float cs = cosf(omega);
+		float omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate;
+		float sn = std::sin(omega);
+		float cs = std::cos(omega);
 		float alpha1 = sn / (2.0f * resonance);
 
 		// Compute the bandpass filter coefficients (Biquad)
@@ -72,14 +72,12 @@ public:
 		triggerStates[1] = currentTriggerState;
 
 		// Envelope decay times 1-3 (short) 5-15ms
-		float decayTime1 = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
-		float decayAlpha1 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		float decayAlpha2 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
-		float decayAlpha3 = exp(-1.0f / (sampleRate * (decayTime1 / 1000.0f)));
+		float decayTimeShort = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
+		float decayAlphaShort = std::exp(-1.0f / (sampleRate * (decayTimeShort / 1000.0f)));
 
 		// Last envelope (reverb time)
-		float decayTime2 = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
-		float decayAlpha4 = exp(-1.0f / (sampleRate * (decayTime2 / 1000.0f)));
+		float decayTimeLong = MathTools::map_value(verbDecayControl, 0.0f, 1.0f, 20.0f, 100.f);
+		float decayAlphaLong = std::exp(-1.0f / (sampleRate * (decayTimeLong / 1000.0f)));
 
 		// Spread knob (delay times between each envelope)
 		float delayTime1 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 20.0f, 40.f);
@@ -98,7 +96,6 @@ public:
 
 		// Envelope logic
 		if (bangRisingEdge) {
-			pulseTriggered1 = true;
 			envelopeValue1 = 1.0f;
 			delayCounter1 = 0;
 			delayCounter2 = 0;
@@ -107,49 +104,26 @@ public:
 
 		// Env 2 delay
 		if (delayCounter1 == delayInSamples1) {
-			pulseTriggered2 = true;
 			envelopeValue2 = 1.0f;
 		}
 
 		// Env 3 delay
 		if (delayCounter2 == delayInSamples2) {
-			pulseTriggered3 = true;
 			envelopeValue3 = 1.0f;
 		}
 
 		// Env 4 delay
 		if (delayCounter3 == delayInSamples3) {
-			pulseTriggered4 = true;
 			envelopeValue4 = 1.0f;
 		}
 
-		// Env 1 (short)
-		if (pulseTriggered1) {
-			envelopeValue1 *= decayAlpha1;
-		} else {
-			envelopeValue1 = 0.0f;
-		}
+		// Short envs
+		envelopeValue1 *= decayAlphaShort;
+		envelopeValue2 *= decayAlphaShort;
+		envelopeValue3 *= decayAlphaShort;
 
-		// Env 2 (short)
-		if (pulseTriggered2) {
-			envelopeValue2 *= decayAlpha2;
-		} else {
-			envelopeValue2 = 0.0f;
-		}
-
-		// Env 3 (short)
-		if (pulseTriggered3) {
-			envelopeValue3 *= decayAlpha3;
-		} else {
-			envelopeValue3 = 0.0f;
-		}
-
-		// Env 4 (long)
-		if (pulseTriggered4) {
-			envelopeValue4 *= decayAlpha4;
-		} else {
-			envelopeValue4 = 0.0f;
-		}
+		// Long env
+		envelopeValue4 *= decayAlphaLong;
 
 		// Filtered noise
 		float cutoffFrequency = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
@@ -187,15 +161,9 @@ private:
 	float envelopeValue3 = 0.0f;
 	float envelopeValue4 = 0.0f;
 
-	bool pulseTriggered1 = false;
-	bool pulseTriggered2 = false;
-	bool pulseTriggered3 = false;
-	bool pulseTriggered4 = false;
-
-	int delayCounter1 = 0; 
-	int delayCounter2 = 0; 
-	int delayCounter3 = 0; 
-	int delayCounter4 = 0; 
+	int delayCounter1 = 0;
+	int delayCounter2 = 0;
+	int delayCounter3 = 0;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 
