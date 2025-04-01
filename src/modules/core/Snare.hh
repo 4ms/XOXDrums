@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
+#include "util/math.hh"
 #include <cmath>
 
 namespace MetaModule
@@ -16,9 +17,9 @@ public:
 
 	float biquadBandpassFilter1(float input, float cutoff, float sampleRate1) {
 		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		float omega = 2.0f * M_PI * cutoff / sampleRate1;
-		float sn = sinf(omega);
-		float cs = cosf(omega);
+		const auto omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate1;
+		float sn = std::sin(omega);
+		float cs = std::cos(omega);
 		float alpha = sn / (2.0f); // Resonance is last number
 
 		// Compute the bandpass filter coefficients (Biquad)
@@ -64,7 +65,6 @@ public:
 		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
 		if (bangState && !lastBangState) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			noiseEnvelope = 1.0f;
@@ -73,42 +73,30 @@ public:
 		lastBangState = bangState;
 
 		// Osc
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
 		float frequency = 80 + (pitchControl * 100.0f);									   // Body pitch range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PI * dt;
-		phase += frequency * 2.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		phase += modulatedFrequency * 2.f * M_PIF * dt;
+		phase += frequency * 2.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
-		float sineWave = 5.0f * sinf(phase);
+		float sineWave = 5.0f * std::sin(phase);
 		sineWave = (sineWave * ((1.f - noiseVolumeControl) / 2.f));
 
 		// Envelopes
 		ampDecayTime = 5.0f + (ampDecayControl * 50.0f); // amp decay range
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
-		float pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
+		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
 		float noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
-		float noiseDecayAlpha = exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
+		float noiseDecayAlpha = std::exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
 		noiseEnvelope *= noiseDecayAlpha;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				pitchEnvelope = 0.0f;
-				amplitudeEnvelope = 0.0f;
-				noiseEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			pitchEnvelope = 0.0f;
-			amplitudeEnvelope = 0.0f;
-			noiseEnvelope = 0.0f;
-		}
 
 		// Noise + filter
 		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
@@ -119,14 +107,17 @@ public:
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
-			saturation = 1 + (saturationControl * 100);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) {
-			saturation = 1 + (saturationControl * 10);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::DOWN) {
-			saturation = 1 + (saturationControl * 2);
+		switch (getState<RangeSwitch>()) {
+			using enum Toggle3pos::State_t;
+			case UP:
+				saturation = 1 + (saturationControl * 100);
+				break;
+			case CENTER:
+				saturation = 1 + (saturationControl * 10);
+				break;
+			case DOWN:
+				saturation = 1 + (saturationControl * 2);
+				break;
 		}
 
 		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
@@ -154,7 +145,6 @@ private:
 	float noiseEnvelope = 1.0f;
 
 	// Trig
-	bool pulseTriggered = false; // Flag to check if pulse was triggered
 	bool lastBangState = false;	 // Previous state of the Bang input
 	float pulseTime = 0.0f;		 // Time tracking for pulse duration
 
