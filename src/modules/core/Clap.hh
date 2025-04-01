@@ -1,6 +1,7 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
 #include "core/Biquad.hh"
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Clap_info.hh"
 #include "util/math.hh"
@@ -9,7 +10,7 @@
 namespace MetaModule
 {
 
-class Clap : public SmartCoreProcessor<ClapInfo> {
+class Clap : public DrumBase<ClapInfo> {
 	using Info = ClapInfo;
 	using enum Info::Elem;
 
@@ -121,10 +122,6 @@ public:
 		setOutput<ClapOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	// Filter
 	BiquadBPF bpf{};
@@ -139,8 +136,6 @@ private:
 	int delayCounter3 = 0;
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
-
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

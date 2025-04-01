@@ -1,6 +1,7 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
 #include "core/Biquad.hh"
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
 #include "util/math.hh"
@@ -9,7 +10,7 @@
 namespace MetaModule
 {
 
-class Snare : public SmartCoreProcessor<SnareInfo> {
+class Snare : public DrumBase<SnareInfo> {
 	using Info = SnareInfo;
 	using enum Info::Elem;
 
@@ -102,10 +103,6 @@ public:
 		setOutput<SnareOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	BiquadBPF bpf{};
 	// Sine oscillator
@@ -127,8 +124,6 @@ private:
 
 	// Output
 	float saturation = 0.0f;
-
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

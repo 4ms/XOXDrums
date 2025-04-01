@@ -1,5 +1,6 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Congabongo_info.hh"
 #include "util/math.hh"
@@ -8,7 +9,7 @@
 namespace MetaModule
 {
 
-class Congabongo : public SmartCoreProcessor<CongabongoInfo> {
+class Congabongo : public DrumBase<CongabongoInfo> {
 	using Info = CongabongoInfo;
 	using enum Info::Elem;
 
@@ -153,10 +154,6 @@ public:
 		setOutput<OutHiOut>(finalOutput2);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	// Sine oscillator
 	float phase1 = 0.0f;
@@ -196,9 +193,6 @@ private:
 	// Output
 	float finalOutput1;
 	float finalOutput2;
-
-	// INTERFACE
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

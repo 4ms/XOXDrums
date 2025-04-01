@@ -1,5 +1,6 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Clave_info.hh"
 #include "util/math.hh"
@@ -9,7 +10,7 @@
 namespace MetaModule
 {
 
-class Clave : public SmartCoreProcessor<ClaveInfo> {
+class Clave : public DrumBase<ClaveInfo> {
 	using Info = ClaveInfo;
 	using enum Info::Elem;
 
@@ -54,18 +55,12 @@ public:
 		setOutput<ClaveOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	// Sine oscillator
 	float phase = 0.0f;
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
 
 	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
-
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

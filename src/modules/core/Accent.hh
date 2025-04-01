@@ -1,12 +1,13 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Accent_info.hh"
 
 namespace MetaModule
 {
 
-class Accent : public SmartCoreProcessor<AccentInfo> {
+class Accent : public DrumBase<AccentInfo> {
 	using Info = AccentInfo;
 	using enum Info::Elem;
 
@@ -43,13 +44,8 @@ public:
 		setOutput<AccentedOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	float amplitudeEnvelope = 0.f;
-	float sampleRate = 48000.0f;
 	bool triggerStates[2] = {false, false};
 };
 

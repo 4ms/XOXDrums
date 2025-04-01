@@ -1,5 +1,6 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Kick_info.hh"
 #include "util/math.hh"
@@ -8,7 +9,7 @@
 namespace MetaModule
 {
 
-class Kick : public SmartCoreProcessor<KickInfo> {
+class Kick : public DrumBase<KickInfo> {
 	using Info = KickInfo;
 	using enum Info::Elem;
 
@@ -36,7 +37,7 @@ public:
 		// Osc
 		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
-		float frequency = 10 + (pitchControl * 40.0f);									   // 10hz - 40hz range
+		float frequency = 10 + (pitchControl * 40.0f);										 // 10hz - 40hz range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
 		phase += modulatedFrequency * 2.f * M_PIF * dt;
 		phase += frequency * 2.f * M_PIF * dt;
@@ -74,10 +75,6 @@ public:
 		setOutput<KickOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	// Sine oscillator
 	float phase = 0.0f;
@@ -87,16 +84,14 @@ private:
 	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
 
 	// Pitch decay envelope
-	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
+	float pitchEnvelope = 1.0f; // Envelope output value (for volume control)
 
 	// Trig
-	bool lastBangState = false;	 // Previous state of the Bang input
-	float pulseTime = 0.0f;		 // Time tracking for pulse duration
+	bool lastBangState = false; // Previous state of the Bang input
+	float pulseTime = 0.0f;		// Time tracking for pulse duration
 
 	// Output
 	float saturation = 0.0f;
-
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

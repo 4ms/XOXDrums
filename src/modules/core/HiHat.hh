@@ -1,6 +1,7 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
 #include "core/Biquad.hh"
+#include "core/DrumBase.hh"
 #include "debug_raw.h"
 #include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
@@ -9,7 +10,7 @@
 namespace MetaModule
 {
 
-class HiHat : public SmartCoreProcessor<HiHatInfo> {
+class HiHat : public DrumBase<HiHatInfo> {
 	using Info = HiHatInfo;
 	using enum Info::Elem;
 
@@ -130,10 +131,6 @@ public:
 		setOutput<OpenOut>(finalOutputOpen);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	// Oscillator
 	float offsets[6] = {100.f, 250.f, 400.f, 550.f, 600.f, 1000.f}; // Offsets for each oscillator
@@ -154,7 +151,6 @@ private:
 
 	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 	bool triggerStates2[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

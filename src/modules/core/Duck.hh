@@ -1,5 +1,6 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Duck_info.hh"
 #include "util/math.hh"
@@ -8,7 +9,7 @@
 namespace MetaModule
 {
 
-class Duck : public SmartCoreProcessor<DuckInfo> {
+class Duck : public DrumBase<DuckInfo> {
 	using Info = DuckInfo;
 	using enum Info::Elem;
 
@@ -46,17 +47,11 @@ public:
 		setOutput<DuckedOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
 
 	bool triggerStates[2] = {false, false};
-
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule

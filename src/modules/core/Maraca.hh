@@ -1,6 +1,7 @@
 #pragma once
-#include "CoreModules/SmartCoreProcessor.hh"
+
 #include "core/Biquad.hh"
+#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
 #include "util/math.hh"
@@ -8,7 +9,7 @@
 namespace MetaModule
 {
 
-class Maraca : public SmartCoreProcessor<MaracaInfo> {
+class Maraca : public DrumBase<MaracaInfo> {
 	using Info = MaracaInfo;
 	using enum Info::Elem;
 
@@ -51,10 +52,6 @@ public:
 		setOutput<MaracaOut>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
 private:
 	BiquadBPF bpf{};
 
@@ -63,8 +60,6 @@ private:
 
 	// Trig
 	bool lastBangState = false; // Previous state of the Bang input
-
-	float sampleRate = 48000.0f;
 };
 
 } // namespace MetaModule
