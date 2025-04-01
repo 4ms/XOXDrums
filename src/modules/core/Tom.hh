@@ -43,14 +43,17 @@ public:
 
 		//Range switch
 		// Final output
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
-			frequency = 160 + (pitchControl * 400.0f);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) {
-			frequency = 80 + (pitchControl * 200.0f);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::DOWN) {
-			frequency = 40 + (pitchControl * 100.0f);
+		switch (getState<RangeSwitch>()) {
+			using enum Toggle3pos::State_t;
+			case UP:
+				frequency = 160 + (pitchControl * 400);
+				break;
+			case CENTER:
+				frequency = 80 + (pitchControl * 200);
+				break;
+			case DOWN:
+				frequency = 40 + (pitchControl * 100);
+				break;
 		}
 
 		// Osc
