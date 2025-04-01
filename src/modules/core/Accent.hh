@@ -1,3 +1,4 @@
+
 #pragma once
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
@@ -26,22 +27,12 @@ public:
 
 		// Trigger handling
 		if (bangRisingEdge) {
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 		}
 
 		float ampDecayTime = 70.f;
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
-
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			amplitudeEnvelope = 0.0f;
-		}
 
 		float scaled = ((amplitudeEnvelope * controlValue) + (1.f - controlValue));
 
@@ -59,7 +50,6 @@ public:
 
 private:
 	float amplitudeEnvelope = 0.f;
-	bool pulseTriggered = false;
 	float sampleRate = 48000.0f;
 	bool triggerStates[2] = {false, false};
 };
