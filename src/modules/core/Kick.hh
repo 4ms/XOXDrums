@@ -2,6 +2,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Kick_info.hh"
+#include "util/math.hh"
 #include <cmath>
 
 namespace MetaModule
@@ -26,7 +27,6 @@ public:
 		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
 		if (bangState && !lastBangState) {
 			phase = 0.0f; // reset sine phase for 0 crossing
-			pulseTriggered = true;
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			pulseTime = ampDecayTime * (sampleRate / 1000.0f);
@@ -34,45 +34,38 @@ public:
 		lastBangState = bangState;
 
 		// Osc
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
 		float frequency = 10 + (pitchControl * 40.0f);									   // 10hz - 40hz range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PI * dt;
-		phase += frequency * 2.f * M_PI * dt;
-		if (phase >= 2.f * M_PI) {
-			phase -= 2.f * M_PI;
+		phase += modulatedFrequency * 2.f * M_PIF * dt;
+		phase += frequency * 2.f * M_PIF * dt;
+		if (phase >= 2.f * M_PIF) {
+			phase -= 2.f * M_PIF;
 		}
-		float sineWave = 5.0f * sinf(phase);
+		float sineWave = 5.0f * std::sin(phase);
 
 		// Envelopes
 		ampDecayTime = 5.0f + (ampDecayControl * 300.0f); // amp decay range (5ms - 300ms)
-		float ampDecayAlpha = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
-		float pitchDecayAlpha = exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
+		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
-		if (pulseTriggered) {
-			if (amplitudeEnvelope < 0.0f) {
-				pitchEnvelope = 0.0f;
-				amplitudeEnvelope = 0.0f;
-				pulseTriggered = false;
-			}
-		} else {
-			pitchEnvelope = 0.0f;
-			amplitudeEnvelope = 0.0f;
-		}
-
 		// Final output
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::UP) {
-			saturation = 1 + (saturationControl * 100);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::CENTER) {
-			saturation = 1 + (saturationControl * 10);
-		}
-		if (getState<RangeSwitch>() == Toggle3pos::State_t::DOWN) {
-			saturation = 1 + (saturationControl * 2);
+		switch (getState<RangeSwitch>()) {
+			using enum Toggle3pos::State_t;
+			case UP:
+				saturation = 1 + (saturationControl * 100);
+				break;
+			case CENTER:
+				saturation = 1 + (saturationControl * 10);
+				break;
+			case DOWN:
+				saturation = 1 + (saturationControl * 2);
+				break;
 		}
 
 		float finalOutput = (sineWave * amplitudeEnvelope) * saturation;
@@ -97,7 +90,6 @@ private:
 	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
 
 	// Trig
-	bool pulseTriggered = false; // Flag to check if pulse was triggered
 	bool lastBangState = false;	 // Previous state of the Bang input
 	float pulseTime = 0.0f;		 // Time tracking for pulse duration
 
