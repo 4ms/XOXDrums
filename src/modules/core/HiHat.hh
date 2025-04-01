@@ -2,7 +2,6 @@
 
 #include "core/Biquad.hh"
 #include "core/DrumBase.hh"
-#include "debug_raw.h"
 #include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
 #include "util/math.hh"
