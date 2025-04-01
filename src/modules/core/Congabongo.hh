@@ -41,7 +41,7 @@ public:
 			amplitudeEnvelope3 = 1.0f;
 			pulseTime3 = 5.0f * (sampleRate / 1000.0f);
 		} else {
-			ampDecayAlpha1 = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+			ampDecayAlpha1 = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 			amplitudeEnvelope1 *= ampDecayAlpha1;
 		}
 		lastbangState3 = bangState3;
@@ -67,7 +67,7 @@ public:
 			amplitudeEnvelope4 = 1.0f;
 			pulseTime4 = 5.0f * (sampleRate / 1000.0f);
 		} else {
-			ampDecayAlpha2 = exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+			ampDecayAlpha2 = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 			amplitudeEnvelope2 *= ampDecayAlpha2;
 		}
 		lastbangState4 = bangState4;
@@ -82,28 +82,29 @@ public:
 		}
 
 		// Osc 1
+		using MathTools::M_PIF;
 		float dt = 1.0f / sampleRate;
-		phase1 += frequency1 * 2.f * M_PI * dt;
-		phase1 += frequency1 * 2.f * M_PI * dt;
-		if (phase1 >= 2.f * M_PI) {
-			phase1 -= 2.f * M_PI;
+		phase1 += frequency1 * 2.f * M_PIF * dt;
+		phase1 += frequency1 * 2.f * M_PIF * dt;
+		if (phase1 >= 2.f * M_PIF) {
+			phase1 -= 2.f * M_PIF;
 		}
-		float sineWave1 = 5.0f * sinf(phase1);
+		float sineWave1 = 5.0f * std::sin(phase1);
 
 		// Osc 2
 		frequency2 = frequency1 * (3.0f / 4.0f); // Low
-		phase2 += frequency2 * 2.f * M_PI * dt;
-		phase2 += frequency2 * 2.f * M_PI * dt;
-		if (phase2 >= 2.f * M_PI) {
-			phase2 -= 2.f * M_PI;
+		phase2 += frequency2 * 2.f * M_PIF * dt;
+		phase2 += frequency2 * 2.f * M_PIF * dt;
+		if (phase2 >= 2.f * M_PIF) {
+			phase2 -= 2.f * M_PIF;
 		}
-		float sineWave2 = 5.0f * sinf(phase2);
+		float sineWave2 = 5.0f * std::sin(phase2);
 
 		// Slap 1
-		ampDecayAlpha3 = exp(-1.0f / (sampleRate * 0.01f)); // Slap time
+		ampDecayAlpha3 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
 		amplitudeEnvelope3 *= ampDecayAlpha3;
 		// Slap 2
-		ampDecayAlpha4 = exp(-1.0f / (sampleRate * 0.01f)); // Slap time
+		ampDecayAlpha4 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
 		amplitudeEnvelope4 *= ampDecayAlpha4;
 
 		if (pulseTriggered1) {
