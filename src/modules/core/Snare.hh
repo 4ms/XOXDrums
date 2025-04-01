@@ -21,9 +21,18 @@ public:
 		bpf.setQ(filter_q);
 	}
 
-	float biquadBandpassFilter1(float input, float cutoff) {
-		bpf.setFc(cutoff, sampleRate);
-		return bpf.process(input);
+	void set_param(int param_id, float val) override {
+		if (param_id == static_cast<int>(NoiseColorKnob)) {
+			recalc_bpf = true;
+		}
+		SmartCoreProcessor::set_param(param_id, val);
+	}
+
+	void set_input(int input_id, float val) override {
+		if (input_id == static_cast<int>(NoiseColorCvIn)) {
+			recalc_bpf = true;
+		}
+		SmartCoreProcessor::set_input(input_id, val);
 	}
 
 	void update(void) override {
@@ -34,7 +43,14 @@ public:
 		float ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BodyDecayCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 		float noiseVolumeControl = combineKnobBipolarCV(getState<Body_NoiseKnob>(), getInput<Body_NoiseCvIn>());
-		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
+		if (recalc_bpf) {
+			recalc_bpf = false;
+			float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
+			float cutoffFrequency = 1000.0f + (noiseColorControl * 5000.0f);
+			float modulatedCutoffFrequency =
+				cutoffFrequency + (pitchEnvelope * (envDepthControl * 5000.0f)); // Envelope depth range
+			bpf.setFc(modulatedCutoffFrequency, sampleRate);
+		}
 		float noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NoiseDecayCvIn>());
 
 		// Trig input
@@ -77,10 +93,7 @@ public:
 		// Noise + filter
 		float noise =
 			(std::rand() / static_cast<float>(std::numeric_limits<decltype(std::rand())>::max())) * 10.0f - 5.0f;
-		float cutoffFrequency = 1000.0f + (noiseColorControl * 5000.0f);
-		float modulatedCutoffFrequency =
-			cutoffFrequency + (pitchEnvelope * (envDepthControl * 5000.0f)); // Envelope depth range
-		float filteredNoise = (biquadBandpassFilter1(noise, modulatedCutoffFrequency)) * 2.0f;
+		float filteredNoise = bpf.process(noise) * 2;
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
@@ -124,6 +137,8 @@ private:
 
 	// Output
 	float saturation = 0.0f;
+
+	bool recalc_bpf{true};
 };
 
 } // namespace MetaModule

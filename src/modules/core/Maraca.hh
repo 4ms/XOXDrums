@@ -4,7 +4,6 @@
 #include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
-#include "util/math.hh"
 
 namespace MetaModule
 {
@@ -14,15 +13,11 @@ class Maraca : public DrumBase<MaracaInfo> {
 	using enum Info::Elem;
 
 	static constexpr auto highpass_q = 1.f;
+	static constexpr auto highpass_fc = 6000.f;
 
 public:
 	Maraca() {
-		bpf.setQ(highpass_q);
-	}
-
-	float highpass(float input, float cutoffFreq) {
-		bpf.setFc(cutoffFreq, sampleRate);
-		return bpf.process(input);
+		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
 	}
 
 	void update(void) override {
@@ -43,8 +38,7 @@ public:
 
 		float VCAOut = (noise * amplitudeEnvelope);
 
-		float hpCutoffFreq = 6000.f; // Base frequency for high-pass filter
-		float highpassOut = highpass(VCAOut, hpCutoffFreq);
+		float highpassOut = hpf.process(VCAOut);
 
 		float finalOutput = (highpassOut * 0.75f); // Apply makeup gain post filter
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
@@ -52,8 +46,13 @@ public:
 		setOutput<MaracaOut>(finalOutput);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
+	}
+
 private:
-	BiquadBPF bpf{};
+	BiquadHPF hpf{};
 
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)

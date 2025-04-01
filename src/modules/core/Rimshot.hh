@@ -16,15 +16,34 @@ class Rimshot : public DrumBase<RimshotInfo> {
 public:
 	Rimshot() = default;
 
-	float highpass(float input, float cutoffFreq, float resonance) {
-		hpf.setBiquad(cutoffFreq, sampleRate, resonance);
-		return hpf.process(input);
+	void set_param(int param_id, float val) override {
+		if (param_id == static_cast<int>(PitchKnob)) {
+			recalc_hpf = true;
+		} else if (param_id == static_cast<int>(RingKnob)) {
+			recalc_hpf = true;
+		}
+		SmartCoreProcessor::set_param(param_id, val);
+	}
+
+	void set_input(int input_id, float val) override {
+		if (input_id == static_cast<int>(PitchCvIn)) {
+			recalc_hpf = true;
+		} else if (input_id == static_cast<int>(RingCvIn)) {
+			recalc_hpf = true;
+		}
+		SmartCoreProcessor::set_input(input_id, val);
 	}
 
 	void update(void) override {
 
-		float cutoffControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float resonanceControl = combineKnobBipolarCV(getState<RingKnob>(), getInput<RingCvIn>());
+		if (recalc_hpf) {
+			recalc_hpf = false;
+			float cutoffControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+			float resonanceControl = combineKnobBipolarCV(getState<RingKnob>(), getInput<RingCvIn>());
+			float highpassResonance = MathTools::map_value(resonanceControl, 0.f, 1.f, 1.f, 10.f);
+			float hpCutoffFreq = MathTools::map_value(cutoffControl, 0.f, 1.f, 200.f, 2000.f);
+			hpf.setBiquad(hpCutoffFreq, sampleRate, highpassResonance);
+		}
 
 		// Check if the trigger input is high
 		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
@@ -53,12 +72,7 @@ public:
 			trigger = 0.f;
 		}
 
-		float highpassResonance = MathTools::map_value(resonanceControl, 0.f, 1.f, 1.f, 10.f);
-
-		// Base frequency for high-pass filter
-		float hpCutoffFreq = MathTools::map_value(cutoffControl, 0.f, 1.f, 200.f, 2000.f);
-
-		float highpassOut = highpass(trigger, hpCutoffFreq, highpassResonance);
+		float highpassOut = hpf.process(trigger);
 
 		float finalOutput = (highpassOut * 3.f); // Give it some crunch
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
@@ -73,6 +87,8 @@ private:
 
 	// Trig
 	bool pulseTriggered = false; // Flag to check if pulse was triggered
+
+	bool recalc_hpf;
 
 	// INTERFACE
 	float timerMs = 0.0f;

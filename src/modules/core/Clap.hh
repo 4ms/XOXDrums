@@ -26,10 +26,18 @@ public:
 		return (rand() / (float)RAND_MAX) * 10.0f - 5.0f; // Random between -5V and +5V
 	}
 
-	// Function to apply a biquad bandpass filter
-	float biquadBandpassFilter(float input, float cutoff) {
-		bpf.setFc(cutoff, sampleRate);
-		return bpf.process(input);
+	void set_param(int param_id, float val) override {
+		if (param_id == static_cast<int>(ColorKnob)) {
+			recalc_bpf = true;
+		}
+		SmartCoreProcessor::set_param(param_id, val);
+	}
+
+	void set_input(int input_id, float val) override {
+		if (input_id == static_cast<int>(ColorCvIn)) {
+			recalc_bpf = true;
+		}
+		SmartCoreProcessor::set_input(input_id, val);
 	}
 
 	void update(void) override {
@@ -37,7 +45,12 @@ public:
 		float energyControl = combineKnobBipolarCV(getState<EnergyKnob>(), getInput<EnergyCvIn>());
 		float spreadControl = combineKnobBipolarCV(getState<SpreadKnob>(), getInput<SpreadCvIn>());
 		float verbDecayControl = combineKnobBipolarCV(getState<VerbDecayKnob>(), getInput<VerbDecayCvIn>());
-		float colorControl = combineKnobBipolarCV(getState<ColorKnob>(), getInput<ColorCvIn>());
+		if (recalc_bpf) {
+			recalc_bpf = false;
+			float colorControl = combineKnobBipolarCV(getState<ColorKnob>(), getInput<ColorCvIn>());
+			float cutoff = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
+			bpf.setFc(cutoff, sampleRate);
+		}
 		float verbVolumeControl = combineKnobBipolarCV(getState<VerbVolumeKnob>(), getInput<VerbVolumeCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
@@ -102,8 +115,7 @@ public:
 		envelopeValue4 *= decayAlphaLong;
 
 		// Filtered noise
-		float cutoffFrequency = MathTools::map_value(colorControl, 0.f, 1.f, 800.f, 1600.f);
-		float filteredNoise = biquadBandpassFilter(whiteNoise(), cutoffFrequency);
+		float filteredNoise = bpf.process(whiteNoise());
 
 		// Apply envelopes
 		float outputSignal1 = filteredNoise * envelopeValue1;
@@ -125,6 +137,7 @@ public:
 private:
 	// Filter
 	BiquadBPF bpf{};
+	bool recalc_bpf{true};
 
 	float envelopeValue1 = 0.0f;
 	float envelopeValue2 = 0.0f;

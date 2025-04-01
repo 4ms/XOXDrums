@@ -23,28 +23,47 @@ public:
 		ohh_hpf.setQ(filter_q);
 	}
 
-	float biquadBandpassFilter(float input, float cutoff) {
-		bpf.setFc(cutoff, sampleRate);
-		return bpf.process(input);
+	void set_param(int param_id, float val) override {
+		if (param_id == static_cast<int>(ThicknessKnob)) {
+			recalc_hpfs = true;
+		} else if (param_id == static_cast<int>(BrightnessKnob)) {
+			recalc_bpf = true;
+		}
+		SmartCoreProcessor::set_param(param_id, val);
 	}
 
-	float closedHighpass(float input, float cutoffFreq) {
-		chh_hpf.setFc(cutoffFreq, sampleRate);
-		return chh_hpf.process(input);
-	}
-
-	// Open high-pass filter with different variable names
-	float openHighpass(float input, float cutoffFreq) {
-		ohh_hpf.setFc(cutoffFreq, sampleRate);
-		return ohh_hpf.process(input);
+	void set_input(int input_id, float val) override {
+		if (input_id == static_cast<int>(ThicknessCvIn)) {
+			recalc_hpfs = true;
+		} else if (input_id == static_cast<int>(BrightnessCvIn)) {
+			recalc_bpf = true;
+		}
+		SmartCoreProcessor::set_input(input_id, val);
 	}
 
 	void update(void) override {
 
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
-		float thicknessControl = combineKnobBipolarCV(getState<ThicknessKnob>(), getInput<ThicknessCvIn>());
-		float brightnessControl = combineKnobBipolarCV(getState<BrightnessKnob>(), getInput<BrightnessCvIn>());
+		if (recalc_hpfs) {
+			recalc_hpfs = false;
+			float thicknessControl = combineKnobBipolarCV(getState<ThicknessKnob>(), getInput<ThicknessCvIn>());
+
+			finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
+
+			float hpCutoffFreq = MathTools::map_value(
+				thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
+
+			chh_hpf.setFc(hpCutoffFreq, sampleRate);
+			ohh_hpf.setFc(hpCutoffFreq, sampleRate);
+		}
+
+		if (recalc_bpf) {
+			recalc_bpf = false;
+			float brightnessControl = combineKnobBipolarCV(getState<BrightnessKnob>(), getInput<BrightnessCvIn>());
+			float bandpassCutoffFrequency = MathTools::map_value(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
+			bpf.setFc(bandpassCutoffFrequency, sampleRate);
+		}
 
 		// Check if the trigger input is high
 		bool currentTriggerState1 = getInput<ClosedTrigIn>().value_or(0.f) > 0.5f;
@@ -60,7 +79,7 @@ public:
 		// Square wave VCO x6 for two channels
 		float frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
 
-		for (int i = 0; i < 6; ++i) {
+		for (auto i = 0u; i < offsets.size(); ++i) {
 			phases[i] += (frequency + offsets[i]) * (1 / sampleRate);
 			if (phases[i] >= 1.0f) {
 				phases[i] -= 1.0f;
@@ -77,8 +96,7 @@ public:
 		oscSum = std::clamp(oscSum, -5.f, 5.f);
 
 		// Bandpass
-		float bandpassCutoffFrequency = MathTools::map_value(brightnessControl, 0.f, 1.f, 1000.f, 5000.f);
-		float bandpassOut = biquadBandpassFilter(oscSum, bandpassCutoffFrequency);
+		float bandpassOut = bpf.process(oscSum);
 
 		// Envelopes
 		float decayTimeClosed = 10.f;
@@ -112,15 +130,8 @@ public:
 		float closedVCAOut = (bandpassOut * envelopeValue1);
 		float openVCAOut = (bandpassOut * envelopeValue2);
 
-		// Highpass Resonant Filter (12dB/octave)
-		float hpCutoffFreq =
-			MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter
-
-		float closedHighpassOut = closedHighpass(closedVCAOut, hpCutoffFreq);
-		float openHighpassOut = openHighpass(openVCAOut, hpCutoffFreq);
-
-		// Post highpass makeup gain automatic compensation as cutoff decreases
-		float finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
+		float closedHighpassOut = chh_hpf.process(closedVCAOut);
+		float openHighpassOut = ohh_hpf.process(openVCAOut);
 
 		float finalOutputClosed = (closedHighpassOut * finalMakeup); // Makeup gain
 		float finalOutputOpen = (openHighpassOut * finalMakeup);	 // Makeup gain
@@ -133,14 +144,20 @@ public:
 
 private:
 	// Oscillator
-	float offsets[6] = {100.f, 250.f, 400.f, 550.f, 600.f, 1000.f}; // Offsets for each oscillator
-	float phases[6] = {0.f, 0.f, 0.f, 0.f, 0.f, 0.f};				// Phases for each oscillator
-	float squareWaves[6] = {0.f, 0.f, 0.f, 0.f, 0.f, 0.f};			// Square wave outputs
+	static constexpr std::array<float, 6> offsets{
+		100.f, 250.f, 400.f, 550.f, 600.f, 1000.f}; // Offsets for each oscillator
+	std::array<float, 6> phases{};					// Phases for each oscillator
+	std::array<float, 6> squareWaves{};				// Square wave outputs
 
 	// Bandpass Filter
 	BiquadBPF bpf{};
 	BiquadHPF chh_hpf{};
 	BiquadHPF ohh_hpf{};
+
+	float finalMakeup{1.f};
+
+	bool recalc_bpf{true};
+	bool recalc_hpfs{true};
 
 	// Decay envelopes
 	float envelopeValue1 = 0.0f;
