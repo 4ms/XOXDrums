@@ -73,30 +73,23 @@ public:
 		float bandpassOut = bpf.process(oscSum);
 
 		// Envelopes
-		float decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
-		float decayAlpha2 = std::exp(-1.0f / (sampleRate * (decayTimeOpen / 1000.0f)));
-
-		//Choke <
-		if (getState<ChokeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
-			choke = 0;
-		} else {
-			choke = decayAlpha2;
-		}
 
 		// Closed
 		if (bangRisingEdge1) {
-			decayAlpha2 = choke;
 			envelopeValue1 = 1.0f;
 		}
 
-		envelopeValue1 *= decayAlpha1;
+		float decay_ohh{};
 
-		// Open
-		if (bangRisingEdge2) {
-			envelopeValue2 = 1.0f;
+		if (getState<ChokeSwitch>() == Toggle2posHoriz::State_t::LEFT) {
+			constexpr auto min_seconds = 50.f / 1000.f;
+			constexpr auto max_seconds = 250.f / 1000.f;
+			const auto decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, min_seconds, max_seconds);
+			decay_ohh = std::exp(-rSampleRate / decayTimeOpen);
 		}
 
-		envelopeValue2 *= decayAlpha2;
+		envelopeValue2 *= decay_ohh;
+		envelopeValue1 *= decay_chh;
 
 		// Apply envelope to bandpass output
 		float closedVCAOut = (bandpassOut * envelopeValue1);
@@ -160,7 +153,6 @@ private:
 
 	float envelopeValue2 = 0.0f;
 
-	float choke = 0.f;
 	float decay_chh{};
 
 	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
