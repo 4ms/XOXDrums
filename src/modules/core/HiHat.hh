@@ -73,9 +73,7 @@ public:
 		float bandpassOut = bpf.process(oscSum);
 
 		// Envelopes
-		float decayTimeClosed = 10.f;
 		float decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, 50.0f, 250.f);
-		float decayAlpha1 = std::exp(-1.0f / (sampleRate * (decayTimeClosed / 1000.0f)));
 		float decayAlpha2 = std::exp(-1.0f / (sampleRate * (decayTimeOpen / 1000.0f)));
 
 		//Choke <
@@ -119,6 +117,8 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		rSampleRate = 1.f / sampleRate;
+		constexpr float decayTimeClosedMs = 10.f;
+		decay_chh = std::exp(-1.0f / (sampleRate * (decayTimeClosedMs / 1000.0f)));
 	}
 
 private:
