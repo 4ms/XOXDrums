@@ -161,6 +161,7 @@ private:
 	float envelopeValue2 = 0.0f;
 
 	float choke = 0.f;
+	float decay_chh{};
 
 	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
 	bool triggerStates2[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
