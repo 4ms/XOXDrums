@@ -1,7 +1,7 @@
 #pragma once
 
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "core/Biquad.hh"
-#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Rimshot_info.hh"
 #include "util/math.hh"
@@ -9,7 +9,7 @@
 namespace MetaModule
 {
 
-class Rimshot : public DrumBase<RimshotInfo> {
+class Rimshot : public SmartCoreProcessor<RimshotInfo> {
 	using Info = RimshotInfo;
 	using enum Info::Elem;
 
@@ -80,10 +80,16 @@ public:
 		setOutput<RimshotOut>(finalOutput);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+	}
+
 private:
 	BiquadHPF hpf{};
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
+
+	float sampleRate{48000};
 
 	// Trig
 	bool pulseTriggered = false; // Flag to check if pulse was triggered

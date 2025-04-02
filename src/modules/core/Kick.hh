@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/DrumBase.hh"
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Kick_info.hh"
 #include "util/math.hh"
@@ -9,7 +9,7 @@
 namespace MetaModule
 {
 
-class Kick : public DrumBase<KickInfo> {
+class Kick : public SmartCoreProcessor<KickInfo> {
 	using Info = KickInfo;
 	using enum Info::Elem;
 
@@ -72,6 +72,11 @@ public:
 		setOutput<KickOut>(finalOutput);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
+	}
+
 private:
 	// Sine oscillator
 	float phase = 0.0f;
@@ -79,6 +84,9 @@ private:
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
 	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
+
+	float sampleRate{48000};
+	float rSampleRate{1.f / 48000};
 
 	// Pitch decay envelope
 	float pitchEnvelope = 1.0f; // Envelope output value (for volume control)

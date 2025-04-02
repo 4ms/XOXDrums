@@ -1,7 +1,7 @@
 #pragma once
 
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "core/Biquad.hh"
-#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
 #include "util/math.hh"
@@ -10,7 +10,7 @@
 namespace MetaModule
 {
 
-class Snare : public DrumBase<SnareInfo> {
+class Snare : public SmartCoreProcessor<SnareInfo> {
 	using Info = SnareInfo;
 	using enum Info::Elem;
 
@@ -113,6 +113,11 @@ public:
 		setOutput<SnareOut>(finalOutput);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
+	}
+
 private:
 	BiquadBPF bpf{};
 	// Sine oscillator
@@ -121,6 +126,9 @@ private:
 	// Body decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
 	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
+
+	float sampleRate{48000};
+	float rSampleRate{1.f / 48000};
 
 	// Pitch decay envelope
 	float pitchEnvelope = 1.0f; // Envelope output value (for volume control)

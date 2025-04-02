@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/DrumBase.hh"
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Tom_info.hh"
 #include "util/math.hh"
@@ -9,7 +9,7 @@
 namespace MetaModule
 {
 
-class Tom : public DrumBase<TomInfo> {
+class Tom : public SmartCoreProcessor<TomInfo> {
 	using Info = TomInfo;
 	using enum Info::Elem;
 
@@ -73,6 +73,11 @@ public:
 		setOutput<TomOut>(finalOutput);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
+	}
+
 private:
 	// Sine oscillator
 	float phase = 0.0f;
@@ -82,6 +87,9 @@ private:
 	float envelopeValueAmp = 0.0f;
 
 	float envelopeValuePitch = 0.0f;
+
+	float sampleRate{48000};
+	float rSampleRate{1.f / 48000};
 
 	bool bangStates[2] = {false, false};
 };

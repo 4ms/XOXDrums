@@ -1,7 +1,7 @@
 #pragma once
 
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "core/Biquad.hh"
-#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
 #include "util/math.hh"
@@ -9,7 +9,7 @@
 namespace MetaModule
 {
 
-class HiHat : public DrumBase<HiHatInfo> {
+class HiHat : public SmartCoreProcessor<HiHatInfo> {
 	using Info = HiHatInfo;
 	using enum Info::Elem;
 
@@ -116,6 +116,11 @@ public:
 		setOutput<OpenOut>(finalOutputOpen);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
+	}
+
 private:
 	void recalc_hpfs() {
 		float thicknessControl = combineKnobBipolarCV(getState<ThicknessKnob>(), getInput<ThicknessCvIn>());
@@ -144,6 +149,9 @@ private:
 	BiquadBPF bpf{};
 	BiquadHPF chh_hpf{};
 	BiquadHPF ohh_hpf{};
+
+	float sampleRate{48000};
+	float rSampleRate{1.f / 48000};
 
 	float finalMakeup{1.f};
 

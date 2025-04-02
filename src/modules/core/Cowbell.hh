@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/DrumBase.hh"
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Cowbell_info.hh"
 #include "util/math.hh"
@@ -9,7 +9,7 @@
 namespace MetaModule
 {
 
-class Cowbell : public DrumBase<CowbellInfo> {
+class Cowbell : public SmartCoreProcessor<CowbellInfo> {
 	using Info = CowbellInfo;
 	using enum Info::Elem;
 
@@ -75,6 +75,11 @@ public:
 		setOutput<CowbellOut>(finalOutput);
 	}
 
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
+	}
+
 private:
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f;
@@ -93,6 +98,9 @@ private:
 	float highpassOutput = 0.f;
 	float highpassAlpha = 0.6f; // Filter cutoff highpass, lower number = more filtering
 	float prevHighpassOutput = 0.0f;
+
+	float sampleRate{48000};
+	float rSampleRate{1.f / 48000};
 };
 
 } // namespace MetaModule

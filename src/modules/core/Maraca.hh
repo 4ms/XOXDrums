@@ -1,14 +1,14 @@
 #pragma once
 
+#include "CoreModules/SmartCoreProcessor.hh"
 #include "core/Biquad.hh"
-#include "core/DrumBase.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
 
 namespace MetaModule
 {
 
-class Maraca : public DrumBase<MaracaInfo> {
+class Maraca : public SmartCoreProcessor<MaracaInfo> {
 	using Info = MaracaInfo;
 	using enum Info::Elem;
 
@@ -47,7 +47,7 @@ public:
 	}
 
 	void set_samplerate(float sr) override {
-		DrumBase::set_samplerate(sr);
+		sampleRate = sr;
 		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
 	}
 
@@ -56,6 +56,8 @@ private:
 
 	// Amp decay envelope
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
+
+	float sampleRate{48000};
 
 	// Trig
 	bool lastBangState = false; // Previous state of the Bang input
