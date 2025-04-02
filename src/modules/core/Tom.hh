@@ -60,15 +60,12 @@ public:
 		// Osc
 		using MathTools::M_PIF;
 
-		float dt = 1.0f / sampleRate;
 		float modulatedFrequency =
 			frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PIF * dt;
-		phase += frequency * 2.f * M_PIF * dt;
-		if (phase >= 2.f * M_PIF) {
-			phase -= 2.f * M_PIF;
-		}
-		float sineWave = 5.0f * sinf(phase);
+		phase += modulatedFrequency * rSampleRate;
+		phase += frequency * rSampleRate;
+		phase -= static_cast<int>(phase);
+		float sineWave = 5.0f * sinf(2 * M_PIF * phase);
 
 		float finalOutput = (sineWave * envelopeValueAmp);
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);

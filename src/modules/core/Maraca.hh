@@ -47,7 +47,7 @@ public:
 	}
 
 	void set_samplerate(float sr) override {
-		sampleRate = sr;
+		DrumBase::set_samplerate(sr);
 		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
 	}
 

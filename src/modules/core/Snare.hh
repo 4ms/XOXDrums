@@ -66,15 +66,12 @@ public:
 
 		// Osc
 		using MathTools::M_PIF;
-		float dt = 1.0f / sampleRate;
 		float frequency = 80 + (pitchControl * 100.0f);										 // Body pitch range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PIF * dt;
-		phase += frequency * 2.f * M_PIF * dt;
-		if (phase >= 2.f * M_PIF) {
-			phase -= 2.f * M_PIF;
-		}
-		float sineWave = 5.0f * std::sin(phase);
+		phase += modulatedFrequency * rSampleRate;
+		phase += frequency * rSampleRate;
+		phase -= static_cast<int>(phase);
+		float sineWave = 5.0f * std::sin(2 * M_PIF * phase);
 		sineWave = (sineWave * ((1.f - noiseVolumeControl) / 2.f));
 
 		// Envelopes

@@ -79,7 +79,6 @@ public:
 		float frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
 
 		for (auto i = 0u; i < offsets.size(); ++i) {
-			phases[i] += (frequency + offsets[i]) * (1 / sampleRate);
 			if (phases[i] >= 1.0f) {
 				phases[i] -= 1.0f;
 			}
@@ -90,6 +89,7 @@ public:
 
 		for (int i = 0; i < 6; ++i) {
 			oscSum += squareWaves[i];
+			phases[i] += (frequency + offsets[i]) * rSampleRate;
 		}
 
 		oscSum = std::clamp(oscSum, -5.f, 5.f);

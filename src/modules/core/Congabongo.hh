@@ -84,22 +84,15 @@ public:
 
 		// Osc 1
 		using MathTools::M_PIF;
-		float dt = 1.0f / sampleRate;
-		phase1 += frequency1 * 2.f * M_PIF * dt;
-		phase1 += frequency1 * 2.f * M_PIF * dt;
-		if (phase1 >= 2.f * M_PIF) {
-			phase1 -= 2.f * M_PIF;
-		}
-		float sineWave1 = 5.0f * std::sin(phase1);
+		phase1 += frequency1 * rSampleRate * 2;
+		phase1 -= static_cast<int>(phase1);
+		float sineWave1 = 5.0f * std::sin(2 * M_PIF * phase1);
 
 		// Osc 2
 		frequency2 = frequency1 * (3.0f / 4.0f); // Low
-		phase2 += frequency2 * 2.f * M_PIF * dt;
-		phase2 += frequency2 * 2.f * M_PIF * dt;
-		if (phase2 >= 2.f * M_PIF) {
-			phase2 -= 2.f * M_PIF;
-		}
-		float sineWave2 = 5.0f * std::sin(phase2);
+		phase2 += frequency2 * rSampleRate * 2;
+		phase2 -= static_cast<int>(phase2);
+		float sineWave2 = 5.0f * std::sin(2 * M_PIF * phase2);
 
 		// Slap 1
 		ampDecayAlpha3 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time

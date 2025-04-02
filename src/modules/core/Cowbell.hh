@@ -46,23 +46,16 @@ public:
 
 		// Osc 1
 		using MathTools::M_PIF;
-		float dt = 1.0f / sampleRate;
 		float frequency = 500.0f + (pitchControl * 300.0f);
-		phase += frequency * 2.f * M_PIF * dt;
-		phase += frequency * 2.f * M_PIF * dt;
-		if (phase >= 2.f * M_PIF) {
-			phase -= 2.f * M_PIF;
-		}
-		float squareWave = (phase < M_PIF) ? 5.0f : -5.0f;
+		phase += frequency * rSampleRate * 2;
+		phase -= static_cast<int>(phase);
+		float squareWave = (phase < .5f) ? 5.0f : -5.0f;
 
 		// Osc 2
 		float frequency2 = (frequency - 260.0f);
-		phase2 += frequency2 * 2.f * M_PIF * dt;
-		phase2 += frequency2 * 2.f * M_PIF * dt;
-		if (phase2 >= 2.f * M_PIF) {
-			phase2 -= 2.f * M_PIF;
-		}
-		float squareWave2 = (phase2 < M_PIF) ? 5.0f : -5.0f;
+		phase2 += frequency2 * rSampleRate * 2;
+		phase -= static_cast<int>(phase);
+		float squareWave2 = (phase2 < .5f) ? 5.0f : -5.0f;
 
 		// Combine Oscillators
 		float sumOutput = ((squareWave + squareWave2) * 0.5f) * amplitudeEnvelope;

@@ -36,13 +36,10 @@ public:
 
 		// Osc
 		using MathTools::M_PIF;
-		float dt = 1.0f / sampleRate;
 		float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
-		phase += frequency * 4.f * M_PIF * dt;
-		if (phase >= 2.f * M_PIF) {
-			phase -= 2.f * M_PIF;
-		}
-		float sineWave = 5.0f * sinf(phase);
+		phase += frequency * rSampleRate * 2;
+		phase -= static_cast<int>(phase);
+		float sineWave = 5.0f * sinf(2 * M_PIF * phase);
 
 		// Envelopes
 		float ampDecayTime = 5.0f + (ampDecayControl * 20.0f); // amp decay range (5ms - 25ms)
