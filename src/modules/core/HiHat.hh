@@ -78,18 +78,12 @@ public:
 		// Square wave VCO x6 for two channels
 		float frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
 
-		for (auto i = 0u; i < offsets.size(); ++i) {
-			if (phases[i] >= 1.0f) {
-				phases[i] -= 1.0f;
-			}
-			squareWaves[i] = (phases[i] < 0.5f) ? 1.0f : -1.0f;
-		}
-
 		float oscSum = 0.f;
 
-		for (int i = 0; i < 6; ++i) {
-			oscSum += squareWaves[i];
+		for (auto i = 0u; i < offsets.size(); ++i) {
 			phases[i] += (frequency + offsets[i]) * rSampleRate;
+			phases[i] -= static_cast<int>(phases[i]);
+			oscSum += (phases[i] < 0.5f) ? 1.0f : -1.0f;
 		}
 
 		oscSum = std::clamp(oscSum, -5.f, 5.f);
@@ -146,7 +140,6 @@ private:
 	static constexpr std::array<float, 6> offsets{
 		100.f, 250.f, 400.f, 550.f, 600.f, 1000.f}; // Offsets for each oscillator
 	std::array<float, 6> phases{};					// Phases for each oscillator
-	std::array<float, 6> squareWaves{};				// Square wave outputs
 
 	// Bandpass Filter
 	BiquadBPF bpf{};
