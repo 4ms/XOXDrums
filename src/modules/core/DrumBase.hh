@@ -16,6 +16,10 @@ protected:
 		rSampleRate = 1.f / sampleRate;
 	}
 
+	template<INFO::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
 };
 
 } // namespace MetaModule
