@@ -143,8 +143,8 @@ private:
 	BiquadBPF bpf{};
 	bool recalc_bpf{true};
 
-	float envelopeValue1 = 0.0f;
 	float sampleRate = {48000};
+	float envelopeValue1 = 0.0f;
 	float envelopeValue2 = 0.0f;
 	float envelopeValue3 = 0.0f;
 	float envelopeValue4 = 0.0f;
