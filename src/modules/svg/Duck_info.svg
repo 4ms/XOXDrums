@@ -2,8 +2,8 @@
 <svg
    id="svg56"
    width="57.599998"
-   height="364.25"
-   viewBox="0 0 57.6 364.25"
+   height="369.48962"
+   viewBox="0 0 57.6 369.48963"
    version="1.1"
    sodipodi:docname="Duck_info.svg"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
@@ -20,13 +20,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="2.7298307"
-     inkscape:cx="28.756362"
-     inkscape:cy="184.81"
-     inkscape:window-width="1200"
-     inkscape:window-height="1186"
-     inkscape:window-x="2240"
-     inkscape:window-y="25"
+     inkscape:zoom="1.9302818"
+     inkscape:cx="29.011308"
+     inkscape:cy="201.52498"
+     inkscape:window-width="1592"
+     inkscape:window-height="1185"
+     inkscape:window-x="2024"
+     inkscape:window-y="73"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg56" />
   <defs
@@ -281,7 +281,7 @@
   </g>
   <g
      id="components"
-     style="display:none">
+     style="display:inline">
     <circle
        id="Out"
        cx="28.68"

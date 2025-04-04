@@ -19,9 +19,9 @@ struct ClaveInfo : ModuleInfoBase {
 		Knob9mm{{to_mm<72>(28.92), to_mm<72>(46.77), Center, "Pitch", ""}, 0.5f},
 		Knob9mm{{to_mm<72>(28.92), to_mm<72>(143.15), Center, "Decay", ""}, 0.5f},
 		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(94.96), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(28.93), to_mm<72>(191.34), Center, "Decay CV", ""}},
-		GateJackInput4ms{{to_mm<72>(28.8), to_mm<72>(265.04), Center, "Trigger", ""}},
-		AnalogJackOutput4ms{{to_mm<72>(28.8), to_mm<72>(313.84), Center, "Out", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(191.34), Center, "Decay CV", ""}},
+		GateJackInput4ms{{to_mm<72>(28.92), to_mm<72>(265.04), Center, "Trigger", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(28.92), to_mm<72>(313.84), Center, "Out", ""}},
 }};
 
     enum class Elem {
