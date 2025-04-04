@@ -16,12 +16,12 @@ struct RimshotInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<25>(-75.926), to_mm<25>(171.669), Center, "Ring", ""}, 0.0f},
-		Knob9mm{{to_mm<25>(-76.926), to_mm<25>(75.008), Center, "Pitch", ""}, 0.0f},
-		AnalogJackOutput4ms{{to_mm<25>(-76.926), to_mm<25>(417.669), Center, "Rimshot", ""}},
-		AnalogJackInput4ms{{to_mm<25>(-77.926), to_mm<25>(349.669), Center, "Trig", ""}},
-		AnalogJackInput4ms{{to_mm<25>(-76.926), to_mm<25>(221.669), Center, "Ring CV", ""}},
-		AnalogJackInput4ms{{to_mm<25>(-76.926), to_mm<25>(127.669), Center, "Pitch CV", ""}},
+		Knob9mm{{to_mm<25>(28.92), to_mm<25>(143.15), Center, "Ring", ""}, 0.0f},
+		Knob9mm{{to_mm<25>(28.92), to_mm<25>(46.77), Center, "Pitch", ""}, 0.0f},
+		AnalogJackOutput4ms{{to_mm<25>(28.92), to_mm<25>(313.84), Center, "Rimshot", ""}},
+		AnalogJackInput4ms{{to_mm<25>(28.92), to_mm<25>(265.04), Center, "Trig", ""}},
+		AnalogJackInput4ms{{to_mm<25>(28.92), to_mm<25>(191.34), Center, "Ring CV", ""}},
+		AnalogJackInput4ms{{to_mm<25>(28.92), to_mm<25>(94.96), Center, "Pitch CV", ""}},
 }};
 
     enum class Elem {

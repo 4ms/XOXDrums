@@ -8,21 +8,22 @@ namespace MetaModule
 {
 struct DuckInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Duck"};
-    static constexpr std::string_view description{"Duck"};
+    static constexpr std::string_view description{"Ducking Module"};
     static constexpr uint32_t width_hp = 4;
-    static constexpr std::string_view svg_filename{"res/Duck_info.svg"};
+    static constexpr std::string_view svg_filename{"res/Duck.svg"};
     static constexpr std::string_view png_filename{"4msDrums/Duck_info.png"};
 
     using enum Coords;
 
     static constexpr std::array<Element, 7> Elements{{
-		Knob9mm{{to_mm<72>(28.562), to_mm<72>(121.586), Center, "Time", ""}, 0.0f},
-		Knob9mm{{to_mm<72>(29.22), to_mm<72>(47.182), Center, "Amount", ""}, 0.0f},
-		AnalogJackOutput4ms{{to_mm<72>(28.865), to_mm<72>(312.821), Center, "Accented", ""}},
-		AnalogJackInput4ms{{to_mm<72>(28.115), to_mm<72>(263.279), Center, "Audio", ""}},
-		AnalogJackInput4ms{{to_mm<72>(28.201), to_mm<72>(162.862), Center, "Time CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(28.56), to_mm<72>(88.276), Center, "Amount CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(28.56), to_mm<72>(215.63), Center, "Trig", ""}},
+
+        Knob9mm{{to_mm<72>(28.92), to_mm<72>(46.77), Center, "Time", ""}, 0.0f},
+		Knob9mm{{to_mm<72>(28.92), to_mm<72>(143.15), Center, "Amount", ""}, 0.0f},
+		AnalogJackOutput4ms{{to_mm<72>(28.92), to_mm<72>(313.94), Center, "Ducked", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(265.04), Center, "Audio", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(94.96), Center, "Time CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(191.34), Center, "Amount CV", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.92), to_mm<72>(216.73), Center, "Trigger", ""}},
 }};
 
     enum class Elem {
@@ -38,22 +39,22 @@ struct DuckInfo : ModuleInfoBase {
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
     
     enum {
-        KnobTime, 
-        KnobAmount, 
+        KnobPitch, 
+        KnobDecay, 
         NumKnobs,
     };
     
     
     enum {
-        InputAudio, 
-        InputTime_Cv, 
-        InputAmount_Cv, 
-        InputTrig, 
+        InputPitch_Cv, 
+        InputDecay_Cv, 
+        InputTrigger, 
+        InputInput, 
         NumInJacks,
     };
     
     enum {
-        OutputAccented, 
+        OutputOut, 
         NumOutJacks,
     };
     
