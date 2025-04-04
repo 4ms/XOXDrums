@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   id="svg45"
-   width="57.599998"
-   height="364.25"
-   viewBox="0 0 57.6 364.25"
+   width="20.32mm"
+   height="130.4mm"
+   viewBox="0 0 57.6 369.63"
    version="1.1"
+   id="svg39"
    sodipodi:docname="Rimshot_info.svg"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -20,365 +20,305 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="2.7288709"
-     inkscape:cx="28.766476"
-     inkscape:cy="184.875"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0472745"
+     inkscape:cx="38.343661"
+     inkscape:cy="246.42519"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
-     inkscape:window-x="2240"
-     inkscape:window-y="25"
+     inkscape:window-x="2169"
+     inkscape:window-y="62"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg45" />
+     inkscape:current-layer="svg39" />
   <defs
-     id="defs2">
+     id="defs4">
     <clipPath
        id="clippath">
       <rect
          x="14.9"
-         y="115.12"
-         width="27.799999"
-         height="25.620001"
-         style="fill:none"
+         y="32.98"
+         width="27.8"
+         height="25.62"
+         style="fill: none;"
          id="rect1" />
     </clipPath>
     <clipPath
        id="clippath-1">
       <rect
          x="14.9"
-         y="115.12"
-         width="27.799999"
-         height="25.620001"
-         style="fill:none"
+         y="32.98"
+         width="27.8"
+         height="25.62"
+         style="fill: none;"
          id="rect2" />
+    </clipPath>
+    <clipPath
+       id="clippath-2">
+      <rect
+         x="14.9"
+         y="115.12"
+         width="27.8"
+         height="25.62"
+         style="fill: none;"
+         id="rect3" />
+    </clipPath>
+    <clipPath
+       id="clippath-3">
+      <rect
+         x="14.9"
+         y="115.12"
+         width="27.8"
+         height="25.62"
+         style="fill: none;"
+         id="rect4" />
     </clipPath>
   </defs>
   <g
      id="faceplate">
     <g
-       id="rect5">
+       id="g5">
       <rect
-         x="0.13"
-         y="0.13"
-         width="57.349998"
+         x=".13"
+         y=".13"
+         width="57.35"
          height="364"
-         style="fill:#ededed"
-         id="rect3" />
+         style="fill: #ededed;"
+         id="rect5" />
       <path
-         d="M 57.35,0.25 V 364 H 0.25 V 0.25 h 57.1 M 57.6,0 H 0 v 364.25 h 57.6 z"
-         style="fill:#9d9d9e"
-         id="path3" />
+         d="M57.35.25v363.75H.25V.25h57.1M57.6,0H0v364.25h57.6V0h0Z"
+         style="fill: #9d9d9e;"
+         id="path5" />
     </g>
     <path
-       id="path6"
-       d="m 44.27,261.64 c 0,-8.05 -6.98,-14.57 -15.59,-14.57 -8.61,0 -15.59,6.53 -15.59,14.57 v 54.4 0 19.77 c 0,3.11 2.55,5.65 5.67,5.65 H 38.6 c 3.12,0 5.67,-2.54 5.67,-5.65 v -19.77 0 -54.39 0 z"
-       style="fill:#d1d3d4" />
+       d="M44.27,261.63c0-8.05-6.98-14.57-15.59-14.57s-15.59,6.53-15.59,14.57v54.4s0,0,0,0v19.77c0,3.11,2.55,5.65,5.67,5.65h19.84c3.12,0,5.67-2.54,5.67-5.65v-19.77s0,0,0,0v-54.39Z"
+       style="fill: #d1d3d4;"
+       id="path6" />
     <path
-       id="path7"
-       d="m 44.27,310.68 c 0,-8.05 -6.98,-14.57 -15.59,-14.57 -8.61,0 -15.59,6.53 -15.59,14.57 v 5.36 0 19.77 c 0,3.11 2.55,5.65 5.67,5.65 H 38.6 c 3.12,0 5.67,-2.54 5.67,-5.65 v -19.77 0 -5.35 0 z" />
-    <g
-       id="text11"
-       style="isolation:isolate">
-      <g
-         style="isolation:isolate"
-         id="g6">
-        <g
-           style="isolation:isolate"
-           id="g3">
-          <text
-             transform="matrix(0.88,0,0,1,15.62,289.13)"
-             style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
-             id="text3"><tspan
-               x="0"
-               y="0"
-               id="tspan3">T</tspan></text>
-        </g>
-        <g
-           style="isolation:isolate"
-           id="g4">
-          <text
-             transform="matrix(0.88,0,0,1,20.82,289.13)"
-             style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
-             id="text4"><tspan
-               x="0"
-               y="0"
-               id="tspan4">r</tspan></text>
-        </g>
-        <g
-           style="isolation:isolate"
-           id="g5">
-          <text
-             transform="matrix(0.88,0,0,1,23.99,289.13)"
-             style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
-             id="text5"><tspan
-               x="0"
-               y="0"
-               id="tspan5">igger</tspan></text>
-        </g>
-      </g>
-    </g>
-    <g
-       id="text12"
-       style="isolation:isolate">
-      <g
-         style="isolation:isolate"
-         id="g8">
-        <g
-           style="isolation:isolate"
-           id="g7">
-          <text
-             transform="matrix(0.88,0,0,1,21.79,337.32)"
-             style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate;fill:#ffffff"
-             id="text6"><tspan
-               x="0"
-               y="0"
-               id="tspan6">Out</tspan></text>
-        </g>
-      </g>
-    </g>
+       d="M44.27,310.67c0-8.05-6.98-14.57-15.59-14.57s-15.59,6.53-15.59,14.57v5.36s0,0,0,0v19.77c0,3.11,2.55,5.65,5.67,5.65h19.84c3.12,0,5.67-2.54,5.67-5.65v-19.77s0,0,0,0v-5.35Z"
+       id="path7" />
     <g
        id="pips_-_fewest"
        data-name="pips - fewest">
-      <path
-         id="path12"
-         d="m 34.5,35.77 0.71,-1.23 c -1.74,-0.9 -3.7,-1.45 -5.77,-1.55 v 1.43 c 1.81,0.09 3.53,0.56 5.06,1.35" />
-      <path
-         id="path13"
-         d="m 39.29,40.1 1.23,-0.71 C 39.43,37.7 37.99,36.25 36.3,35.17 l -0.71,1.23 c 1.48,0.96 2.74,2.22 3.7,3.7" />
-      <path
-         id="path14"
-         d="m 22.02,36.4 -0.71,-1.23 c -1.69,1.09 -3.14,2.53 -4.22,4.22 l 1.23,0.71 c 0.96,-1.48 2.22,-2.74 3.7,-3.7" />
-      <path
-         id="path15"
-         d="m 41.28,46.26 h 1.43 c -0.09,-2.07 -0.64,-4.03 -1.55,-5.77 l -1.23,0.71 c 0.79,1.53 1.26,3.24 1.35,5.06" />
-      <path
-         id="path16"
-         d="m 28.17,34.42 v -1.43 c -2.07,0.09 -4.03,0.64 -5.77,1.55 l 0.71,1.23 c 1.53,-0.79 3.24,-1.26 5.06,-1.35" />
-      <path
-         id="path17"
-         d="m 18.32,53.68 -1.23,0.71 c 1.09,1.69 2.53,3.14 4.22,4.22 l 0.71,-1.23 c -1.48,-0.96 -2.74,-2.22 -3.7,-3.7" />
-      <path
-         id="path18"
-         d="m 35.59,57.38 0.71,1.23 c 1.69,-1.09 3.14,-2.53 4.22,-4.22 l -1.23,-0.71 c -0.96,1.48 -2.22,2.74 -3.7,3.7" />
-      <path
-         id="path19"
-         d="m 41.28,47.52 c -0.09,1.81 -0.56,3.53 -1.35,5.06 l 1.23,0.71 c 0.9,-1.74 1.45,-3.7 1.55,-5.77 z" />
-      <path
-         id="path20"
-         d="M 16.33,47.52 H 14.9 c 0.09,2.07 0.64,4.03 1.55,5.77 l 1.23,-0.71 c -0.79,-1.53 -1.26,-3.24 -1.35,-5.06" />
-      <path
-         id="path21"
-         d="m 17.68,41.2 -1.23,-0.71 c -0.9,1.74 -1.45,3.7 -1.55,5.77 h 1.43 c 0.09,-1.81 0.56,-3.53 1.35,-5.06" />
-    </g>
-    <g
-       id="text32"
-       style="isolation:isolate">
       <g
-         style="isolation:isolate"
-         id="g10">
+         style="clip-path: url(#clippath);"
+         clip-path="url(#clippath)"
+         id="g18">
         <g
-           style="isolation:isolate"
-           id="g9">
-          <text
-             transform="matrix(0.88,0,0,1,17.26,69.94)"
-             style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
-             id="text8"><tspan
-               x="0"
-               y="0"
-               id="tspan8">Pitch</tspan></text>
+           style="clip-path: url(#clippath-1);"
+           clip-path="url(#clippath-1)"
+           id="g17">
+          <path
+             d="M34.49,35.76l.71-1.23c-1.74-.9-3.7-1.45-5.77-1.55v1.43c1.81.09,3.53.56,5.06,1.35"
+             id="path8" />
+          <path
+             d="M39.29,40.1l1.23-.71c-1.09-1.69-2.53-3.14-4.22-4.22l-.71,1.23c1.48.96,2.74,2.22,3.7,3.7"
+             id="path9" />
+          <path
+             d="M22.01,36.4l-.71-1.23c-1.69,1.09-3.14,2.53-4.22,4.22l1.23.71c.96-1.48,2.22-2.74,3.7-3.7"
+             id="path10" />
+          <path
+             d="M41.27,46.25h1.43c-.09-2.07-.64-4.03-1.55-5.77l-1.23.71c.79,1.53,1.26,3.24,1.35,5.06"
+             id="path11" />
+          <path
+             d="M28.17,34.41v-1.43c-2.07.09-4.03.64-5.77,1.55l.71,1.23c1.53-.79,3.24-1.26,5.06-1.35"
+             id="path12" />
+          <path
+             d="M18.31,53.67l-1.23.71c1.09,1.69,2.53,3.14,4.22,4.22l.71-1.23c-1.48-.96-2.74-2.22-3.7-3.7"
+             id="path13" />
+          <path
+             d="M35.59,57.38l.71,1.23c1.69-1.09,3.14-2.53,4.22-4.22l-1.23-.71c-.96,1.48-2.22,2.74-3.7,3.7"
+             id="path14" />
+          <path
+             d="M41.27,47.52c-.09,1.81-.56,3.53-1.35,5.06l1.23.71c.9-1.74,1.45-3.7,1.55-5.77h-1.43Z"
+             id="path15" />
+          <path
+             d="M16.33,47.52h-1.43c.09,2.07.64,4.03,1.55,5.77l1.23-.71c-.79-1.53-1.26-3.24-1.35-5.06"
+             id="path16" />
+          <path
+             d="M17.68,41.2l-1.23-.71c-.9,1.74-1.45,3.7-1.55,5.77h1.43c.09-1.81.56-3.53,1.35-5.06"
+             id="path17" />
         </g>
       </g>
     </g>
+    <text
+       transform="translate(18 69.84) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text18"><tspan
+         x="0"
+         y="0"
+         id="tspan18">Pitch</tspan></text>
     <g
        id="pips_-_fewest-2"
-       data-name="pips - fewest-2">
+       data-name="pips - fewest">
       <g
-         clip-path="url(#clippath)"
-         id="g31">
+         style="clip-path: url(#clippath-2);"
+         clip-path="url(#clippath-2)"
+         id="g28">
         <g
-           clip-path="url(#clippath-1)"
-           id="g30">
-          <g
-             id="g29">
-            <path
-               d="m 34.49,117.9 0.71,-1.23 c -1.74,-0.9 -3.7,-1.45 -5.77,-1.55 v 1.43 c 1.81,0.09 3.53,0.56 5.06,1.35"
-               id="path10" />
-            <path
-               d="m 39.29,122.24 1.23,-0.71 c -1.09,-1.69 -2.53,-3.14 -4.22,-4.22 l -0.71,1.23 c 1.48,0.96 2.74,2.22 3.7,3.7"
-               id="path11" />
-            <path
-               d="m 22.02,118.54 -0.71,-1.23 c -1.69,1.09 -3.14,2.53 -4.22,4.22 l 1.23,0.71 c 0.96,-1.48 2.22,-2.74 3.7,-3.7"
-               id="path22" />
-            <path
-               d="m 41.28,128.39 h 1.43 c -0.09,-2.07 -0.64,-4.03 -1.55,-5.77 l -1.23,0.71 c 0.79,1.53 1.26,3.24 1.35,5.06"
-               id="path23" />
-            <path
-               d="m 28.17,116.55 v -1.43 c -2.07,0.09 -4.03,0.64 -5.77,1.55 l 0.71,1.23 c 1.53,-0.79 3.24,-1.26 5.06,-1.35"
-               id="path24" />
-            <path
-               d="m 18.31,135.81 -1.23,0.71 c 1.09,1.69 2.53,3.14 4.22,4.22 l 0.71,-1.23 c -1.48,-0.96 -2.74,-2.22 -3.7,-3.7"
-               id="path25" />
-            <path
-               d="m 35.59,139.51 0.71,1.23 c 1.69,-1.09 3.14,-2.53 4.22,-4.22 l -1.23,-0.71 c -0.96,1.48 -2.22,2.74 -3.7,3.7"
-               id="path26" />
-            <path
-               d="m 41.28,129.66 c -0.09,1.81 -0.56,3.53 -1.35,5.06 l 1.23,0.71 c 0.9,-1.74 1.45,-3.7 1.55,-5.77 z"
-               id="path27" />
-            <path
-               d="M 16.33,129.66 H 14.9 c 0.09,2.07 0.64,4.03 1.55,5.77 l 1.23,-0.71 c -0.79,-1.53 -1.26,-3.24 -1.35,-5.06"
-               id="path28" />
-            <path
-               d="m 17.68,123.33 -1.23,-0.71 c -0.9,1.74 -1.45,3.7 -1.55,5.77 h 1.43 c 0.09,-1.81 0.56,-3.53 1.35,-5.06"
-               id="path29" />
-          </g>
+           style="clip-path: url(#clippath-3);"
+           clip-path="url(#clippath-3)"
+           id="g27">
+          <path
+             d="M34.49,117.9l.71-1.23c-1.74-.9-3.7-1.45-5.77-1.55v1.43c1.81.09,3.53.56,5.06,1.35"
+             id="path18" />
+          <path
+             d="M39.29,122.23l1.23-.71c-1.09-1.69-2.53-3.14-4.22-4.22l-.71,1.23c1.48.96,2.74,2.22,3.7,3.7"
+             id="path19" />
+          <path
+             d="M22.01,118.53l-.71-1.23c-1.69,1.09-3.14,2.53-4.22,4.22l1.23.71c.96-1.48,2.22-2.74,3.7-3.7"
+             id="path20" />
+          <path
+             d="M41.27,128.39h1.43c-.09-2.07-.64-4.03-1.55-5.77l-1.23.71c.79,1.53,1.26,3.24,1.35,5.06"
+             id="path21" />
+          <path
+             d="M28.17,116.55v-1.43c-2.07.09-4.03.64-5.77,1.55l.71,1.23c1.53-.79,3.24-1.26,5.06-1.35"
+             id="path22" />
+          <path
+             d="M18.31,135.81l-1.23.71c1.09,1.69,2.53,3.14,4.22,4.22l.71-1.23c-1.48-.96-2.74-2.22-3.7-3.7"
+             id="path23" />
+          <path
+             d="M35.59,139.51l.71,1.23c1.69-1.09,3.14-2.53,4.22-4.22l-1.23-.71c-.96,1.48-2.22,2.74-3.7,3.7"
+             id="path24" />
+          <path
+             d="M41.27,129.65c-.09,1.81-.56,3.53-1.35,5.06l1.23.71c.9-1.74,1.45-3.7,1.55-5.77h-1.43Z"
+             id="path25" />
+          <path
+             d="M16.33,129.65h-1.43c.09,2.07.64,4.03,1.55,5.77l1.23-.71c-.79-1.53-1.26-3.24-1.35-5.06"
+             id="path26" />
+          <path
+             d="M17.68,123.33l-1.23-.71c-.9,1.74-1.45,3.7-1.55,5.77h1.43c.09-1.81.56-3.53,1.35-5.06"
+             id="path27" />
         </g>
       </g>
     </g>
+    <text
+       transform="translate(16.2 289.12) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; letter-spacing: -.04em;"
+       id="text28"><tspan
+         x="0"
+         y="0"
+         id="tspan28">Trigger</tspan></text>
+    <text
+       transform="translate(22.07 337.31) scale(.88 1)"
+       style="fill: #fff; font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; letter-spacing: -.04em;"
+       id="text29"><tspan
+         x="0"
+         y="0"
+         id="tspan29">Out</tspan></text>
+    <text
+       transform="translate(19.29 357.06) scale(.82 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 11px; font-weight: 700;"
+       id="text30"><tspan
+         x="0"
+         y="0"
+         id="tspan30">RIM</tspan></text>
+    <text
+       transform="translate(19.41 151.94) scale(.88 1)"
+       style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; letter-spacing: -.04em;"
+       id="text31"><tspan
+         x="0"
+         y="0"
+         id="tspan31">Ring</tspan></text>
     <g
-       style="isolation:isolate"
        id="g33">
-      <g
-         style="isolation:isolate"
-         id="g32">
-        <text
-           transform="matrix(0.88,0,0,1,18.88,152.05)"
-           style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
-           id="text31"><tspan
-             x="0"
-             y="0"
-             id="tspan31">Ring</tspan></text>
-      </g>
+      <path
+         d="M20.6,18.07c-.37,0-.71-.17-.97-.47-.51-.6-.52-1.54-.04-2.16l6.97-8.88c.38-.48,1.05-.65,1.57-.39.5.25.79.82.79,1.45v4.77l4.64-5.85c.38-.48,1.01-.64,1.53-.38.5.25.83.81.83,1.44v8.82c0,.86-.61,1.57-1.36,1.57s-1.36-.7-1.36-1.57v-4.79l-4.64,5.85c-.38.48-1.01.64-1.54.38-.5-.24-.83-.81-.83-1.44v-4.67l-4.61,5.8c-.26.32-.62.51-1,.51h0Z"
+         style="fill: #2cabe1;"
+         id="path31" />
+      <path
+         d="M20.6,18.07c-.75,0-1.35-.7-1.35-1.57v-4.93l-2.26,2.84c-.5.63-1.44.65-1.97.04-.51-.6-.52-1.53-.03-2.15l4.61-5.76c.26-.32.63-.5,1-.5.18,0,.37.04.54.12.5.25.82.81.82,1.44v8.89c0,.86-.61,1.57-1.36,1.57h0Z"
+         style="fill: #ea2228;"
+         id="path32" />
+      <path
+         d="M37.2,18.09h0c-.35,0-.68-.15-.94-.42-.76-.78-.14-1.84.29-2.3l1.95-2.36-1.26-.02c-.56-.01-1.04-.4-1.24-1-.19-.56-.07-1.21.29-1.64l3.16-3.83c.23-.28.55-.48,1.13-.47.33,0,.67.17.92.4.71.66.29,1.7-.07,2.2l-1.04,1.26,1.26.02c.56.01,1.04.4,1.24,1,.19.56.07,1.21-.29,1.64l-4.1,4.97c-.35.35-.65.55-1.3.54h0Z"
+         style="fill: #00a650;"
+         id="path33" />
     </g>
     <line
-       x1="28.799999"
-       y1="155.31"
-       x2="28.799999"
-       y2="174.3"
-       style="fill:none;stroke:#231f20;stroke-miterlimit:10"
+       x1="28.8"
+       y1="73.19"
+       x2="28.8"
+       y2="92.19"
+       style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"
        id="line33" />
-    <g
-       style="isolation:isolate"
-       id="g34">
-      <text
-         transform="matrix(0.82,0,0,1,19.41,357.18)"
-         style="font-weight:700;font-size:11px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
-         id="text33"><tspan
-           x="0"
-           y="0"
-           id="tspan33">RIM</tspan></text>
-    </g>
-    <g
-       id="g35">
-      <path
-         id="path33"
-         d="M 20.61,18.07 C 20.24,18.07 19.9,17.9 19.64,17.6 19.13,17 19.12,16.06 19.6,15.44 l 6.97,-8.88 c 0.38,-0.48 1.05,-0.65 1.57,-0.39 0.52,0.26 0.79,0.82 0.79,1.45 v 4.77 l 4.64,-5.85 c 0.38,-0.48 1.01,-0.64 1.53,-0.38 0.5,0.25 0.83,0.81 0.83,1.44 v 8.82 c 0,0.86 -0.61,1.57 -1.36,1.57 -0.75,0 -1.36,-0.7 -1.36,-1.57 v -4.79 l -4.64,5.85 c -0.38,0.48 -1.01,0.64 -1.54,0.38 -0.5,-0.24 -0.83,-0.81 -0.83,-1.44 v -4.67 l -4.61,5.8 c -0.26,0.32 -0.62,0.51 -1,0.51 h 0.02 z"
-         style="fill:#2cabe1" />
-      <path
-         id="path34"
-         d="m 20.6,18.07 c -0.75,0 -1.35,-0.7 -1.35,-1.57 v -4.93 l -2.26,2.84 c -0.5,0.63 -1.44,0.65 -1.97,0.04 -0.51,-0.6 -0.52,-1.53 -0.03,-2.15 L 19.6,6.54 c 0.26,-0.32 0.63,-0.5 1,-0.5 0.18,0 0.37,0.04 0.54,0.12 0.5,0.25 0.82,0.81 0.82,1.44 v 8.89 c 0,0.86 -0.61,1.57 -1.36,1.57 v 0 z"
-         style="fill:#ea2228" />
-      <path
-         id="path35"
-         d="m 37.2,18.09 v 0 c -0.35,0 -0.68,-0.15 -0.94,-0.42 -0.76,-0.78 -0.14,-1.84 0.29,-2.3 l 1.95,-2.36 -1.26,-0.02 c -0.56,-0.01 -1.04,-0.4 -1.24,-1 -0.19,-0.56 -0.07,-1.21 0.29,-1.64 L 39.45,6.52 C 39.68,6.24 40,6.04 40.58,6.05 c 0.33,0 0.67,0.17 0.92,0.4 0.71,0.66 0.29,1.7 -0.07,2.2 l -1.04,1.26 1.26,0.02 c 0.56,0.01 1.04,0.4 1.24,1 0.19,0.56 0.07,1.21 -0.29,1.64 l -4.1,4.97 c -0.35,0.35 -0.65,0.55 -1.3,0.54 v 0 z"
-         style="fill:#00a650" />
-    </g>
     <line
-       id="line35"
-       x1="28.799999"
-       y1="73.199997"
-       x2="28.799999"
-       y2="92.190002"
-       style="fill:none;stroke:#231f20;stroke-miterlimit:10" />
+       x1="28.8"
+       y1="155.3"
+       x2="28.8"
+       y2="174.3"
+       style="fill: #fff; stroke: #231f20; stroke-miterlimit: 10;"
+       id="line34" />
   </g>
   <g
      id="components"
      style="display:none">
     <circle
        id="Out"
-       cx="28.68"
-       cy="313.72"
+       cx="28.799999"
+       cy="313.70999"
        r="11.34"
        style="fill:#0000ff" />
     <circle
        id="Trigger"
-       cx="28.68"
-       cy="264.92001"
+       cx="28.799999"
+       cy="264.89999"
        r="11.34"
        style="fill:#80ff80" />
     <circle
        id="Ring_CV"
        data-name="Ring CV"
        cx="28.799999"
-       cy="177.05"
+       cy="177.02"
        r="11.34"
        style="fill:#00ff00" />
     <circle
        id="Ring"
        cx="28.799999"
-       cy="128.86"
+       cy="128.83"
        r="8.5"
        style="fill:#ff0040" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV"
        cx="28.799999"
-       cy="94.839996"
+       cy="94.82"
        r="11.34"
        style="fill:#00ff00" />
     <circle
        id="Pitch"
        cx="28.799999"
-       cy="46.650002"
+       cy="46.630001"
        r="8.5"
        style="fill:#ff0033" />
-    <g
+    <text
        id="slug"
-       style="isolation:isolate">
-      <text
-         transform="translate(13.44,369)"
-         style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';isolation:isolate;fill:#010101"
-         id="text34"><tspan
-           x="0"
-           y="0"
-           id="tspan34">R</tspan></text>
-      <text
-         transform="translate(15.08,369)"
-         style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';isolation:isolate;fill:#010101"
-         id="text35"><tspan
-           x="0"
-           y="0"
-           id="tspan35">imshot</tspan></text>
-    </g>
-    <g
+       transform="translate(13.32,368.87)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
+         x="0"
+         y="0"
+         style="letter-spacing:0em"
+         id="tspan34">R</tspan><tspan
+         x="1.64"
+         y="0"
+         id="tspan35">imshot</tspan></text>
+    <text
        id="modulename"
-       style="isolation:isolate">
-      <text
-         transform="translate(27.01,369)"
-         style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';isolation:isolate;fill:#010101"
-         id="text36"><tspan
-           x="0"
-           y="0"
-           id="tspan36">R</tspan></text>
-      <text
-         transform="translate(28.65,369)"
-         style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';isolation:isolate;fill:#010101"
-         id="text37"><tspan
-           x="0"
-           y="0"
-           id="tspan37">imshot Drum</tspan></text>
-      <text
-         transform="translate(45.76,369)"
-         style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';isolation:isolate;fill:#010101"
-         id="text38"><tspan
-           x="0"
-           y="0"
-           id="tspan38">M</tspan></text>
-      <text
-         transform="translate(48.19,369)"
-         style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';isolation:isolate;fill:#010101"
-         id="text39"><tspan
-           x="0"
-           y="0"
-           id="tspan39">odule</tspan></text>
-    </g>
+       transform="translate(26.88,368.87)"
+       style="font-size:3px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101"><tspan
+         x="0"
+         y="0"
+         style="letter-spacing:0em"
+         id="tspan36">R</tspan><tspan
+         x="1.64"
+         y="0"
+         id="tspan37">imshot Drum</tspan><tspan
+         x="18.75"
+         y="0"
+         style="letter-spacing:0em"
+         id="tspan38">M</tspan><tspan
+         x="21.18"
+         y="0"
+         style="letter-spacing:0em"
+         id="tspan39">odule</tspan></text>
   </g>
 </svg>
