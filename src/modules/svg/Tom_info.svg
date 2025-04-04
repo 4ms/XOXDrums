@@ -2,8 +2,8 @@
 <svg
    id="svg67"
    width="144"
-   height="369.75"
-   viewBox="0 0 144 369.75"
+   height="364.20001"
+   viewBox="0 0 144 364.20001"
    version="1.1"
    sodipodi:docname="Tom_info.svg"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
@@ -23,145 +23,145 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.7288709"
-     inkscape:cx="72.007805"
+     inkscape:cx="72.19103"
      inkscape:cy="184.875"
      inkscape:window-width="1200"
      inkscape:window-height="1186"
-     inkscape:window-x="2240"
-     inkscape:window-y="25"
+     inkscape:window-x="2977"
+     inkscape:window-y="61"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg67" />
+     inkscape:current-layer="faceplate" />
   <g
      id="faceplate">
     <g
        id="g1">
       <rect
-         x=".1"
-         y=".1"
+         x="0.1"
+         y="0.1"
          width="143.8"
          height="364"
-         style="fill: #ededed;"
+         style="fill:#ededed"
          id="rect1" />
       <path
-         d="M143.8.2v363.8H.2V.2h143.5M144,0H0v364.2h144V0h0Z"
-         style="fill: #9d9d9e;"
+         d="M 143.8,0.2 V 364 H 0.2 V 0.2 H 143.7 M 144,0 H 0 v 364.2 h 144 z"
+         style="fill:#9d9d9e"
          id="path1" />
     </g>
     <g
        id="g11">
       <path
-         d="M46.8,40.4l1.1-2c-2.8-1.4-5.8-2.3-9.1-2.4v2.3c2.9.1,5.6.9,8,2.1h0Z"
+         d="m 46.8,40.4 1.1,-2 C 45.1,37 42.1,36.1 38.8,36 v 2.3 c 2.9,0.1 5.6,0.9 8,2.1 z"
          id="path2" />
       <path
-         d="M54.4,47.3l2-1.1c-1.7-2.7-4-5-6.7-6.7l-1.1,2c2.3,1.5,4.3,3.5,5.8,5.8h0Z"
+         d="m 54.4,47.3 2,-1.1 c -1.7,-2.7 -4,-5 -6.7,-6.7 l -1.1,2 c 2.3,1.5 4.3,3.5 5.8,5.8 z"
          id="path3" />
       <path
-         d="M27.1,41.4l-1.1-2c-2.7,1.7-5,4-6.7,6.7l2,1.1c1.5-2.3,3.5-4.3,5.9-5.8h-.1Z"
+         d="m 27.1,41.4 -1.1,-2 c -2.7,1.7 -5,4 -6.7,6.7 l 2,1.1 c 1.5,-2.3 3.5,-4.3 5.9,-5.8 z"
          id="path4" />
       <path
-         d="M57.6,57h2.3c-.2-3.3-1-6.4-2.4-9.1l-2,1.1c1.2,2.4,2,5.1,2.1,8h0Z"
+         d="m 57.6,57 h 2.3 c -0.2,-3.3 -1,-6.4 -2.4,-9.1 l -2,1.1 c 1.2,2.4 2,5.1 2.1,8 z"
          id="path5" />
       <path
-         d="M36.8,38.3v-2.3c-3.3.2-6.4,1-9.1,2.4l1.1,2c2.4-1.2,5.1-2,8-2.1h0Z"
+         d="M 36.8,38.3 V 36 c -3.3,0.2 -6.4,1 -9.1,2.4 l 1.1,2 c 2.4,-1.2 5.1,-2 8,-2.1 z"
          id="path6" />
       <path
-         d="M21.3,68.7l-2,1.1c1.7,2.7,4,5,6.7,6.7l1.1-1.9c-2.3-1.5-4.3-3.5-5.9-5.8h0l.1-.1Z"
+         d="m 21.3,68.7 -2,1.1 c 1.7,2.7 4,5 6.7,6.7 l 1.1,-1.9 c -2.3,-1.5 -4.3,-3.5 -5.9,-5.8 v 0 z"
          id="path7" />
       <path
-         d="M48.6,74.6l1.1,1.9c2.7-1.7,5-4,6.7-6.7l-2-1.1c-1.5,2.3-3.5,4.3-5.8,5.8h0v.1Z"
+         d="m 48.6,74.6 1.1,1.9 c 2.7,-1.7 5,-4 6.7,-6.7 l -2,-1.1 C 52.9,71 50.9,73 48.6,74.5 v 0 z"
          id="path8" />
       <path
-         d="M57.6,59c-.1,2.9-.9,5.6-2.1,8l2,1.1c1.4-2.8,2.3-5.8,2.4-9.1h-2.3Z"
+         d="m 57.6,59 c -0.1,2.9 -0.9,5.6 -2.1,8 l 2,1.1 c 1.4,-2.8 2.3,-5.8 2.4,-9.1 z"
          id="path9" />
       <path
-         d="M18.1,59h-2.3c.1,3.3,1,6.4,2.4,9.1l2-1.1c-1.2-2.4-2-5.1-2.1-8h0Z"
+         d="m 18.1,59 h -2.3 c 0.1,3.3 1,6.4 2.4,9.1 l 2,-1.1 c -1.2,-2.4 -2,-5.1 -2.1,-8 z"
          id="path10" />
       <path
-         d="M20.3,49l-2-1.1c-1.4,2.8-2.3,5.8-2.4,9.1h2.3c.1-2.9.9-5.6,2.1-8h0Z"
+         d="m 20.3,49 -2,-1.1 C 16.9,50.7 16,53.7 15.9,57 h 2.3 c 0.1,-2.9 0.9,-5.6 2.1,-8 z"
          id="path11" />
     </g>
     <path
-       d="M12.6,291.8v-62c0-7.8,6.4-14.2,14.2-14.2h90.6c7.8,0,14.2,6.4,14.2,14.2v62-.9,45.2c0,3.1-2.5,5.6-5.7,5.6H18.2c-3.1,0-5.6-2.5-5.6-5.6v-45.2"
-       style="fill: #d1d3d4; stroke: #d1d3d4; stroke-miterlimit: 10;"
+       d="m 12.6,291.8 v -62 c 0,-7.8 6.4,-14.2 14.2,-14.2 h 90.6 c 7.8,0 14.2,6.4 14.2,14.2 v 62 -0.9 45.2 c 0,3.1 -2.5,5.6 -5.7,5.6 H 18.2 c -3.1,0 -5.6,-2.5 -5.6,-5.6 v -45.2"
+       style="fill:#d1d3d4;stroke:#d1d3d4;stroke-miterlimit:10"
        id="path12" />
     <path
-       d="M132.2,318.7v-21.5h-21.5c-7.5,0-13.6,6.5-13.6,14.6v30.5h29.5c3.1,0,5.6-2.4,5.6-5.2v-18.4h0Z"
+       d="m 132.2,318.7 v -21.5 h -21.5 c -7.5,0 -13.6,6.5 -13.6,14.6 v 30.5 h 29.5 c 3.1,0 5.6,-2.4 5.6,-5.2 z"
        id="path13" />
     <g
        id="g23">
       <path
-         d="M46.8,145.6l1.1-1.9c-2.8-1.4-5.8-2.3-9.1-2.4v2.3c2.9.1,5.6.9,8,2.1h0v-.1Z"
+         d="m 46.8,145.6 1.1,-1.9 c -2.8,-1.4 -5.8,-2.3 -9.1,-2.4 v 2.3 c 2.9,0.1 5.6,0.9 8,2.1 v 0 z"
          id="path14" />
       <path
-         d="M54.4,152.4l2-1.1c-1.7-2.7-4-5-6.7-6.7l-1.1,1.9c2.3,1.5,4.3,3.5,5.8,5.9h0Z"
+         d="m 54.4,152.4 2,-1.1 c -1.7,-2.7 -4,-5 -6.7,-6.7 l -1.1,1.9 c 2.3,1.5 4.3,3.5 5.8,5.9 z"
          id="path15" />
       <path
-         d="M27.1,146.6l-1.1-1.9c-2.7,1.7-5,4-6.7,6.7l2,1.1c1.5-2.3,3.5-4.3,5.9-5.9h-.1Z"
+         d="M 27.1,146.6 26,144.7 c -2.7,1.7 -5,4 -6.7,6.7 l 2,1.1 c 1.5,-2.3 3.5,-4.3 5.9,-5.9 z"
          id="path16" />
       <path
-         d="M57.6,162.2h2.3c-.2-3.3-1-6.4-2.4-9.1l-2,1.1c1.2,2.4,2,5.1,2.1,8h0Z"
+         d="m 57.6,162.2 h 2.3 c -0.2,-3.3 -1,-6.4 -2.4,-9.1 l -2,1.1 c 1.2,2.4 2,5.1 2.1,8 z"
          id="path17" />
       <path
-         d="M36.8,143.5v-2.3c-3.3.1-6.4,1-9.1,2.4l1.1,1.9c2.4-1.2,5.1-2,8-2.1h0v.1Z"
+         d="m 36.8,143.5 v -2.3 c -3.3,0.1 -6.4,1 -9.1,2.4 l 1.1,1.9 c 2.4,-1.2 5.1,-2 8,-2.1 v 0 z"
          id="path18" />
       <path
-         d="M21.3,173.9l-2,1.1c1.7,2.7,4,5,6.7,6.7l1.1-1.9c-2.3-1.5-4.3-3.5-5.9-5.9h.1Z"
+         d="m 21.3,173.9 -2,1.1 c 1.7,2.7 4,5 6.7,6.7 l 1.1,-1.9 c -2.3,-1.5 -4.3,-3.5 -5.9,-5.9 z"
          id="path19" />
       <path
-         d="M48.6,179.8l1.1,1.9c2.7-1.7,5-4,6.7-6.7l-2-1.1c-1.5,2.3-3.5,4.3-5.8,5.9h0Z"
+         d="m 48.6,179.8 1.1,1.9 c 2.7,-1.7 5,-4 6.7,-6.7 l -2,-1.1 c -1.5,2.3 -3.5,4.3 -5.8,5.9 z"
          id="path20" />
       <path
-         d="M57.6,164.2c-.1,2.9-.9,5.6-2.1,8l2,1.1c1.4-2.8,2.3-5.8,2.4-9.1h-2.3Z"
+         d="m 57.6,164.2 c -0.1,2.9 -0.9,5.6 -2.1,8 l 2,1.1 c 1.4,-2.8 2.3,-5.8 2.4,-9.1 z"
          id="path21" />
       <path
-         d="M18.1,164.2h-2.3c.1,3.3,1,6.4,2.4,9.1l2-1.1c-1.2-2.4-2-5.1-2.1-8h0Z"
+         d="m 18.1,164.2 h -2.3 c 0.1,3.3 1,6.4 2.4,9.1 l 2,-1.1 c -1.2,-2.4 -2,-5.1 -2.1,-8 z"
          id="path22" />
       <path
-         d="M20.3,154.2l-2-1.1c-1.4,2.8-2.3,5.8-2.4,9.1h2.3c.1-2.9.9-5.6,2.1-8h0Z"
+         d="m 20.3,154.2 -2,-1.1 c -1.4,2.8 -2.3,5.8 -2.4,9.1 h 2.3 c 0.1,-2.9 0.9,-5.6 2.1,-8 z"
          id="path23" />
     </g>
     <g
        id="g33">
       <path
-         d="M115.4,145.6l1.1-1.9c-2.8-1.4-5.8-2.3-9.1-2.4v2.3c2.9.1,5.6.9,8,2.1h0v-.1Z"
+         d="m 115.4,145.6 1.1,-1.9 c -2.8,-1.4 -5.8,-2.3 -9.1,-2.4 v 2.3 c 2.9,0.1 5.6,0.9 8,2.1 v 0 z"
          id="path24" />
       <path
-         d="M123,152.4l1.9-1.1c-1.7-2.7-4-5-6.7-6.7l-1.1,1.9c2.3,1.5,4.3,3.5,5.8,5.9h.1Z"
+         d="m 123,152.4 1.9,-1.1 c -1.7,-2.7 -4,-5 -6.7,-6.7 l -1.1,1.9 c 2.3,1.5 4.3,3.5 5.8,5.9 z"
          id="path25" />
       <path
-         d="M95.7,146.6l-1.1-1.9c-2.7,1.7-5,4-6.7,6.7l1.9,1.1c1.5-2.3,3.5-4.3,5.8-5.9h.1Z"
+         d="m 95.7,146.6 -1.1,-1.9 c -2.7,1.7 -5,4 -6.7,6.7 l 1.9,1.1 c 1.5,-2.3 3.5,-4.3 5.8,-5.9 z"
          id="path26" />
       <path
-         d="M126.1,162.2h2.3c-.1-3.3-1-6.4-2.4-9.1l-1.9,1.1c1.2,2.4,2,5.1,2.1,8h-.1Z"
+         d="m 126.1,162.2 h 2.3 c -0.1,-3.3 -1,-6.4 -2.4,-9.1 l -1.9,1.1 c 1.2,2.4 2,5.1 2.1,8 z"
          id="path27" />
       <path
-         d="M105.4,143.5v-2.3c-3.3.1-6.4,1-9.1,2.4l1.1,1.9c2.4-1.2,5.1-2,8-2.1h0v.1Z"
+         d="m 105.4,143.5 v -2.3 c -3.3,0.1 -6.4,1 -9.1,2.4 l 1.1,1.9 c 2.4,-1.2 5.1,-2 8,-2.1 v 0 z"
          id="path28" />
       <path
-         d="M89.8,173.9l-1.9,1.1c1.7,2.7,4,5,6.7,6.7l1.1-1.9c-2.3-1.5-4.3-3.5-5.8-5.9h-.1Z"
+         d="m 89.8,173.9 -1.9,1.1 c 1.7,2.7 4,5 6.7,6.7 l 1.1,-1.9 c -2.3,-1.5 -4.3,-3.5 -5.8,-5.9 z"
          id="path29" />
       <path
-         d="M117.1,179.8l1.1,1.9c2.7-1.7,5-4,6.7-6.7l-1.9-1.1c-1.5,2.3-3.5,4.3-5.8,5.9h-.1Z"
+         d="m 117.1,179.8 1.1,1.9 c 2.7,-1.7 5,-4 6.7,-6.7 l -1.9,-1.1 c -1.5,2.3 -3.5,4.3 -5.8,5.9 z"
          id="path30" />
       <path
-         d="M126.1,164.2c-.1,2.9-.9,5.6-2.1,8l1.9,1.1c1.4-2.8,2.3-5.8,2.4-9.1h-2.3.1Z"
+         d="m 126.1,164.2 c -0.1,2.9 -0.9,5.6 -2.1,8 l 1.9,1.1 c 1.4,-2.8 2.3,-5.8 2.4,-9.1 H 126 Z"
          id="path31" />
       <path
-         d="M86.7,164.2h-2.3c.2,3.3,1,6.4,2.4,9.1l1.9-1.1c-1.2-2.4-2-5.1-2.1-8h.1Z"
+         d="m 86.7,164.2 h -2.3 c 0.2,3.3 1,6.4 2.4,9.1 l 1.9,-1.1 c -1.2,-2.4 -2,-5.1 -2.1,-8 z"
          id="path32" />
       <path
-         d="M88.8,154.2l-1.9-1.1c-1.4,2.8-2.3,5.8-2.4,9.1h2.3c.1-2.9.9-5.6,2.1-8h-.1Z"
+         d="m 88.8,154.2 -1.9,-1.1 c -1.4,2.8 -2.3,5.8 -2.4,9.1 h 2.3 c 0.1,-2.9 0.9,-5.6 2.1,-8 z"
          id="path33" />
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g35">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g34">
         <text
-           transform="translate(13.2 193.1) scale(.9 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.9,0,0,1,13.2,193.1)"
+           style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text33"><tspan
              x="0"
              y="0"
@@ -169,36 +169,36 @@
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g38">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g37">
         <text
-           transform="translate(84.4 193.1) scale(.9 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.9,0,0,1,84.4,193.1)"
+           style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text37"><tspan
              x="0"
              y="0"
              id="tspan35">Env D</tspan><tspan
              x="29.85"
              y="0"
-             style="letter-spacing: .01em;"
+             style="letter-spacing:0.01em"
              id="tspan36">e</tspan><tspan
-             x="35.95"
+             x="35.950001"
              y="0"
              id="tspan37">pth</tspan></text>
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g40">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g39">
         <text
-           transform="translate(55.8 127.5) scale(.9 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.9,0,0,1,55.8,127.5)"
+           style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text38"><tspan
              x="0"
              y="0"
@@ -206,37 +206,37 @@
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g43">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g42">
         <text
-           transform="translate(17.1 253.8) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,17.1,253.8)"
+           style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text42"><tspan
              x="0"
              y="0"
-             style="letter-spacing: -.03em;"
+             style="letter-spacing:-0.03em"
              id="tspan40">T</tspan><tspan
-             x="5.91"
+             x="5.9099998"
              y="0"
-             style="letter-spacing: -.04em;"
+             style="letter-spacing:-0.04em"
              id="tspan41">r</tspan><tspan
-             x="9.52"
+             x="9.5200005"
              y="0"
              id="tspan42">igger</tspan></text>
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g45">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g44">
         <text
-           transform="translate(63.1 253.8) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,63.1,253.8)"
+           style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text43"><tspan
              x="0"
              y="0"
@@ -244,62 +244,62 @@
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g47">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g46">
         <text
-           transform="translate(17.1 294.8) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,17.1,294.8)"
+           style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text46"><tspan
              x="0"
              y="0"
-             style="letter-spacing: -.12em;"
+             style="letter-spacing:-0.12em"
              id="tspan45">P</tspan><tspan
-             x="4.67"
+             x="4.6700001"
              y="0"
              id="tspan46">. Decay</tspan></text>
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g52">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g51">
         <text
-           transform="translate(92 294.8) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,92,294.8)"
+           style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text51"><tspan
              x="0"
              y="0"
              id="tspan47">En</tspan><tspan
              x="10.27"
              y="0"
-             style="letter-spacing: -.06em;"
+             style="letter-spacing:-0.06em"
              id="tspan48">v</tspan><tspan
              x="14.47"
              y="0"
              id="tspan49">. D</tspan><tspan
              x="25.67"
              y="0"
-             style="letter-spacing: .01em;"
+             style="letter-spacing:0.01em"
              id="tspan50">e</tspan><tspan
-             x="30.55"
+             x="30.549999"
              y="0"
              id="tspan51">pth</tspan></text>
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g54">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g53">
         <text
-           transform="translate(108.4 335.8) scale(.8 1)"
-           style="fill: #fff; font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,108.4,335.8)"
+           style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate;fill:#ffffff"
            id="text52"><tspan
              x="0"
              y="0"
@@ -309,45 +309,45 @@
     <g
        id="g63">
       <path
-         d="M115.4,40.4l1.1-2c-2.8-1.4-5.8-2.3-9.1-2.4v2.3c2.9.1,5.6.9,8,2.1h0Z"
+         d="m 115.4,40.4 1.1,-2 C 113.7,37 110.7,36.1 107.4,36 v 2.3 c 2.9,0.1 5.6,0.9 8,2.1 z"
          id="path54" />
       <path
-         d="M123,47.3l1.9-1.1c-1.7-2.7-4-5-6.7-6.7l-1.1,2c2.3,1.5,4.3,3.5,5.8,5.8h.1Z"
+         d="m 123,47.3 1.9,-1.1 c -1.7,-2.7 -4,-5 -6.7,-6.7 l -1.1,2 c 2.3,1.5 4.3,3.5 5.8,5.8 z"
          id="path55" />
       <path
-         d="M95.7,41.4l-1.1-2c-2.7,1.7-5,4-6.7,6.7l1.9,1.1c1.5-2.3,3.5-4.3,5.8-5.8h.1Z"
+         d="m 95.7,41.4 -1.1,-2 c -2.7,1.7 -5,4 -6.7,6.7 l 1.9,1.1 c 1.5,-2.3 3.5,-4.3 5.8,-5.8 z"
          id="path56" />
       <path
-         d="M126.1,57h2.3c-.1-3.3-1-6.4-2.4-9.1l-1.9,1.1c1.2,2.4,2,5.1,2.1,8h-.1Z"
+         d="m 126.1,57 h 2.3 c -0.1,-3.3 -1,-6.4 -2.4,-9.1 l -1.9,1.1 c 1.2,2.4 2,5.1 2.1,8 z"
          id="path57" />
       <path
-         d="M105.4,38.3v-2.3c-3.3.2-6.4,1-9.1,2.4l1.1,2c2.4-1.2,5.1-2,8-2.1h0Z"
+         d="M 105.4,38.3 V 36 c -3.3,0.2 -6.4,1 -9.1,2.4 l 1.1,2 c 2.4,-1.2 5.1,-2 8,-2.1 z"
          id="path58" />
       <path
-         d="M89.8,68.7l-1.9,1.1c1.7,2.7,4,5,6.7,6.7l1.1-1.9c-2.3-1.5-4.3-3.5-5.8-5.8h0l-.1-.1Z"
+         d="m 89.8,68.7 -1.9,1.1 c 1.7,2.7 4,5 6.7,6.7 l 1.1,-1.9 c -2.3,-1.5 -4.3,-3.5 -5.8,-5.8 v 0 z"
          id="path59" />
       <path
-         d="M117.1,74.6l1.1,1.9c2.7-1.7,5-4,6.7-6.7l-1.9-1.1c-1.5,2.3-3.5,4.3-5.8,5.8h0l-.1.1Z"
+         d="m 117.1,74.6 1.1,1.9 c 2.7,-1.7 5,-4 6.7,-6.7 L 123,68.7 c -1.5,2.3 -3.5,4.3 -5.8,5.8 v 0 z"
          id="path60" />
       <path
-         d="M126.1,59c-.1,2.9-.9,5.6-2.1,8l1.9,1.1c1.4-2.8,2.3-5.8,2.4-9.1h-2.3.1Z"
+         d="m 126.1,59 c -0.1,2.9 -0.9,5.6 -2.1,8 l 1.9,1.1 c 1.4,-2.8 2.3,-5.8 2.4,-9.1 H 126 Z"
          id="path61" />
       <path
-         d="M86.7,59h-2.3c.2,3.3,1,6.4,2.4,9.1l1.9-1.1c-1.2-2.4-2-5.1-2.1-8h.1Z"
+         d="m 86.7,59 h -2.3 c 0.2,3.3 1,6.4 2.4,9.1 L 88.7,67 c -1.2,-2.4 -2,-5.1 -2.1,-8 z"
          id="path62" />
       <path
-         d="M88.8,49l-1.9-1.1c-1.4,2.8-2.3,5.8-2.4,9.1h2.3c.1-2.9.9-5.6,2.1-8h-.1Z"
+         d="m 88.8,49 -1.9,-1.1 c -1.4,2.8 -2.3,5.8 -2.4,9.1 h 2.3 c 0.1,-2.9 0.9,-5.6 2.1,-8 z"
          id="path63" />
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g65">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g64">
         <text
-           transform="translate(82.1 87.8) scale(.9 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.9,0,0,1,82.1,87.8)"
+           style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text63"><tspan
              x="0"
              y="0"
@@ -355,14 +355,14 @@
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g67">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g66">
         <text
-           transform="translate(27.1 87.8) scale(.9 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 10px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.9,0,0,1,27.1,87.8)"
+           style="font-weight:700;font-size:10px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text65"><tspan
              x="0"
              y="0"
@@ -372,38 +372,38 @@
     <g
        id="g69">
       <path
-         d="M63.9,18.2c-.4,0-.7-.2-1-.5-.5-.6-.5-1.5,0-2.2l7-8.9c.4-.5,1.1-.7,1.6-.4.5.2.8.8.8,1.5v4.8l4.6-5.8c.4-.5,1-.6,1.5-.4s.8.8.8,1.4v8.8c0,.9-.6,1.6-1.4,1.6s-1.4-.7-1.4-1.6v-4.8l-4.6,5.8c-.4.5-1,.6-1.5.4s-.8-.8-.8-1.4v-4.7l-4.6,5.8c-.3.3-.6.5-1,.5h0v.1Z"
-         style="fill: #2cabe1;"
+         d="m 63.9,18.2 c -0.4,0 -0.7,-0.2 -1,-0.5 -0.5,-0.6 -0.5,-1.5 0,-2.2 l 7,-8.9 C 70.3,6.1 71,5.9 71.5,6.2 72,6.4 72.3,7 72.3,7.7 v 4.8 l 4.6,-5.8 c 0.4,-0.5 1,-0.6 1.5,-0.4 0.5,0.2 0.8,0.8 0.8,1.4 v 8.8 c 0,0.9 -0.6,1.6 -1.4,1.6 -0.8,0 -1.4,-0.7 -1.4,-1.6 v -4.8 l -4.6,5.8 c -0.4,0.5 -1,0.6 -1.5,0.4 -0.5,-0.2 -0.8,-0.8 -0.8,-1.4 v -4.7 l -4.6,5.8 c -0.3,0.3 -0.6,0.5 -1,0.5 v 0 z"
+         style="fill:#2cabe1"
          id="path67" />
       <path
-         d="M63.9,18.2c-.8,0-1.3-.7-1.3-1.6v-4.9l-2.3,2.8c-.5.6-1.4.6-2,0-.5-.6-.5-1.5,0-2.2l4.6-5.8c.3-.3.6-.5,1-.5s.4,0,.5.1c.5.2.8.8.8,1.4v8.9c0,.9-.6,1.6-1.4,1.6h0l.1.2Z"
-         style="fill: #ea2228;"
+         d="m 63.9,18.2 c -0.8,0 -1.3,-0.7 -1.3,-1.6 v -4.9 l -2.3,2.8 c -0.5,0.6 -1.4,0.6 -2,0 -0.5,-0.6 -0.5,-1.5 0,-2.2 l 4.6,-5.8 c 0.3,-0.3 0.6,-0.5 1,-0.5 0.4,0 0.4,0 0.5,0.1 0.5,0.2 0.8,0.8 0.8,1.4 v 8.9 c 0,0.9 -0.6,1.6 -1.4,1.6 v 0 z"
+         style="fill:#ea2228"
          id="path68" />
       <path
-         d="M80.5,18.2h0c-.3,0-.7-.1-.9-.4-.8-.8-.1-1.8.3-2.3l1.9-2.4h-1.3c-.6,0-1-.4-1.2-1s0-1.2.3-1.6l3.2-3.8c.2-.3.6-.5,1.1-.5.3,0,.7.2.9.4.7.7.3,1.7,0,2.2l-1,1.3h1.3c.6,0,1,.4,1.2,1s0,1.2-.3,1.6l-4.1,5c-.3.4-.7.5-1.3.5h-.1Z"
-         style="fill: #00a650;"
+         d="m 80.5,18.2 v 0 c -0.3,0 -0.7,-0.1 -0.9,-0.4 C 78.8,17 79.5,16 79.9,15.5 l 1.9,-2.4 h -1.3 c -0.6,0 -1,-0.4 -1.2,-1 -0.2,-0.6 0,-1.2 0.3,-1.6 l 3.2,-3.8 c 0.2,-0.3 0.6,-0.5 1.1,-0.5 0.3,0 0.7,0.2 0.9,0.4 0.7,0.7 0.3,1.7 0,2.2 l -1,1.3 h 1.3 c 0.6,0 1,0.4 1.2,1 0.2,0.6 0,1.2 -0.3,1.6 l -4.1,5 c -0.3,0.4 -0.7,0.5 -1.3,0.5 z"
+         style="fill:#00a650"
          id="path69" />
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g72">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g70">
         <text
-           transform="translate(60.8 357.2) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 11px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,60.8,357.2)"
+           style="font-weight:700;font-size:11px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text69"><tspan
              x="0"
              y="0"
              id="tspan69">T</tspan></text>
       </g>
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g71">
         <text
-           transform="translate(67.2 357.2) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 11px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,67.2,357.2)"
+           style="font-weight:700;font-size:11px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text70"><tspan
              x="0"
              y="0"
@@ -411,14 +411,14 @@
       </g>
     </g>
     <g
-       style="isolation: isolate;"
+       style="isolation:isolate"
        id="g74">
       <g
-         style="isolation: isolate;"
+         style="isolation:isolate"
          id="g73">
         <text
-           transform="translate(99.3 253.9) scale(.8 1)"
-           style="font-family: GillSans-Bold, 'Gill Sans'; font-size: 8px; font-weight: 700; isolation: isolate;"
+           transform="matrix(0.8,0,0,1,99.3,253.9)"
+           style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';isolation:isolate"
            id="text72"><tspan
              x="0"
              y="0"
