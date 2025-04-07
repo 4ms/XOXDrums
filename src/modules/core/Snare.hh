@@ -131,14 +131,14 @@ private:
 	void recalc_saturation() {
 		const auto saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 		switch (getState<RangeSwitch>()) {
-			using enum Toggle3pos::State_t;
-			case UP:
+			using enum Toggle3posHoriz::State_t;
+			case RIGHT:
 				saturation = 1 + (saturationControl * 100);
 				break;
 			case CENTER:
 				saturation = 1 + (saturationControl * 10);
 				break;
-			case DOWN:
+			case LEFT:
 				saturation = 1 + (saturationControl * 2);
 				break;
 		}

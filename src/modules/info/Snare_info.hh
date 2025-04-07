@@ -23,7 +23,7 @@ struct SnareInfo : ModuleInfoBase {
 		Davies1900hBlackKnob{{to_mm<72>(108.0), to_mm<72>(104.62), Center, "Noise Decay", ""}, 0.2578125f},
 		Davies1900hBlackKnob{{to_mm<72>(172.5), to_mm<72>(104.62), Center, "Body Decay", ""}, 0.3125f},
 		Davies1900hBlackKnob{{to_mm<72>(43.5), to_mm<72>(163.3), Center, "Body Noise", ""}, 0.3125f},
-		Toggle2pos{{to_mm<72>(108.0), to_mm<72>(163.175), Center, "Range Switch", ""}, {"Low", "High"}},
+        Toggle3posHoriz{{to_mm<72>(108.0), to_mm<72>(163.175), Center, "Range", ""}, {"2x", "10x", "100x"}, Toggle3posHoriz::State_t::LEFT},
 		Davies1900hBlackKnob{{to_mm<72>(172.39), to_mm<72>(163.21), Center, "Saturation", ""}, 0.0f},
 		GateJackInput4ms{{to_mm<72>(35.54), to_mm<72>(232.21), Center, "Trigger", ""}},
 		AnalogJackInput4ms{{to_mm<72>(83.82), to_mm<72>(232.21), Center, "Pitch CV", ""}},

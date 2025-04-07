@@ -18,7 +18,7 @@ struct TomInfo : ModuleInfoBase {
     static constexpr std::array<Element, 11> Elements{{
 		Davies1900hBlackKnob{{to_mm<72>(37.7), to_mm<72>(57.7), Center, "Pitch", ""}, 0.390625f},
 		Davies1900hBlackKnob{{to_mm<72>(106.3), to_mm<72>(57.7), Center, "Amp Decay", ""}, 0.390625f},
-		Toggle3posHoriz{{to_mm<72>(72.0), to_mm<72>(110.15), Center, "Range Switch", ""}, {"Low", "Medium", "High"}, Toggle3posHoriz::State_t::CENTER},
+        Toggle3posHoriz{{to_mm<72>(72.0), to_mm<72>(110.15), Center, "Range Switch", ""}, {"Low", "Medium", "High"}, Toggle3posHoriz::State_t::CENTER},
 		Davies1900hBlackKnob{{to_mm<72>(37.7), to_mm<72>(162.7), Center, "Pitch Decay", ""}, 0.0f},
 		Davies1900hBlackKnob{{to_mm<72>(106.3), to_mm<72>(162.7), Center, "Env Depth", ""}, 0.390625f},
 		GateJackInput4ms{{to_mm<72>(29.4), to_mm<72>(232.0), Center, "Trigger", ""}},
