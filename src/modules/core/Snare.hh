@@ -108,14 +108,14 @@ public:
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
 		switch (getState<RangeSwitch>()) {
-			using enum Toggle3pos::State_t;
-			case UP:
+			using enum Toggle3posHoriz::State_t;
+			case RIGHT:
 				saturation = 1 + (saturationControl * 100);
 				break;
 			case CENTER:
 				saturation = 1 + (saturationControl * 10);
 				break;
-			case DOWN:
+			case LEFT:
 				saturation = 1 + (saturationControl * 2);
 				break;
 		}
