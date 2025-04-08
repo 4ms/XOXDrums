@@ -3,6 +3,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Kick_info.hh"
+#include "util/edge_detector.hh"
 #include "util/math.hh"
 #include <cmath>
 
@@ -16,40 +17,45 @@ class Kick : public SmartCoreProcessor<KickInfo> {
 public:
 	Kick() = default;
 
-	void update(void) override {
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(AmpDecayKnob)) {
+			recalc_amp_decay();
+		} else if (param_id == static_cast<int>(PitchDecayKnob)) {
+			recalc_freq_decay();
+		}
+	}
 
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(AmpDecayCvIn)) {
+			recalc_amp_decay();
+		} else if (input_id == static_cast<int>(PitchDecayCvIn)) {
+			recalc_freq_decay();
+		}
+	}
+
+	void update(void) override {
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
-		float ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<AmpDecayCvIn>());
 		float envDepthControl = combineKnobBipolarCV(getState<PitchDepthKnob>(), getInput<DepthCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
-		// Trig input
-		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
-		if (bangState && !lastBangState) {
+		if (trig.update(getInputAsGate<TrigIn>())) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
-			pulseTime = ampDecayTime * (sampleRate / 1000.0f);
 		}
-		lastBangState = bangState;
 
 		// Osc
 		using MathTools::M_PIF;
 		float frequency = 10 + (pitchControl * 40.0f);										 // 10hz - 40hz range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * rSampleRate;
-		phase += frequency * rSampleRate;
+		phase += (frequency + modulatedFrequency) * rSampleRate;
 		phase -= static_cast<int>(phase);
 		float sineWave = 5.0f * std::sin(2 * M_PIF * phase);
 
 		// Envelopes
-		ampDecayTime = 5.0f + (ampDecayControl * 300.0f); // amp decay range (5ms - 300ms)
-		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
-
-		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
-		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
 
 		// Final output
@@ -74,29 +80,47 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		rSampleRate = 1.f / sampleRate;
+		rSampleRate = 1.f / sr;
+		recalc_amp_decay();
+		recalc_freq_decay();
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
+	void recalc_amp_decay() {
+		const auto ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<AmpDecayCvIn>());
+		const auto ampDecayTime = 5.0f + (ampDecayControl * 300.0f); // amp decay range (5ms - 300ms)
+		ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+	}
+
+	void recalc_freq_decay() {
+		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		const auto pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
+		pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
+	}
+
 	// Sine oscillator
 	float phase = 0.0f;
 
 	// Amp decay envelope
-	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
+	float amplitudeEnvelope = 0.f; // Envelope output value (for volume control)
+	float ampDecayAlpha = 0.f;
 
 	float sampleRate{48000};
-	float rSampleRate{1.f / 48000};
+	float rSampleRate{};
 
 	// Pitch decay envelope
-	float pitchEnvelope = 1.0f; // Envelope output value (for volume control)
-
-	// Trig
-	bool lastBangState = false; // Previous state of the Bang input
-	float pulseTime = 0.0f;		// Time tracking for pulse duration
+	float pitchEnvelope = 0.f; // Envelope output value (for volume control)
+	float pitchDecayAlpha = 0.f;
 
 	// Output
 	float saturation = 0.0f;
+
+	RisingEdgeDetector trig{};
 };
 
 } // namespace MetaModule

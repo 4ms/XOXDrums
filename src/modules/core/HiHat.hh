@@ -4,6 +4,7 @@
 #include "core/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/HiHat_info.hh"
+#include "util/edge_detector.hh"
 #include "util/math.hh"
 
 namespace MetaModule
@@ -28,6 +29,10 @@ public:
 			recalc_hpfs();
 		} else if (param_id == static_cast<int>(BrightnessKnob)) {
 			recalc_bpf();
+		} else if (param_id == static_cast<int>(DecayKnob) || param_id == static_cast<int>(ChokeSwitch)) {
+			recalc_decay();
+		} else if (param_id == static_cast<int>(PitchKnob)) {
+			recalc_freq();
 		}
 	}
 
@@ -37,63 +42,40 @@ public:
 			recalc_hpfs();
 		} else if (input_id == static_cast<int>(BrightnessCvIn)) {
 			recalc_bpf();
+		} else if (input_id == static_cast<int>(DecayCvIn)) {
+			recalc_decay();
+		} else if (input_id == static_cast<int>(PitchCvIn)) {
+			recalc_freq();
 		}
 	}
 
 	void update(void) override {
-
-		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
-
-		// Check if the trigger input is high
-		bool currentTriggerState1 = getInput<ClosedTrigIn>().value_or(0.f) > 0.5f;
-		bool bangRisingEdge1 = !triggerStates1[0] && currentTriggerState1;
-		triggerStates1[0] = triggerStates1[1];
-		triggerStates1[1] = currentTriggerState1;
-
-		bool currentTriggerState2 = getInput<OpenTrigIn>().value_or(0.f) > 0.5f;
-		bool bangRisingEdge2 = !triggerStates2[0] && currentTriggerState2;
-		triggerStates2[0] = triggerStates2[1];
-		triggerStates2[1] = currentTriggerState2;
-
-		// Square wave VCO x6 for two channels
-		float frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
-
-		float oscSum = 0.f;
-
-		for (auto i = 0u; i < offsets.size(); ++i) {
-			phases[i] += (frequency + offsets[i]) * rSampleRate;
-			phases[i] -= static_cast<int>(phases[i]);
-			oscSum += (phases[i] < 0.5f) ? 1.0f : -1.0f;
-		}
-
-		oscSum = std::clamp(oscSum, -5.f, 5.f);
-
-		// Bandpass
-		float bandpassOut = bpf.process(oscSum);
-
-		// Envelopes
-
-		// Closed
-		if (bangRisingEdge1) {
+		if (chh_trig.update(getInputAsGate<ClosedTrigIn>())) {
 			envelopeValue1 = 1.0f;
 		}
 
-		float decay_ohh{};
-
-		if (getState<ChokeSwitch>() == Toggle2posHoriz::State_t::LEFT) {
-			constexpr auto min_seconds = 50.f / 1000.f;
-			constexpr auto max_seconds = 250.f / 1000.f;
-			const auto decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, min_seconds, max_seconds);
-			decay_ohh = std::exp(-rSampleRate / decayTimeOpen);
+		if (ohh_trig.update(getInputAsGate<OpenTrigIn>())) {
+			envelopeValue2 = 1.0f;
 		}
+
+		// Square wave VCO x6 for two channels
+		float oscSum = 0.f;
+
+		for (auto i = 0u; i < offsets.size(); ++i) {
+			phases[i] += phase_inc[i];
+			phases[i] -= static_cast<int>(phases[i]);
+			constexpr auto amp = 5.f / offsets.size();
+			oscSum += (phases[i] < 0.5f) ? amp : -amp;
+		}
+
+		const float bandpassOut = bpf.process(oscSum);
 
 		envelopeValue2 *= decay_ohh;
 		envelopeValue1 *= decay_chh;
 
 		// Apply envelope to bandpass output
-		float closedVCAOut = (bandpassOut * envelopeValue1);
-		float openVCAOut = (bandpassOut * envelopeValue2);
+		float closedVCAOut = bandpassOut * envelopeValue1;
+		float openVCAOut = bandpassOut * envelopeValue2;
 
 		float closedHighpassOut = chh_hpf.process(closedVCAOut);
 		float openHighpassOut = ohh_hpf.process(openVCAOut);
@@ -109,12 +91,20 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		rSampleRate = 1.f / sampleRate;
 		constexpr float decayTimeClosedMs = 10.f;
 		decay_chh = std::exp(-1.0f / (sampleRate * (decayTimeClosedMs / 1000.0f)));
+		recalc_bpf();
+		recalc_hpfs();
+		recalc_decay();
+		recalc_freq();
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
 	void recalc_hpfs() {
 		float thicknessControl = combineKnobBipolarCV(getState<ThicknessKnob>(), getInput<ThicknessCvIn>());
 
@@ -133,10 +123,33 @@ private:
 		bpf.setFc(bandpassCutoffFrequency, sampleRate);
 	}
 
+	void recalc_decay() {
+		if (getState<ChokeSwitch>() == Toggle2posHoriz::State_t::LEFT) {
+			const auto decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+			constexpr auto min_seconds = 50.f / 1000.f;
+			constexpr auto max_seconds = 250.f / 1000.f;
+			const auto decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, min_seconds, max_seconds);
+			decay_ohh = std::exp(-1.f / sampleRate / decayTimeOpen);
+		} else {
+			decay_ohh = 0.f;
+		}
+	}
+
+	void recalc_freq() {
+		const auto pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		const auto frequency = MathTools::map_value(pitchControl, 0.f, 1.f, 1000.f, 2000.f); // Base frequency
+		const auto rSampleRate = 1.f / sampleRate;
+
+		for (auto i = 0u; i < offsets.size(); ++i) {
+			phase_inc[i] = (frequency + offsets[i]) * rSampleRate;
+		}
+	}
+
 	// Oscillator
 	static constexpr std::array<float, 6> offsets{
 		100.f, 250.f, 400.f, 550.f, 600.f, 1000.f}; // Offsets for each oscillator
 	std::array<float, 6> phases{};					// Phases for each oscillator
+	std::array<float, 6> phase_inc{};
 
 	// Bandpass Filter
 	BiquadBPF bpf{};
@@ -144,19 +157,20 @@ private:
 	BiquadHPF ohh_hpf{};
 
 	float sampleRate{48000};
-	float rSampleRate{1.f / 48000};
 
 	float finalMakeup{1.f};
 
 	// Decay envelopes
 	float envelopeValue1 = 0.0f;
 
+	float decay_ohh = 0.f;
+
 	float envelopeValue2 = 0.0f;
 
 	float decay_chh{};
 
-	bool triggerStates1[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
-	bool triggerStates2[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
+	RisingEdgeDetector chh_trig{};
+	RisingEdgeDetector ohh_trig{};
 };
 
 } // namespace MetaModule

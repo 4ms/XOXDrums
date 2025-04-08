@@ -3,6 +3,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Congabongo_info.hh"
+#include "util/edge_detector.hh"
 #include "util/math.hh"
 #include <cmath>
 
@@ -16,131 +17,68 @@ class Congabongo : public SmartCoreProcessor<CongabongoInfo> {
 public:
 	Congabongo() = default;
 
-	void update(void) override {
-
-		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
-
-		// Tone Hi input
-		bool bangState1 = getInput<ToneLoGateIn>().value_or(0.f) > 0.5f;
-		if (bangState1 && !lastbangState1) {
-			phase1 = 0.0f; // reset sine phase1 for 0 crossing
-			pulseTriggered1 = true;
-			amplitudeEnvelope1 = 1.0f;
-			pulseTime1 = ampDecayTime * (sampleRate / 1000.0f);
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(DecayKnob) || param_id == static_cast<int>(PitchKnob) ||
+			param_id == static_cast<int>(RangeSwitch))
+		{
+			recalc();
 		}
-		lastbangState1 = bangState1;
+	}
+
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(DecayCvIn) || input_id == static_cast<int>(PitchCvIn)) {
+			recalc();
+		}
+	}
+
+	void update(void) override {
+		if (trig0.update(getInputAsGate<ToneLoGateIn>())) {
+			phase1 = 0.0f;
+			amplitudeEnvelope1 = 1.0f;
+		}
 
 		// Slap Hi input
-		bool bangState3 = getInput<SlapLoGateIn>().value_or(0.f) > 0.5f;
-		if (bangState3 && !lastbangState3 && pulseTriggered1) {
-			amplitudeEnvelope1 *= 0;
-			phase1 = 0.0f; // reset sine phase1 for 0 crossing
-			pulseTime1 = 0;
-
-			pulseTriggered3 = true;
+		if (trig1.update(getInputAsGate<SlapLoGateIn>()) && amplitudeEnvelope1 > 0.f) {
+			amplitudeEnvelope1 = 0.f;
+			phase1 = 0.0f;
 			amplitudeEnvelope3 = 1.0f;
-			pulseTime3 = 5.0f * (sampleRate / 1000.0f);
-		} else {
-			ampDecayAlpha1 = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
-			amplitudeEnvelope1 *= ampDecayAlpha1;
 		}
-		lastbangState3 = bangState3;
 
 		// Lo trig input
-		bool bangState2 = getInput<ToneHiGateIn>().value_or(0.f) > 0.5f;
-		if (bangState2 && !lastbangState2) {
-			phase2 = 0.0f; // reset sine phase1 for 0 crossing
-			pulseTriggered2 = true;
+		if (trig2.update(getInputAsGate<ToneHiGateIn>())) {
+			phase2 = 0.0f;
 			amplitudeEnvelope2 = 1.0f;
-			pulseTime2 = ampDecayTime * (sampleRate / 1000.0f);
 		}
-		lastbangState2 = bangState2;
 
 		// Slap LO input
-		bool bangState4 = getInput<SlapHiGateIn>().value_or(0.f) > 0.5f;
-		if (bangState4 && !lastbangState4 && pulseTriggered2) {
-			amplitudeEnvelope2 *= 0;
-			phase2 = 0.0f; // reset sine phase1 for 0 crossing
-			pulseTime2 = 0;
-
-			pulseTriggered4 = true;
+		if (trig3.update(getInputAsGate<SlapHiGateIn>()) && amplitudeEnvelope2 > 0.f) {
+			amplitudeEnvelope2 = 0.f;
+			phase2 = 0.0f;
 			amplitudeEnvelope4 = 1.0f;
-			pulseTime4 = 5.0f * (sampleRate / 1000.0f);
-		} else {
-			ampDecayAlpha2 = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
-			amplitudeEnvelope2 *= ampDecayAlpha2;
-		}
-		lastbangState4 = bangState4;
-
-		//Congabongo switch
-		if (getState<RangeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
-			frequency1 = 200 + (pitchControl * 250.0f);		  //
-			ampDecayTime = 15.0f + (ampDecayControl * 25.0f); // amp decay range (5ms - 25ms)
-		} else {
-			frequency1 = 98 + (pitchControl * 100.0f);		  //
-			ampDecayTime = 40.0f + (ampDecayControl * 80.0f); // amp decay range (5ms - 25ms)
 		}
 
 		// Osc 1
 		using MathTools::M_PIF;
-		phase1 += frequency1 * rSampleRate * 2;
+		phase1 += phase_inc_1;
 		phase1 -= static_cast<int>(phase1);
 		float sineWave1 = 5.0f * std::sin(2 * M_PIF * phase1);
 
 		// Osc 2
-		frequency2 = frequency1 * (3.0f / 4.0f); // Low
-		phase2 += frequency2 * rSampleRate * 2;
+		phase2 += phase_inc_2;
 		phase2 -= static_cast<int>(phase2);
 		float sineWave2 = 5.0f * std::sin(2 * M_PIF * phase2);
 
-		// Slap 1
-		ampDecayAlpha3 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
+		amplitudeEnvelope1 *= ampDecayAlpha1;
+		amplitudeEnvelope2 *= ampDecayAlpha1;
 		amplitudeEnvelope3 *= ampDecayAlpha3;
-		// Slap 2
-		ampDecayAlpha4 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
-		amplitudeEnvelope4 *= ampDecayAlpha4;
+		amplitudeEnvelope4 *= ampDecayAlpha3;
 
-		if (pulseTriggered1) {
-			if (amplitudeEnvelope1 < 0.0f) {
-				amplitudeEnvelope1 = 0.0f;
-				pulseTriggered1 = false;
-			}
-		} else {
-			amplitudeEnvelope1 = 0.0f;
-		}
-
-		if (pulseTriggered2) {
-			if (amplitudeEnvelope2 < 0.0f) {
-				amplitudeEnvelope2 = 0.0f;
-				pulseTriggered2 = false;
-			}
-		} else {
-			amplitudeEnvelope2 = 0.0f;
-		}
-
-		if (pulseTriggered3) {
-			if (amplitudeEnvelope3 < 0.0f) {
-				amplitudeEnvelope3 = 0.0f;
-				pulseTriggered3 = false;
-			}
-		} else {
-			amplitudeEnvelope3 = 0.0f;
-		}
-
-		if (pulseTriggered4) {
-			if (amplitudeEnvelope4 < 0.0f) {
-				amplitudeEnvelope4 = 0.0f;
-				pulseTriggered4 = false;
-			}
-		} else {
-			amplitudeEnvelope4 = 0.0f;
-		}
-
-		finalOutput1 = (sineWave1 * amplitudeEnvelope1) + ((sineWave1 * amplitudeEnvelope3) * 2);
+		auto finalOutput1 = (sineWave1 * amplitudeEnvelope1) + ((sineWave1 * amplitudeEnvelope3) * 2);
 		finalOutput1 = std::clamp(finalOutput1, -5.0f, 5.0f);
 
-		finalOutput2 = (sineWave2 * amplitudeEnvelope2) + ((sineWave2 * amplitudeEnvelope4) * 2);
+		auto finalOutput2 = (sineWave2 * amplitudeEnvelope2) + ((sineWave2 * amplitudeEnvelope4) * 2);
 		finalOutput2 = std::clamp(finalOutput2, -5.0f, 5.0f);
 
 		setOutput<OutLoOut>(finalOutput1);
@@ -149,51 +87,59 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		rSampleRate = 1.f / sampleRate;
+		ampDecayAlpha3 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
+		recalc();
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
+	void recalc() {
+		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+
+		float ampDecayTime{};
+		float freq_hz{};
+
+		//Congabongo switch
+		if (getState<RangeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
+			freq_hz = 200 + (pitchControl * 250.0f);
+			ampDecayTime = 15.0f + (ampDecayControl * 25.0f);
+		} else {
+			freq_hz = 98 + (pitchControl * 100.0f);
+			ampDecayTime = 40.0f + (ampDecayControl * 80.0f);
+		}
+
+		const auto rSampleRate = 1.f / sampleRate;
+		phase_inc_1 = freq_hz * rSampleRate * 2;
+		phase_inc_2 = freq_hz * (3.f / 4.f) * rSampleRate * 2;
+		ampDecayAlpha1 = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+	}
+
 	// Sine oscillator
+	float phase_inc_1 = 0.f;
+	float phase_inc_2 = 0.f;
 	float phase1 = 0.0f;
-	float frequency1 = 100.0f;
 	float phase2 = 0.0f;
-	float frequency2 = 100.0f;
 
 	// Amp decay envelope
-	float amplitudeEnvelope1 = 1.0f; // Envelope output value (for volume control)
-	float amplitudeEnvelope2 = 1.0f; // Envelope output value (for volume control)
-	float amplitudeEnvelope3 = 1.0f; // Envelope output value (for volume control)
-	float amplitudeEnvelope4 = 1.0f; // Envelope output value (for volume control)
+	float amplitudeEnvelope1 = 0.f; // Envelope output value (for volume control)
+	float amplitudeEnvelope2 = 0.f; // Envelope output value (for volume control)
+	float amplitudeEnvelope3 = 0.f; // Envelope output value (for volume control)
+	float amplitudeEnvelope4 = 0.f; // Envelope output value (for volume control)
 
 	float ampDecayAlpha1 = 0.0f; // Exponential decay coefficient
-	float ampDecayAlpha2 = 0.0f; // Exponential decay coefficient
 	float ampDecayAlpha3 = 0.0f; // Exponential decay coefficient
-	float ampDecayAlpha4 = 0.0f; // Exponential decay coefficient
-
-	float ampDecayTime = 5.0f; // Decay time in ms (5ms as requested)
 
 	float sampleRate{48000};
-	float rSampleRate{1.f / 48000};
 
-	// Trig
-	bool pulseTriggered1 = false; // Flag to check if pulse was triggered
-	bool pulseTriggered2 = false; // Flag to check if pulse was triggered
-	bool pulseTriggered3 = false; // Flag to check if pulse was triggered
-	bool pulseTriggered4 = false; // Flag to check if pulse was triggered
-
-	bool lastbangState1 = false; // Previous state of the Bang input
-	bool lastbangState2 = false; // Previous state of the Bang input
-	bool lastbangState3 = false; // Previous state of the Bang input
-	bool lastbangState4 = false; // Previous state of the Bang input
-
-	float pulseTime1 = 0.0f; // Time tracking for pulse duration
-	float pulseTime2 = 0.0f; // Time tracking for pulse duration
-	float pulseTime3 = 0.0f; // Time tracking for pulse duration
-	float pulseTime4 = 0.0f; // Time tracking for pulse duration
-
-	// Output
-	float finalOutput1;
-	float finalOutput2;
+	RisingEdgeDetector trig0{};
+	RisingEdgeDetector trig1{};
+	RisingEdgeDetector trig2{};
+	RisingEdgeDetector trig3{};
 };
 
 } // namespace MetaModule

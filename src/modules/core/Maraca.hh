@@ -4,6 +4,7 @@
 #include "core/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
+#include "util/edge_detector.hh"
 
 namespace MetaModule
 {
@@ -20,27 +21,41 @@ public:
 		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
 	}
 
-	void update(void) override {
-		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
-		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(DecayKnob)) {
+			recalc_decay();
+		}
+	}
 
-		// Trig input
-		bool bangState = getInput<TrigIn>().value_or(0.f) > 0.5f;
-		if (bangState) {
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(DecayCvIn)) {
+			recalc_decay();
+		}
+	}
+
+	void recalc_decay() {
+		const auto decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		const auto ampDecayTime = 2.5f + (decayControl * 10.0f); //
+		ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+	}
+
+	void update(void) override {
+
+		if (trig.update(getInputAsGate<TrigIn>())) {
 			amplitudeEnvelope = 1.0f;
 		}
-		lastBangState = bangState;
 
-		// Envelopes
-		float ampDecayTime = 2.5f + (decayControl * 10.0f); //
-		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
+		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
 		float VCAOut = (noise * amplitudeEnvelope);
 
 		float highpassOut = hpf.process(VCAOut);
 
-		float finalOutput = (highpassOut * 0.75f); // Apply makeup gain post filter
+		float finalOutput = highpassOut * 0.75f; // Apply makeup gain post filter
+
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
 		setOutput<MaracaOut>(finalOutput);
@@ -49,18 +64,24 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
+		recalc_decay();
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
 	BiquadHPF hpf{};
 
 	// Amp decay envelope
-	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
+	float amplitudeEnvelope = 0.0f; // Envelope output value (for volume control)
+	float ampDecayAlpha = 0.f;
 
 	float sampleRate{48000};
 
-	// Trig
-	bool lastBangState = false; // Previous state of the Bang input
+	RisingEdgeDetector trig{};
 };
 
 } // namespace MetaModule

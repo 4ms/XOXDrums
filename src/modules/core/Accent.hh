@@ -3,6 +3,7 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Accent_info.hh"
+#include "util/edge_detector.hh"
 
 namespace MetaModule
 {
@@ -19,15 +20,8 @@ public:
 		float controlValue = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		controlValue = 0.2f + (controlValue * 0.9f);
 
-		// Check if the trigger input is high
-		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
-		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
-		triggerStates[0] = triggerStates[1];
-		triggerStates[1] = currentTriggerState;
-
-		// Trigger handling
-		if (bangRisingEdge) {
-			amplitudeEnvelope = 1.0f;
+		if (trig.update(getInputAsGate<TrigIn>())) {
+			amplitudeEnvelope = 1.f;
 		}
 
 		float ampDecayTime = 70.f;
@@ -49,9 +43,15 @@ public:
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
+	RisingEdgeDetector trig{};
+
 	float amplitudeEnvelope = 0.f;
 	float sampleRate{48000};
-	bool triggerStates[2] = {false, false};
 };
 
 } // namespace MetaModule

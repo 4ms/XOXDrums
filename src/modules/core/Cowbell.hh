@@ -3,8 +3,9 @@
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Cowbell_info.hh"
+#include "util/edge_detector.hh"
 #include "util/math.hh"
-#include <cmath> // for sine wave
+#include <cmath>
 
 namespace MetaModule
 {
@@ -12,6 +13,9 @@ namespace MetaModule
 class Cowbell : public SmartCoreProcessor<CowbellInfo> {
 	using Info = CowbellInfo;
 	using enum Info::Elem;
+
+	static constexpr float highpassAlpha = 0.6f;
+	static constexpr float lowpassAlpha = 0.1f;
 
 public:
 	Cowbell() = default;
@@ -23,43 +27,46 @@ public:
 		return std::clamp(cvSum, 0.0f, 1.0f);
 	}
 
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(DecayKnob)) {
+			recalc_decay();
+		} else if (param_id == static_cast<int>(PitchKnob)) {
+			recalc_freq();
+		}
+	}
+
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(DecayCvIn)) {
+			recalc_decay();
+		} else if (input_id == static_cast<int>(PitchCvIn)) {
+			recalc_freq();
+		}
+	}
+
 	void update(void) override {
 
-		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
-
-		// Check if the trigger input is high
-		bool currentTriggerState = getInput<TrigIn>().value_or(0.f) > 0.5f;
-		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
-		triggerStates[0] = triggerStates[1];
-		triggerStates[1] = currentTriggerState;
-
-		// Envelopes
-		float ampDecayTime = 20.0f + (ampDecayControl * 100.0f);
-		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
-		amplitudeEnvelope *= ampDecayAlpha;
-
-		if (bangRisingEdge) {
-			phase = 0.0f; // reset sine phase for 0 crossing
-			amplitudeEnvelope = 1.0f;
+		if (trig.update(getInputAsGate<TrigIn>())) {
+			phase_0 = 0.f;
+			amplitudeEnvelope = 1.f;
 		}
+
+		amplitudeEnvelope *= ampDecayAlpha;
 
 		// Osc 1
 		using MathTools::M_PIF;
-		float frequency = 500.0f + (pitchControl * 300.0f);
-		phase += frequency * rSampleRate * 2;
-		phase -= static_cast<int>(phase);
-		float squareWave = (phase < .5f) ? 5.0f : -5.0f;
+		phase_0 += phase_inc_0;
+		phase_0 -= static_cast<int>(phase_0);
+		float squareWave = (phase_0 < .5f) ? 2.5f : -2.5f;
 
 		// Osc 2
-		float frequency2 = (frequency - 260.0f);
-		phase2 += frequency2 * rSampleRate * 2;
-		phase -= static_cast<int>(phase);
-		float squareWave2 = (phase2 < .5f) ? 5.0f : -5.0f;
+		phase_1 += phase_inc_1;
+		phase_0 -= static_cast<int>(phase_0);
+		float squareWave2 = (phase_1 < .5f) ? 2.5f : -2.5f;
 
 		// Combine Oscillators
-		float sumOutput = ((squareWave + squareWave2) * 0.5f) * amplitudeEnvelope;
-		sumOutput = std::clamp(sumOutput, -5.0f, 5.0f);
+		float sumOutput = (squareWave + squareWave2) * amplitudeEnvelope;
 
 		// Low-pass filter
 		lowpassOutput = (lowpassAlpha * sumOutput) + ((1.0f - lowpassAlpha) * lowpassOutput);
@@ -77,30 +84,50 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		rSampleRate = 1.f / sampleRate;
+		recalc_decay();
+		recalc_freq();
 	}
 
 private:
-	// Amp decay envelope
-	float amplitudeEnvelope = 1.0f;
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
 
-	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
+	void recalc_decay() {
+		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		float ampDecayTime = 20.0f + (ampDecayControl * 100.0f);
+		ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+	}
+
+	void recalc_freq() {
+		const auto pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		const auto frequency = 500.0f + (pitchControl * 300.0f);
+		const auto rSampleRate = 1.f / sampleRate;
+		phase_inc_0 = frequency * rSampleRate * 2;
+
+		const auto frequency2 = (frequency - 260.0f);
+		phase_inc_1 = frequency2 * rSampleRate * 2;
+	}
+
+	float amplitudeEnvelope = 0.f;
 
 	// Sine oscillator
-	float phase = 0.0f;
-	float phase2 = 0.0f;
+	float phase_0 = 0.0f;
+	float phase_1 = 0.0f;
+	float phase_inc_0 = 0.f;
+	float phase_inc_1 = 0.f;
 
-	// Low-pass filter variables
-	float lowpassAlpha = 0.1f;
+	float ampDecayAlpha = 0.f;
 
 	// High-pass filter variables
 	float lowpassOutput = 0.f;
 	float highpassOutput = 0.f;
-	float highpassAlpha = 0.6f; // Filter cutoff highpass, lower number = more filtering
 	float prevHighpassOutput = 0.0f;
 
 	float sampleRate{48000};
-	float rSampleRate{1.f / 48000};
+
+	RisingEdgeDetector trig{};
 };
 
 } // namespace MetaModule
