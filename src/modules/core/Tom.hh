@@ -70,7 +70,7 @@ public:
 			frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
 		phase += (frequency + modulatedFrequency) * rSampleRate;
 		phase -= static_cast<int>(phase);
-		float sineWave = 5.0f * sinf(2 * M_PIF * phase);
+		float sineWave = 5.0f * std::sin(2 * M_PIF * phase);
 
 		float finalOutput = (sineWave * envelopeValueAmp);
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
