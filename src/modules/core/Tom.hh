@@ -68,8 +68,7 @@ public:
 
 		float modulatedFrequency =
 			frequency + (envelopeValuePitch * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * rSampleRate;
-		phase += frequency * rSampleRate;
+		phase += (frequency + modulatedFrequency) * rSampleRate;
 		phase -= static_cast<int>(phase);
 		float sineWave = 5.0f * sinf(2 * M_PIF * phase);
 
