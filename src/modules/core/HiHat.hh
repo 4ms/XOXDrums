@@ -50,11 +50,11 @@ public:
 	}
 
 	void update(void) override {
-		if (chh_trig.update(getInputAsGate<ClosedTrigIn>())) {
+		if (chh_trig.update(getInputAsGate<ChTrigIn>())) {
 			envelopeValue1 = 1.0f;
 		}
 
-		if (ohh_trig.update(getInputAsGate<OpenTrigIn>())) {
+		if (ohh_trig.update(getInputAsGate<OhTrigIn>())) {
 			envelopeValue2 = 1.0f;
 		}
 

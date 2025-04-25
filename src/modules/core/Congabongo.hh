@@ -20,7 +20,7 @@ public:
 	void set_param(int param_id, float val) override {
 		SmartCoreProcessor::set_param(param_id, val);
 		if (param_id == static_cast<int>(DecayKnob) || param_id == static_cast<int>(PitchKnob) ||
-			param_id == static_cast<int>(RangeSwitch))
+			param_id == static_cast<int>(ModeSwitch))
 		{
 			recalc();
 		}
@@ -34,26 +34,26 @@ public:
 	}
 
 	void update(void) override {
-		if (trig0.update(getInputAsGate<ToneLoGateIn>())) {
+		if (trig0.update(getInputAsGate<ToneLoIn>())) {
 			phase1 = 0.0f;
 			amplitudeEnvelope1 = 1.0f;
 		}
 
 		// Slap Hi input
-		if (trig1.update(getInputAsGate<SlapLoGateIn>()) && amplitudeEnvelope1 > 0.f) {
+		if (trig1.update(getInputAsGate<SlapLoIn>()) && amplitudeEnvelope1 > 0.f) {
 			amplitudeEnvelope1 = 0.f;
 			phase1 = 0.0f;
 			amplitudeEnvelope3 = 1.0f;
 		}
 
 		// Lo trig input
-		if (trig2.update(getInputAsGate<ToneHiGateIn>())) {
+		if (trig2.update(getInputAsGate<ToneHiIn>())) {
 			phase2 = 0.0f;
 			amplitudeEnvelope2 = 1.0f;
 		}
 
 		// Slap LO input
-		if (trig3.update(getInputAsGate<SlapHiGateIn>()) && amplitudeEnvelope2 > 0.f) {
+		if (trig3.update(getInputAsGate<SlapHiIn>()) && amplitudeEnvelope2 > 0.f) {
 			amplitudeEnvelope2 = 0.f;
 			phase2 = 0.0f;
 			amplitudeEnvelope4 = 1.0f;
@@ -105,7 +105,7 @@ private:
 		float freq_hz{};
 
 		//Congabongo switch
-		if (getState<RangeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
+		if (getState<ModeSwitch>() == Toggle2posHoriz::State_t::RIGHT) {
 			freq_hz = 200 + (pitchControl * 250.0f);
 			ampDecayTime = 15.0f + (ampDecayControl * 25.0f);
 		} else {

@@ -34,7 +34,7 @@ public:
 	void update(void) override {
 		const float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			phase = 0.f;
 			amplitudeEnvelope = 1.f;
 		}

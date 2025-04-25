@@ -43,7 +43,7 @@ public:
 
 	void update(void) override {
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			amplitudeEnvelope = 1.0f;
 		}
 

@@ -20,7 +20,7 @@ public:
 		float controlValue = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		controlValue = 0.2f + (controlValue * 0.9f);
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			amplitudeEnvelope = 1.f;
 		}
 

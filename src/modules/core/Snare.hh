@@ -37,11 +37,11 @@ public:
 
 	void set_input(int input_id, float val) override {
 		SmartCoreProcessor::set_input(input_id, val);
-		if (input_id == static_cast<int>(BodyDecayCvIn)) {
+		if (input_id == static_cast<int>(BDecayCvIn)) {
 			recalc_amp_decay();
-		} else if (input_id == static_cast<int>(PitchDecayCvIn)) {
+		} else if (input_id == static_cast<int>(PDecayCvIn)) {
 			recalc_pitch_decay();
-		} else if (input_id == static_cast<int>(NoiseDecayCvIn)) {
+		} else if (input_id == static_cast<int>(NDecayCvIn)) {
 			recalc_noise_decay();
 		} else if (input_id == static_cast<int>(SaturationCvIn)) {
 			recalc_saturation();
@@ -49,10 +49,10 @@ public:
 	}
 
 	void update(void) override {
-		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchIn>());
-		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PitchEnvAmountCvIn>());
-		float noiseVolumeControl = combineKnobBipolarCV(getState<Body_NoiseKnob>(), getInput<Body_NoiseCvIn>());
-		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
+		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PAmtCvIn>());
+		float noiseVolumeControl = combineKnobBipolarCV(getState<BodyNoiseKnob>(), getInput<BnCvIn>());
+		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NColorCvIn>());
 
 		if (trig.update(getInputAsGate<TriggerIn>())) {
 			phase = 0.0f; // reset sine phase for 0 crossing
@@ -111,19 +111,19 @@ private:
 	}
 
 	void recalc_amp_decay() {
-		const auto ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BodyDecayCvIn>());
+		const auto ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BDecayCvIn>());
 		const auto ampDecayTime = 5.0f + (ampDecayControl * 50.0f); // amp decay range
 		ampDecayAlpha = calc_decay_alpha(ampDecayTime);
 	}
 
 	void recalc_pitch_decay() {
-		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PDecayCvIn>());
 		const auto pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
 		pitchDecayAlpha = calc_decay_alpha(pitchDecayTime);
 	}
 
 	void recalc_noise_decay() {
-		const auto noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NoiseDecayCvIn>());
+		const auto noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NDecayCvIn>());
 		const auto noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
 		noiseDecayAlpha = calc_decay_alpha(noiseDecayTime);
 	}

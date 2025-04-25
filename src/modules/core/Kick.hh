@@ -21,7 +21,7 @@ public:
 		SmartCoreProcessor::set_param(param_id, val);
 		if (param_id == static_cast<int>(AmpDecayKnob)) {
 			recalc_amp_decay();
-		} else if (param_id == static_cast<int>(PitchDecayKnob)) {
+		} else if (param_id == static_cast<int>(PDecayKnob)) {
 			recalc_freq_decay();
 		}
 	}
@@ -30,14 +30,14 @@ public:
 		SmartCoreProcessor::set_input(input_id, val);
 		if (input_id == static_cast<int>(AmpDecayCvIn)) {
 			recalc_amp_decay();
-		} else if (input_id == static_cast<int>(PitchDecayCvIn)) {
+		} else if (input_id == static_cast<int>(PDecayCvIn)) {
 			recalc_freq_decay();
 		}
 	}
 
 	void update(void) override {
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float envDepthControl = combineKnobBipolarCV(getState<PitchDepthKnob>(), getInput<DepthCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PDepthKnob>(), getInput<DepthCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
 		if (trig.update(getInputAsGate<TrigIn>())) {
@@ -98,7 +98,7 @@ private:
 	}
 
 	void recalc_freq_decay() {
-		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
+		const auto pitchDecayControl = combineKnobBipolarCV(getState<PDecayKnob>(), getInput<PDecayCvIn>());
 		const auto pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
 		pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 	}

@@ -47,7 +47,7 @@ public:
 
 	void update(void) override {
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			phase_0 = 0.f;
 			amplitudeEnvelope = 1.f;
 		}
