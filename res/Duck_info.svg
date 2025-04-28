@@ -21,7 +21,7 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.3753483"
-     inkscape:cx="28.837876"
+     inkscape:cx="28.627381"
      inkscape:cy="184.815"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
@@ -282,21 +282,21 @@
        cy="313.71"
        r="11.34"
        style="fill: blue;"
-       inkscape:label="DuckedOut" />
+       inkscape:label="Ducked_Out" />
     <circle
        id="Input"
        cx="28.8"
        cy="264.9"
        r="11.34"
        style="fill: lime;"
-       inkscape:label="AudioIn" />
+       inkscape:label="Audio_In" />
     <circle
        id="Trigger"
        cx="28.8"
        cy="216.71"
        r="11.34"
        style="fill: #80ff80;"
-       inkscape:label="TrigIn" />
+       inkscape:label="Trig_In" />
     <circle
        id="Time_CV"
        data-name="Time CV"
