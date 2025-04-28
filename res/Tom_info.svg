@@ -23,7 +23,7 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.3754126"
-     inkscape:cx="155.9729"
+     inkscape:cx="155.76241"
      inkscape:cy="184.81"
      inkscape:window-width="1424"
      inkscape:window-height="1027"
@@ -289,7 +289,7 @@
        cy="313.7"
        r="11.34"
        style="fill: blue;"
-       inkscape:label="TomOut" />
+       inkscape:label="Tom_Out" />
     <circle
        id="Env_Depth_CV"
        data-name="Env Depth CV"
@@ -304,7 +304,7 @@
        cy="272.1"
        r="11.34"
        style="fill: lime;"
-       inkscape:label="PitchDecayCvIn" />
+       inkscape:label="Pitch_Decay_Cv_In" />
     <circle
        id="A_Decay_CV"
        data-name="A Decay CV"
@@ -312,7 +312,7 @@
        cy="232"
        r="11.34"
        style="fill: #80ff80;"
-       inkscape:label="AmpDecayCvIn" />
+       inkscape:label="Amp_Decay_Cv_In" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV"
@@ -326,7 +326,7 @@
        cy="232"
        r="11.34"
        style="fill: #80ff80;"
-       inkscape:label="TrigIn" />
+       inkscape:label="Trig_In" />
     <circle
        id="Env_Depth"
        data-name="Env Depth"
