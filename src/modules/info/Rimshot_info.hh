@@ -15,7 +15,8 @@ struct RimshotInfo : ModuleInfoBase {
 
     using enum Coords;
 
-    static constexpr std::array<Element, 5> Elements{{
+    static constexpr std::array<Element, 6> Elements{{
+		Knob9mm{{to_mm<72>(28.8), to_mm<72>(46.63), Center, "Pitch", ""}, 0.375f},
 		Knob9mm{{to_mm<72>(28.8), to_mm<72>(128.83), Center, "Ring", ""}, 0.5f},
 		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(94.82), Center, "Pitch CV", ""}},
 		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(177.02), Center, "Ring CV", ""}},
@@ -24,6 +25,7 @@ struct RimshotInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
+        PitchKnob,
         RingKnob,
         PitchCvIn,
         RingCvIn,
@@ -34,6 +36,7 @@ struct RimshotInfo : ModuleInfoBase {
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
     
     enum {
+        KnobPitch, 
         KnobRing, 
         NumKnobs,
     };
