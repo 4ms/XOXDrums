@@ -10,8 +10,8 @@ struct HiHatInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"HiHat"};
     static constexpr std::string_view description{"Hi Hat DrumModule"};
     static constexpr uint32_t width_hp = 10;
-    static constexpr std::string_view svg_filename{"res/HiHat_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/HiHat_info.png"};
+    static constexpr std::string_view svg_filename{"res/HiHat.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/HiHat.png"};
 
     using enum Coords;
 

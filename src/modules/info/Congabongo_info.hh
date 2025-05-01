@@ -10,8 +10,8 @@ struct CongabongoInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Congabongo"};
     static constexpr std::string_view description{"Conga Bongo DrumModule"};
     static constexpr uint32_t width_hp = 10;
-    static constexpr std::string_view svg_filename{"res/Congabongo_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Congabongo_info.png"};
+    static constexpr std::string_view svg_filename{"res/Congabongo.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Congabongo.png"};
 
     using enum Coords;
 

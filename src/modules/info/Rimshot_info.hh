@@ -11,7 +11,7 @@ struct RimshotInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Rimshot DrumModule"};
     static constexpr uint32_t width_hp = 302;
     static constexpr std::string_view svg_filename{"res/Rimshot.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Rimshot_info.png"};
+    static constexpr std::string_view png_filename{"4msDrums/Rimshot.png"};
 
     using enum Coords;
 
