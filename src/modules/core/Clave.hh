@@ -1,10 +1,11 @@
 #pragma once
+
 #include "CoreModules/SmartCoreProcessor.hh"
 #include "helpers/param_cv.hh"
 #include "info/Clave_info.hh"
+#include "util/edge_detector.hh"
 #include "util/math.hh"
-
-#include <cmath> // for sine wave
+#include <cmath>
 
 namespace MetaModule
 {
@@ -16,56 +17,68 @@ class Clave : public SmartCoreProcessor<ClaveInfo> {
 public:
 	Clave() = default;
 
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(DecayKnob)) {
+			recalc_decay();
+		}
+	}
+
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(DecayCvIn)) {
+			recalc_decay();
+		}
+	}
+
 	void update(void) override {
+		const float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 
-		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
-
-		// Check if the trigger input is high
-		bool currentTriggerState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
-		bool bangRisingEdge = !triggerStates[0] && currentTriggerState;
-		triggerStates[0] = triggerStates[1];
-		triggerStates[1] = currentTriggerState;
-
-		// Trig input
-		if (bangRisingEdge) {
-			phase = 0.0f; // reset sine phase for 0 crossing
-			amplitudeEnvelope = 1.0f;
+		if (trig.update(getInputAsGate<TriggerIn>())) {
+			phase = 0.f;
+			amplitudeEnvelope = 1.f;
 		}
 
 		// Osc
 		using MathTools::M_PIF;
-		float dt = 1.0f / sampleRate;
-		float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
-		phase += frequency * 4.f * M_PIF * dt;
-		if (phase >= 2.f * M_PIF) {
-			phase -= 2.f * M_PIF;
-		}
-		float sineWave = 5.0f * sinf(phase);
+		const float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
+		phase += frequency * rSampleRate * 2;
+		phase -= static_cast<int>(phase);
+		const float sineWave = 5.0f * std::sin(2 * M_PIF * phase) * amplitudeEnvelope;
 
-		// Envelopes
-		float ampDecayTime = 5.0f + (ampDecayControl * 20.0f); // amp decay range (5ms - 25ms)
-		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
-		amplitudeEnvelope *= ampDecayAlpha;
+		amplitudeEnvelope *= decayAlpha;
 
-		float finalOutput = (sineWave * amplitudeEnvelope);
-		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
+		const auto finalOutput = std::clamp(sineWave, -5.0f, 5.0f);
 
 		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
+	void recalc_decay() {
+		const auto ampDecayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		const auto ampDecayTime = 5.0f + (ampDecayControl * 20.0f); // amp decay range (5ms - 25ms)
+		decayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+	}
+
 	// Sine oscillator
 	float phase = 0.0f;
 	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
+	float sampleRate = 48000;
+	float rSampleRate = 1 / 48000.f;
 
-	bool triggerStates[2] = {false, false}; // triggerStates[0] = last state, triggerStates[1] = current state
+	float decayAlpha{};
 
-	float sampleRate = 48000.0f;
+	RisingEdgeDetector trig{};
 };
 
 } // namespace MetaModule

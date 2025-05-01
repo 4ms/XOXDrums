@@ -5,3 +5,4 @@ build-mm/
 build/
 metamodule-plugins/
 *.mmplugin
+.cache

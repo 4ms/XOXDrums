@@ -8,7 +8,7 @@ namespace MetaModule
 {
 struct TomInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Tom"};
-    static constexpr std::string_view description{"Tom"};
+    static constexpr std::string_view description{"Tom DrumModule"};
     static constexpr uint32_t width_hp = 10;
     static constexpr std::string_view svg_filename{"res/Tom.svg"};
     static constexpr std::string_view png_filename{"4msDrums/Tom_info.png"};
@@ -16,17 +16,17 @@ struct TomInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 11> Elements{{
-		Davies1900hBlackKnob{{to_mm<72>(37.7), to_mm<72>(57.7), Center, "Pitch", ""}, 0.390625f},
-		Davies1900hBlackKnob{{to_mm<72>(106.3), to_mm<72>(57.7), Center, "Amp Decay", ""}, 0.390625f},
-        Toggle3posHoriz{{to_mm<72>(72.0), to_mm<72>(110.15), Center, "Range Switch", ""}, {"Low", "Medium", "High"}, Toggle3posHoriz::State_t::CENTER},
-		Davies1900hBlackKnob{{to_mm<72>(37.7), to_mm<72>(162.7), Center, "Pitch Decay", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<72>(106.3), to_mm<72>(162.7), Center, "Env Depth", ""}, 0.390625f},
-		GateJackInput4ms{{to_mm<72>(29.4), to_mm<72>(232.0), Center, "Trigger", ""}},
-		AnalogJackInput4ms{{to_mm<72>(71.6), to_mm<72>(232.0), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(114.6), to_mm<72>(232.0), Center, "A Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(29.4), to_mm<72>(272.1), Center, "P Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(114.6), to_mm<72>(272.1), Center, "Env Depth CV", ""}},
-		AnalogJackOutput4ms{{to_mm<72>(114.7), to_mm<72>(313.7), Center, "Out", ""}},
+		Davies1900hBlackKnob{{to_mm<96>(50.267), to_mm<96>(76.934), Center, "Pitch", ""}, 0.390625f},
+		Davies1900hBlackKnob{{to_mm<96>(141.734), to_mm<96>(76.934), Center, "Amp Decay", ""}, 0.390625f},
+		Toggle3posHoriz{{to_mm<96>(95.847), to_mm<96>(148.256), Center, "Range Switch", ""}, {"2x", "10x", "100x"}, Toggle3posHoriz::State_t::CENTER},
+		Davies1900hBlackKnob{{to_mm<96>(50.267), to_mm<96>(216.934), Center, "Pitch Decay", ""}, 0.0f},
+		Davies1900hBlackKnob{{to_mm<96>(141.734), to_mm<96>(216.934), Center, "Env Depth", ""}, 0.390625f},
+		GateJackInput4ms{{to_mm<96>(39.2), to_mm<96>(309.335), Center, "Trigger", ""}},
+		AnalogJackInput4ms{{to_mm<96>(95.467), to_mm<96>(309.335), Center, "Pitch CV", ""}},
+		GateJackInput4ms{{to_mm<96>(152.801), to_mm<96>(309.335), Center, "A Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<96>(39.2), to_mm<96>(362.802), Center, "P Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<96>(152.801), to_mm<96>(362.802), Center, "Env Depth CV", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(152.934), to_mm<96>(418.269), Center, "Out", ""}},
 }};
 
     enum class Elem {
@@ -35,12 +35,12 @@ struct TomInfo : ModuleInfoBase {
         RangeSwitch,
         PitchDecayKnob,
         EnvDepthKnob,
-        TrigIn,
+        TriggerIn,
         PitchCvIn,
-        AmpDecayCvIn,
-        PitchDecayCvIn,
+        ADecayCvIn,
+        PDecayCvIn,
         EnvDepthCvIn,
-        TomOut,
+        Out,
     };
 
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)

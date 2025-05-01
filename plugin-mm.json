@@ -9,51 +9,51 @@
   [
     {
       "slug": "Clave",
-      "name": "Clave inspired by XOX style"
+      "name": "Clave"
     },
     {
       "slug": "Cowbell",
-      "name": "Cowbell inspired by XOX style"
+      "name": "Cowbell"
     },
     {
       "slug": "Accent",
-      "name": "A helpful tool for adding dynamics to drums"
+      "name": "Accent"
     },
     {
       "slug": "Clap",
-      "name": "Clap inspired by XOX style"
+      "name": "Clap"
     },
     {
       "slug": "Congabongo",
-      "name": "Conga/bongo inspired by XOX style with added slap inputs"
+      "name": "Congabongo"
     },
     {
       "slug": "HiHat",
-      "name": "HiHat inspired by XOX style"
+      "name": "HiHat"
     },
     {
       "slug": "Maraca",
-      "name": "Maraca inspired by XOX style"
+      "name": "Maraca"
     },
     {
       "slug": "Rimshot",
-      "name": "Rimshot inspired by XOX style"
+      "name": "Rimshot"
     },
     {
       "slug": "Kick",
-      "name": "Kick inspired by XOX style"
+      "name": "Kick"
     },
     {
       "slug": "Snare",
-      "name": "Snare inspired by XOX style"
+      "name": "Snare"
     },
     {
       "slug": "Tom",
-      "name": "Tom inspired by XOX style"
+      "name": "Tom"
     },
     {
       "slug": "Duck",
-      "name": "Duck inspired by XOX style"
+      "name": "Duck"
     }
   ]
 }

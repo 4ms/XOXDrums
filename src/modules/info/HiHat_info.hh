@@ -8,7 +8,7 @@ namespace MetaModule
 {
 struct HiHatInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"HiHat"};
-    static constexpr std::string_view description{"Hi Hat Drum Module"};
+    static constexpr std::string_view description{"Hi Hat DrumModule"};
     static constexpr uint32_t width_hp = 10;
     static constexpr std::string_view svg_filename{"res/HiHat_info.svg"};
     static constexpr std::string_view png_filename{"4msDrums/HiHat_info.png"};
@@ -16,19 +16,19 @@ struct HiHatInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 13> Elements{{
-		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(57.85), Center, "Pitch", ""}, 0.5f},
-		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(57.85), Center, "Decay", ""}, 0.5f},
-		Toggle2posHoriz{{to_mm<72>(72.13), to_mm<72>(110.335), Center, "Choke Switch", ""}, {"Off", "On"}},
-		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(162.82), Center, "Brightness", ""}, 1.0f},
-		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(162.82), Center, "Thickness", ""}, 0.0f},
-		GateJackInput4ms{{to_mm<72>(29.51), to_mm<72>(232.1), Center, "CH Trig", ""}},
-		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(232.1), Center, "Pitch CV", ""}},
-		GateJackInput4ms{{to_mm<72>(114.74), to_mm<72>(232.1), Center, "OH Trig", ""}},
-		AnalogJackInput4ms{{to_mm<72>(29.51), to_mm<72>(272.23), Center, "Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(272.23), Center, "Brightness CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(114.74), to_mm<72>(272.23), Center, "Thickness CV", ""}},
-		AnalogJackOutput4ms{{to_mm<72>(29.47), to_mm<72>(313.84), Center, "CH Out", ""}},
-		AnalogJackOutput4ms{{to_mm<72>(114.78), to_mm<72>(313.84), Center, "OH Out", ""}},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(77.134), Center, "Pitch", ""}, 0.5f},
+		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(77.134), Center, "Decay", ""}, 0.0f},
+		Toggle2pos{{to_mm<96>(96.876), to_mm<96>(145.592), Center, "Choke Switch", ""}, {"Off", "On"}},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(217.095), Center, "Brightness", ""}, 1.0f},
+		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(217.095), Center, "Thickness", ""}, 1.0f},
+		GateJackInput4ms{{to_mm<96>(39.347), to_mm<96>(309.468), Center, "CH Trig", ""}},
+		AnalogJackInput4ms{{to_mm<96>(95.601), to_mm<96>(309.468), Center, "Pitch CV", ""}},
+		GateJackInput4ms{{to_mm<96>(152.987), to_mm<96>(309.468), Center, "OH Trig", ""}},
+		AnalogJackInput4ms{{to_mm<96>(39.347), to_mm<96>(362.975), Center, "Decay CV", ""}},
+		AnalogJackInput4ms{{to_mm<96>(95.601), to_mm<96>(362.975), Center, "Brightness CV", ""}},
+		AnalogJackInput4ms{{to_mm<96>(152.987), to_mm<96>(362.975), Center, "Thickness CV", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(39.294), to_mm<96>(418.456), Center, "CH Out", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(153.041), to_mm<96>(418.456), Center, "OH Out", ""}},
 }};
 
     enum class Elem {

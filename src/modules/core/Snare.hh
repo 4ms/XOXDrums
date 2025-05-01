@@ -1,7 +1,10 @@
 #pragma once
+
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "core/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/Snare_info.hh"
+#include "util/edge_detector.hh"
 #include "util/math.hh"
 #include <cmath>
 
@@ -12,101 +15,121 @@ class Snare : public SmartCoreProcessor<SnareInfo> {
 	using Info = SnareInfo;
 	using enum Info::Elem;
 
+	static constexpr auto filter_q = 1.f;
+
 public:
-	Snare() = default;
+	Snare() {
+		bpf.setQ(filter_q);
+	}
 
-	float biquadBandpassFilter1(float input, float cutoff, float sampleRate1) {
-		// Calculate the filter coefficients for the bandpass filter (using cutoff and resonance)
-		const auto omega = 2.0f * MathTools::M_PIF * cutoff / sampleRate1;
-		float sn = std::sin(omega);
-		float cs = std::cos(omega);
-		float alpha = sn / (2.0f); // Resonance is last number
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(BodyDecayKnob)) {
+			recalc_amp_decay();
+		} else if (param_id == static_cast<int>(PitchDecayKnob)) {
+			recalc_pitch_decay();
+		} else if (param_id == static_cast<int>(NoiseDecayKnob)) {
+			recalc_noise_decay();
+		} else if (param_id == static_cast<int>(SaturationKnob) || param_id == static_cast<int>(RangeSwitch)) {
+			recalc_saturation();
+		}
+	}
 
-		// Compute the bandpass filter coefficients (Biquad)
-		filterB0 = alpha;
-		filterB1 = 0.0f;
-		filterB2 = -alpha;
-		filterA0 = 1.0f + alpha;
-		filterA1 = -2.0f * cs;
-		filterA2 = 1.0f - alpha;
-
-		// Normalize coefficients
-		filterB0 /= filterA0;
-		filterB1 /= filterA0;
-		filterB2 /= filterA0;
-		filterA1 /= filterA0;
-		filterA2 /= filterA0;
-
-		// Apply the filter to the input signal
-		float output =
-			filterB0 * input + filterB1 * filterX1 + filterB2 * filterX2 - filterA1 * filterY1 - filterA2 * filterY2;
-
-		// Update the filter states
-		filterX2 = filterX1;
-		filterX1 = input;
-		filterY2 = filterY1;
-		filterY1 = output;
-
-		return output;
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(BDecayCvIn)) {
+			recalc_amp_decay();
+		} else if (input_id == static_cast<int>(PDecayCvIn)) {
+			recalc_pitch_decay();
+		} else if (input_id == static_cast<int>(NDecayCvIn)) {
+			recalc_noise_decay();
+		} else if (input_id == static_cast<int>(SaturationCvIn)) {
+			recalc_saturation();
+		}
 	}
 
 	void update(void) override {
-
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PAmtCvIn>());
-		float pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PDecayCvIn>());
-		float ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BDecayCvIn>());
-		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 		float noiseVolumeControl = combineKnobBipolarCV(getState<BodyNoiseKnob>(), getInput<BnCvIn>());
 		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NColorCvIn>());
-		float noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NDecayCvIn>());
 
-		// Trig input
-		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
-		if (bangState && !lastBangState) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			noiseEnvelope = 1.0f;
-			pulseTime = ampDecayTime * (sampleRate / 1000.0f);
 		}
-		lastBangState = bangState;
 
 		// Osc
 		using MathTools::M_PIF;
-		float dt = 1.0f / sampleRate;
-		float frequency = 80 + (pitchControl * 100.0f);									   // Body pitch range
+		float frequency = 80 + (pitchControl * 100.0f);										 // Body pitch range
 		float modulatedFrequency = frequency + (pitchEnvelope * (envDepthControl * 500.0f)); // Envelope depth range
-		phase += modulatedFrequency * 2.f * M_PIF * dt;
-		phase += frequency * 2.f * M_PIF * dt;
-		if (phase >= 2.f * M_PIF) {
-			phase -= 2.f * M_PIF;
-		}
-		float sineWave = 5.0f * std::sin(phase);
+		phase += (frequency + modulatedFrequency) * rSampleRate;
+		phase -= static_cast<int>(phase);
+		float sineWave = 5.0f * std::sin(2 * M_PIF * phase);
 		sineWave = (sineWave * ((1.f - noiseVolumeControl) / 2.f));
 
-		// Envelopes
-		ampDecayTime = 5.0f + (ampDecayControl * 50.0f); // amp decay range
-		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
-
-		float pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
-		float pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 		pitchEnvelope *= pitchDecayAlpha;
-
-		float noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
-		float noiseDecayAlpha = std::exp(-1.0f / (sampleRate * (noiseDecayTime / 1000.0f)));
 		noiseEnvelope *= noiseDecayAlpha;
 
 		// Noise + filter
-		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
 		float cutoffFrequency = 1000.0f + (noiseColorControl * 5000.0f);
 		float modulatedCutoffFrequency =
 			cutoffFrequency + (pitchEnvelope * (envDepthControl * 5000.0f)); // Envelope depth range
-		float filteredNoise = (biquadBandpassFilter1(noise, modulatedCutoffFrequency, sampleRate)) * 2.0f;
+		float noise =
+			(std::rand() / static_cast<float>(std::numeric_limits<decltype(std::rand())>::max())) * 10.0f - 5.0f;
+		bpf.setFc(modulatedCutoffFrequency, sampleRate);
+		float filteredNoise = bpf.process(noise) * 2;
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
+		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
+		finalOutput = std::clamp(finalOutput, -2.5f, 2.5f);
+
+		setOutput<Out>(finalOutput);
+	}
+
+	void set_samplerate(float sr) override {
+		sampleRate = sr;
+		rSampleRate = 1.f / sampleRate;
+		recalc_amp_decay();
+		recalc_pitch_decay();
+		recalc_noise_decay();
+		recalc_saturation();
+	}
+
+private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
+	float calc_decay_alpha(float time) {
+		return std::exp(-1.0f / (sampleRate * (time / 1000.0f)));
+	}
+
+	void recalc_amp_decay() {
+		const auto ampDecayControl = combineKnobBipolarCV(getState<BodyDecayKnob>(), getInput<BDecayCvIn>());
+		const auto ampDecayTime = 5.0f + (ampDecayControl * 50.0f); // amp decay range
+		ampDecayAlpha = calc_decay_alpha(ampDecayTime);
+	}
+
+	void recalc_pitch_decay() {
+		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PDecayCvIn>());
+		const auto pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range
+		pitchDecayAlpha = calc_decay_alpha(pitchDecayTime);
+	}
+
+	void recalc_noise_decay() {
+		const auto noiseDecayControl = combineKnobBipolarCV(getState<NoiseDecayKnob>(), getInput<NDecayCvIn>());
+		const auto noiseDecayTime = 5.0f + (noiseDecayControl * 75.0f); // pitch decay range
+		noiseDecayAlpha = calc_decay_alpha(noiseDecayTime);
+	}
+
+	void recalc_saturation() {
+		const auto saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 		switch (getState<RangeSwitch>()) {
 			using enum Toggle3posHoriz::State_t;
 			case RIGHT:
@@ -119,43 +142,31 @@ public:
 				saturation = 1 + (saturationControl * 2);
 				break;
 		}
-
-		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
-		finalOutput = std::clamp(finalOutput, -2.5f, 2.5f);
-
-		setOutput<Out>(finalOutput);
 	}
 
-	void set_samplerate(float sr) override {
-		sampleRate = sr;
-	}
-
-private:
+	BiquadBPF bpf{};
 	// Sine oscillator
 	float phase = 0.0f;
 
 	// Body decay envelope
-	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-	float ampDecayTime = 5.0f;		// Decay time in ms (5ms as requested)
+	float amplitudeEnvelope = 0.0f; // Envelope output value (for volume control)
+	float ampDecayAlpha = 0.0f;		// Decay time in ms (5ms as requested)
+
+	float sampleRate{48000};
+	float rSampleRate{1.f / 48000};
 
 	// Pitch decay envelope
-	float pitchEnvelope = 1.0f;	  // Envelope output value (for volume control)
+	float pitchEnvelope = 0.0f;
+	float pitchDecayAlpha = 0.f;
 
 	// Noise decay envelope
-	float noiseEnvelope = 1.0f;
-
-	// Trig
-	bool lastBangState = false;	 // Previous state of the Bang input
-	float pulseTime = 0.0f;		 // Time tracking for pulse duration
+	float noiseEnvelope = 0.0f;
+	float noiseDecayAlpha = 0.f;
 
 	// Output
 	float saturation = 0.0f;
 
-	// Bandpass
-	float filterB0 = 0.0f, filterB1 = 0.0f, filterB2 = 0.0f, filterA0 = 0.0f, filterA1 = 0.0f, filterA2 = 0.0f;
-	float filterX1 = 0.0f, filterX2 = 0.0f, filterY1 = 0.0f, filterY2 = 0.0f;
-
-	float sampleRate = 48000.0f;
+	RisingEdgeDetector trig{};
 };
 
 } // namespace MetaModule

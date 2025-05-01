@@ -1,8 +1,10 @@
 #pragma once
+
 #include "CoreModules/SmartCoreProcessor.hh"
+#include "core/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
-#include "util/math.hh"
+#include "util/edge_detector.hh"
 
 namespace MetaModule
 {
@@ -11,74 +13,49 @@ class Maraca : public SmartCoreProcessor<MaracaInfo> {
 	using Info = MaracaInfo;
 	using enum Info::Elem;
 
+	static constexpr auto highpass_q = 1.f;
+	static constexpr auto highpass_fc = 6000.f;
+
 public:
-	Maraca() = default;
+	Maraca() {
+		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
+	}
 
-	float highpass(float input,
-				   float &prevInput1,
-				   float &prevInput2,
-				   float &prevOutput1,
-				   float &prevOutput2,
-				   float cutoffFreq,
-				   float sampleRate1,
-				   float resonance) {
-		// Calculate the filter coefficients for the 12dB/octave high-pass filter
-		float omega = 2.0f * MathTools::M_PIF * cutoffFreq / sampleRate1; // Angular frequency
-		float sinOmega = std::sin(omega);
-		float cosOmega = std::cos(omega);
-		float alpha = sinOmega / (2.0f * resonance); // Q factor
+	void set_param(int param_id, float val) override {
+		SmartCoreProcessor::set_param(param_id, val);
+		if (param_id == static_cast<int>(DecayKnob)) {
+			recalc_decay();
+		}
+	}
 
-		// Coefficients for the high-pass filter (resonant, 12dB per octave)
-		float b0 = (1.0f + cosOmega) / 2.0f;
-		float b1 = -(1.0f + cosOmega);
-		float b2 = b0;
-		float a0 = 1.0f + alpha;
-		float a1 = -2.0f * cosOmega;
-		float a2 = 1.0f - alpha;
+	void set_input(int input_id, float val) override {
+		SmartCoreProcessor::set_input(input_id, val);
+		if (input_id == static_cast<int>(DecayCvIn)) {
+			recalc_decay();
+		}
+	}
 
-		// Normalize coefficients
-		b0 /= a0;
-		b1 /= a0;
-		b2 /= a0;
-		a1 /= a0;
-		a2 /= a0;
-
-		// Apply the high-pass filter (biquad filter)
-		float output = b0 * input + b1 * prevInput1 + b2 * prevInput2 - a1 * prevOutput1 - a2 * prevOutput2;
-
-		// Update the filter state variables
-		prevInput2 = prevInput1;
-		prevInput1 = input;
-		prevOutput2 = prevOutput1;
-		prevOutput1 = output;
-
-		return output;
+	void recalc_decay() {
+		const auto decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		const auto ampDecayTime = 2.5f + (decayControl * 10.0f); //
+		ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 	}
 
 	void update(void) override {
-		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
-		float decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
 
-		// Trig input
-		bool bangState = getInput<TriggerIn>().value_or(0.f) > 0.5f;
-		if (bangState) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			amplitudeEnvelope = 1.0f;
 		}
-		lastBangState = bangState;
 
-		// Envelopes
-		float ampDecayTime = 2.5f + (decayControl * 10.0f); //
-		float ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 		amplitudeEnvelope *= ampDecayAlpha;
 
+		float noise = (rand() / (float)RAND_MAX) * 10.0f - 5.0f;
 		float VCAOut = (noise * amplitudeEnvelope);
 
-		float highpassResonance = 1.f;
-		float hpCutoffFreq = 6000.f; // Base frequency for high-pass filter
-		float highpassOut =
-			highpass(VCAOut, prevIn1, prevIn2, prevOut1, prevOut2, hpCutoffFreq, sampleRate, highpassResonance);
+		float highpassOut = hpf.process(VCAOut);
 
-		float finalOutput = (highpassOut * 0.75f); // Apply makeup gain post filter
+		float finalOutput = highpassOut * 0.75f; // Apply makeup gain post filter
+
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
 		setOutput<Out>(finalOutput);
@@ -86,20 +63,25 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
+		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
+		recalc_decay();
 	}
 
 private:
+	template<Info::Elem EL>
+	bool getInputAsGate() {
+		return getInput<EL>().value_or(0.f) > 0.5f;
+	}
+
+	BiquadHPF hpf{};
+
 	// Amp decay envelope
-	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
+	float amplitudeEnvelope = 0.0f; // Envelope output value (for volume control)
+	float ampDecayAlpha = 0.f;
 
-	// Trig
-	bool lastBangState = false;	 // Previous state of the Bang input
+	float sampleRate{48000};
 
-	// High-pass filter variables
-	float prevIn1 = 0.0f, prevIn2 = 0.0f;
-	float prevOut1 = 0.0f, prevOut2 = 0.0f;
-
-	float sampleRate = 48000.0f;
+	RisingEdgeDetector trig{};
 };
 
 } // namespace MetaModule
