@@ -9,9 +9,9 @@ namespace MetaModule
 struct SnareInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Snare"};
     static constexpr std::string_view description{"Snare Drum Module"};
-    static constexpr uint32_t width_hp = 15;
-    static constexpr std::string_view svg_filename{"res/Snare_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Snare_info.png"};
+    static constexpr uint32_t width_hp = 1080;
+    static constexpr std::string_view svg_filename{"res/Snare.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Snare.png"};
 
     using enum Coords;
 
@@ -23,8 +23,8 @@ struct SnareInfo : ModuleInfoBase {
 		Davies1900hBlackKnob{{to_mm<72>(108.0), to_mm<72>(104.62), Center, "Noise Decay", ""}, 0.2578125f},
 		Davies1900hBlackKnob{{to_mm<72>(172.5), to_mm<72>(104.62), Center, "Body Decay", ""}, 0.3125f},
 		Davies1900hBlackKnob{{to_mm<72>(43.5), to_mm<72>(163.3), Center, "Body Noise", ""}, 0.3125f},
-        Toggle3posHoriz{{to_mm<72>(108.0), to_mm<72>(163.175), Center, "Range", ""}, {"2x", "10x", "100x"}, Toggle3posHoriz::State_t::LEFT},
-		Davies1900hBlackKnob{{to_mm<72>(172.39), to_mm<72>(163.21), Center, "Saturation", ""}, 0.0f},
+		Toggle3pos{{to_mm<72>(108.0), to_mm<72>(163.175), Center, "Range Switch", ""}, {"2x", "10x", "100x"}},
+		Davies1900hBlackKnob{{to_mm<72>(172.39), to_mm<72>(163.21), Center, "Saturation", ""}, 0.78125f},
 		GateJackInput4ms{{to_mm<72>(35.54), to_mm<72>(232.21), Center, "Trigger", ""}},
 		AnalogJackInput4ms{{to_mm<72>(83.82), to_mm<72>(232.21), Center, "Pitch CV", ""}},
 		AnalogJackInput4ms{{to_mm<72>(132.1), to_mm<72>(232.21), Center, "P Decay CV", ""}},

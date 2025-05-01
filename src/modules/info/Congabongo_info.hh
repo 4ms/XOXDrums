@@ -9,15 +9,15 @@ namespace MetaModule
 struct CongabongoInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Congabongo"};
     static constexpr std::string_view description{"Conga Bongo Drum Module"};
-    static constexpr uint32_t width_hp = 10;
-    static constexpr std::string_view svg_filename{"res/Congabongo_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Congabongo_info.png"};
+    static constexpr uint32_t width_hp = 720;
+    static constexpr std::string_view svg_filename{"res/Congabongo.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Congabongo.png"};
 
     using enum Coords;
 
     static constexpr std::array<Element, 11> Elements{{
 		Davies1900hBlackKnob{{to_mm<72>(72.11), to_mm<72>(57.85), Center, "Pitch", ""}, 0.0f},
-		Davies1900hBlackKnob{{to_mm<72>(72.11), to_mm<72>(119.09), Center, "Decay", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(72.11), to_mm<72>(119.09), Center, "Decay", ""}, 0.5f},
 		Toggle2posHoriz{{to_mm<72>(72.11), to_mm<72>(173.825), Center, "Mode Switch", ""}, {"Conga", "Bongo"}},
 		GateJackInput4ms{{to_mm<72>(29.51), to_mm<72>(232.2), Center, "Slap LO", ""}},
 		AnalogJackInput4ms{{to_mm<72>(71.7), to_mm<72>(232.1), Center, "Pitch CV", ""}},

@@ -9,9 +9,9 @@ namespace MetaModule
 struct MaracaInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Maraca"};
     static constexpr std::string_view description{"Maraca Drum Module"};
-    static constexpr uint32_t width_hp = 4;
-    static constexpr std::string_view svg_filename{"res/Maraca_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Maraca_info.png"};
+    static constexpr uint32_t width_hp = 288;
+    static constexpr std::string_view svg_filename{"res/Maraca.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Maraca.png"};
 
     using enum Coords;
 

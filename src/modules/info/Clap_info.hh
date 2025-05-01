@@ -9,19 +9,19 @@ namespace MetaModule
 struct ClapInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Clap"};
     static constexpr std::string_view description{"Clap Drum Module"};
-    static constexpr uint32_t width_hp = 24;
-    static constexpr std::string_view svg_filename{"res/Clap_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Clap_info.png"};
+    static constexpr uint32_t width_hp = 720;
+    static constexpr std::string_view svg_filename{"res/Clap.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Clap.png"};
 
     using enum Coords;
 
     static constexpr std::array<Element, 14> Elements{{
-		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(46.52), Center, "Energy", ""}, 0.5f},
-		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(46.42), Center, "Spread", ""}, 0.5f},
-		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(104.62), Center, "Color", ""}, 0.5f},
-		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(104.62), Center, "Verb Decay", ""}, 0.5f},
-		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(162.82), Center, "Verb Volume", ""}, 0.5f},
-		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(162.82), Center, "Saturation", ""}, 0.5f},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(46.52), Center, "Energy", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(46.42), Center, "Spread", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(104.62), Center, "Color", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(104.62), Center, "Verb Decay", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(37.85), to_mm<72>(162.82), Center, "Verb Volume", ""}, 0.25f},
+		Davies1900hBlackKnob{{to_mm<72>(106.4), to_mm<72>(162.82), Center, "Saturation", ""}, 0.25f},
 		GateJackInput4ms{{to_mm<72>(29.47), to_mm<72>(232.1), Center, "Trig", ""}},
 		AnalogJackInput4ms{{to_mm<72>(71.65), to_mm<72>(232.1), Center, "Energy CV", ""}},
 		AnalogJackInput4ms{{to_mm<72>(114.7), to_mm<72>(232.1), Center, "Spread CV", ""}},

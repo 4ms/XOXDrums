@@ -9,9 +9,9 @@ namespace MetaModule
 struct ClaveInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Clave"};
     static constexpr std::string_view description{"Clave Drum Module"};
-    static constexpr uint32_t width_hp = 4;
-    static constexpr std::string_view svg_filename{"res/Clave_info.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Clave_info.png"};
+    static constexpr uint32_t width_hp = 288;
+    static constexpr std::string_view svg_filename{"res/Clave.svg"};
+    static constexpr std::string_view png_filename{"4msDrums/Clave.png"};
 
     using enum Coords;
 

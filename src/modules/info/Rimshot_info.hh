@@ -9,14 +9,13 @@ namespace MetaModule
 struct RimshotInfo : ModuleInfoBase {
     static constexpr std::string_view slug{"Rimshot"};
     static constexpr std::string_view description{"Rimshot Drum Module"};
-    static constexpr uint32_t width_hp = 4;
+    static constexpr uint32_t width_hp = 288;
     static constexpr std::string_view svg_filename{"res/Rimshot.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Rimshot_info.png"};
+    static constexpr std::string_view png_filename{"4msDrums/Rimshot.png"};
 
     using enum Coords;
 
-    static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<72>(28.8), to_mm<72>(46.63), Center, "Pitch", ""}, 0.5f},
+    static constexpr std::array<Element, 5> Elements{{
 		Knob9mm{{to_mm<72>(28.8), to_mm<72>(128.83), Center, "Ring", ""}, 0.5f},
 		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(94.82), Center, "Pitch CV", ""}},
 		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(177.02), Center, "Ring CV", ""}},
@@ -25,18 +24,16 @@ struct RimshotInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        PitchKnob,
         RingKnob,
         PitchCvIn,
         RingCvIn,
-        TrigIn,
-        RimshotOut,
+        TriggerIn,
+        Out,
     };
 
     // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
     
     enum {
-        KnobPitch, 
         KnobRing, 
         NumKnobs,
     };
