@@ -36,7 +36,7 @@ public:
 		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			amplitudeEnvelope = 1.0f;
 		}
 
@@ -44,11 +44,11 @@ public:
 
 		float scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope)*amountControl));
 
-		float VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc;
+		float VCAOut = (getInput<InputIn>().value_or(0.f) * scaled) * agc;
 
 		float finalOutput = VCAOut;
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
-		setOutput<DuckedOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

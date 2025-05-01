@@ -46,7 +46,7 @@ public:
 	}
 
 	void update(void) override {
-		const auto level = getInput<TrigIn>().value_or(0.f);
+		const auto level = getInput<TriggerIn>().value_or(0.f);
 
 		if (trig.update(level > .5f)) {
 			count = 0;
@@ -55,7 +55,7 @@ public:
 		const auto impulse = count >= impulse_num_samples ? 0.f : level;
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
-		setOutput<RimshotOut>(finalOutput);
+		setOutput<Out>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
