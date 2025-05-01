@@ -20,13 +20,6 @@ DISTRIBUTABLES += $(wildcard LICENSE*) res
 
 MMBUILD_DIR = build
 
-res/%.svg: src/modules/svg/%_info.svg
-	scripts/svgextract/svgextract.py createVcvSvg $< $@
-
-MODULES := $(notdir $(wildcard src/modules/svg/*_info.svg))
-VCV_SVGS := $(addprefix res/,$(MODULES:_info.svg=.svg))
-
-update-svg: $(VCV_SVGS)
 
 .PHONY: mm config clean-mm
 
@@ -45,4 +38,24 @@ mm: $(MMBUILD_DIR)/CMakeCache.txt
 clean-mm:
 	rm -rf metamodule-plugins
 
-clean: clean-mm
+
+INFO_SVGS := $(notdir $(wildcard src/modules/svg/*_info.svg))
+MODULES := $(INFO_SVGS:_info.svg=)
+VCV_SVGS := $(addsuffix .svg,$(addprefix res/,$(MODULES)))
+INFO_HEADERS := $(addsuffix _info.hh,$(addprefix src/modules/info/,$(MODULES)))
+
+vcv-svgs: $(VCV_SVGS)
+
+res/%.svg: src/modules/svg/%_info.svg
+	scripts/svgextract/svgextract.py createVcvSvg $< $@
+
+clean-vcvsvgs:
+	rm $(VCV_SVGS)
+
+info-headers: $(INFO_HEADERS)
+
+src/modules/info/%.hh: src/modules/svg/%.svg
+	scripts/svgextract/svgextract.py createInfo $< src/modules/info/ 4msDrums
+
+
+clean: clean-mm clean-vcvsvgs
