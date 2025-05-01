@@ -1,6 +1,8 @@
 RACK_DIR ?= ../..
 METAMODULE_SDK_DIR ?= metamodule-plugin-sdk
 
+BRAND_SLUG := 4msDrums
+
 SOURCES =
 SOURCES += src/vcv/comm_module.cc
 SOURCES += src/plugin-vcv.cc
@@ -58,6 +60,9 @@ VCV_SVGS := $(addsuffix .svg,$(addprefix res/,$(MODULES)))
 INFO_HEADERS := $(addsuffix _info.hh,$(addprefix src/modules/info/,$(MODULES)))
 MODULE_PNGS := $(addsuffix .png,$(addprefix assets/,$(MODULES)))
 
+# Call this if an info.svg file is updated
+update-images: vcv-svgs info-headers asset-pngs
+
 vcv-svgs: $(VCV_SVGS)
 
 info-headers: $(INFO_HEADERS)
@@ -69,7 +74,7 @@ res/%.svg: src/modules/svg/%_info.svg
 
 
 src/modules/info/%.hh: src/modules/svg/%.svg
-	scripts/svgextract/svgextract.py createInfo $< src/modules/info/ 4msDrums
+	scripts/svgextract/svgextract.py createInfo $< src/modules/info/ $(BRAND_SLUG)
 
 assets/%.png: res/%.svg
 	scripts/svgextract/svgextract.py convertFaceplateToPng $< assets/
