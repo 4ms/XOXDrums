@@ -66,6 +66,21 @@ To re-configure the MetaModule plugin cmake build:
 make config
 ```
 
+
+Edit the Makefile and set the BRAND_SLUG to be the actual brand slug that's used in VCV and MetaModule. This gets
+used to create the correct path to the PNG files for the MetaModule plugin.
+
+Once you have the BRAND_SLUG set, and you've created your info SVGs (see below), 
+you can generate all PNG, SVG and info headers with this command:
+
+```
+make update-images
+```
+
+Also run the above command any time you change the info SVG files.
+
+
+
 ## Adding or editing a module
 
 Each module has two classes: the core class (DSP features) and the info class (GUI features).
@@ -74,28 +89,55 @@ The core class is found in src/modules/core/. For example, `src/modules/core/MyM
 
 The info class is found in src/modules/info/, for example `src/modules/info/MyModule_info.hh`.
 
-The info class file is typically generated from an SVG file using the
+The info class file is generated from an SVG file using the
 svgextract python script (see below). These SVG files live in
 `src/modules/svg/MyModule_info.svg`.
 
 When you add a new module, you'll also need to add it to the init() functions in plugin-vcv.cc and plugin-mm.cc.
 Copy the examples, and make sure to `#include` the core .hh file.
 
-You alos need to edit to add a new module is in plugin.json and plugin-mm.json.
+You also need to edit to add a new module is in plugin.json and plugin-mm.json.
 
 And finally, the faceplate and component artwork needs to be present for both projects.
 
 In summary, here are all the places where a new module needs to be added:
 - Create `src/modules/core/NewModule.cc` to define your module's core
 - Create `src/modules/svg/NewModule_info.svg` to define how the module looks
-- Run svgextract script to generate `src/modules/info/NewModule_info.hh`
+- Run `make update-images` to generate `src/modules/info/NewModule_info.hh`, and `assets/NewModule.png` and `res/NewModule.svg`
 - Add an `#include` and `register_module()` to `src/plugin-mm.cc`
 - Add an `#include`, a `GenericModule<...>::create()` and a `p->addModel();` to `src/plugin-vcv.cc`
 - Add an entry to plugin.json
 - Add an entry to plugin-mm.json
-- Create the VCV artwork SVG in `res/`
-- Create the MetaModule artwork PNG in `assets/` (typically using SvgToPng, see Artwork section below).
-- Go back and modify the `_info.hh` file to set the exact names and paths for the faceplate SVG and PNG files.
+
+
+## Workflow
+
+If you need to adjust a control, or XY position of something, you should make the change in the info.svg file. Then run `make update-images`
+to re-generate the info.hh, png, and vcv svg files. 
+This will keep everything in sync, and avoid lots of issues. 
+
+If you have a special situation and you don't want to update all three things
+at once, then (say, for instance if you made custom PNG files that look good at
+low-res), then you can issue separate commands to do the re-generating:
+
+
+Re-generate just the VCV SVG:
+```bash
+make res/ModuleName.svg
+```
+
+Re-generate just the MetaModule PNG:
+```bash
+make assets/ModuleName.png
+```
+
+
+Re-generate just the info header file:
+```bash
+make src/modules/info/ModuleName_info.hh
+```
+
+If you are curious, take a look at the Makefile to see what commands those run (it's a script called svgextract.py)
 
 
 ## Using a different MetaModule SDK
@@ -174,33 +216,44 @@ You must have two text objects (not converted to outlines) on the components
 layer (don't worry, they won't show up on your artwork!). The slug object is the module slug,
 and the modulename object is a longer description.
 
-When you have the SVG file, run the svgextract python script on it to create an info file:
+When you have the SVG file you can run a command to automatically generate the VCV artwork SVG, the MetaModule artwork PNG, and the info header file:
 
 ```bash
-python3 scripts/svgextract/svgextract.py createinfo src/modules/svg/MyModule_info.svg src/modules/info/
+make update-images
+```
+
+This will scan the `src/modules/svg/` dir for any updated or new files and generate the following:
+ 
+ - Generate `src/modules/info/Module_info.hh`  
+ - Generate `res/Module.hh`
+ - Generate `assets/Module.png`
+
+
+### Details of the info file
+
+You can regenerate just the info header file if need to with this:
+
+```bash
+python3 scripts/svgextract/svgextract.py createinfo src/modules/svg/MyModule_info.svg src/modules/info/  MyBrandName
 ```
 
 This will create a file named `MyModule_info.hh` in src/modules/info
 
+The text `MyBrandName` in the command above gets used as the path to the PNG file. This should match the brand slug of your plugin.
 
-Open this file and edit the paths to the faceplate files (svg_filename and png_filename).
-The script can't know how you organize these files, so you have to do this manually.
+Open this file and look at the paths to the faceplate files (svg_filename and png_filename).
 
 svg_filename is the VCV rack panel artwork. This will be something like `res/panel.svg`. 
 
-png_filename is the MetaModule artwork. This must start with your brand slug, that is, the plugin name (`MyPlugin/panel.svg`).
-Keep in mind that when the plugin is loaded into MetaModule, it will unpack everything in assets/ into a directory with the name
-of your brand slug. So if you have a file called `assets/knobs/ABCD.png` then it will be preset at `MyBrandSlug/knobs/ABCD.png`.
+png_filename is the MetaModule artwork. This must start with your brand slug
+(which is why you enter your brand slug into the command above), that is, the
+plugin name (`MyPlugin/panel.svg`).
 
+Keep in mind that when the plugin is loaded into MetaModule, it will unpack
+everything in assets/ into a directory with the name of your brand slug. So if
+you have a file called `assets/knobs/ABCD.png` then it will be preset at
+`MyBrandSlug/knobs/ABCD.png`.
 
-### Generating artwork
-
-Typically just run:
-```bash
-metamodule-plugin-sdk/scripts/SvgToPng.py --input res/ --output assets/
-```
-
-And repeat that command for any subdirs you have in res/ (you need to create the subdir in assets/ as well)
 
 
 ### Using custom knobs, jacks, buttons, etc.
