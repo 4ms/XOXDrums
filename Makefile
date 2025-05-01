@@ -20,6 +20,14 @@ DISTRIBUTABLES += $(wildcard LICENSE*) res
 
 MMBUILD_DIR = build
 
+res/%.svg: src/modules/svg/%_info.svg
+	scripts/svgextract/svgextract.py createVcvSvg $< $@
+
+MODULES := $(notdir $(wildcard src/modules/svg/*_info.svg))
+VCV_SVGS := $(addprefix res/,$(MODULES:_info.svg=.svg))
+
+update-svg: $(VCV_SVGS)
+
 .PHONY: mm config clean-mm
 
 include $(RACK_DIR)/plugin.mk
