@@ -22,18 +22,20 @@ public:
 
 	void set_param(int param_id, float val) override {
 		SmartCoreProcessor::set_param(param_id, val);
-		if (param_id == static_cast<int>(DecayKnob)) {
+
+		if (param_id == param_idx<DecayKnob>) {
 			recalc_decay();
-		} else if (param_id == static_cast<int>(PitchKnob)) {
+		} else if (param_id == param_idx<PitchKnob>) {
 			recalc_freq();
 		}
 	}
 
 	void set_input(int input_id, float val) override {
 		SmartCoreProcessor::set_input(input_id, val);
-		if (input_id == static_cast<int>(DecayCvIn)) {
+
+		if (input_id == input_idx<DecayCvIn>) {
 			recalc_decay();
-		} else if (input_id == static_cast<int>(PitchCvIn)) {
+		} else if (input_id == input_idx<PitchCvIn>) {
 			recalc_freq();
 		}
 	}

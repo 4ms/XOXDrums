@@ -17,14 +17,16 @@ public:
 
 	void set_param(int param_id, float val) override {
 		SmartCoreProcessor::set_param(param_id, val);
-		if (param_id == static_cast<int>(AmountKnob)) {
+
+		if (param_id == param_idx<AmountKnob>) {
 			recalc_decay();
 		}
 	}
 
 	void set_input(int input_id, float val) override {
 		SmartCoreProcessor::set_input(input_id, val);
-		if (input_id == static_cast<int>(AmountCvIn)) {
+
+		if (input_id == input_idx<AmountCvIn>) {
 			recalc_decay();
 		}
 	}

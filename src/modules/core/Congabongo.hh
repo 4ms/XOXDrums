@@ -19,16 +19,16 @@ public:
 
 	void set_param(int param_id, float val) override {
 		SmartCoreProcessor::set_param(param_id, val);
-		if (param_id == static_cast<int>(DecayKnob) || param_id == static_cast<int>(PitchKnob) ||
-			param_id == static_cast<int>(ModeSwitch))
-		{
+
+		if (param_id == param_idx<DecayKnob> || param_id == param_idx<PitchKnob> || param_id == param_idx<ModeSwitch>) {
 			recalc();
 		}
 	}
 
 	void set_input(int input_id, float val) override {
 		SmartCoreProcessor::set_input(input_id, val);
-		if (input_id == static_cast<int>(DecayCvIn) || input_id == static_cast<int>(PitchCvIn)) {
+
+		if (input_id == input_idx<DecayCvIn> || input_id == input_idx<PitchCvIn>) {
 			recalc();
 		}
 	}

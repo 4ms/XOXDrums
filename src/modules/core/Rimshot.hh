@@ -21,18 +21,20 @@ public:
 
 	void set_param(int param_id, float val) override {
 		SmartCoreProcessor::set_param(param_id, val);
-		if (param_id == static_cast<int>(PitchKnob)) {
+
+		if (param_id == param_idx<PitchKnob>) {
 			recalc_hpf();
-		} else if (param_id == static_cast<int>(RingKnob)) {
+		} else if (param_id == param_idx<RingKnob>) {
 			recalc_hpf();
 		}
 	}
 
 	void set_input(int input_id, float val) override {
 		SmartCoreProcessor::set_input(input_id, val);
-		if (input_id == static_cast<int>(PitchCvIn)) {
+
+		if (input_id == input_idx<PitchCvIn>) {
 			recalc_hpf();
-		} else if (input_id == static_cast<int>(RingCvIn)) {
+		} else if (input_id == input_idx<RingCvIn>) {
 			recalc_hpf();
 		}
 	}
