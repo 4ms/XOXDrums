@@ -116,7 +116,7 @@ private:
 	void recalc_hpfs() {
 		float thicknessControl = combineKnobBipolarCV(getState<ThicknessKnob>(), getInput<ThicknessCvIn>());
 
-		finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 5.0f, 1.0f);
+		finalMakeup = MathTools::map_value(thicknessControl, 0.f, 1.f, 10.0f, 2.0f);
 
 		float hpCutoffFreq =
 			MathTools::map_value(thicknessControl, 1.f, 0.f, 1000.f, 10000.f); // Base frequency for high-pass filter

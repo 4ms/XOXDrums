@@ -85,8 +85,8 @@ public:
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
 		filteredNoise = std::clamp(filteredNoise, -5.0f, 5.0f);
 
-		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation;
-		finalOutput = std::clamp(finalOutput, -2.5f, 2.5f);
+		float finalOutput = ((sineWave * amplitudeEnvelope) + filteredNoise) * saturation * 2.f;
+		finalOutput = std::clamp(finalOutput, -5.f, 5.f);
 
 		setOutput<Out>(finalOutput);
 	}

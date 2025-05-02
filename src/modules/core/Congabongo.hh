@@ -111,8 +111,8 @@ private:
 		}
 
 		const auto rSampleRate = 1.f / sampleRate;
-		phaseInc1 = freq_hz * rSampleRate * 2;
-		phaseInc2 = freq_hz * (3.f / 4.f) * rSampleRate * 2;
+		phaseInc2 = freq_hz * rSampleRate * 2;
+		phaseInc1 = freq_hz * (3.f / 4.f) * rSampleRate * 2;
 		ampDecayToneAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 	}
 
