@@ -30,7 +30,10 @@ clean: clean-mm
 # Build Rack plugin
 #
 
-EXTRA_FLAGS := -mmacosx-version-min=10.13
+MACHINE := $(shell $(CC) -dumpmachine)
+ifneq (,$(findstring -darwin,$(MACHINE)))
+	EXTRA_FLAGS := -mmacosx-version-min=10.13
+endif
 
 include $(RACK_DIR)/plugin.mk
 
