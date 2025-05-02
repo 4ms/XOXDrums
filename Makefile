@@ -30,6 +30,8 @@ clean: clean-mm
 # Build Rack plugin
 #
 
+EXTRA_FLAGS := -mmacosx-version-min=10.13
+
 include $(RACK_DIR)/plugin.mk
 
 # 
