@@ -29,7 +29,7 @@ public:
 			recalc_hpfs();
 		} else if (param_id == static_cast<int>(BrightnessKnob)) {
 			recalc_bpf();
-		} else if (param_id == static_cast<int>(DecayKnob) || param_id == static_cast<int>(ChokeSwitch)) {
+		} else if (param_id == static_cast<int>(DecayKnob)) {
 			recalc_decay();
 		} else if (param_id == static_cast<int>(PitchKnob)) {
 			recalc_freq();
@@ -50,8 +50,14 @@ public:
 	}
 
 	void update(void) override {
+		float decay_ohh_choked = decay_ohh;
+
 		if (chh_trig.update(getInputAsGate<ChTrigIn>())) {
 			envelopeValue1 = 1.0f;
+			// Choke mode: Silence the open hihat decay if the closed hihat gets a trigger
+			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
+				decay_ohh_choked = 0.f;
+			}
 		}
 
 		if (ohh_trig.update(getInputAsGate<OhTrigIn>())) {
@@ -70,7 +76,7 @@ public:
 
 		const float bandpassOut = bpf.process(oscSum);
 
-		envelopeValue2 *= decay_ohh;
+		envelopeValue2 *= decay_ohh_choked;
 		envelopeValue1 *= decay_chh;
 
 		// Apply envelope to bandpass output
@@ -124,15 +130,11 @@ private:
 	}
 
 	void recalc_decay() {
-		if (getState<ChokeSwitch>() == Toggle2posHoriz::State_t::LEFT) {
-			const auto decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
-			constexpr auto min_seconds = 50.f / 1000.f;
-			constexpr auto max_seconds = 250.f / 1000.f;
-			const auto decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, min_seconds, max_seconds);
-			decay_ohh = std::exp(-1.f / sampleRate / decayTimeOpen);
-		} else {
-			decay_ohh = 0.f;
-		}
+		const auto decayControl = combineKnobBipolarCV(getState<DecayKnob>(), getInput<DecayCvIn>());
+		constexpr auto min_seconds = 50.f / 1000.f;
+		constexpr auto max_seconds = 250.f / 1000.f;
+		const auto decayTimeOpen = MathTools::map_value(decayControl, 0.0f, 1.0f, min_seconds, max_seconds);
+		decay_ohh = std::exp(-1.f / sampleRate / decayTimeOpen);
 	}
 
 	void recalc_freq() {
