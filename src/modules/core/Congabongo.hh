@@ -34,51 +34,48 @@ public:
 	}
 
 	void update(void) override {
-		if (trig0.update(getInputAsGate<ToneLoIn>())) {
+		if (trigToneLo.update(getInputAsGate<ToneLoIn>())) {
 			phase1 = 0.0f;
-			amplitudeEnvelope1 = 1.0f;
+			amplitudeEnvelopeToneLo = 1.0f;
 		}
 
-		// Slap Hi input
-		if (trig1.update(getInputAsGate<SlapLoIn>()) && amplitudeEnvelope1 > 0.f) {
-			amplitudeEnvelope1 = 0.f;
+		if (trigSlapLo.update(getInputAsGate<SlapLoIn>()) && amplitudeEnvelopeToneLo > 0.f) {
+			amplitudeEnvelopeToneLo = 0.f;
 			phase1 = 0.0f;
-			amplitudeEnvelope3 = 1.0f;
+			amplitudeEnvelopeSlapLo = 1.0f;
 		}
 
-		// Lo trig input
-		if (trig2.update(getInputAsGate<ToneHiIn>())) {
+		if (trigToneHi.update(getInputAsGate<ToneHiIn>())) {
 			phase2 = 0.0f;
-			amplitudeEnvelope2 = 1.0f;
+			amplitudeEnvelopeToneHigh = 1.0f;
 		}
 
-		// Slap LO input
-		if (trig3.update(getInputAsGate<SlapHiIn>()) && amplitudeEnvelope2 > 0.f) {
-			amplitudeEnvelope2 = 0.f;
+		if (trigSlapHi.update(getInputAsGate<SlapHiIn>()) && amplitudeEnvelopeToneHigh > 0.f) {
+			amplitudeEnvelopeToneHigh = 0.f;
 			phase2 = 0.0f;
-			amplitudeEnvelope4 = 1.0f;
+			amplitudeEnvelopeSlapHigh = 1.0f;
 		}
 
 		// Osc 1
 		using MathTools::M_PIF;
-		phase1 += phase_inc_1;
+		phase1 += phaseInc1;
 		phase1 -= static_cast<int>(phase1);
 		float sineWave1 = 5.0f * std::sin(2 * M_PIF * phase1);
 
 		// Osc 2
-		phase2 += phase_inc_2;
+		phase2 += phaseInc2;
 		phase2 -= static_cast<int>(phase2);
 		float sineWave2 = 5.0f * std::sin(2 * M_PIF * phase2);
 
-		amplitudeEnvelope1 *= ampDecayAlpha1;
-		amplitudeEnvelope2 *= ampDecayAlpha1;
-		amplitudeEnvelope3 *= ampDecayAlpha3;
-		amplitudeEnvelope4 *= ampDecayAlpha3;
+		amplitudeEnvelopeToneLo *= ampDecayToneAlpha;
+		amplitudeEnvelopeToneHigh *= ampDecayToneAlpha;
+		amplitudeEnvelopeSlapLo *= ampDecaySlapAlpha;
+		amplitudeEnvelopeSlapHigh *= ampDecaySlapAlpha;
 
-		auto finalOutput1 = (sineWave1 * amplitudeEnvelope1) + ((sineWave1 * amplitudeEnvelope3) * 2);
+		auto finalOutput1 = (sineWave1 * amplitudeEnvelopeToneLo) + ((sineWave1 * amplitudeEnvelopeSlapLo) * 2);
 		finalOutput1 = std::clamp(finalOutput1, -5.0f, 5.0f);
 
-		auto finalOutput2 = (sineWave2 * amplitudeEnvelope2) + ((sineWave2 * amplitudeEnvelope4) * 2);
+		auto finalOutput2 = (sineWave2 * amplitudeEnvelopeToneHigh) + ((sineWave2 * amplitudeEnvelopeSlapHigh) * 2);
 		finalOutput2 = std::clamp(finalOutput2, -5.0f, 5.0f);
 
 		setOutput<OutLoOut>(finalOutput1);
@@ -87,7 +84,7 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		ampDecayAlpha3 = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
+		ampDecaySlapAlpha = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
 		recalc();
 	}
 
@@ -114,32 +111,32 @@ private:
 		}
 
 		const auto rSampleRate = 1.f / sampleRate;
-		phase_inc_1 = freq_hz * rSampleRate * 2;
-		phase_inc_2 = freq_hz * (3.f / 4.f) * rSampleRate * 2;
-		ampDecayAlpha1 = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+		phaseInc1 = freq_hz * rSampleRate * 2;
+		phaseInc2 = freq_hz * (3.f / 4.f) * rSampleRate * 2;
+		ampDecayToneAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
 	}
 
 	// Sine oscillator
-	float phase_inc_1 = 0.f;
-	float phase_inc_2 = 0.f;
+	float phaseInc1 = 0.f;
+	float phaseInc2 = 0.f;
 	float phase1 = 0.0f;
 	float phase2 = 0.0f;
 
 	// Amp decay envelope
-	float amplitudeEnvelope1 = 0.f; // Envelope output value (for volume control)
-	float amplitudeEnvelope2 = 0.f; // Envelope output value (for volume control)
-	float amplitudeEnvelope3 = 0.f; // Envelope output value (for volume control)
-	float amplitudeEnvelope4 = 0.f; // Envelope output value (for volume control)
+	float amplitudeEnvelopeToneLo = 0.f;
+	float amplitudeEnvelopeToneHigh = 0.f;
+	float amplitudeEnvelopeSlapLo = 0.f;
+	float amplitudeEnvelopeSlapHigh = 0.f;
 
-	float ampDecayAlpha1 = 0.0f; // Exponential decay coefficient
-	float ampDecayAlpha3 = 0.0f; // Exponential decay coefficient
+	float ampDecayToneAlpha = 0.0f; // Exponential decay coefficient
+	float ampDecaySlapAlpha = 0.0f; // Exponential decay coefficient
 
 	float sampleRate{48000};
 
-	RisingEdgeDetector trig0{};
-	RisingEdgeDetector trig1{};
-	RisingEdgeDetector trig2{};
-	RisingEdgeDetector trig3{};
+	RisingEdgeDetector trigToneLo{};
+	RisingEdgeDetector trigSlapLo{};
+	RisingEdgeDetector trigToneHi{};
+	RisingEdgeDetector trigSlapHi{};
 };
 
 } // namespace MetaModule
