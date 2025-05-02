@@ -39,7 +39,7 @@ public:
 			amplitudeEnvelopeToneLo = 1.0f;
 		}
 
-		if (trigSlapLo.update(getInputAsGate<SlapLoIn>()) && amplitudeEnvelopeToneLo > 0.f) {
+		if (trigSlapLo.update(getInputAsGate<SlapLoIn>())) {
 			amplitudeEnvelopeToneLo = 0.f;
 			phase1 = 0.0f;
 			amplitudeEnvelopeSlapLo = 1.0f;
@@ -50,7 +50,7 @@ public:
 			amplitudeEnvelopeToneHigh = 1.0f;
 		}
 
-		if (trigSlapHi.update(getInputAsGate<SlapHiIn>()) && amplitudeEnvelopeToneHigh > 0.f) {
+		if (trigSlapHi.update(getInputAsGate<SlapHiIn>())) {
 			amplitudeEnvelopeToneHigh = 0.f;
 			phase2 = 0.0f;
 			amplitudeEnvelopeSlapHigh = 1.0f;
