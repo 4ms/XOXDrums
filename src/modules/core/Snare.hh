@@ -78,10 +78,8 @@ public:
 
 		// Noise + filter
 		float cutoffFrequency = 1000.0f + (noiseColorControl * 5000.0f);
-		float modulatedCutoffFrequency =
-			cutoffFrequency + (pitchEnvelope * (envDepthControl * 5000.0f)); // Envelope depth range
-		float noise =
-			(std::rand() / static_cast<float>(std::numeric_limits<decltype(std::rand())>::max())) * 10.0f - 5.0f;
+		float modulatedCutoffFrequency = cutoffFrequency + (pitchEnvelope * (envDepthControl * 5000.0f));
+		float noise = (std::rand() / static_cast<float>(RAND_MAX)) * 10.0f - 5.0f;
 		bpf.setFc(modulatedCutoffFrequency, sampleRate);
 		float filteredNoise = bpf.process(noise) * 2;
 		filteredNoise = ((filteredNoise * noiseEnvelope) * noiseVolumeControl);
