@@ -20,13 +20,6 @@ class Cowbell : public SmartCoreProcessor<CowbellInfo> {
 public:
 	Cowbell() = default;
 
-	template<Info::Elem Knob, Info::Elem CV>
-	float offset10vppSum() {
-		float cvScale = (getInput<CV>().value_or(0.f) + 5.0f) / 10.0f;
-		float cvSum = (getState<Knob>() + (cvScale - 0.5f));
-		return std::clamp(cvSum, 0.0f, 1.0f);
-	}
-
 	void set_param(int param_id, float val) override {
 		SmartCoreProcessor::set_param(param_id, val);
 		if (param_id == static_cast<int>(DecayKnob)) {
@@ -62,7 +55,7 @@ public:
 
 		// Osc 2
 		phase_1 += phase_inc_1;
-		phase_0 -= static_cast<int>(phase_0);
+		phase_1 -= static_cast<int>(phase_1);
 		float squareWave2 = (phase_1 < .5f) ? 2.5f : -2.5f;
 
 		// Combine Oscillators
