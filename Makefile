@@ -1,7 +1,7 @@
 RACK_DIR ?= ../..
 METAMODULE_SDK_DIR ?= metamodule-plugin-sdk
 
-BRAND_SLUG := 4msDrums
+BRAND_SLUG := XOXDrums
 
 SOURCES =
 SOURCES += src/vcv/comm_module.cc

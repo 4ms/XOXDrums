@@ -11,7 +11,7 @@ struct ClaveInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Clave DrumModule"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Clave.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Clave.png"};
+    static constexpr std::string_view png_filename{"XOXDrums/Clave.png"};
 
     using enum Coords;
 

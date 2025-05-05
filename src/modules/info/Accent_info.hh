@@ -11,7 +11,7 @@ struct AccentInfo : ModuleInfoBase {
     static constexpr std::string_view description{"DrumAccentModule"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Accent.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Accent.png"};
+    static constexpr std::string_view png_filename{"XOXDrums/Accent.png"};
 
     using enum Coords;
 

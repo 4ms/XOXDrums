@@ -15,7 +15,7 @@
 extern "C" void init() {
 	using namespace MetaModule;
 
-	std::string_view brand = "4msDrums";
+	std::string_view brand = "4ms-XOXDrums";
 
 	register_module<Clave, ClaveInfo>(brand);
 	register_module<Cowbell, CowbellInfo>(brand);

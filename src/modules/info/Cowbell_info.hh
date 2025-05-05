@@ -11,7 +11,7 @@ struct CowbellInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Cowbell DrumModule"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Cowbell.svg"};
-    static constexpr std::string_view png_filename{"4msDrums/Cowbell.png"};
+    static constexpr std::string_view png_filename{"XOXDrums/Cowbell.png"};
 
     using enum Coords;
 
