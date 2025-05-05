@@ -53,8 +53,6 @@ jobs:
 
       - name: Build
         run: |
-          mkdir -p metamodule-plugins
-          git clone -b ${{ inputs.SDK_branch }} https://github.com/4ms/metamodule-plugin-sdk --recursive 
           cmake -B build -G Ninja -DMETAMODULE_SDK_DIR=metamodule-plugin-sdk
           cmake --build build
           # Add version tag and required firmware version to the plugin file name:
