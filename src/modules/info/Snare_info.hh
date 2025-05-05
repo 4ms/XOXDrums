@@ -11,7 +11,7 @@ struct SnareInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Snare DrumModule"};
     static constexpr uint32_t width_hp = 15;
     static constexpr std::string_view svg_filename{"res/Snare.svg"};
-    static constexpr std::string_view png_filename{"XOXDrums/Snare.png"};
+    static constexpr std::string_view png_filename{"4ms-XOXDrums/Snare.png"};
 
     using enum Coords;
 

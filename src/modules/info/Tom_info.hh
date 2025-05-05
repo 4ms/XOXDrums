@@ -11,7 +11,7 @@ struct TomInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Tom DrumModule"};
     static constexpr uint32_t width_hp = 10;
     static constexpr std::string_view svg_filename{"res/Tom.svg"};
-    static constexpr std::string_view png_filename{"XOXDrums/Tom.png"};
+    static constexpr std::string_view png_filename{"4ms-XOXDrums/Tom.png"};
 
     using enum Coords;
 

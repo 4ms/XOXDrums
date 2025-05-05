@@ -50,7 +50,7 @@ endif()
 
 create_plugin(
     SOURCE_LIB      XOXDrums                                # This is the cmake target name (defined in add_target)
-    PLUGIN_NAME     XOXDrums                                # This must match the brand "slug" used in VCV Rack
+    PLUGIN_NAME     4ms-XOXDrums                            # This must match the brand "slug" used in VCV Rack
     PLUGIN_JSON     ${CMAKE_CURRENT_LIST_DIR}/plugin.json   # Path to the plugin.json file used by VCV Rack
     SOURCE_ASSETS   ${CMAKE_CURRENT_LIST_DIR}/assets        # Path to the assets/ dir containing the PNGs
     DESTINATION     ${INSTALL_DIR}                          # Path to where you want the plugin file output
