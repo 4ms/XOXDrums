@@ -65,7 +65,6 @@ jobs:
           chmod +x cmakeinstall.sh
           ./cmakeinstall.sh --prefix=/usr/local --exclude-subdir
           rm cmakeinstall.sh
-          git clone --recursive https://github.com/4ms/metamodule-plugin-sdk $GITHUB_WORKSPACE/metamodule-plugin-sdk
           make plugin-build-lin-x64
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -94,7 +93,6 @@ jobs:
           chmod +x cmakeinstall.sh
           ./cmakeinstall.sh --prefix=/usr/local --exclude-subdir
           rm cmakeinstall.sh
-          git clone --recursive https://github.com/4ms/metamodule-plugin-sdk $GITHUB_WORKSPACE/metamodule-plugin-sdk
           make plugin-build-win-x64
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -119,7 +117,6 @@ jobs:
           unzip Rack-SDK.zip
       - name: Get MetaModule-SDK
         run: |
-          git clone --recursive https://github.com/4ms/metamodule-plugin-sdk $GITHUB_WORKSPACE/metamodule-plugin-sdk
       - name: Build plugin
         run: |
           export RACK_DIR=$HOME/Rack-SDK
@@ -149,7 +146,6 @@ jobs:
           unzip Rack-SDK.zip
       - name: Get MetaModule-SDK
         run: |
-          git clone --recursive https://github.com/4ms/metamodule-plugin-sdk $GITHUB_WORKSPACE/metamodule-plugin-sdk
       - name: Build plugin
         run: |
           export RACK_DIR=$HOME/Rack-SDK
