@@ -1,10 +1,11 @@
 {
-  "MetaModuleBrandName": "4msDrums",
-  "MetaModuleBrandSlug": "4msDrums",
-  "MetaModulePluginMaintainer": "4ms",
-  "MetaModulePluginMaintainerEmail": "4mscompany@gmail.com",
+  "MetaModuleBrandName": "xOx Drums",
+  "MetaModuleBrandSlug": "XOXDrums",
+  "MetaModuleBrandAliases": ["4msDrums", "X0XDrums"],
+  "MetaModulePluginMaintainer": "4ms Company",
+  "MetaModulePluginMaintainerEmail": "4ms@4mscompany.com",
   "MetaModulePluginMaintainerUrl": "",
-  "MetaModuleDescription": "Drums with attitude",
+  "MetaModuleDescription": "Classic x0x-style synth drums optimized for MetaModule",
   "MetaModuleIncludedModules":
   [
     {
