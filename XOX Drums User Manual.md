@@ -9,7 +9,7 @@ Use this document to understand the behavior, controls, and design inspirations 
 **All CV inputs are bipolar and clamped to 10vpp. Each knob functions as a 10vpp offset.**
 
 ---
-![Accent](https://github.com/4ms/XOXDrums/blob/main/doc/Accent.png)
+![Accent](https://github.com/4ms/XOXDrums/blob/main/doc/Accent.png =250x250) 
 ## ACCENT
 
 Incoming triggers dynamically increase the volume of a sound source.
