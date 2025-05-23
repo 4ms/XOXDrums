@@ -9,7 +9,7 @@ Use this document to understand the behavior, controls, and design inspirations 
 **All CV inputs are bipolar and clamped to 10vpp. Each knob functions as a 10vpp offset.**
 
 ---
-
+![Accent](https://github.com/4ms/XOXDrums/blob/main/doc/Accent.png)
 ## ACCENT
 
 Incoming triggers dynamically increase the volume of a sound source.
@@ -20,6 +20,7 @@ Incoming triggers dynamically increase the volume of a sound source.
 - **Output**: Audio output
 
 ---
+![Clap](https://github.com/4ms/XOXDrums/blob/main/doc/Clap.png)
 
 ## CLAP
 
@@ -34,6 +35,7 @@ Clap emulates the iconic 808 clap. A filtered noise source is shaped by four sta
 - **Saturation**: Amount of distortion applied
 
 ---
+![Clave](https://github.com/4ms/XOXDrums/blob/main/doc/Clave.png)
 
 ## CLAVE
 
@@ -44,6 +46,7 @@ Clave is inspired by the 808 clave and other classic transistor drum machines of
 - **Decay**: Envelope decay time for amplitude control (5–25 ms)
 
 ---
+![CongaBongo](https://github.com/4ms/XOXDrums/blob/main/doc/Congabongo.png)
 
 ## CONGABONGO
 
@@ -58,6 +61,7 @@ Inspired by the 808 and other transistor drum machines from the ’70s, Congabon
 - **Conga/Bongo**: Switches between Conga (98–198 Hz, 40–80 ms) and Bongo (200–400 Hz, 15–25 ms)
 
 ---
+![Cowbell](https://github.com/4ms/XOXDrums/blob/main/doc/Cowbell.png)
 
 ## COWBELL
 
@@ -68,6 +72,7 @@ Cowbell combines synthesis techniques from '70s transistor drum machines with th
 - **Decay**: Amplitude decay time (20–120 ms)
 
 ---
+![Duck](https://github.com/4ms/XOXDrums/blob/main/doc/Duck.png)
 
 ## DUCK
 
@@ -78,6 +83,7 @@ Duck applies an inverse envelope to the input audio, emulating the sidechain com
 - **Time**: Duration for the volume to return to normal (50 ms – 2 s)
 
 ---
+![Hi-Hat](https://github.com/4ms/XOXDrums/blob/main/doc/Hi%20hat.png)
 
 ## HI-HAT
 
@@ -92,6 +98,7 @@ Modeled after the 808 hi-hat, this circuit uses four square wave oscillators mix
 - **Choke**: Enables/disables the choke function between open and closed hi-hat triggers
 
 ---
+![Kick](https://github.com/4ms/XOXDrums/blob/main/doc/Kick.png)
 
 ## KICK
 
@@ -106,6 +113,7 @@ Kick is a hybrid of the 808 and 909 bass drum circuits, enhanced with output sat
 - **L/M/H**: Selects saturation intensity: Low (2x), Medium (10x), High (100x)
 
 ---
+![](https://github.com/4ms/XOXDrums/blob/main/doc/Maraca.png)
 
 ## MARACA
 
@@ -115,6 +123,7 @@ Maraca draws from the 808 and other vintage transistor drum machines. A white no
 - **Decay**: Decay time of the amplitude envelope (2–20 ms)
 
 ---
+![Rimshot](https://github.com/4ms/XOXDrums/blob/main/doc/Rim.png)
 
 ## RIMSHOT
 
@@ -125,6 +134,7 @@ Inspired by the 808 rimshot and Kraftwerk’s "electro click," this circuit uses
 - **Decay**: Resonance of the bandpass filter
 
 ---
+![Snare](https://github.com/4ms/XOXDrums/blob/main/doc/Snare.png)
 
 ## SNARE
 
@@ -142,6 +152,7 @@ The snare circuit blends elements of the 808 and 909 snares. A sine oscillator a
 - **L/M/H**: Saturation gain level: Low (2x), Medium (10x), High (100x)
 
 ---
+![Tom](https://github.com/4ms/XOXDrums/blob/main/doc/Tom.png)
 
 ## TOM
 
