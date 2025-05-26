@@ -58,44 +58,5 @@ struct SnareInfo : ModuleInfoBase {
         SaturationCvIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobPitch_Decay, 
-        KnobPitch_Env_Amount, 
-        KnobNoise_Color, 
-        KnobNoise_Decay, 
-        KnobBody_Decay, 
-        KnobBody_Noise, 
-        KnobSaturation, 
-        NumKnobs,
-    };
-    
-    enum {
-        SwitchRange_Switch, 
-        NumSwitches,
-    };
-    
-    enum {
-        InputTrigger, 
-        InputPitch_Cv, 
-        InputP_Decay_Cv, 
-        InputP_Amt_Cv, 
-        InputN_Color_Cv, 
-        InputN_Decay_Cv, 
-        InputB_Decay_Cv, 
-        InputBn_Cv, 
-        InputSaturation_Cv, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

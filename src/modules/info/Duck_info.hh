@@ -34,29 +34,5 @@ struct DuckInfo : ModuleInfoBase {
         InputIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobAmount, 
-        KnobTime, 
-        NumKnobs,
-    };
-    
-    
-    enum {
-        InputAmount_Cv, 
-        InputTime_Cv, 
-        InputTrigger, 
-        InputInput, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

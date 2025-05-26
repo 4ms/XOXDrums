@@ -46,38 +46,5 @@ struct KickInfo : ModuleInfoBase {
         SaturationCvIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobP_Depth, 
-        KnobP_Decay, 
-        KnobAmp_Decay, 
-        KnobSaturation, 
-        NumKnobs,
-    };
-    
-    enum {
-        SwitchRange_Switch, 
-        NumSwitches,
-    };
-    
-    enum {
-        InputTrig, 
-        InputPitch_Cv, 
-        InputDepth_Cv, 
-        InputP_Decay_Cv, 
-        InputAmp_Decay_Cv, 
-        InputSaturation_Cv, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

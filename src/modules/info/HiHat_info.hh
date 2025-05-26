@@ -46,38 +46,5 @@ struct HiHatInfo : ModuleInfoBase {
         ChOut,
         OhOut,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobDecay, 
-        KnobBrightness, 
-        KnobThickness, 
-        NumKnobs,
-    };
-    
-    enum {
-        SwitchChoke_Switch, 
-        NumSwitches,
-    };
-    
-    enum {
-        InputCh_Trig, 
-        InputPitch_Cv, 
-        InputOh_Trig, 
-        InputDecay_Cv, 
-        InputBrightness_Cv, 
-        InputThickness_Cv, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputCh_Out, 
-        OutputOh_Out, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

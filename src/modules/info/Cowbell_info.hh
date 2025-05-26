@@ -32,28 +32,5 @@ struct CowbellInfo : ModuleInfoBase {
         TriggerIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobDecay, 
-        NumKnobs,
-    };
-    
-    
-    enum {
-        InputPitch_Cv, 
-        InputDecay_Cv, 
-        InputTrigger, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

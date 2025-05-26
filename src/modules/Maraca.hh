@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreModules/SmartCoreProcessor.hh"
-#include "core/Biquad.hh"
+#include "helpers/Biquad.hh"
 #include "helpers/param_cv.hh"
 #include "info/Maraca_info.hh"
 #include "util/edge_detector.hh"

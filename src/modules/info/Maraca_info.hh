@@ -28,26 +28,5 @@ struct MaracaInfo : ModuleInfoBase {
         TriggerIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobDecay, 
-        NumKnobs,
-    };
-    
-    
-    enum {
-        InputDecay_Cv, 
-        InputTrigger, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

@@ -32,28 +32,5 @@ struct RimshotInfo : ModuleInfoBase {
         TriggerIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobRing, 
-        NumKnobs,
-    };
-    
-    
-    enum {
-        InputPitch_Cv, 
-        InputRing_Cv, 
-        InputTrigger, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

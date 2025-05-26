@@ -42,36 +42,5 @@ struct CongabongoInfo : ModuleInfoBase {
         OutLoOut,
         OutHiOut,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobDecay, 
-        NumKnobs,
-    };
-    
-    enum {
-        SwitchMode_Switch, 
-        NumSwitches,
-    };
-    
-    enum {
-        InputSlap_Lo, 
-        InputPitch_Cv, 
-        InputSlap_Hi, 
-        InputTone_Lo, 
-        InputDecay_Cv, 
-        InputTone_Hi, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut_Lo, 
-        OutputOut_Hi, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

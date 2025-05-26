@@ -42,36 +42,5 @@ struct TomInfo : ModuleInfoBase {
         EnvDepthCvIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobPitch, 
-        KnobAmp_Decay, 
-        KnobPitch_Decay, 
-        KnobEnv_Depth, 
-        NumKnobs,
-    };
-    
-    enum {
-        SwitchPitch_Range, 
-        NumSwitches,
-    };
-    
-    enum {
-        InputTrigger, 
-        InputPitch_Cv, 
-        InputA_Decay_Cv, 
-        InputP_Decay_Cv, 
-        InputEnv_Depth_Cv, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

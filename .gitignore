@@ -1,6 +1,7 @@
 dist
 dep
 plugin.dylib
+plugin.so
 build-mm/
 build/
 metamodule-plugins/

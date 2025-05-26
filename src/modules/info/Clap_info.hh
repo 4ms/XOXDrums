@@ -48,36 +48,5 @@ struct ClapInfo : ModuleInfoBase {
         SaturationCvIn,
         Out,
     };
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    
-    enum {
-        KnobEnergy, 
-        KnobSpread, 
-        KnobColor, 
-        KnobVerb_Decay, 
-        KnobVerb_Volume, 
-        KnobSaturation, 
-        NumKnobs,
-    };
-    
-    
-    enum {
-        InputTrig, 
-        InputEnergy_Cv, 
-        InputSpread_Cv, 
-        InputColor_Cv, 
-        InputVerb_Decay_Cv, 
-        InputVerb_Volume_Cv, 
-        InputSaturation_Cv, 
-        NumInJacks,
-    };
-    
-    enum {
-        OutputOut, 
-        NumOutJacks,
-    };
-    
-    
 };
 } // namespace MetaModule

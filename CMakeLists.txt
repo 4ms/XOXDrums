@@ -21,6 +21,7 @@ project(XOXDrumsMetaModulePlugin
 add_library(XOXDrums STATIC)
 
 
+# Note: there aren't any files here presently
 file(GLOB sources 
     src/modules/core/*.cc
     src/modules/core/*.cpp
@@ -44,15 +45,15 @@ target_compile_options(XOXDrums
 
 set_property(TARGET XOXDrums PROPERTY CXX_STANDARD 20)
 
-if("${INSTALL_DIR}" STREQUAL "")
-    set(INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/metamodule-plugins)
+if("${MM_INSTALL_DIR}" STREQUAL "")
+    set(MM_INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/metamodule-plugins)
 endif()
 
 create_plugin(
-    SOURCE_LIB      XOXDrums                                # This is the cmake target name (defined in add_target)
-    PLUGIN_NAME     4ms-XOXDrums                            # This must match the brand "slug" used in VCV Rack
-    PLUGIN_JSON     ${CMAKE_CURRENT_LIST_DIR}/plugin.json   # Path to the plugin.json file used by VCV Rack
-    SOURCE_ASSETS   ${CMAKE_CURRENT_LIST_DIR}/assets        # Path to the assets/ dir containing the PNGs
-    DESTINATION     ${INSTALL_DIR}                          # Path to where you want the plugin file output
+    SOURCE_LIB      XOXDrums
+    PLUGIN_NAME     4ms-XOXDrums
+    PLUGIN_JSON     ${CMAKE_CURRENT_LIST_DIR}/plugin.json
+    SOURCE_ASSETS   ${CMAKE_CURRENT_LIST_DIR}/assets
+    DESTINATION     ${MM_INSTALL_DIR}
 )
 
