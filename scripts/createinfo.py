@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import argparse
+import logging
 import os
 import xml.etree.ElementTree
 from helpers.xml_helper import register_all_namespaces
@@ -8,18 +13,18 @@ def createInfoFile(svgFilename, infoFilePath = None, brand = "4ms"):
     if infoFilePath == None:
         infoFilePath = os.getenv('METAMODULE_INFO_DIR')
         if infoFilePath is None:
-            infoFilePath = input_default("Directory to save ModuleInfo file", pathFromHere("src/modules/info"))
+            infoFilePath = pathFromHere("src/modules/info")
 
     if os.path.isdir(infoFilePath) == False:
         # Try infoFilePath as a path relative to the dir containing svgFilename
         svgdir = os.path.dirname(svgFilename)
         infoFilePath = os.path.normpath(os.path.join(svgdir,infoFilePath))
         if os.path.isdir(infoFilePath) == False:
-            Log(f"Not a directory: {infoFilePath}. Aborting without creating an info file.")
+            logging.error(f"Not a directory: {infoFilePath}. Aborting without creating an info file.")
             return
 
     if os.path.isfile(svgFilename) == False:
-        Log(f"Not a file: {svgFilename}. Aborting without creating an info file.")
+        logging.error(f"Not a file: {svgFilename}. Aborting without creating an info file.")
         return
 
     register_all_namespaces(svgFilename)
@@ -29,7 +34,7 @@ def createInfoFile(svgFilename, infoFilePath = None, brand = "4ms"):
     infoFileName = os.path.join(infoFilePath, components['slug']+"_info.hh")
     with open(infoFileName, "w") as f:
         f.write(infoFileText)
-        Log(f"Wrote info file: {infoFileName}")
+        logging.info(f"Wrote info file: {infoFileName}")
     
     return components['slug']
 
@@ -46,20 +51,20 @@ def panel_to_components(tree):
     # Deduce DPI and HP:
     components['dpi'] = deduce_dpi(root)
     components['HP'] = round(get_dim_inches(root.get('width')) / 0.2)
-    Log(f"HP deduced as {components['HP']}")
+    logging.debug(f"HP deduced as {components['HP']}")
 
     components_group = get_components_group(root)
     components['slug'], components['ModuleName'] = find_slug_and_modulename(components_group)
 
     if components['slug'] == "Unnamed":
-        Log("WARNING: No text element with name or id 'slug' was found in the 'components' layer/group. Setting slug to 'UNNAMED'.")
+        logging.warning("WARNING: No text element with name or id 'slug' was found in the 'components' layer/group. Setting slug to 'UNNAMED'.")
     else:
-        Log(f"Slug found: \"{components['slug']}\"")
+        logging.debug(f"Slug found: \"{components['slug']}\"")
 
     if components['ModuleName'] == "Unnamed":
-        Log("WARNING: No text element with name or id 'modulename' was found in the 'components' layer/group. Setting ModuleName to 'Unnamed'")
+        logging.warning("WARNING: No text element with name or id 'modulename' was found in the 'components' layer/group. Setting ModuleName to 'Unnamed'")
     else:
-        Log(f"Module Name found: \"{components['ModuleName']}\"")
+        logging.debug(f"Module Name found: \"{components['ModuleName']}\"")
 
     # Scan all circles and rects for components
     components['params'] = []
@@ -67,10 +72,6 @@ def panel_to_components(tree):
     components['lights'] = []
     components['alt_params'] = []
 
-    components['legacy_knobs'] = [] #legacy only
-    components['legacy_switches'] = [] #legacy only
-    components['legacy_inputs'] = [] #legacy only
-    components['legacy_outputs'] = [] #legacy only
 
     all = components_group.findall(".//svg:*",ns)
 
@@ -105,7 +106,6 @@ def panel_to_components(tree):
             c['pos_names'] = split[1:]
 
         c['display_name'] = format_for_display(name)
-        c['legacy_enum_name'] = format_as_legacy_enum_item(name)
         c['enum_name'] = format_as_enum_item(name)
 
         # Get position
@@ -169,7 +169,6 @@ def panel_to_components(tree):
                 set_class_if_not_set(c, get_slider_class(c))
                 c['category'] = "Slider"
 
-            components['legacy_knobs'].append(c)
             components['params'].append(c)
 
         #Magenta: LED
@@ -181,35 +180,30 @@ def panel_to_components(tree):
         #Green: Input jack, analog (CV or audio): 
         elif color == '#00ff00':
             set_class_if_not_set(c, "AnalogJackInput4ms")
-            components['legacy_inputs'].append(c)
             components['jacks'].append(c)
             c['category'] = "In"
 
         #Light Green: Input jack, digital (gate or trig):
         elif color == '#80ff80':
             set_class_if_not_set(c, "GateJackInput4ms")
-            components['legacy_inputs'].append(c)
             components['jacks'].append(c)
             c['category'] = "In"
 
         #Blue: Output jack, analog (CV or audio)
         elif color == '#0000ff':
             set_class_if_not_set(c, "AnalogJackOutput4ms")
-            components['legacy_outputs'].append(c)
             components['jacks'].append(c)
             c['category'] = "Out"
 
         #Light Blue: Output jack, digital (gate or trig):
         elif color == '#8080ff':
             set_class_if_not_set(c, "GateJackOutput4ms")
-            components['legacy_outputs'].append(c)
             components['jacks'].append(c)
             c['category'] = "Out"
 
         #Deep Purple: Encodeer
         elif color == '#c000c0':
             set_class_if_not_set(c, get_encoder_class_from_radius(el.get('r')))
-            components['legacy_knobs'].append(c)
             components['params'].append(c)
             c['category'] = "Encoder"
 
@@ -218,14 +212,12 @@ def panel_to_components(tree):
             set_class_if_not_set(c, "OrangeButton")
             if default_val_int == 1:
                 c['default_val'] = "LatchingButton::State_t::DOWN"
-            components['legacy_switches'].append(c)
             components['params'].append(c)
             c['category'] = "Button"
 
         #Light Orange: Button - Momentary
         elif color == '#ffc000':
             set_class_if_not_set(c, "WhiteMomentary7mm")
-            components['legacy_switches'].append(c)
             components['params'].append(c)
             c['category'] = "Button"
 
@@ -234,7 +226,6 @@ def panel_to_components(tree):
             set_class_if_not_set(c, get_toggle2pos_class(c))
             if default_val_int == 0x81:
                 c['default_val'] = f"{c['class']}::State_t::" + ("RIGHT" if "Horiz" in c['class'] else "UP")
-            components['legacy_switches'].append(c)
             components['params'].append(c)
             c['category'] = "Switch"
 
@@ -245,7 +236,6 @@ def panel_to_components(tree):
                 c['default_val'] = f"{c['class']}::State_t::CENTER"
             elif default_val_int == 0x82:
                 c['default_val'] = f"{c['class']}::State_t::" + ("RIGHT" if "Horiz" in c['class'] else "UP")
-            components['legacy_switches'].append(c)
             components['params'].append(c)
             c['category'] = "Switch"
 
@@ -282,9 +272,9 @@ def panel_to_components(tree):
             c['category'] = "AltParam"
 
         elif color == '#ffff00':
-            Log(f"Widgets are not supported: found at {c['cx']},{c['cy']}. Skipping.")
+            logging.warning(f"Widgets are not supported: found at {c['cx']},{c['cy']}. Skipping.")
         else:
-            Log(f"Unknown color: {color} found at {c['cx']},{c['cy']}. Skipping.")
+            logging.debug(f"Unknown color: {color} found at {c['cx']},{c['cy']}. Skipping.")
 
     # Find alt param links to normal params
     for alt in components['alt_params']:
@@ -296,11 +286,6 @@ def panel_to_components(tree):
 
 
     # Sort components
-    components['legacy_knobs'].reverse()
-    components['legacy_switches'].reverse()
-    components['legacy_inputs'].reverse()
-    components['legacy_outputs'].reverse()
-
     components['params'].reverse()
     components['jacks'].reverse()
     components['lights'].reverse()
@@ -350,14 +335,6 @@ struct {slug}Info : ModuleInfoBase {{
 
     enum class Elem {{{list_elem_names(components['elements'])}
     }};
-
-    // Legacy naming (safe to remove once all legacy 4ms CoreModules are converted)
-    {make_legacy_enum("Knob", components['legacy_knobs'])}
-    {make_legacy_enum("Switch", components['legacy_switches'])}
-    {make_legacy_enum("Input", components['legacy_inputs'])}
-    {make_legacy_enum("Output", components['legacy_outputs'])}
-    {make_legacy_enum("Led", components['lights'])}
-    {make_legacy_enum("AltParam", components['alt_params'])}
 }};
 }} // namespace MetaModule
 """
@@ -451,33 +428,30 @@ def list_elem_names(elems):
     return source
 
 
-def make_legacy_enum(item_prefix, elements):
-    if len(elements) == 0:
-        return ""
-    source = f"""
-    enum {{"""
-    i = 0
-    for k in elements:
-        source += f"""
-        {item_prefix}{k['legacy_enum_name']}, """
-        i = i + 1
-    if item_prefix == "Knob":
-           source += """
-        NumKnobs,"""
-    elif item_prefix == "Switch":
-           source += """
-        NumSwitches,"""
-    elif item_prefix == "Input":
-           source += """
-        NumInJacks,"""
-    elif item_prefix == "Output":
-           source += """
-        NumOutJacks,"""
-    elif item_prefix == "Led":
-           source += """
-        NumDiscreteLeds,"""
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser("Create CoreModule info header from an info SVG file")
+    parser.add_argument("--input", required=True, help="Name of info SVG file (*.svg: typically *_info.svg). Pass a directory name to process all *.svg in the directory")
+    parser.add_argument("--outdir", required=True, help="Directory to output *_info.hh header file")
+    parser.add_argument("--brand", required=True, help="Brand slug, used in `png_filename = \"BRAND/...\"")
+    parser.add_argument("-v", dest="verbose", help="Verbose logging", action="store_true")
+    args = parser.parse_args()
 
-    source += f"""
-    }};"""
-    return source
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG, format='%(message)s')
+    else:
+        logging.basicConfig(level=logging.INFO, format='%(message)s')
+
+    if os.path.isfile(args.outdir):
+        outdir = os.path.dirname(args.outdir)
+        print(f"Filename in {args.outdir} ignored: using dir {outdir}")
+    else:
+        outdir = args.outdir
+
+    if os.path.isfile(args.input):
+        createInfoFile(args.input, outdir, args.brand)
+
+    elif os.path.isdir(args.input):
+        svg_files = Path(args.input).glob("*.svg")
+        for svg_file in svg_files:
+            createInfoFile(svg_file, outdir, args.brand)
 

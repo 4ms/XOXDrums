@@ -71,12 +71,13 @@ info-headers: $(INFO_HEADERS)
 
 asset-pngs: $(MODULE_PNGS)
 
-res/%.svg: src/modules/svg/%_info.svg
-	scripts/svgextract/svgextract.py createVcvSvg $< $@
+res/%.svg: module-svg/%_info.svg
+	scripts/vcv-artwork.py --input $< --output $@
 
 
-src/modules/info/%.hh: src/modules/svg/%.svg
-	scripts/svgextract/svgextract.py createInfo $< src/modules/info/ $(BRAND_SLUG)
+src/modules/info/%.hh: module-svg/%.svg
+	scripts/createinfo.py --input $< --outdir src/modules/info/ --brand $(BRAND_SLUG)
 
 assets/%.png: res/%.svg
-	scripts/svgextract/svgextract.py convertFaceplateToPng $< assets/
+	metamodule-plugin-sdk/scripts/SvgToPng.py --input $< --output assets/ --height 240 --white
+

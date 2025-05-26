@@ -1,3 +1,4 @@
+import logging
 import re
 from helpers.util import *
 
@@ -169,7 +170,7 @@ def deduce_dpi(root):
     heightInches = get_dim_inches(root.get('height'))
     viewBox = root.get('viewBox')
     if widthInches == 0 or heightInches == 0 or viewBox is None:
-        Log("WARNING: DPI cannot be deduced, width, height, or viewBox is missing or 0 in root node. Using 72dpi")
+        logging.warning("WARNING: DPI cannot be deduced, width, height, or viewBox is missing or 0 in root node. Using 72dpi")
         return 72
 
     viewBoxDims = viewBox.split(" ")
@@ -178,14 +179,14 @@ def deduce_dpi(root):
     hDPI = round(viewWidth / widthInches)
     vDPI = round(viewHeight / heightInches)
     if vDPI is not hDPI:
-        Log(f"WARNING: Horizontal DPI is {hDPI} and Vertical DPI is {vDPI}, which are not equal. Using horizontal value")
+        logging.warning(f"WARNING: Horizontal DPI is {hDPI} and Vertical DPI is {vDPI}, which are not equal. Using horizontal value")
         vDPI = hDPI
 
     if hDPI == 1:
-        Log(f"File is possibly already in 72DPI pixels for the root object units. Using 72 for DPI")
+        logging.info(f"File is possibly already in 72DPI pixels for the root object units. Using 72 for DPI")
         hDPI = 72
 
-    Log(f"DPI deduced as {hDPI}")
+    logging.info(f"DPI deduced as {hDPI}")
 
     return hDPI
 
