@@ -1,5 +1,10 @@
 # CHANGES
 
+## v2.0.4
+
+- Added Manual URL
+- Changed Tom switch label to Low/Med./High
+
 ## v2.0.3
 
 - Cleaned up metadata
