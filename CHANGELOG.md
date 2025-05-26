@@ -2,8 +2,9 @@
 
 ## v2.0.4
 
-- Added Manual URL
-- Changed Tom switch label to Low/Med./High
+- Added user manual
+- Changed Tom switch label to Low/Med/High
+- Re-organized directories, simplified scripts
 
 ## v2.0.3
 
