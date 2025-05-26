@@ -1,5 +1,8 @@
 # CHANGES
 
+## v2.0.5
+- Fix link to user manual
+
 ## v2.0.4
 
 - Added user manual
