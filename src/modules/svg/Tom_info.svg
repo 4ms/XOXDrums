@@ -6,7 +6,7 @@
    version="1.1"
    id="svg60"
    sodipodi:docname="Tom_info.svg"
-   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,12 +23,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.5249631"
-     inkscape:cx="71.805015"
-     inkscape:cy="186.23401"
+     inkscape:cx="80.985566"
+     inkscape:cy="263.61294"
      inkscape:window-width="1792"
      inkscape:window-height="1297"
      inkscape:window-x="89"
-     inkscape:window-y="76"
+     inkscape:window-y="48"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -345,7 +345,7 @@
        style="fill:#ff0000;fill-opacity:1;stroke-width:1.33334" />
     <rect
        id="Range_Switch_2x_10x_100x"
-       data-name="Range Switch@2x@10x@100x"
+       data-name="Pitch Range@Low@Med@High"
        x="84.846809"
        y="140.7556"
        width="22"
