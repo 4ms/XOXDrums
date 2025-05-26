@@ -52,7 +52,7 @@ public:
 
 		//Range switch
 		// Final output
-		switch (getState<RangeSwitch>()) {
+		switch (getState<PitchRangeSwitch>()) {
 			using enum Toggle3pos::State_t;
 			case UP:
 				frequency = 160 + (pitchControl * 400);
