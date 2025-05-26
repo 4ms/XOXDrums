@@ -74,7 +74,6 @@ asset-pngs: $(MODULE_PNGS)
 res/%.svg: module-svg/%_info.svg
 	scripts/vcv-artwork.py --input $< --output $@
 
-
 src/modules/info/%.hh: module-svg/%.svg
 	scripts/createinfo.py --input $< --outdir src/modules/info/ --brand $(BRAND_SLUG)
 
