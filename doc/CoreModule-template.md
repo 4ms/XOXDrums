@@ -85,13 +85,13 @@ Also run the above command any time you change the info SVG files.
 
 Each module has two classes: the core class (DSP features) and the info class (GUI features).
 
-The core class is found in src/modules/core/. For example, `src/modules/core/MyModule.hh`.
+The core class is found in src/modules/. For example, `src/modules/MyModule.hh`.
 
 The info class is found in src/modules/info/, for example `src/modules/info/MyModule_info.hh`.
 
 The info class file is generated from an SVG file using the
 svgextract python script (see below). These SVG files live in
-`src/modules/svg/MyModule_info.svg`.
+`module-svg/MyModule_info.svg`.
 
 When you add a new module, you'll also need to add it to the init() functions in plugin-vcv.cc and plugin-mm.cc.
 Copy the examples, and make sure to `#include` the core .hh file.
@@ -101,8 +101,8 @@ You also need to edit to add a new module is in plugin.json and plugin-mm.json.
 And finally, the faceplate and component artwork needs to be present for both projects.
 
 In summary, here are all the places where a new module needs to be added:
-- Create `src/modules/core/NewModule.cc` to define your module's core
-- Create `src/modules/svg/NewModule_info.svg` to define how the module looks
+- Create `src/modules/NewModule.hh` to define your module's core
+- Create `module-svg/NewModule_info.svg` to define how the module looks and the names of the components
 - Run `make update-images` to generate `src/modules/info/NewModule_info.hh`, and `assets/NewModule.png` and `res/NewModule.svg`
 - Add an `#include` and `register_module()` to `src/plugin-mm.cc`
 - Add an `#include`, a `GenericModule<...>::create()` and a `p->addModel();` to `src/plugin-vcv.cc`
@@ -137,7 +137,7 @@ Re-generate just the info header file:
 make src/modules/info/ModuleName_info.hh
 ```
 
-If you are curious, take a look at the Makefile to see what commands those run (it's a script called svgextract.py)
+If you are curious, take a look at the scripts/ dir, and/or the Makefile to see what commands those run.
 
 
 ## Using a different MetaModule SDK
@@ -162,14 +162,14 @@ make config METAMODULE_SDK_DIR=/full/path/to/metamodule-plugin-sdk
 You can also specify where the .mmplugin file goes like this:
 
 ```bash
-make config METAMODULE_SDK_DIR=/path/SDK-v2/metamodule-plugin-sdk INSTALL_DIR=metamodule-plugins-v2
+make config METAMODULE_SDK_DIR=/path/SDK-v2/metamodule-plugin-sdk MM_INSTALL_DIR=metamodule-plugins-v2
 make mm
 
-make config METAMODULE_SDK_DIR=/path/SDK-v1/metamodule-plugin-sdk INSTALL_DIR=metamodule-plugins-v1
+make config METAMODULE_SDK_DIR=/path/SDK-v1/metamodule-plugin-sdk MM_INSTALL_DIR=metamodule-plugins-v1
 make mm
 ```
 
-Note that the INSTALL_DIR is relative to the build/ dir, so if you did the
+Note that the MM_INSTALL_DIR is relative to the build/ dir, so if you did the
 above commands, you'd see the plugins in build/:
 
 ```bash
@@ -209,7 +209,7 @@ Draw all artwork in the "faceplate" layer. If you use fonts, convert them to out
 
 In the components layer, make various shapes to indicate the location and type of each kind of element.
 
-Read the file `SPECS.md` found in `scripts/svgextract` for instructions on how to to do that.
+Read the file [scripts/info-svg-specs.md](../scripts/info-svg-specs.md) for instructions on how to to do that.
 
 Very important is to read the part about the slug and modulename text objects.
 You must have two text objects (not converted to outlines) on the components
@@ -222,7 +222,7 @@ When you have the SVG file you can run a command to automatically generate the V
 make update-images
 ```
 
-This will scan the `src/modules/svg/` dir for any updated or new files and generate the following:
+This will scan the `module-svg/` dir for any updated or new files and generate the following:
  
  - Generate `src/modules/info/Module_info.hh`  
  - Generate `res/Module.hh`
@@ -234,7 +234,7 @@ This will scan the `src/modules/svg/` dir for any updated or new files and gener
 You can regenerate just the info header file if need to with this:
 
 ```bash
-python3 scripts/svgextract/svgextract.py createinfo src/modules/svg/MyModule_info.svg src/modules/info/  MyBrandName
+scripts/createinfo.py --input module-svg/MyModule_info.svg --outdir src/modules/info/ --brand MyBrandName
 ```
 
 This will create a file named `MyModule_info.hh` in src/modules/info
