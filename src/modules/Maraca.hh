@@ -60,7 +60,7 @@ public:
 
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<Out>(finalOutput);
+		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

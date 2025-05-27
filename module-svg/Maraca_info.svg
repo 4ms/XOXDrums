@@ -22,13 +22,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.070929"
      inkscape:cx="139.30946"
-     inkscape:cy="-3.8630006"
+     inkscape:cy="189.28703"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="2643"
-     inkscape:window-y="299"
+     inkscape:window-x="2240"
+     inkscape:window-y="271"
      inkscape:window-maximized="0"
-     inkscape:current-layer="faceplate"
+     inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <defs
      id="defs2">
@@ -171,22 +171,24 @@
        cx="38.400208"
        cy="406.86661"
        r="15.120082"
-       style="fill:#0000ff;stroke-width:1.33334" />
+       style="fill:#0000ff;stroke-width:1.33334"
+       data-name="Audio Out" />
     <circle
        id="Trigger"
        cx="38.400208"
        cy="341.79959"
        r="15.120082"
-       style="fill:#80ff80;stroke-width:1.33334" />
+       style="fill:#80ff80;stroke-width:1.33334"
+       data-name="Trigger In" />
     <circle
        id="Decay_CV"
-       data-name="Decay CV"
+       data-name="Decay CV In"
        cx="38.560207"
        cy="126.61401"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Decay"
+       id="Decay!2!20!ms"
        cx="38.560207"
        cy="62.360336"
        r="9"
