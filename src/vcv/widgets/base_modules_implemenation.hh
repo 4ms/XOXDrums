@@ -51,9 +51,7 @@ inline void do_config_element(Pot el, const Indices &indices, const ModuleContex
 		units = "%";
 	}
 
-	if (el.min_value != 0 && el.max_value != 1) {
-		el.default_value = el.default_value * (el.max_value - el.min_value) + el.min_value;
-	}
+	el.default_value = el.default_value * (el.max_value - el.min_value) + el.min_value;
 
 	context.module->configParam(indices.param_idx,
 								el.min_value,
