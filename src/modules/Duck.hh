@@ -46,11 +46,11 @@ public:
 
 		float scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope)*amountControl));
 
-		float VCAOut = (getInput<InputIn>().value_or(0.f) * scaled) * agc;
+		float VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc;
 
 		float finalOutput = VCAOut;
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
-		setOutput<Out>(finalOutput);
+		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

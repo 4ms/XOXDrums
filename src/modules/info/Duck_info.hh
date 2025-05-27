@@ -16,13 +16,13 @@ struct DuckInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 7> Elements{{
-		Knob9mm{{to_mm<96>(38.4), to_mm<96>(62.174), Center, "Amount", ""}, 1.0f},
-		Knob9mm{{to_mm<96>(38.4), to_mm<96>(171.774), Center, "Time", ""}, 0.25f},
-		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(115.595), Center, "Amount CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(227.44), Center, "Time CV", ""}},
-		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(277.519), Center, "Trigger", ""}},
-		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.772), Center, "Input", ""}},
-		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.853), Center, "Out", ""}},
+		Knob9mm{{to_mm<96>(38.4), to_mm<96>(62.174), Center, "Amount", ""}, 1.0f, 0.0, 100.0, "%"},
+		Knob9mm{{to_mm<96>(38.4), to_mm<96>(171.774), Center, "Time", ""}, 0.25f, 50.0, 2000.0, "ms"},
+		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(115.595), Center, "Amount CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(227.44), Center, "Time CV In", ""}},
+		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(277.519), Center, "Trigger In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.772), Center, "Audio In", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.853), Center, "Audio Out", ""}},
 }};
 
     enum class Elem {
@@ -31,8 +31,8 @@ struct DuckInfo : ModuleInfoBase {
         AmountCvIn,
         TimeCvIn,
         TriggerIn,
-        InputIn,
-        Out,
+        AudioIn,
+        AudioOut,
     };
 };
 } // namespace MetaModule

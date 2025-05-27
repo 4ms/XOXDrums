@@ -21,12 +21,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="0.72221941"
-     inkscape:cx="110.07735"
-     inkscape:cy="231.23167"
+     inkscape:cx="109.38504"
+     inkscape:cy="452.77099"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="2559"
-     inkscape:window-y="299"
+     inkscape:window-x="2240"
+     inkscape:window-y="271"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -272,43 +272,46 @@
        cy="406.8526"
        r="15.120082"
        style="fill:#0000ff;stroke-width:1.33334"
-       inkscape:label="Ducked_Out" />
+       inkscape:label="Ducked_Out"
+       data-name="Audio Out" />
     <circle
        id="Input"
        cx="38.400208"
        cy="341.77225"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334"
-       inkscape:label="Audio_In" />
+       inkscape:label="Audio_In"
+       data-name="Audio In" />
     <circle
        id="Trigger"
        cx="38.400208"
        cy="277.51859"
        r="15.120082"
        style="fill:#80ff80;stroke-width:1.33334"
-       inkscape:label="Trig_In" />
+       inkscape:label="Trig_In"
+       data-name="Trigger In" />
     <circle
        id="Time_CV"
-       data-name="Time CV"
+       data-name="Time CV In"
        cx="38.400208"
        cy="227.43959"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Time"
+       id="Time!50!2000!ms"
        cx="38.400208"
        cy="171.77426"
        r="9"
        style="fill:#ff0020;stroke-width:1.33334" />
     <circle
        id="Amount_CV"
-       data-name="Amount CV"
+       data-name="Amount CV In"
        cx="38.400208"
        cy="115.59483"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Amount"
+       id="Amount!0!100!%"
        cx="38.400208"
        cy="62.173672"
        r="9"
