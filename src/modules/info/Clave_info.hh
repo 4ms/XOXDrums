@@ -16,12 +16,12 @@ struct ClaveInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<96>(38.56), to_mm<96>(70.115), Center, "Pitch", ""}, 0.5f},
-		Knob9mm{{to_mm<96>(38.56), to_mm<96>(198.622), Center, "Decay", ""}, 0.5f},
-		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(134.369), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(262.876), Center, "Decay CV", ""}},
-		GateJackInput4ms{{to_mm<96>(38.56), to_mm<96>(341.757), Center, "Trigger", ""}},
-		AnalogJackOutput4ms{{to_mm<96>(38.56), to_mm<96>(406.824), Center, "Out", ""}},
+		Knob9mm{{to_mm<96>(38.56), to_mm<96>(70.115), Center, "Pitch", ""}, 0.5f, 1000.0, 2000.0, "hz"},
+		Knob9mm{{to_mm<96>(38.56), to_mm<96>(198.622), Center, "Decay", ""}, 0.5f, 5.0, 25.0, "ms"},
+		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(134.369), Center, "Pitch CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(262.876), Center, "Decay CV In", ""}},
+		GateJackInput4ms{{to_mm<96>(38.56), to_mm<96>(341.757), Center, "Trigger In", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(38.56), to_mm<96>(406.824), Center, "Clave Out", ""}},
 }};
 
     enum class Elem {
@@ -30,7 +30,7 @@ struct ClaveInfo : ModuleInfoBase {
         PitchCvIn,
         DecayCvIn,
         TriggerIn,
-        Out,
+        ClaveOut,
     };
 };
 } // namespace MetaModule

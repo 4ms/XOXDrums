@@ -26,9 +26,9 @@
      inkscape:window-width="1200"
      inkscape:window-height="1027"
      inkscape:window-x="2560"
-     inkscape:window-y="299"
+     inkscape:window-y="271"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg45"
+     inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <defs
      id="defs4">
@@ -261,16 +261,18 @@
        cx="38.560207"
        cy="406.82382"
        r="15.120082"
-       style="fill:#0000ff;stroke-width:1.33334" />
+       style="fill:#0000ff;stroke-width:1.33334"
+       data-name="Clave Out" />
     <circle
        id="Trigger"
        cx="38.560207"
        cy="341.75681"
        r="15.120082"
-       style="fill:#80ff80;stroke-width:1.33334" />
+       style="fill:#80ff80;stroke-width:1.33334"
+       data-name="Trigger In" />
     <circle
        id="Decay_CV"
-       data-name="Decay CV"
+       data-name="Decay CV In"
        cx="38.560207"
        cy="262.87589"
        r="15.120082"
@@ -280,10 +282,11 @@
        cx="38.560207"
        cy="198.62222"
        r="9"
-       style="fill:#ff0040;stroke-width:1.33334" />
+       style="fill:#ff0040;stroke-width:1.33334"
+       data-name="Decay!5!25!ms" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="38.560207"
        cy="134.36855"
        r="15.120082"
@@ -293,7 +296,8 @@
        cx="38.560207"
        cy="70.114861"
        r="9"
-       style="fill:#ff0040;stroke-width:1.33334" />
+       style="fill:#ff0040;stroke-width:1.33334"
+       data-name="Pitch!1000!2000!hz" />
     <text
        id="slug"
        style="font-size:4.00002px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101;stroke-width:1.33334"
