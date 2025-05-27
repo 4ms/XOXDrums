@@ -17,18 +17,18 @@ struct AccentInfo : ModuleInfoBase {
 
     static constexpr std::array<Element, 5> Elements{{
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(73.373), Center, "Amount", ""}, 0.0f},
-		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(137.626), Center, "Amount CV", ""}},
-		GateJackInput4ms{{to_mm<96>(38.24), to_mm<96>(277.337), Center, "Trigger", ""}},
-		AnalogJackInput4ms{{to_mm<96>(38.24), to_mm<96>(341.577), Center, "Input", ""}},
-		AnalogJackOutput4ms{{to_mm<96>(38.24), to_mm<96>(406.644), Center, "Out", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(137.626), Center, "Amount CV In", ""}},
+		GateJackInput4ms{{to_mm<96>(38.24), to_mm<96>(277.337), Center, "Trigger In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.24), to_mm<96>(341.577), Center, "Audio In", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(38.24), to_mm<96>(406.644), Center, "Accented Out", ""}},
 }};
 
     enum class Elem {
         AmountKnob,
         AmountCvIn,
         TriggerIn,
-        InputIn,
-        Out,
+        AudioIn,
+        AccentedOut,
     };
 };
 } // namespace MetaModule

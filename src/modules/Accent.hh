@@ -40,9 +40,9 @@ public:
 
 		const auto scale = amplitudeEnvelope * amount + (1.f - amount);
 
-		const auto rawInput = getInput<InputIn>().value_or(0.f);
+		const auto rawInput = getInput<AudioIn>().value_or(0.f);
 
-		setOutput<Out>(std::clamp(rawInput * scale, -5.f, 5.f));
+		setOutput<AccentedOut>(std::clamp(rawInput * scale, -5.f, 5.f));
 	}
 
 	void set_samplerate(float sr) override {

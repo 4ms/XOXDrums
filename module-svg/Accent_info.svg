@@ -24,9 +24,9 @@
      inkscape:cx="79.997311"
      inkscape:cy="311.35644"
      inkscape:window-width="1200"
-     inkscape:window-height="1186"
-     inkscape:window-x="798"
-     inkscape:window-y="54"
+     inkscape:window-height="900"
+     inkscape:window-x="2189"
+     inkscape:window-y="32"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      showgrid="false"
@@ -190,22 +190,25 @@
        cx="38.240208"
        cy="406.64429"
        r="15.120082"
-       style="fill:#0000ff;stroke-width:1.33334" />
+       style="fill:#0000ff;stroke-width:1.33334"
+       data-name="Accented Out" />
     <circle
        id="Input"
        cx="38.240208"
        cy="341.57727"
        r="15.120082"
-       style="fill:#00ff00;stroke-width:1.33334" />
+       style="fill:#00ff00;stroke-width:1.33334"
+       data-name="Audio In" />
     <circle
        id="Trigger"
        cx="38.240208"
        cy="277.33691"
        r="15.120082"
-       style="fill:#80ff80;stroke-width:1.33334" />
+       style="fill:#80ff80;stroke-width:1.33334"
+       data-name="Trigger In" />
     <circle
        id="Amount_CV"
-       data-name="Amount CV"
+       data-name="Amount CV In"
        cx="38.400208"
        cy="137.62645"
        r="15.120082"
