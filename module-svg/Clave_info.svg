@@ -26,7 +26,7 @@
      inkscape:window-width="1200"
      inkscape:window-height="1027"
      inkscape:window-x="2560"
-     inkscape:window-y="271"
+     inkscape:window-y="243"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -297,7 +297,7 @@
        cy="70.114861"
        r="9"
        style="fill:#ff0040;stroke-width:1.33334"
-       data-name="Pitch!1000!2000!hz" />
+       data-name="Pitch!1!2!khz" />
     <text
        id="slug"
        style="font-size:4.00002px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101;stroke-width:1.33334"

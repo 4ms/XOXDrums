@@ -23,14 +23,14 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="3.7791055"
-     inkscape:cx="99.494443"
+     inkscape:cx="99.494444"
      inkscape:cy="148.97705"
-     inkscape:window-width="2008"
-     inkscape:window-height="1325"
-     inkscape:window-x="50"
-     inkscape:window-y="28"
+     inkscape:window-width="1600"
+     inkscape:window-height="847"
+     inkscape:window-x="1897"
+     inkscape:window-y="93"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg68"
+     inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <g
      id="faceplate"
@@ -305,56 +305,56 @@
      id="components">
     <circle
        id="OH_Out"
-       data-name="OH Out"
+       data-name="Open HiHat Audio Out"
        cx="153.04082"
        cy="418.45557"
        r="15.120081"
        style="fill:#0000ff;stroke-width:1.33334" />
     <circle
        id="CH_Out"
-       data-name="CH Out"
+       data-name="Closed HiHat Audio Out"
        cx="39.293545"
        cy="418.45557"
        r="15.120081"
        style="fill:#0000ff;stroke-width:1.33334" />
     <circle
        id="Thickness_CV"
-       data-name="Thickness CV"
+       data-name="Thickness CV In"
        cx="152.98749"
        cy="362.97528"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Brightness_CV"
-       data-name="Brightness CV"
+       data-name="Brightness CV In"
        cx="95.60051"
        cy="362.97528"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Decay_CV"
-       data-name="Decay CV"
+       data-name="Decay CV In"
        cx="39.346878"
        cy="362.97528"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="OH_Trig"
-       data-name="OH Trig"
+       data-name="Open HiHat Trigger In"
        cx="152.98749"
        cy="309.46832"
        r="15.120081"
        style="fill:#80ff80;stroke-width:1.33334" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="95.60051"
        cy="309.46832"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="CH_Trig"
-       data-name="CH Trig"
+       data-name="Closed HiHat Trigger In"
        cx="39.346878"
        cy="309.46832"
        r="15.120081"
@@ -364,13 +364,15 @@
        cx="141.86743"
        cy="217.09451"
        r="15.876085"
-       style="fill:#ff0080;stroke-width:0.933338" />
+       style="fill:#ff0080;stroke-width:0.933338"
+       data-name="Thickness!10!1!khz" />
     <circle
        id="Brightness"
        cx="50.466934"
        cy="217.09451"
        r="15.876085"
-       style="fill:#ff0080;stroke-width:0.933338" />
+       style="fill:#ff0080;stroke-width:0.933338"
+       data-name="Brightness!1!5!khz" />
     <rect
        id="Choke_Switch_Off_On"
        data-name="Choke Switch@Off@On"
@@ -384,13 +386,15 @@
        cx="141.86743"
        cy="77.133743"
        r="15.876085"
-       style="fill:#ff0000;stroke-width:0.933338" />
+       style="fill:#ff0000;stroke-width:0.933338"
+       data-name="Decay!50!300!ms" />
     <circle
        id="Pitch"
        cx="50.466934"
        cy="77.133743"
        r="15.876085"
-       style="fill:#ff0040;stroke-width:0.933338" />
+       style="fill:#ff0040;stroke-width:0.933338"
+       data-name="Pitch!1!2!khz" />
     <text
        id="slug"
        style="font-size:4.00002px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101;stroke-width:1.33334"
