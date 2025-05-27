@@ -18,7 +18,7 @@ struct ClapInfo : ModuleInfoBase {
     static constexpr std::array<Element, 14> Elements{{
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(62.027), Center, "Energy", ""}, 0.25f, 5.0, 15.0, "ms"},
 		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(61.894), Center, "Spread", ""}, 0.25f, 0.0, 100.0, "%"},
-		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(139.494), Center, "Color", ""}, 0.25f, 800.0, 16000.0, "hz"},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(139.494), Center, "Color", ""}, 0.25f, 0.8, 16.0, "khz"},
 		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(139.494), Center, "Verb Decay", ""}, 0.25f, 20.0, 100.0, "ms"},
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(217.095), Center, "Verb Volume", ""}, 0.25f, 0.0, 100.0, "%"},
 		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(217.095), Center, "Saturation", ""}, 0.25f, 0.0, 100.0, "%"},

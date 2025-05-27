@@ -29,7 +29,7 @@
      inkscape:window-width="1392"
      inkscape:window-height="1027"
      inkscape:window-x="2242"
-     inkscape:window-y="166"
+     inkscape:window-y="138"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -450,7 +450,7 @@
        cy="139.49409"
        r="14"
        style="fill:#ff0020;stroke-width:1.33334"
-       data-name="Color!800!16000!hz" />
+       data-name="Color!0.8!16!khz" />
     <circle
        id="Spread"
        cx="141.86743"
