@@ -23,12 +23,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.3600212"
-     inkscape:cx="104.41014"
-     inkscape:cy="285.28968"
+     inkscape:cx="104.0425"
+     inkscape:cy="285.28967"
      inkscape:window-width="1200"
      inkscape:window-height="1027"
      inkscape:window-x="2585"
-     inkscape:window-y="300"
+     inkscape:window-y="272"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -322,44 +322,45 @@
        cx="152.98749"
        cy="418.45557"
        r="15.120081"
-       style="fill:#0000ff;stroke-width:1.33334" />
+       style="fill:#0000ff;stroke-width:1.33334"
+       data-name="Audio Out" />
     <circle
        id="Saturation_CV"
-       data-name="Saturation CV"
+       data-name="Saturation CV In"
        cx="152.98749"
        cy="362.97528"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Amp_Decay_CV"
-       data-name="Amp Decay CV"
+       data-name="Amp Decay CV In"
        cx="95.60051"
        cy="362.97528"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="P_Decay_CV"
-       data-name="P Decay CV"
+       data-name="Pitch Decay CV In"
        cx="39.346878"
        cy="362.97528"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Depth_CV"
-       data-name="Depth CV"
+       data-name="Depth CV In"
        cx="152.98749"
        cy="309.46832"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="95.60051"
        cy="309.46832"
        r="15.120081"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Trig"
+       id="Trigger In"
        cx="39.346878"
        cy="309.46832"
        r="15.120081"
@@ -373,28 +374,28 @@
        height="15"
        style="fill:#ffc080;fill-opacity:1;stroke-width:1.33334" />
     <circle
-       id="Saturation"
+       id="Saturation!0!100!%"
        cx="50.466934"
        cy="217.09451"
        r="14"
        style="fill:#ff002a;stroke-width:1.33334" />
     <circle
        id="Amp_Decay"
-       data-name="Amp Decay"
+       data-name="Amp Decay!5!300!ms"
        cx="141.86743"
        cy="139.49408"
        r="14"
        style="fill:#ff002a;stroke-width:1.33334" />
     <circle
        id="P_Decay"
-       data-name="P Decay"
+       data-name="Pitch Decay!5!30!ms"
        cx="50.466934"
        cy="139.49408"
        r="14"
        style="fill:#ff0040;stroke-width:1.33334" />
     <circle
        id="P_Depth"
-       data-name="P Depth"
+       data-name="Pitch Depth!0!100!%"
        cx="141.86743"
        cy="61.893661"
        r="14"
@@ -404,7 +405,8 @@
        cx="50.466934"
        cy="62.027"
        r="14"
-       style="fill:#ff002a;stroke-width:1.33334" />
+       style="fill:#ff002a;stroke-width:1.33334"
+       data-name="Pitch!10!40!hz" />
     <text
        id="slug"
        style="font-size:4.00002px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101;stroke-width:1.33334"

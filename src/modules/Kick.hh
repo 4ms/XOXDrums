@@ -22,7 +22,7 @@ public:
 
 		if (param_id == param_idx<AmpDecayKnob>) {
 			recalc_amp_decay();
-		} else if (param_id == param_idx<PDecayKnob>) {
+		} else if (param_id == param_idx<PitchDecayKnob>) {
 			recalc_freq_decay();
 		}
 	}
@@ -32,17 +32,17 @@ public:
 
 		if (input_id == input_idx<AmpDecayCvIn>) {
 			recalc_amp_decay();
-		} else if (input_id == input_idx<PDecayCvIn>) {
+		} else if (input_id == input_idx<PitchDecayCvIn>) {
 			recalc_freq_decay();
 		}
 	}
 
 	void update(void) override {
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		float envDepthControl = combineKnobBipolarCV(getState<PDepthKnob>(), getInput<DepthCvIn>());
+		float envDepthControl = combineKnobBipolarCV(getState<PitchDepthKnob>(), getInput<DepthCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
@@ -77,7 +77,7 @@ public:
 		float finalOutput = (sineWave * amplitudeEnvelope) * saturation;
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<Out>(finalOutput);
+		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
@@ -100,7 +100,7 @@ private:
 	}
 
 	void recalc_freq_decay() {
-		const auto pitchDecayControl = combineKnobBipolarCV(getState<PDecayKnob>(), getInput<PDecayCvIn>());
+		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
 		const auto pitchDecayTime = 5.0f + (pitchDecayControl * 30.0f); // pitch decay range (5ms - 30ms)
 		pitchDecayAlpha = std::exp(-1.0f / (sampleRate * (pitchDecayTime / 1000.0f)));
 	}
