@@ -18,7 +18,7 @@ DISTRIBUTABLES += $(wildcard LICENSE*) res
 
 MMBUILD_DIR = build
 
-MM_INSTALL_DIR := metamodule-plugins
+MM_INSTALL_DIR := $(PWD)/metamodule-plugins
 
 .PHONY: mm config clean-mm 
 
