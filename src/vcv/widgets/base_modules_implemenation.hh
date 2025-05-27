@@ -15,7 +15,23 @@ inline void do_config_element(JackOutput el, const Indices &indices, const Modul
 };
 
 inline void do_config_element(Pot el, const Indices &indices, const ModuleContext_t &context) {
-	context.module->configParam(indices.param_idx, 0.f, 1.f, el.default_value, el.short_name.data());
+	float display_mult = el.display_mult;
+	std::string units{el.units};
+
+	if (el.min_value == 0 && el.max_value == 1 && el.units == "" && el.display_mult == 1) {
+		display_mult = 100;
+		units = "%";
+	}
+
+	context.module->configParam(indices.param_idx,
+								el.min_value,
+								el.max_value,
+								el.default_value,
+								std::string{el.short_name},
+								units,
+								el.display_base,
+								display_mult,
+								el.display_offset);
 };
 
 inline void do_config_element(LightElement el, const Indices &indices, const ModuleContext_t &context) {
