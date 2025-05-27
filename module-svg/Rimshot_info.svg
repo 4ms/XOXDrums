@@ -22,11 +22,11 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="5.1341975"
      inkscape:cx="14.997475"
-     inkscape:cy="118.32424"
+     inkscape:cy="118.42162"
      inkscape:window-width="1200"
-     inkscape:window-height="1186"
-     inkscape:window-x="50"
-     inkscape:window-y="25"
+     inkscape:window-height="847"
+     inkscape:window-x="2487"
+     inkscape:window-y="252"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      showgrid="false"
@@ -246,35 +246,37 @@
        cx="28.799999"
        cy="302.63724"
        r="11.34"
-       style="fill:#0000ff" />
+       style="fill:#0000ff"
+       data-name="Audio Out" />
     <circle
        id="Trigger"
        cx="28.799999"
        cy="253.82726"
        r="11.34"
-       style="fill:#80ff80" />
+       style="fill:#80ff80"
+       data-name="Trigger In" />
     <circle
        id="Ring_CV"
-       data-name="Ring CV"
+       data-name="Ring CV In"
        cx="28.799999"
        cy="184.92538"
        r="11.34"
        style="fill:#00ff00" />
     <circle
-       id="Ring"
+       id="Ring!0!100!%"
        cx="28.799999"
        cy="136.73538"
        r="8.5"
        style="fill:#ff0040" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="28.799999"
        cy="102.72538"
        r="11.34"
        style="fill:#00ff00" />
     <circle
-       id="Pitch"
+       id="Pitch!0.2!2!khz"
        cx="28.799999"
        cy="54.535385"
        r="8.5"

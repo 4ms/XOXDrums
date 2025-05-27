@@ -57,7 +57,7 @@ public:
 		const auto impulse = count >= impulse_num_samples ? 0.f : level;
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
-		setOutput<Out>(finalOutput);
+		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

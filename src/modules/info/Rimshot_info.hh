@@ -16,12 +16,12 @@ struct RimshotInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<72>(28.8), to_mm<72>(54.535), Center, "Pitch", ""}, 0.375f},
-		Knob9mm{{to_mm<72>(28.8), to_mm<72>(136.735), Center, "Ring", ""}, 0.5f},
-		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(102.725), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(184.925), Center, "Ring CV", ""}},
-		GateJackInput4ms{{to_mm<72>(28.8), to_mm<72>(253.827), Center, "Trigger", ""}},
-		AnalogJackOutput4ms{{to_mm<72>(28.8), to_mm<72>(302.637), Center, "Out", ""}},
+		Knob9mm{{to_mm<72>(28.8), to_mm<72>(54.535), Center, "Pitch", ""}, 0.375f, 0.2, 2.0, "khz"},
+		Knob9mm{{to_mm<72>(28.8), to_mm<72>(136.735), Center, "Ring", ""}, 0.5f, 0.0, 100.0, "%"},
+		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(102.725), Center, "Pitch CV In", ""}},
+		AnalogJackInput4ms{{to_mm<72>(28.8), to_mm<72>(184.925), Center, "Ring CV In", ""}},
+		GateJackInput4ms{{to_mm<72>(28.8), to_mm<72>(253.827), Center, "Trigger In", ""}},
+		AnalogJackOutput4ms{{to_mm<72>(28.8), to_mm<72>(302.637), Center, "Audio Out", ""}},
 }};
 
     enum class Elem {
@@ -30,7 +30,7 @@ struct RimshotInfo : ModuleInfoBase {
         PitchCvIn,
         RingCvIn,
         TriggerIn,
-        Out,
+        AudioOut,
     };
 };
 } // namespace MetaModule
