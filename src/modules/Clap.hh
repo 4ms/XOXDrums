@@ -50,7 +50,7 @@ public:
 		float verbVolumeControl = combineKnobBipolarCV(getState<VerbVolumeKnob>(), getInput<VerbVolumeCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 
-		if (trig.update(getInputAsGate<TrigIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>())) {
 			envelopeValue1 = 1.f;
 			delayCounter1 = 0;
 		}
@@ -114,7 +114,7 @@ public:
 
 		finalOutput = std::clamp(finalOutput, -5.f, 5.f);
 
-		setOutput<Out>(finalOutput);
+		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {

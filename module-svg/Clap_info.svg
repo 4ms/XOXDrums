@@ -24,12 +24,12 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="1.0506631"
-     inkscape:cx="59.486242"
+     inkscape:cx="59.486243"
      inkscape:cy="229.37895"
      inkscape:window-width="1392"
      inkscape:window-height="1027"
-     inkscape:window-x="2560"
-     inkscape:window-y="299"
+     inkscape:window-x="2242"
+     inkscape:window-y="166"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -372,45 +372,46 @@
        cx="153.04083"
        cy="418.4556"
        r="15.120082"
-       style="fill:#0000ff;stroke-width:1.33334" />
+       style="fill:#0000ff;stroke-width:1.33334"
+       data-name="Audio Out" />
     <circle
        id="Saturation_CV"
-       data-name="Saturation CV"
+       data-name="Saturation CV In"
        cx="39.293545"
        cy="418.4556"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Verb_Volume_CV"
-       data-name="Verb Volume CV"
+       data-name="Verb Volume CV In"
        cx="152.93416"
        cy="362.97531"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Verb_Decay_CV"
-       data-name="Verb Decay CV"
+       data-name="Verb Decay CV In"
        cx="95.533852"
        cy="362.97531"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Color_CV"
-       data-name="Color CV"
+       data-name="Color CV In"
        cx="39.293545"
        cy="362.97531"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Spread_CV"
-       data-name="Spread CV"
+       data-name="Spread CV In"
        cx="152.93416"
        cy="309.46835"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Energy_CV"
-       data-name="Energy CV"
+       data-name="Energy CV In"
        cx="95.533852"
        cy="309.46835"
        r="15.120082"
@@ -420,23 +421,25 @@
        cx="39.293545"
        cy="309.46835"
        r="15.120082"
-       style="fill:#80ff80;stroke-width:1.33334" />
+       style="fill:#80ff80;stroke-width:1.33334"
+       data-name="Trigger In" />
     <circle
        id="Saturation"
        cx="141.86743"
        cy="217.09451"
        r="14"
-       style="fill:#ff0020;stroke-width:1.33334" />
+       style="fill:#ff0020;stroke-width:1.33334"
+       data-name="Saturation!0!100!%" />
     <circle
        id="Verb_Volume"
-       data-name="Verb Volume"
+       data-name="Verb Volume!0!100!%"
        cx="50.466938"
        cy="217.09451"
        r="14"
        style="fill:#ff0020;stroke-width:1.33334" />
     <circle
        id="Verb_Decay"
-       data-name="Verb Decay"
+       data-name="Verb Decay!20!100!ms"
        cx="141.86743"
        cy="139.49409"
        r="14"
@@ -446,19 +449,22 @@
        cx="50.466938"
        cy="139.49409"
        r="14"
-       style="fill:#ff0020;stroke-width:1.33334" />
+       style="fill:#ff0020;stroke-width:1.33334"
+       data-name="Color!800!16000!hz" />
     <circle
        id="Spread"
        cx="141.86743"
        cy="61.893665"
        r="14"
-       style="fill:#ff0020;stroke-width:1.33334" />
+       style="fill:#ff0020;stroke-width:1.33334"
+       data-name="Spread!0!100!%" />
     <circle
        id="Energy"
        cx="50.466938"
        cy="62.027004"
        r="14"
-       style="fill:#ff0020;stroke-width:1.33334" />
+       style="fill:#ff0020;stroke-width:1.33334"
+       data-name="Energy!5!15!ms" />
     <text
        id="slug"
        style="font-size:4.00002px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101;stroke-width:1.33334"

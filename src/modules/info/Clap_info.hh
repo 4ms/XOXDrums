@@ -16,20 +16,20 @@ struct ClapInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 14> Elements{{
-		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(62.027), Center, "Energy", ""}, 0.25f},
-		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(61.894), Center, "Spread", ""}, 0.25f},
-		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(139.494), Center, "Color", ""}, 0.25f},
-		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(139.494), Center, "Verb Decay", ""}, 0.25f},
-		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(217.095), Center, "Verb Volume", ""}, 0.25f},
-		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(217.095), Center, "Saturation", ""}, 0.25f},
-		GateJackInput4ms{{to_mm<96>(39.294), to_mm<96>(309.468), Center, "Trig", ""}},
-		AnalogJackInput4ms{{to_mm<96>(95.534), to_mm<96>(309.468), Center, "Energy CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(152.934), to_mm<96>(309.468), Center, "Spread CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(39.294), to_mm<96>(362.975), Center, "Color CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(95.534), to_mm<96>(362.975), Center, "Verb Decay CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(152.934), to_mm<96>(362.975), Center, "Verb Volume CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(39.294), to_mm<96>(418.456), Center, "Saturation CV", ""}},
-		AnalogJackOutput4ms{{to_mm<96>(153.041), to_mm<96>(418.456), Center, "Out", ""}},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(62.027), Center, "Energy", ""}, 0.25f, 5.0, 15.0, "ms"},
+		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(61.894), Center, "Spread", ""}, 0.25f, 0.0, 100.0, "%"},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(139.494), Center, "Color", ""}, 0.25f, 800.0, 16000.0, "hz"},
+		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(139.494), Center, "Verb Decay", ""}, 0.25f, 20.0, 100.0, "ms"},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(217.095), Center, "Verb Volume", ""}, 0.25f, 0.0, 100.0, "%"},
+		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(217.095), Center, "Saturation", ""}, 0.25f, 0.0, 100.0, "%"},
+		GateJackInput4ms{{to_mm<96>(39.294), to_mm<96>(309.468), Center, "Trigger In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(95.534), to_mm<96>(309.468), Center, "Energy CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(152.934), to_mm<96>(309.468), Center, "Spread CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(39.294), to_mm<96>(362.975), Center, "Color CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(95.534), to_mm<96>(362.975), Center, "Verb Decay CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(152.934), to_mm<96>(362.975), Center, "Verb Volume CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(39.294), to_mm<96>(418.456), Center, "Saturation CV In", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(153.041), to_mm<96>(418.456), Center, "Audio Out", ""}},
 }};
 
     enum class Elem {
@@ -39,14 +39,14 @@ struct ClapInfo : ModuleInfoBase {
         VerbDecayKnob,
         VerbVolumeKnob,
         SaturationKnob,
-        TrigIn,
+        TriggerIn,
         EnergyCvIn,
         SpreadCvIn,
         ColorCvIn,
         VerbDecayCvIn,
         VerbVolumeCvIn,
         SaturationCvIn,
-        Out,
+        AudioOut,
     };
 };
 } // namespace MetaModule
