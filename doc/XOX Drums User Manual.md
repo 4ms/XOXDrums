@@ -131,7 +131,7 @@ Inspired by the 808 rimshot and Kraftwerk’s "electro click," this circuit uses
 
 - **Trigger**: Rising-edge one-shot trigger input for Rimshot. Gate length is ignored
 - **Pitch**: Bandpass filter cutoff frequency (200 Hz – 2 kHz)
-- **Decay**: Resonance of the bandpass filter
+- **Ring**: Resonance of the bandpass filter
 
 ---
 ![Snare](https://github.com/4ms/XOXDrums/blob/main/doc/Snare.png)
