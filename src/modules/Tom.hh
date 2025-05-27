@@ -30,9 +30,9 @@ public:
 	void set_input(int input_id, float val) override {
 		SmartCoreProcessor::set_input(input_id, val);
 
-		if (input_id == input_idx<ADecayCvIn>) {
+		if (input_id == input_idx<AmpDecayCvIn>) {
 			recalc_amp_decay();
-		} else if (input_id == input_idx<PDecayCvIn>) {
+		} else if (input_id == input_idx<PitchDecayCvIn>) {
 			recalc_pitch_decay();
 		}
 	}
@@ -77,7 +77,7 @@ public:
 		float finalOutput = (sineWave * envelopeValueAmp);
 		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
 
-		setOutput<Out>(finalOutput);
+		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
@@ -98,13 +98,13 @@ private:
 	}
 
 	void recalc_pitch_decay() {
-		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PDecayCvIn>());
+		const auto pitchDecayControl = combineKnobBipolarCV(getState<PitchDecayKnob>(), getInput<PitchDecayCvIn>());
 		const auto decayTimePitch = MathTools::map_value(pitchDecayControl, 0.0f, 1.0f, 5.0f, 50.f);
 		decayAlphaPitch = calc_decay_alpha(decayTimePitch);
 	}
 
 	void recalc_amp_decay() {
-		const auto ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<ADecayCvIn>());
+		const auto ampDecayControl = combineKnobBipolarCV(getState<AmpDecayKnob>(), getInput<AmpDecayCvIn>());
 		const auto decayTimeAmp = MathTools::map_value(ampDecayControl, 0.0f, 1.0f, 25.0f, 100.f);
 		decayAlphaAmp = calc_decay_alpha(decayTimeAmp);
 	}
