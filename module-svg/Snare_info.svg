@@ -25,12 +25,12 @@
      inkscape:zoom="7.9427102"
      inkscape:cx="121.36915"
      inkscape:cy="219.00585"
-     inkscape:window-width="1680"
-     inkscape:window-height="1186"
-     inkscape:window-x="459"
-     inkscape:window-y="66"
+     inkscape:window-width="1600"
+     inkscape:window-height="900"
+     inkscape:window-x="1600"
+     inkscape:window-y="38"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg145"
+     inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <g
      id="faceplate"
@@ -603,75 +603,75 @@
   <g
      id="components">
     <circle
-       id="Out"
+       id="Audio Out"
        cx="240.50798"
        cy="418.60233"
        r="15.120084"
        style="fill:#0000ff;stroke-width:1.33334" />
     <circle
        id="Saturation_CV"
-       data-name="Saturation CV"
+       data-name="Saturation CV In"
        cx="176.13429"
        cy="418.60233"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="BN_CV"
-       data-name="BN CV"
+       data-name="Body/Noise CV In"
        cx="240.50798"
        cy="363.12198"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="B_Decay_CV"
-       data-name="B Decay CV"
+       data-name="Body Decay CV In"
        cx="176.13429"
        cy="363.12198"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="N_Decay_CV"
-       data-name="N Decay CV"
+       data-name="Noise Decay CV In"
        cx="111.76061"
        cy="363.12198"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="N_Color_CV"
-       data-name="N Color CV"
+       data-name="Noise Color CV In"
        cx="47.386929"
        cy="363.12198"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="P_Amt_CV"
-       data-name="P Amt CV"
+       data-name="Pitch Amount CV In"
        cx="240.50798"
        cy="309.61505"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="P_Decay_CV"
-       data-name="P Decay CV"
+       data-name="Pitch Decay CV In"
        cx="176.13429"
        cy="309.61505"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="111.76061"
        cy="309.61505"
        r="15.120084"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Trigger"
+       id="Trigger In"
        cx="47.386929"
        cy="309.61505"
        r="15.120084"
        style="fill:#80ff80;stroke-width:1.33334" />
     <circle
-       id="Saturation"
+       id="Saturation!0!100!%"
        cx="229.8546"
        cy="217.61455"
        r="17.010094"
@@ -686,48 +686,48 @@
        width="22.680124" />
     <circle
        id="Body_Noise"
-       data-name="Body Noise"
+       data-name="Body/Noise!0!100!%"
        cx="58.000317"
        cy="217.73451"
        r="17.010094"
        style="fill:#ff0028;stroke-width:1.00001" />
     <circle
        id="Body_Decay"
-       data-name="Body Decay"
+       data-name="Body Decay!5!50!ms"
        cx="230.00125"
        cy="139.49411"
        r="17.010094"
        style="fill:#ff0028;stroke-width:1.00001" />
     <circle
        id="Noise_Decay"
-       data-name="Noise Decay"
+       data-name="Noise Decay!5!80!ms"
        cx="144.00079"
        cy="139.49411"
        r="17.010094"
        style="fill:#ff0021;stroke-width:1.00001" />
     <circle
        id="Noise_Color"
-       data-name="Noise Color"
+       data-name="Noise Color!1!5!khz"
        cx="58.000317"
        cy="139.49411"
        r="17.010094"
        style="fill:#ff0019;stroke-width:1.00001" />
     <circle
        id="Pitch_Env_Amount"
-       data-name="Pitch Env Amount"
+       data-name="Pitch Env Amount!0!100!%"
        cx="230.00125"
        cy="61.880337"
        r="17.010094"
        style="fill:#ff0019;stroke-width:1.00001" />
     <circle
        id="Pitch_Decay"
-       data-name="Pitch Decay"
+       data-name="Pitch Decay!5!25!ms"
        cx="144.00079"
        cy="61.880337"
        r="17.010094"
        style="fill:#ff000f;stroke-width:1.00001" />
     <circle
-       id="Pitch"
+       id="Pitch!150!380!hz"
        cx="58.000317"
        cy="61.880337"
        r="17.010094"
