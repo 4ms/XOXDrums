@@ -436,7 +436,12 @@ def list_elem_names(elems):
     source = ""
     for k in elems:
         name = k['enum_name']
-        if not k['enum_name'].endswith(k['category']):
+        # Audioin => AudioIn
+        if k['enum_name'].endswith(k['category'].lower()):
+            suffixlen = len(k['category'])
+            name = name[:-suffixlen] + k['category']
+        # Gate => GateIn
+        elif not k['enum_name'].endswith(k['category']):
             name = k['enum_name']+k['category']
         source += f"""
         {name},"""
