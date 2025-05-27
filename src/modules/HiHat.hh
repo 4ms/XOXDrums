@@ -54,7 +54,7 @@ public:
 	void update(void) override {
 		float decay_ohh_choked = decay_ohh;
 
-		if (chh_trig.update(getInputAsGate<ChTrigIn>())) {
+		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>())) {
 			envelopeValue1 = 1.0f;
 			// Choke mode: Silence the open hihat decay if the closed hihat gets a trigger
 			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
@@ -62,7 +62,7 @@ public:
 			}
 		}
 
-		if (ohh_trig.update(getInputAsGate<OhTrigIn>())) {
+		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>())) {
 			envelopeValue2 = 1.0f;
 		}
 
@@ -93,8 +93,8 @@ public:
 		finalOutputClosed = std::clamp(finalOutputClosed, -5.f, 5.f);
 		finalOutputOpen = std::clamp(finalOutputOpen, -5.f, 5.f);
 
-		setOutput<ChOut>(finalOutputClosed);
-		setOutput<OhOut>(finalOutputOpen);
+		setOutput<ClosedHihatAudioOut>(finalOutputClosed);
+		setOutput<OpenHihatAudioOut>(finalOutputOpen);
 	}
 
 	void set_samplerate(float sr) override {

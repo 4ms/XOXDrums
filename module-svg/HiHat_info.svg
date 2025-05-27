@@ -28,7 +28,7 @@
      inkscape:window-width="1600"
      inkscape:window-height="847"
      inkscape:window-x="1897"
-     inkscape:window-y="93"
+     inkscape:window-y="65"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -372,7 +372,7 @@
        cy="217.09451"
        r="15.876085"
        style="fill:#ff0080;stroke-width:0.933338"
-       data-name="Brightness!1!5!khz" />
+       data-name="Brightness!1!15!khz" />
     <rect
        id="Choke_Switch_Off_On"
        data-name="Choke Switch@Off@On"
