@@ -105,6 +105,19 @@ def panel_to_components(tree):
             name = split[0]
             c['pos_names'] = split[1:]
 
+        # If name is ElementName!min!max!units then extract min/max/units
+        split = name.split("!")
+        if len(split) > 2:
+            name = split[0]
+            c['min_val'] = float(split[1])
+            c['max_val'] = float(split[2])
+            if len(split) > 3:
+                c['units'] = split[3]
+            else:
+                c['units'] = ""
+            c['default_val'] = c['min_val'] # can be overriden later
+
+
         c['display_name'] = format_for_display(name)
         c['enum_name'] = format_as_enum_item(name)
 
@@ -159,8 +172,6 @@ def panel_to_components(tree):
         #Red: Knob or slider
         if color.startswith("#ff00") and default_val_int <= 128:
             c['default_val'] = str(default_val_int / 128) + "f"
-            c['min_val'] = "0"
-            c['max_val'] = "1"
 
             if shape == "circle":
                 set_class_if_not_set(c, get_knob_class_from_radius(el.get('r')))
@@ -404,10 +415,14 @@ def print_position_names(elem):
 
 
 def print_default_value(elem):
+    s = ""
     if "default_val" in elem:
-        return f""", {elem["default_val"]}""" 
-    else:
-        return ""
+        s += f""", {elem["default_val"]}""" 
+
+    if "min_val" in elem and "max_val" in elem and "units" in elem:
+        s += f", {elem["min_val"]}, {elem["max_val"]}, \"{elem["units"]}\""
+
+    return s
 
 def print_size(elem, DPI):
     if elem['category'] == "Display":
