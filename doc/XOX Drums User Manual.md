@@ -94,7 +94,7 @@ Modeled after the 808 hi-hat, this circuit uses four square wave oscillators mix
 - **Pitch**: Base frequency of the oscillators (1 kHz – 2 kHz)
 - **Decay**: Amplitude decay time for open hi-hat only (50–300 ms)
 - **Brightness**: Cutoff frequency for the bandpass filter (1 kHz – 5 kHz)
-- **Thickness**: Cutoff frequency for the highpass filter after the bandpass filter (1 kHz – 10 kHz)
+- **Thickness**: Cutoff frequency for the highpass filter after the bandpass filter (10 kHz – 1 kHz)
 - **Choke**: Enables/disables the choke function between open and closed hi-hat triggers
 
 ---
