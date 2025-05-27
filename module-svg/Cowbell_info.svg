@@ -21,12 +21,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.3134215"
-     inkscape:cx="89.460996"
-     inkscape:cy="227.64968"
+     inkscape:cx="89.841684"
+     inkscape:cy="227.64969"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="2560"
-     inkscape:window-y="299"
+     inkscape:window-x="2240"
+     inkscape:window-y="271"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -246,35 +246,37 @@
        cx="38.400208"
        cy="406.83234"
        r="15.120082"
-       style="fill:#0000ff;stroke-width:1.33334" />
+       style="fill:#0000ff;stroke-width:1.33334"
+       data-name="Audio Out" />
     <circle
        id="Trigger"
        cx="38.400208"
        cy="341.76532"
        r="15.120082"
-       style="fill:#80ff80;stroke-width:1.33334" />
+       style="fill:#80ff80;stroke-width:1.33334"
+       data-name="Trigger In" />
     <circle
        id="Decay_CV"
-       data-name="Decay CV"
+       data-name="Decay CV In"
        cx="38.573544"
        cy="262.87546"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Decay"
+       id="Decay!20!120!ms"
        cx="38.560207"
        cy="198.6218"
        r="9"
        style="fill:#ff0040;stroke-width:1.33334" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="38.560207"
        cy="134.36812"
        r="15.120082"
        style="fill:#00ff00;stroke-width:1.33334" />
     <circle
-       id="Pitch"
+       id="Pitch!240!540!hz"
        cx="38.560207"
        cy="70.114433"
        r="9"

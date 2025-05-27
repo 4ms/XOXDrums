@@ -16,12 +16,12 @@ struct CowbellInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		Knob9mm{{to_mm<96>(38.56), to_mm<96>(70.114), Center, "Pitch", ""}, 0.5f},
-		Knob9mm{{to_mm<96>(38.56), to_mm<96>(198.622), Center, "Decay", ""}, 0.5f},
-		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(134.368), Center, "Pitch CV", ""}},
-		AnalogJackInput4ms{{to_mm<96>(38.574), to_mm<96>(262.875), Center, "Decay CV", ""}},
-		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.765), Center, "Trigger", ""}},
-		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.832), Center, "Out", ""}},
+		Knob9mm{{to_mm<96>(38.56), to_mm<96>(70.114), Center, "Pitch", ""}, 0.5f, 240.0, 540.0, "hz"},
+		Knob9mm{{to_mm<96>(38.56), to_mm<96>(198.622), Center, "Decay", ""}, 0.5f, 20.0, 120.0, "ms"},
+		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(134.368), Center, "Pitch CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.574), to_mm<96>(262.875), Center, "Decay CV In", ""}},
+		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.765), Center, "Trigger In", ""}},
+		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.832), Center, "Audio Out", ""}},
 }};
 
     enum class Elem {
@@ -30,7 +30,7 @@ struct CowbellInfo : ModuleInfoBase {
         PitchCvIn,
         DecayCvIn,
         TriggerIn,
-        Out,
+        AudioOut,
     };
 };
 } // namespace MetaModule
