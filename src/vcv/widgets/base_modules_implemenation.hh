@@ -7,11 +7,39 @@ namespace MetaModule::VCVImplementation::Module
 using Indices = ElementCount::Indices;
 
 inline void do_config_element(JackInput el, const Indices &indices, const ModuleContext_t &context) {
-	context.module->configInput(indices.input_idx, el.short_name.data());
+	std::string_view name = el.short_name;
+	if (name.ends_with(" In"))
+		name.remove_suffix(3);
+	else if (name.ends_with(" in"))
+		name.remove_suffix(3);
+	else if (name.ends_with(" Input"))
+		name.remove_suffix(6);
+	else if (name.ends_with(" input"))
+		name.remove_suffix(6);
+	else if (name.ends_with("In"))
+		name.remove_suffix(2);
+	else if (name.ends_with("Input"))
+		name.remove_suffix(5);
+
+	context.module->configInput(indices.input_idx, std::string{name});
 };
 
 inline void do_config_element(JackOutput el, const Indices &indices, const ModuleContext_t &context) {
-	context.module->configOutput(indices.output_idx, el.short_name.data());
+	std::string_view name = el.short_name;
+	if (name.ends_with(" Out"))
+		name.remove_suffix(4);
+	else if (name.ends_with(" out"))
+		name.remove_suffix(4);
+	else if (name.ends_with(" Output"))
+		name.remove_suffix(7);
+	else if (name.ends_with(" output"))
+		name.remove_suffix(7);
+	else if (name.ends_with("Out"))
+		name.remove_suffix(3);
+	else if (name.ends_with("Output"))
+		name.remove_suffix(6);
+
+	context.module->configOutput(indices.output_idx, std::string{name});
 };
 
 inline void do_config_element(Pot el, const Indices &indices, const ModuleContext_t &context) {
