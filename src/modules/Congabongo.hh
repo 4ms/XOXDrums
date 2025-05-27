@@ -34,23 +34,23 @@ public:
 	}
 
 	void update(void) override {
-		if (trigToneLo.update(getInputAsGate<ToneLoIn>())) {
+		if (trigToneLo.update(getInputAsGate<ToneLoTriggerIn>())) {
 			phase1 = 0.0f;
 			amplitudeEnvelopeToneLo = 1.0f;
 		}
 
-		if (trigSlapLo.update(getInputAsGate<SlapLoIn>())) {
+		if (trigSlapLo.update(getInputAsGate<SlapLoTriggerIn>())) {
 			amplitudeEnvelopeToneLo = 0.f;
 			phase1 = 0.0f;
 			amplitudeEnvelopeSlapLo = 1.0f;
 		}
 
-		if (trigToneHi.update(getInputAsGate<ToneHiIn>())) {
+		if (trigToneHi.update(getInputAsGate<ToneHiTriggerIn>())) {
 			phase2 = 0.0f;
 			amplitudeEnvelopeToneHigh = 1.0f;
 		}
 
-		if (trigSlapHi.update(getInputAsGate<SlapHiIn>())) {
+		if (trigSlapHi.update(getInputAsGate<SlapHiTriggerIn>())) {
 			amplitudeEnvelopeToneHigh = 0.f;
 			phase2 = 0.0f;
 			amplitudeEnvelopeSlapHigh = 1.0f;
@@ -78,8 +78,8 @@ public:
 		auto finalOutput2 = (sineWave2 * amplitudeEnvelopeToneHigh) + ((sineWave2 * amplitudeEnvelopeSlapHigh) * 2);
 		finalOutput2 = std::clamp(finalOutput2, -5.0f, 5.0f);
 
-		setOutput<OutLoOut>(finalOutput1);
-		setOutput<OutHiOut>(finalOutput2);
+		setOutput<LoAudioOut>(finalOutput1);
+		setOutput<HiAudioOut>(finalOutput2);
 	}
 
 	void set_samplerate(float sr) override {

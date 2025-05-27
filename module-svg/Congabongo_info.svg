@@ -23,12 +23,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.0749335"
-     inkscape:cx="13.489206"
-     inkscape:cy="185.59287"
-     inkscape:window-width="1976"
-     inkscape:window-height="1186"
-     inkscape:window-x="50"
-     inkscape:window-y="25"
+     inkscape:cx="13.489207"
+     inkscape:cy="185.12773"
+     inkscape:window-width="1600"
+     inkscape:window-height="847"
+     inkscape:window-x="2291"
+     inkscape:window-y="278"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -244,56 +244,56 @@
      id="components">
     <circle
        id="Out_HI"
-       data-name="Out HI"
+       data-name="HI Audio Out"
        cx="152.98749"
        cy="418.45557"
        style="fill:#0000ff;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Out_LO"
-       data-name="Out LO"
+       data-name="LO Audio Out"
        cx="39.346878"
        cy="418.45557"
        style="fill:#0000ff;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Tone_HI"
-       data-name="Tone HI"
+       data-name="Tone HI Trigger In"
        cx="152.98749"
        cy="362.97528"
        style="fill:#00ff00;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Decay_CV"
-       data-name="Decay CV"
+       data-name="Decay CV In"
        cx="95.60051"
        cy="362.97528"
        style="fill:#00ff00;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Tone_LO"
-       data-name="Tone LO"
+       data-name="Tone LO Trigger In"
        cx="39.346878"
        cy="362.97528"
        style="fill:#00ff00;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Slap_HI"
-       data-name="Slap HI"
+       data-name="Slap HI Trigger In"
        cx="152.98749"
        cy="309.46832"
        style="fill:#80ff80;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Pitch_CV"
-       data-name="Pitch CV"
+       data-name="Pitch CV In"
        cx="95.60051"
        cy="309.46832"
        style="fill:#00ff00;stroke-width:1.33334"
        r="15.120081" />
     <circle
        id="Slap_LO"
-       data-name="Slap LO"
+       data-name="Slap LO Trigger In"
        cx="39.346878"
        cy="309.60165"
        style="fill:#80ff80;stroke-width:1.33334"
@@ -311,13 +311,15 @@
        cx="96.147186"
        cy="158.78751"
        style="fill:#ff0040;stroke-width:1.33334"
-       r="12" />
+       r="12"
+       data-name="Decay!0!100!%" />
     <circle
        id="Pitch"
        cx="96.147186"
        cy="77.133743"
        style="fill:#ff0000;stroke-width:1.33334"
-       r="12" />
+       r="12"
+       data-name="Pitch!0!100!%" />
     <text
        id="slug"
        style="font-size:4.00002px;font-family:MyriadPro-Regular, 'Myriad Pro';fill:#010101;stroke-width:1.33334"
