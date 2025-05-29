@@ -1,5 +1,8 @@
 # CHANGES
 
+## v2.0.6
+- Update jack names and set all knob ranges and units
+
 ## v2.0.5
 - Fix link to user manual
 
