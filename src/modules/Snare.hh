@@ -55,14 +55,21 @@ public:
 		float envDepthControl = combineKnobBipolarCV(getState<PitchEnvAmountKnob>(), getInput<PitchAmountCvIn>());
 		float noiseVolumeControl = combineKnobBipolarCV(getState<Body_NoiseKnob>(), getInput<Body_NoiseCvIn>());
 		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
+		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			noiseEnvelope = 1.0f;
 		}
 
+		if(pushButton){
+			setLED<PushButton>(1.f);
+		}
+		else {
+			setLED<PushButton>(0.f);
+		}
 		// Osc
 		using MathTools::M_PIF;
 		float frequency = 80 + (pitchControl * 100.0f);										 // Body pitch range
