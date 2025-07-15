@@ -22,13 +22,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.8284271"
      inkscape:cx="89.625785"
-     inkscape:cy="139.30004"
+     inkscape:cy="252.43712"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
      inkscape:window-x="2233"
-     inkscape:window-y="179"
+     inkscape:window-y="151"
      inkscape:window-maximized="0"
-     inkscape:current-layer="faceplate"
+     inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <defs
      id="defs2">
@@ -55,7 +55,8 @@
   </defs>
   <g
      id="faceplate"
-     transform="scale(1.3333405)">
+     transform="scale(1.3333405)"
+     sodipodi:insensitive="true">
     <g
        id="g3">
       <rect
@@ -170,8 +171,7 @@
        transform="scale(0.749996)" />
   </g>
   <g
-     id="components"
-     sodipodi:insensitive="true">
+     id="components">
     <circle
        id="Out"
        cx="38.400208"

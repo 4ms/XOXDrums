@@ -15,12 +15,14 @@ struct HiHatInfo : ModuleInfoBase {
 
     using enum Coords;
 
-    static constexpr std::array<Element, 13> Elements{{
+    static constexpr std::array<Element, 15> Elements{{
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(77.134), Center, "Pitch", ""}, 0.5f, 1.0, 2.0, "khz"},
 		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(77.134), Center, "Decay", ""}, 0.0f, 50.0, 300.0, "ms"},
-		Toggle2pos{{to_mm<96>(96.876), to_mm<96>(145.592), Center, "Choke Switch", ""}, {"Off", "On"}},
-		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(217.095), Center, "Brightness", ""}, 1.0f, 1.0, 15.0, "khz"},
-		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(217.095), Center, "Thickness", ""}, 1.0f, 10.0, 1.0, "khz"},
+		Toggle2pos{{to_mm<96>(96.876), to_mm<96>(133.592), Center, "Choke Switch", ""}, {"Off", "On"}},
+		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(201.095), Center, "Brightness", ""}, 1.0f, 1.0, 15.0, "khz"},
+		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(201.095), Center, "Thickness", ""}, 1.0f, 10.0, 1.0, "khz"},
+		WhiteMomentary7mm{{to_mm<96>(39.347), to_mm<96>(264.589), Center, "ChPushButton", ""}},
+		WhiteMomentary7mm{{to_mm<96>(152.987), to_mm<96>(264.589), Center, "OhPushButton", ""}},
 		GateJackInput4ms{{to_mm<96>(39.347), to_mm<96>(309.468), Center, "Closed HiHat Trigger In", ""}},
 		AnalogJackInput4ms{{to_mm<96>(95.601), to_mm<96>(309.468), Center, "Pitch CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(152.987), to_mm<96>(309.468), Center, "Open HiHat Trigger In", ""}},
@@ -37,6 +39,8 @@ struct HiHatInfo : ModuleInfoBase {
         ChokeSwitch,
         BrightnessKnob,
         ThicknessKnob,
+        ChpushButton,
+        OhpushButton,
         ClosedHihatTriggerIn,
         PitchCvIn,
         OpenHihatTriggerIn,

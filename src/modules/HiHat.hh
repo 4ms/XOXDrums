@@ -53,8 +53,11 @@ public:
 
 	void update(void) override {
 		float decay_ohh_choked = decay_ohh;
+		auto pushButtonCh = getState<ChpushButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButtonOh = getState<OhpushButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>())) {
+
+		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>() | pushButtonCh)) {
 			envelopeValue1 = 1.0f;
 			// Choke mode: Silence the open hihat decay if the closed hihat gets a trigger
 			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
@@ -62,7 +65,21 @@ public:
 			}
 		}
 
-		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>())) {
+		if(pushButtonCh){
+			setLED<ChpushButton>(1.f);
+		}
+		else {
+			setLED<ChpushButton>(0.f);
+		}
+
+		if(pushButtonOh){
+			setLED<OhpushButton>(1.f);
+		}
+		else {
+			setLED<OhpushButton>(0.f);
+		}
+
+		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>() | pushButtonOh)) {
 			envelopeValue2 = 1.0f;
 		}
 

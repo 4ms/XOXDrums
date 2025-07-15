@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="20.320108mm" height="128.5mm" viewBox="0 0 76.800412 485.66929" version="1.1" id="svg28" sodipodi:docname="Maraca_info.svg" inkscape:version="1.4 (e7c3feb1, 2024-10-09)">
-  <sodipodi:namedview id="namedview28" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="2.8284271" inkscape:cx="89.625785" inkscape:cy="139.30004" inkscape:window-width="1920" inkscape:window-height="1027" inkscape:window-x="2233" inkscape:window-y="179" inkscape:window-maximized="0" inkscape:current-layer="faceplate" inkscape:document-units="mm" />
+  <sodipodi:namedview id="namedview28" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="2.8284271" inkscape:cx="89.625785" inkscape:cy="252.43712" inkscape:window-width="1920" inkscape:window-height="1027" inkscape:window-x="2233" inkscape:window-y="151" inkscape:window-maximized="0" inkscape:current-layer="components" inkscape:document-units="mm" />
   <defs id="defs2">
     <clipPath id="clippath">
       <rect x="14.9" y="32.98" width="27.799999" height="25.620001" style="fill:none" id="rect1" />
@@ -8,7 +8,7 @@
       <rect x="14.9" y="32.98" width="27.799999" height="25.620001" style="fill:none" id="rect2" />
     </clipPath>
   </defs>
-  <g id="faceplate" transform="scale(1.3333405)">
+  <g id="faceplate" transform="scale(1.3333405)" sodipodi:insensitive="true">
     <g id="g3">
       <rect x="0.13" y="0.13" width="57.349998" height="364" style="fill:#ededed" id="rect3" />
       <path d="M 57.35,0.25 V 364 H 0.25 V 0.25 h 57.1 M 57.6,0 H 0 v 364.25 h 57.6 z" style="fill:#9d9d9e" id="path3" />
