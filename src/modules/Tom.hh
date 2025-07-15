@@ -41,10 +41,18 @@ public:
 		// Interface
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 		float envDepthControl = combineKnobBipolarCV(getState<EnvDepthKnob>(), getInput<EnvDepthCvIn>());
+		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			envelopeValueAmp = 1.0f;
 			envelopeValuePitch = 1.0f;
+		}
+
+		if(pushButton){
+			setLED<PushButton>(1.f);
+		}
+		else {
+			setLED<PushButton>(0.f);
 		}
 
 		envelopeValueAmp *= decayAlphaAmp;
