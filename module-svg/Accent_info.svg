@@ -22,13 +22,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.4572787"
      inkscape:cx="30.725046"
-     inkscape:cy="217.51705"
+     inkscape:cy="217.51704"
      inkscape:window-width="1200"
      inkscape:window-height="900"
      inkscape:window-x="2189"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="faceplate"
+     inkscape:current-layer="components"
      showgrid="false"
      inkscape:document-units="mm" />
   <defs
@@ -291,6 +291,7 @@
        cy="222.06821"
        r="8.9250002"
        style="fill:#ffc000;fill-opacity:1;stroke-width:1.05"
-       inkscape:label="pushButton" />
+       inkscape:label="pushButton"
+       data-name="Trigger" />
   </g>
 </svg>

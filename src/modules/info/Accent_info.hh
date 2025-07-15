@@ -16,7 +16,7 @@ struct AccentInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(38.24), to_mm<96>(222.068), Center, "pushButton", ""}},
+		WhiteMomentary7mm{{to_mm<96>(38.24), to_mm<96>(222.068), Center, "Trigger", ""}},
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(73.373), Center, "Amount", ""}, 0.0f},
 		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(137.626), Center, "Amount CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(277.337), Center, "Trigger In", ""}},
@@ -25,7 +25,7 @@ struct AccentInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        PushButton,
+        TriggerButton,
         AmountKnob,
         AmountCvIn,
         TriggerIn,
