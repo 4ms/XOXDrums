@@ -35,12 +35,19 @@ public:
 
 	void update(void) override {
 		const float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
+		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			phase = 0.f;
 			amplitudeEnvelope = 1.f;
 		}
 
+		if(pushButton){
+			setLED<PushButton>(1.f);
+		}
+		else {
+			setLED<PushButton>(0.f);
+		}
 		// Osc
 		using MathTools::M_PIF;
 		const float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
