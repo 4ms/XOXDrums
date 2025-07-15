@@ -15,17 +15,19 @@ struct DuckInfo : ModuleInfoBase {
 
     using enum Coords;
 
-    static constexpr std::array<Element, 7> Elements{{
+    static constexpr std::array<Element, 8> Elements{{
+		WhiteMomentary7mm{{to_mm<96>(38.4), to_mm<96>(238.638), Center, "pushButton", ""}},
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(62.174), Center, "Amount", ""}, 1.0f, 0.0, 100.0, "%"},
-		Knob9mm{{to_mm<96>(38.4), to_mm<96>(171.774), Center, "Time", ""}, 0.25f, 50.0, 2000.0, "ms"},
+		Knob9mm{{to_mm<96>(38.4), to_mm<96>(151.774), Center, "Time", ""}, 0.25f, 50.0, 2000.0, "ms"},
 		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(115.595), Center, "Amount CV In", ""}},
-		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(227.44), Center, "Time CV In", ""}},
+		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(207.44), Center, "Time CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(277.519), Center, "Trigger In", ""}},
 		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.772), Center, "Audio In", ""}},
 		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.853), Center, "Audio Out", ""}},
 }};
 
     enum class Elem {
+        PushButton,
         AmountKnob,
         TimeKnob,
         AmountCvIn,
