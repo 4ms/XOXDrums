@@ -15,7 +15,8 @@ struct MaracaInfo : ModuleInfoBase {
 
     using enum Coords;
 
-    static constexpr std::array<Element, 4> Elements{{
+    static constexpr std::array<Element, 5> Elements{{
+		WhiteMomentary7mm{{to_mm<96>(38.4), to_mm<96>(291.111), Center, "pushButton", ""}},
 		Knob9mm{{to_mm<96>(38.56), to_mm<96>(62.36), Center, "Decay", ""}, 0.5f, 2.0, 20.0, "ms"},
 		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(126.614), Center, "Decay CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.8), Center, "Trigger In", ""}},
@@ -23,6 +24,7 @@ struct MaracaInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
+        PushButton,
         DecayKnob,
         DecayCvIn,
         TriggerIn,

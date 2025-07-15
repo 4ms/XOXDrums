@@ -44,9 +44,17 @@ public:
 	}
 
 	void update(void) override {
+		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>())) {
+		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			amplitudeEnvelope = 1.0f;
+		}
+
+		if(pushButton){
+			setLED<PushButton>(1.f);
+		}
+		else {
+			setLED<PushButton>(0.f);
 		}
 
 		amplitudeEnvelope *= ampDecayAlpha;
