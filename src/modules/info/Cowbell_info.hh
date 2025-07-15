@@ -15,7 +15,8 @@ struct CowbellInfo : ModuleInfoBase {
 
     using enum Coords;
 
-    static constexpr std::array<Element, 6> Elements{{
+    static constexpr std::array<Element, 7> Elements{{
+		WhiteMomentary7mm{{to_mm<96>(38.574), to_mm<96>(297.949), Center, "pushButton", ""}},
 		Knob9mm{{to_mm<96>(38.56), to_mm<96>(70.114), Center, "Pitch", ""}, 0.5f, 240.0, 540.0, "hz"},
 		Knob9mm{{to_mm<96>(38.56), to_mm<96>(198.622), Center, "Decay", ""}, 0.5f, 20.0, 120.0, "ms"},
 		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(134.368), Center, "Pitch CV In", ""}},
@@ -25,6 +26,7 @@ struct CowbellInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
+        PushButton,
         PitchKnob,
         DecayKnob,
         PitchCvIn,

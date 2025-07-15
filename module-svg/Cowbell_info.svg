@@ -20,13 +20,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="1.3134215"
-     inkscape:cx="89.841684"
-     inkscape:cy="227.64969"
+     inkscape:zoom="5.253686"
+     inkscape:cx="56.722081"
+     inkscape:cy="331.0057"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="2240"
-     inkscape:window-y="271"
+     inkscape:window-x="2856"
+     inkscape:window-y="288"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -323,5 +323,12 @@
          y="483.56381"
          style="letter-spacing:0em;stroke-width:1.33334"
          id="tspan41">odule</tspan></text>
+    <circle
+       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
+       id="pushButton"
+       cx="38.573544"
+       cy="297.94858"
+       r="15.118111"
+       inkscape:label="pushButton" />
   </g>
 </svg>
