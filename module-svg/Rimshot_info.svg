@@ -20,13 +20,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="5.1341975"
-     inkscape:cx="14.997475"
-     inkscape:cy="118.42162"
+     inkscape:zoom="2.5670988"
+     inkscape:cx="60.379445"
+     inkscape:cy="259.43684"
      inkscape:window-width="1200"
      inkscape:window-height="847"
-     inkscape:window-x="2487"
-     inkscape:window-y="252"
+     inkscape:window-x="2985"
+     inkscape:window-y="119"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      showgrid="false"
@@ -250,7 +250,7 @@
        data-name="Audio Out" />
     <circle
        id="Trigger"
-       cx="28.799999"
+       cx="28.920782"
        cy="253.82726"
        r="11.34"
        style="fill:#80ff80"
@@ -268,6 +268,13 @@
        cy="136.73538"
        r="8.5"
        style="fill:#ff0040" />
+    <circle
+       id="pushButton"
+       cx="28.920782"
+       cy="216.3407"
+       r="8.5"
+       style="fill:#ffc000;fill-opacity:1"
+       inkscape:label="pushButton" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV In"

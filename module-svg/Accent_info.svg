@@ -21,14 +21,14 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="0.8687792"
-     inkscape:cx="79.997311"
-     inkscape:cy="311.35644"
+     inkscape:cx="149.05974"
+     inkscape:cy="394.23135"
      inkscape:window-width="1200"
      inkscape:window-height="900"
      inkscape:window-x="2189"
-     inkscape:window-y="32"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      showgrid="false"
      inkscape:document-units="mm" />
   <defs
@@ -281,5 +281,12 @@
          y="482.28683"
          id="tspan34"
          style="stroke-width:1.33334">odule</tspan></text>
+    <circle
+       id="pushButton"
+       cx="38.240208"
+       cy="222.06821"
+       r="8.9250002"
+       style="fill:#ffc000;fill-opacity:1;stroke-width:1.05"
+       inkscape:label="pushButton" />
   </g>
 </svg>

@@ -48,15 +48,30 @@ public:
 	}
 
 	void update(void) override {
-		const auto level = getInput<TriggerIn>().value_or(0.f);
-
-		if (trig.update(level > .5f)) {
+		auto level = getInput<TriggerIn>().value_or(0.f);
+		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
+ 
+		if (trig.update((level > .5f) | pushButton)) {
+			if(pushButton == 1){
+			level = 5.f;
+			}
+			else{
+			level = 0.f; 
+			}
 			count = 0;
 		}
 
 		const auto impulse = count >= impulse_num_samples ? 0.f : level;
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
+
+		if(pushButton){
+			setLED<PushButton>(1.f);
+		}
+		else{
+			setLED<PushButton>(0.f); 
+		}
+
 		setOutput<AudioOut>(finalOutput);
 	}
 

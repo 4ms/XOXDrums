@@ -23,16 +23,17 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="1.0506631"
-     inkscape:cx="59.486243"
-     inkscape:cy="229.37895"
+     inkscape:zoom="1.485862"
+     inkscape:cx="119.45928"
+     inkscape:cy="281.99119"
      inkscape:window-width="1392"
      inkscape:window-height="1027"
      inkscape:window-x="2242"
-     inkscape:window-y="138"
+     inkscape:window-y="110"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
-     inkscape:document-units="mm" />
+     inkscape:document-units="mm"
+     showguides="false" />
   <g
      id="faceplate"
      transform="scale(1.3333405)">
@@ -491,5 +492,12 @@
          y="482.457"
          id="tspan531"
          style="stroke-width:1.33334">odule</tspan></text>
+    <ellipse
+       style="fill:#ffc000;stroke:none;stroke-width:0.384479"
+       id="path4"
+       cx="95.533852"
+       cy="268.44049"
+       rx="5.4770517"
+       ry="5.4770522" />
   </g>
 </svg>
