@@ -16,7 +16,7 @@ struct ClapInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 15> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(39.674), to_mm<96>(309.468), Center, "pushButton", ""}},
+		WhiteMomentary7mm{{to_mm<96>(39.674), to_mm<96>(309.468), Center, "Trigger", ""}},
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(62.027), Center, "Energy", ""}, 0.25f, 5.0, 15.0, "ms"},
 		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(61.894), Center, "Spread", ""}, 0.25f, 0.0, 100.0, "%"},
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(139.494), Center, "Color", ""}, 0.25f, 0.8, 16.0, "khz"},
@@ -34,7 +34,7 @@ struct ClapInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        PushButton,
+        TriggerButton,
         EnergyKnob,
         SpreadKnob,
         ColorKnob,
