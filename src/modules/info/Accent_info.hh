@@ -19,7 +19,7 @@ struct AccentInfo : ModuleInfoBase {
 		WhiteMomentary7mm{{to_mm<96>(38.24), to_mm<96>(222.068), Center, "pushButton", ""}},
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(73.373), Center, "Amount", ""}, 0.0f},
 		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(137.626), Center, "Amount CV In", ""}},
-		GateJackInput4ms{{to_mm<96>(38.24), to_mm<96>(277.337), Center, "Trigger In", ""}},
+		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(277.337), Center, "Trigger In", ""}},
 		AnalogJackInput4ms{{to_mm<96>(38.24), to_mm<96>(341.577), Center, "Audio In", ""}},
 		AnalogJackOutput4ms{{to_mm<96>(38.24), to_mm<96>(406.644), Center, "Accented Out", ""}},
 }};

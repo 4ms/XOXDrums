@@ -20,13 +20,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="2.042745"
-     inkscape:cx="26.435018"
-     inkscape:cy="245.25822"
+     inkscape:zoom="5.7777554"
+     inkscape:cx="16.355833"
+     inkscape:cy="264.63564"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
      inkscape:window-x="2240"
-     inkscape:window-y="243"
+     inkscape:window-y="215"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg44"
      inkscape:document-units="mm" />
@@ -268,6 +268,11 @@
        id="text36"
        style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';letter-spacing:-0.04em;stroke-width:0.938083"
        aria-label="Trigger" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.54661;stroke-dasharray:none;stroke-opacity:1"
+       d="M 38.400208,238.48077 V 277.133"
+       id="path24-7"
+       transform="scale(0.749996)" />
   </g>
   <g
      id="components">

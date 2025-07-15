@@ -22,15 +22,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="1.3600212"
-     inkscape:cx="123.15984"
-     inkscape:cy="379.40585"
+     inkscape:zoom="3.8467208"
+     inkscape:cx="65.900285"
+     inkscape:cy="356.92738"
      inkscape:window-width="1200"
      inkscape:window-height="1027"
      inkscape:window-x="2585"
-     inkscape:window-y="216"
+     inkscape:window-y="188"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      inkscape:document-units="mm" />
   <g
      id="faceplate"
@@ -312,6 +312,11 @@
        style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';fill:#ffffff"
        transform="matrix(0.82,0,0,1,108.2,336.21)"
        aria-label="Out" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.87175;stroke-dasharray:none;stroke-opacity:1"
+       d="m 39.346878,308.98295 v 56.61168"
+       id="path24-0"
+       transform="scale(0.74999597)" />
   </g>
   <g
      id="components">

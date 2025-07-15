@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="60.48" height="382.46249" viewBox="0 0 57.6 364.24999" version="1.1" id="svg39" sodipodi:docname="Rimshot_info.svg" inkscape:version="1.4 (e7c3feb1, 2024-10-09)">
-  <sodipodi:namedview id="namedview39" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="2.5670988" inkscape:cx="60.379445" inkscape:cy="259.43684" inkscape:window-width="1200" inkscape:window-height="847" inkscape:window-x="2985" inkscape:window-y="119" inkscape:window-maximized="0" inkscape:current-layer="components" showgrid="false" inkscape:document-units="mm" />
+  <sodipodi:namedview id="namedview39" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="2.5670988" inkscape:cx="60.574217" inkscape:cy="259.43684" inkscape:window-width="1200" inkscape:window-height="847" inkscape:window-x="2985" inkscape:window-y="91" inkscape:window-maximized="0" inkscape:current-layer="components" showgrid="false" inkscape:document-units="mm" />
   <defs id="defs4">
     <clipPath id="clippath">
       <rect x="14.9" y="32.98" width="27.799999" height="25.620001" style="fill:none" id="rect1" />
@@ -65,5 +65,6 @@
     </g>
     <line x1="28.799999" y1="80.848343" x2="28.799999" y2="99.848343" style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10" id="line33" />
     <line x1="28.799999" y1="162.95834" x2="28.799999" y2="181.95834" style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10" id="line34" />
+    <path style="fill:none;stroke:#000000;stroke-width:1.52652;stroke-dasharray:none;stroke-opacity:1" d="m 28.920782,217.08182 v 39.53716" id="path24-7" />
   </g>
   <g /></svg>

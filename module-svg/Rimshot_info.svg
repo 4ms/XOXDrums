@@ -21,12 +21,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.5670988"
-     inkscape:cx="60.379445"
+     inkscape:cx="60.574217"
      inkscape:cy="259.43684"
      inkscape:window-width="1200"
      inkscape:window-height="847"
      inkscape:window-x="2985"
-     inkscape:window-y="119"
+     inkscape:window-y="91"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      showgrid="false"
@@ -238,9 +238,20 @@
        y2="181.95834"
        style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10"
        id="line34" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.52652;stroke-dasharray:none;stroke-opacity:1"
+       d="m 28.920782,217.08182 v 39.53716"
+       id="path24-7" />
   </g>
   <g
      id="components">
+    <circle
+       id="pushButton"
+       cx="28.920782"
+       cy="216.3407"
+       r="8.5"
+       style="fill:#ffc000;fill-opacity:1"
+       inkscape:label="pushButton" />
     <circle
        id="Out"
        cx="28.799999"
@@ -268,13 +279,6 @@
        cy="136.73538"
        r="8.5"
        style="fill:#ff0040" />
-    <circle
-       id="pushButton"
-       cx="28.920782"
-       cy="216.3407"
-       r="8.5"
-       style="fill:#ffc000;fill-opacity:1"
-       inkscape:label="pushButton" />
     <circle
        id="Pitch_CV"
        data-name="Pitch CV In"

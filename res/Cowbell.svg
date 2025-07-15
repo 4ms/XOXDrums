@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="20.320108mm" height="128.5mm" viewBox="0 0 76.800412 485.66929" version="1.1" id="svg41" sodipodi:docname="Cowbell_info.svg" inkscape:version="1.4 (e7c3feb1, 2024-10-09)">
-  <sodipodi:namedview id="namedview41" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="5.253686" inkscape:cx="56.722081" inkscape:cy="331.0057" inkscape:window-width="1920" inkscape:window-height="1027" inkscape:window-x="2856" inkscape:window-y="288" inkscape:window-maximized="0" inkscape:current-layer="components" inkscape:document-units="mm" />
+  <sodipodi:namedview id="namedview41" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:zoom="5.253686" inkscape:cx="56.817252" inkscape:cy="346.2331" inkscape:window-width="1920" inkscape:window-height="1027" inkscape:window-x="2560" inkscape:window-y="260" inkscape:window-maximized="0" inkscape:current-layer="faceplate" inkscape:document-units="mm" />
   <defs id="defs4">
     <clipPath id="clippath">
       <rect x="14.9" y="32.98" width="27.799999" height="25.620001" style="fill:none" id="rect1" />
@@ -65,5 +65,6 @@
     </g>
     <line x1="28.799999" y1="79.005547" x2="28.799999" y2="98.005547" style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10" id="line33" />
     <line x1="28.799999" y1="175.36554" x2="28.799999" y2="194.36554" style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10" id="line34" />
+    <path style="fill:none;stroke:#000000;stroke-width:1.94081;stroke-dasharray:none;stroke-opacity:1" d="m 38.573544,292.11061 v 60.86666" id="path24-0" transform="scale(0.749996)" />
   </g>
   <g /></svg>

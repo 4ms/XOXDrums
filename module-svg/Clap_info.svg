@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="1.485862"
-     inkscape:cx="96.240431"
-     inkscape:cy="276.60711"
+     inkscape:zoom="5.943448"
+     inkscape:cx="54.09318"
+     inkscape:cy="354.33977"
      inkscape:window-width="1392"
      inkscape:window-height="1027"
      inkscape:window-x="2242"
-     inkscape:window-y="54"
+     inkscape:window-y="26"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      inkscape:document-units="mm"
      showguides="false" />
   <g
@@ -361,6 +361,16 @@
        id="text507"
        style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';stroke-width:0.905538"
        aria-label="Saturation" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1678;stroke-dasharray:none;stroke-opacity:1"
+       d="m 39.674023,307.12067 v 22.03678"
+       id="path24"
+       transform="scale(0.74999597)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.1678;stroke-dasharray:none;stroke-opacity:1"
+       d="m 39.674023,343.37457 v 22.03678"
+       id="path24-7"
+       transform="scale(0.74999597)" />
   </g>
   <g
      id="components">
