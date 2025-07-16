@@ -38,56 +38,56 @@ public:
 		auto slapHiTriggerButton = getState<SlapHiTriggerButton>() == MomentaryButton::State_t::PRESSED;
 		auto toneLoTriggerButton = getState<ToneLoTriggerButton>() == MomentaryButton::State_t::PRESSED;
 		auto slapLoTriggerButton = getState<SlapLoTriggerButton>() == MomentaryButton::State_t::PRESSED;
-
+       
+		// Tone Lo
 		if (trigToneLo.update(getInputAsGate<ToneLoTriggerIn>() | toneLoTriggerButton)) {
 			phase1 = 0.0f;
 			amplitudeEnvelopeToneLo = 1.0f;
 		}
-
-		if(toneLoTriggerButton){
-			setLED<ToneLoTriggerButton>(1.f);
-		}
-		else {
-			setLED<ToneLoTriggerButton>(0.f);
-		}
-
+		if(toneLoTriggerButton || ((getInputAsGate<ToneLoTriggerIn>()) > 0.5f)){
+            setLED<ToneLoTriggerButton>(1.f);
+        }
+        else {
+            setLED<ToneLoTriggerButton>(0.f);
+        }
+		
+		// Slap Lo
 		if (trigSlapLo.update(getInputAsGate<SlapLoTriggerIn>() | slapLoTriggerButton)) {
 			amplitudeEnvelopeToneLo = 0.f;
 			phase1 = 0.0f;
 			amplitudeEnvelopeSlapLo = 1.0f;
 		}
+		if(slapLoTriggerButton || ((getInputAsGate<SlapLoTriggerIn>()) > 0.5f)){
+            setLED<SlapLoTriggerButton>(1.f);
+        }
+        else {
+            setLED<SlapLoTriggerButton>(0.f);
+        }
 
-		if(slapLoTriggerButton){
-			setLED<SlapLoTriggerButton>(1.f);
-		}
-		else {
-			setLED<SlapLoTriggerButton>(0.f);
-		}
-
+		// Tone Hi
 		if (trigToneHi.update(getInputAsGate<ToneHiTriggerIn>() | toneHiTriggerButton)) {
 			phase2 = 0.0f;
 			amplitudeEnvelopeToneHigh = 1.0f;
 		}
+		if(toneHiTriggerButton || ((getInputAsGate<ToneHiTriggerIn>()) > 0.5f)){
+            setLED<ToneHiTriggerButton>(1.f);
+        }
+        else {
+            setLED<ToneHiTriggerButton>(0.f);
+        }
 
-		if(toneHiTriggerButton){
-			setLED<ToneHiTriggerButton>(1.f);
-		}
-		else {
-			setLED<ToneHiTriggerButton>(0.f);
-		}
-
+		// Slap Hi
 		if (trigSlapHi.update(getInputAsGate<SlapHiTriggerIn>() | slapHiTriggerButton)) {
 			amplitudeEnvelopeToneHigh = 0.f;
 			phase2 = 0.0f;
 			amplitudeEnvelopeSlapHigh = 1.0f;
 		}
-
-		if(slapHiTriggerButton){
-			setLED<SlapHiTriggerButton>(1.f);
-		}
-		else {
-			setLED<SlapHiTriggerButton>(0.f);
-		}
+		if(slapHiTriggerButton || ((getInputAsGate<SlapHiTriggerIn>()) > 0.5f)){
+            setLED<SlapHiTriggerButton>(1.f);
+        }
+        else {
+            setLED<SlapHiTriggerButton>(0.f);
+        }
 
 		// Osc 1
 		using MathTools::M_PIF;
