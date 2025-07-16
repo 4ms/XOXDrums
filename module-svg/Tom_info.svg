@@ -23,12 +23,12 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.0783117"
-     inkscape:cx="199.84944"
-     inkscape:cy="251.31879"
+     inkscape:cx="199.38576"
+     inkscape:cy="251.3188"
      inkscape:window-width="1600"
      inkscape:window-height="847"
      inkscape:window-x="2037"
-     inkscape:window-y="157"
+     inkscape:window-y="129"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
@@ -303,7 +303,8 @@
        cx="39.200211"
        cy="309.33499"
        r="15.118111"
-       inkscape:label="pushButton" />
+       inkscape:label="pushButton"
+       data-name="Trigger" />
     <circle
        id="Env_Depth_CV"
        data-name="Env Depth CV In"

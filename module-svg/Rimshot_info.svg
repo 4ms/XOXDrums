@@ -25,8 +25,8 @@
      inkscape:cy="259.43684"
      inkscape:window-width="1200"
      inkscape:window-height="847"
-     inkscape:window-x="2985"
-     inkscape:window-y="91"
+     inkscape:window-x="2001"
+     inkscape:window-y="58"
      inkscape:window-maximized="0"
      inkscape:current-layer="components"
      showgrid="false"
@@ -251,7 +251,8 @@
        cy="216.3407"
        r="8.5"
        style="fill:#ffc000;fill-opacity:1"
-       inkscape:label="pushButton" />
+       inkscape:label="pushButton"
+       data-name="Trigger" />
     <circle
        id="Out"
        cx="28.799999"
