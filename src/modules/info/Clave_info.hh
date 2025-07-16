@@ -16,7 +16,7 @@ struct ClaveInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 7> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(38.56), to_mm<96>(299.037), Center, "pushButton", ""}},
+		WhiteMomentary7mm{{to_mm<96>(38.56), to_mm<96>(299.037), Center, "Trigger", ""}},
 		Knob9mm{{to_mm<96>(38.56), to_mm<96>(70.115), Center, "Pitch", ""}, 0.5f, 1.0, 2.0, "khz"},
 		Knob9mm{{to_mm<96>(38.56), to_mm<96>(198.622), Center, "Decay", ""}, 0.5f, 5.0, 25.0, "ms"},
 		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(134.369), Center, "Pitch CV In", ""}},
@@ -26,7 +26,7 @@ struct ClaveInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        PushButton,
+        TriggerButton,
         PitchKnob,
         DecayKnob,
         PitchCvIn,
