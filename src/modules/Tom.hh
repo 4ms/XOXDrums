@@ -48,12 +48,14 @@ public:
 			envelopeValuePitch = 1.0f;
 		}
 
-		if(pushButton){
+	
+		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
 			setLED<TriggerButton>(1.f);
 		}
 		else {
 			setLED<TriggerButton>(0.f);
 		}
+
 
 		envelopeValueAmp *= decayAlphaAmp;
 		envelopeValuePitch *= decayAlphaPitch;
