@@ -65,7 +65,7 @@ public:
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
 
-		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
+		if(pushButton || ((getInput<TriggerIn>()) > 0.5f)){
             setLED<TriggerButton>(1.f);
         }
         else {
