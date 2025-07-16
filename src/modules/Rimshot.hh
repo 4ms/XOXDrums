@@ -65,12 +65,12 @@ public:
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
 
-		if(pushButton){
-			setLED<TriggerButton>(1.f);
-		}
-		else{
-			setLED<TriggerButton>(0.f); 
-		}
+		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
+            setLED<TriggerButton>(1.f);
+        }
+        else {
+            setLED<TriggerButton>(0.f);
+        }
 
 		setOutput<AudioOut>(finalOutput);
 	}
