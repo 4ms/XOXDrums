@@ -65,14 +65,16 @@ public:
 			}
 		}
 
-		if(pushButtonCh){
+	
+		if(pushButtonCh || ((getInputAsGate<ClosedHihatTriggerIn>()) > 0.5f)){
 			setLED<ChTriggerButton>(1.f);
 		}
 		else {
 			setLED<ChTriggerButton>(0.f);
 		}
 
-		if(pushButtonOh){
+
+		if(pushButtonOh || ((getInputAsGate<OpenHihatTriggerIn>()) > 0.5f)){
 			setLED<OhTriggerButton>(1.f);
 		}
 		else {
