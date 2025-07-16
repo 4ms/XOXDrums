@@ -34,26 +34,59 @@ public:
 	}
 
 	void update(void) override {
-		if (trigToneLo.update(getInputAsGate<ToneLoTriggerIn>())) {
+		auto toneHiTriggerButton = getState<ToneHiTriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto slapHiTriggerButton = getState<SlapHiTriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto toneLoTriggerButton = getState<ToneLoTriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto slapLoTriggerButton = getState<SlapLoTriggerButton>() == MomentaryButton::State_t::PRESSED;
+
+		if (trigToneLo.update(getInputAsGate<ToneLoTriggerIn>() | toneLoTriggerButton)) {
 			phase1 = 0.0f;
 			amplitudeEnvelopeToneLo = 1.0f;
 		}
 
-		if (trigSlapLo.update(getInputAsGate<SlapLoTriggerIn>())) {
+		if(toneLoTriggerButton){
+			setLED<ToneLoTriggerButton>(1.f);
+		}
+		else {
+			setLED<ToneLoTriggerButton>(0.f);
+		}
+
+		if (trigSlapLo.update(getInputAsGate<SlapLoTriggerIn>() | slapLoTriggerButton)) {
 			amplitudeEnvelopeToneLo = 0.f;
 			phase1 = 0.0f;
 			amplitudeEnvelopeSlapLo = 1.0f;
 		}
 
-		if (trigToneHi.update(getInputAsGate<ToneHiTriggerIn>())) {
+		if(slapLoTriggerButton){
+			setLED<SlapLoTriggerButton>(1.f);
+		}
+		else {
+			setLED<SlapLoTriggerButton>(0.f);
+		}
+
+		if (trigToneHi.update(getInputAsGate<ToneHiTriggerIn>() | toneHiTriggerButton)) {
 			phase2 = 0.0f;
 			amplitudeEnvelopeToneHigh = 1.0f;
 		}
 
-		if (trigSlapHi.update(getInputAsGate<SlapHiTriggerIn>())) {
+		if(toneHiTriggerButton){
+			setLED<ToneHiTriggerButton>(1.f);
+		}
+		else {
+			setLED<ToneHiTriggerButton>(0.f);
+		}
+
+		if (trigSlapHi.update(getInputAsGate<SlapHiTriggerIn>() | slapHiTriggerButton)) {
 			amplitudeEnvelopeToneHigh = 0.f;
 			phase2 = 0.0f;
 			amplitudeEnvelopeSlapHigh = 1.0f;
+		}
+
+		if(slapHiTriggerButton){
+			setLED<SlapHiTriggerButton>(1.f);
+		}
+		else {
+			setLED<SlapHiTriggerButton>(0.f);
 		}
 
 		// Osc 1

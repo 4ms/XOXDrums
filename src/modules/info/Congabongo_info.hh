@@ -15,10 +15,14 @@ struct CongabongoInfo : ModuleInfoBase {
 
     using enum Coords;
 
-    static constexpr std::array<Element, 11> Elements{{
+    static constexpr std::array<Element, 15> Elements{{
 		Davies1900hBlackKnob{{to_mm<96>(96.147), to_mm<96>(77.134), Center, "Pitch", ""}, 0.0f, 0.0, 100.0, "%"},
-		Davies1900hBlackKnob{{to_mm<96>(96.147), to_mm<96>(158.788), Center, "Decay", ""}, 0.5f, 0.0, 100.0, "%"},
-		Toggle2posHoriz{{to_mm<96>(96.206), to_mm<96>(231.104), Center, "Mode Switch", ""}, {"Conga", "Bongo"}},
+		Davies1900hBlackKnob{{to_mm<96>(96.001), to_mm<96>(158.788), Center, "Decay", ""}, 0.5f, 0.0, 100.0, "%"},
+		Toggle2pos{{to_mm<96>(96.001), to_mm<96>(245.482), Center, "Mode Switch", ""}, {"Conga", "Bongo"}},
+		WhiteMomentary7mm{{to_mm<96>(152.987), to_mm<96>(248.571), Center, "Tone Hi Trigger", ""}},
+		WhiteMomentary7mm{{to_mm<96>(152.987), to_mm<96>(194.408), Center, "Slap Hi Trigger", ""}},
+		WhiteMomentary7mm{{to_mm<96>(39.347), to_mm<96>(248.571), Center, "Tone Lo Trigger", ""}},
+		WhiteMomentary7mm{{to_mm<96>(39.347), to_mm<96>(194.408), Center, "Slap Lo Trigger", ""}},
 		GateJackInput4ms{{to_mm<96>(39.347), to_mm<96>(309.602), Center, "Slap LO Trigger In", ""}},
 		AnalogJackInput4ms{{to_mm<96>(95.601), to_mm<96>(309.468), Center, "Pitch CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(152.987), to_mm<96>(309.468), Center, "Slap HI Trigger In", ""}},
@@ -33,6 +37,10 @@ struct CongabongoInfo : ModuleInfoBase {
         PitchKnob,
         DecayKnob,
         ModeSwitch,
+        ToneHiTriggerButton,
+        SlapHiTriggerButton,
+        ToneLoTriggerButton,
+        SlapLoTriggerButton,
         SlapLoTriggerIn,
         PitchCvIn,
         SlapHiTriggerIn,
