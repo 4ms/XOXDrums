@@ -43,13 +43,14 @@ public:
 			amplitudeEnvelope = 1.0f;
 		}
 
-		if(pushButton){
-			setLED<TriggerButton>(1.f);
-		}
-		else {
-			setLED<TriggerButton>(0.f);
-		}
-		
+
+		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
+            setLED<TriggerButton>(1.f);
+        }
+        else {
+            setLED<TriggerButton>(0.f);
+        }
+
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		float scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope)*amountControl));
