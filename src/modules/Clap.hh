@@ -56,13 +56,13 @@ public:
 			delayCounter1 = 0;
 		}
 
-		if(pushButton){
-			setLED<TriggerButton>(1.f);
-		}
-		else {
-			setLED<TriggerButton>(0.f);
-		}
 
+		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
+            setLED<TriggerButton>(1.f);
+        }
+        else {
+            setLED<TriggerButton>(0.f);
+        }
 
 		// Envelope decay times 1-3 (short) 5-15ms
 		float decayTimeShort = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
