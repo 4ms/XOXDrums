@@ -16,7 +16,7 @@ struct KickInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 14> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(39.347), to_mm<96>(309.468), Center, "pushButton", ""}},
+		WhiteMomentary7mm{{to_mm<96>(39.347), to_mm<96>(309.468), Center, "Trigger", ""}},
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(62.027), Center, "Pitch", ""}, 0.328125f, 10.0, 40.0, "hz"},
 		Davies1900hBlackKnob{{to_mm<96>(141.867), to_mm<96>(61.894), Center, "Pitch Depth", ""}, 0.5f, 0.0, 100.0, "%"},
 		Davies1900hBlackKnob{{to_mm<96>(50.467), to_mm<96>(139.494), Center, "Pitch Decay", ""}, 0.5f, 5.0, 30.0, "ms"},
@@ -33,7 +33,7 @@ struct KickInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        PushButton,
+        TriggerButton,
         PitchKnob,
         PitchDepthKnob,
         PitchDecayKnob,
