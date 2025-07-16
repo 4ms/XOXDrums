@@ -16,7 +16,7 @@ struct DuckInfo : ModuleInfoBase {
     using enum Coords;
 
     static constexpr std::array<Element, 8> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(38.4), to_mm<96>(238.638), Center, "pushButton", ""}},
+		WhiteMomentary7mm{{to_mm<96>(38.4), to_mm<96>(238.638), Center, "Trigger", ""}},
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(62.174), Center, "Amount", ""}, 1.0f, 0.0, 100.0, "%"},
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(151.774), Center, "Time", ""}, 0.25f, 50.0, 2000.0, "ms"},
 		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(115.595), Center, "Amount CV In", ""}},
@@ -27,7 +27,7 @@ struct DuckInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        PushButton,
+        TriggerButton,
         AmountKnob,
         TimeKnob,
         AmountCvIn,

@@ -34,7 +34,7 @@ public:
 	}
 
 	void update(void) override {
-		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
 		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
@@ -44,10 +44,10 @@ public:
 		}
 
 		if(pushButton){
-			setLED<PushButton>(1.f);
+			setLED<TriggerButton>(1.f);
 		}
 		else {
-			setLED<PushButton>(0.f);
+			setLED<TriggerButton>(0.f);
 		}
 		
 		amplitudeEnvelope *= ampDecayAlpha;
