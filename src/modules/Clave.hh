@@ -42,12 +42,14 @@ public:
 			amplitudeEnvelope = 1.f;
 		}
 
-		if(pushButton){
+	
+		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
 			setLED<TriggerButton>(1.f);
 		}
 		else {
 			setLED<TriggerButton>(0.f);
 		}
+
 		// Osc
 		using MathTools::M_PIF;
 		const float frequency = 1000 + (pitchControl * 750.0f); // 1K -2K RANGE
