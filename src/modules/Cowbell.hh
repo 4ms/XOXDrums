@@ -41,7 +41,7 @@ public:
 	}
 
 	void update(void) override {
-		auto pushButton = getState<PushButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			phase_0 = 0.f;
@@ -49,10 +49,10 @@ public:
 		}
 
 		if(pushButton){
-			setLED<PushButton>(1.f);
+			setLED<TriggerButton>(1.f);
 		}
 		else {
-			setLED<PushButton>(0.f);
+			setLED<TriggerButton>(0.f);
 		}
 		
 		amplitudeEnvelope *= ampDecayAlpha;
