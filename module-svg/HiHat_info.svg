@@ -23,7 +23,7 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.6722312"
-     inkscape:cx="136.40287"
+     inkscape:cx="136.21576"
      inkscape:cy="283.65809"
      inkscape:window-width="1600"
      inkscape:window-height="847"
@@ -317,14 +317,16 @@
        cx="152.98749"
        cy="264.58887"
        r="15.118111"
-       inkscape:label="OhPushButton" />
+       inkscape:label="OhPushButton"
+       data-name="OH Trigger" />
     <circle
        style="fill:#ffc000;stroke:none;stroke-width:1.06126"
        id="ChPushButton"
        cx="39.346878"
        cy="264.58887"
        r="15.118111"
-       inkscape:label="ChPushButton" />
+       inkscape:label="ChPushButton"
+       data-name="CH Trigger" />
     <circle
        id="OH_Out"
        data-name="Open HiHat Audio Out"

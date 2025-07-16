@@ -53,8 +53,8 @@ public:
 
 	void update(void) override {
 		float decay_ohh_choked = decay_ohh;
-		auto pushButtonCh = getState<ChpushButton>() == MomentaryButton::State_t::PRESSED;
-		auto pushButtonOh = getState<OhpushButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButtonCh = getState<ChTriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButtonOh = getState<OhTriggerButton>() == MomentaryButton::State_t::PRESSED;
 
 
 		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>() | pushButtonCh)) {
@@ -66,17 +66,17 @@ public:
 		}
 
 		if(pushButtonCh){
-			setLED<ChpushButton>(1.f);
+			setLED<ChTriggerButton>(1.f);
 		}
 		else {
-			setLED<ChpushButton>(0.f);
+			setLED<ChTriggerButton>(0.f);
 		}
 
 		if(pushButtonOh){
-			setLED<OhpushButton>(1.f);
+			setLED<OhTriggerButton>(1.f);
 		}
 		else {
-			setLED<OhpushButton>(0.f);
+			setLED<OhTriggerButton>(0.f);
 		}
 
 		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>() | pushButtonOh)) {
