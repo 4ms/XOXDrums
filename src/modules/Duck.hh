@@ -43,7 +43,6 @@ public:
 			amplitudeEnvelope = 1.0f;
 		}
 
-
 		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
             setLED<TriggerButton>(1.f);
         }
