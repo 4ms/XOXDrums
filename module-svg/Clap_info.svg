@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="5.943448"
-     inkscape:cx="54.09318"
-     inkscape:cy="354.33977"
+     inkscape:zoom="2.1013262"
+     inkscape:cx="97.795383"
+     inkscape:cy="472.08282"
      inkscape:window-width="1392"
      inkscape:window-height="1027"
-     inkscape:window-x="2242"
+     inkscape:window-x="1168"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      inkscape:document-units="mm"
      showguides="false" />
   <g
@@ -362,12 +362,12 @@
        style="font-weight:700;font-size:8px;font-family:GillSans-Bold, 'Gill Sans';stroke-width:0.905538"
        aria-label="Saturation" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.1678;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:1.32283465;stroke-dasharray:none;stroke-opacity:1"
        d="m 39.674023,307.12067 v 22.03678"
        id="path24"
        transform="scale(0.74999597)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.1678;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:1.32283465;stroke-dasharray:none;stroke-opacity:1"
        d="m 39.674023,343.37457 v 22.03678"
        id="path24-7"
        transform="scale(0.74999597)" />

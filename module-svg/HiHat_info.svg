@@ -24,13 +24,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.6722312"
      inkscape:cx="136.21576"
-     inkscape:cy="283.65809"
+     inkscape:cy="313.59562"
      inkscape:window-width="1600"
      inkscape:window-height="847"
-     inkscape:window-x="1920"
+     inkscape:window-x="960"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      inkscape:document-units="mm" />
   <g
      id="faceplate"
@@ -301,11 +301,11 @@
          id="path70" />
     </g>
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.38779;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:0.99212065;stroke-dasharray:none;stroke-opacity:1"
        d="m 29.51,195.51317 v 41.49547"
        id="path24-0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.38779;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:0.99212065;stroke-dasharray:none;stroke-opacity:1"
        d="m 114.74,195.44955 v 41.49547"
        id="path24-0-8" />
   </g>

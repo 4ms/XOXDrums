@@ -22,13 +22,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.8284271"
      inkscape:cx="89.802562"
-     inkscape:cy="252.43712"
+     inkscape:cy="337.28994"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="2233"
-     inkscape:window-y="123"
+     inkscape:window-x="640"
+     inkscape:window-y="95"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      inkscape:document-units="mm" />
   <defs
      id="defs2">
@@ -55,8 +55,7 @@
   </defs>
   <g
      id="faceplate"
-     transform="scale(1.3333405)"
-     sodipodi:insensitive="true">
+     transform="scale(1.3333405)">
     <g
        id="g3">
       <rect
@@ -146,7 +145,7 @@
        y1="74.956139"
        x2="28.799999"
        y2="95.956139"
-       style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10"
+       style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10;stroke-width:0.99212069;stroke-dasharray:none"
        id="line17" />
     <g
        id="g19"
@@ -165,7 +164,7 @@
          id="path19" />
     </g>
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.8504;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:1.32283465;stroke-dasharray:none;stroke-opacity:1"
        d="m 38.400208,290.85322 v 55.32759"
        id="path24"
        transform="scale(0.749996)" />

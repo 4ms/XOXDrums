@@ -22,13 +22,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="5.253686"
      inkscape:cx="56.912423"
-     inkscape:cy="346.2331"
+     inkscape:cy="376.68791"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="2560"
-     inkscape:window-y="232"
+     inkscape:window-x="640"
+     inkscape:window-y="204"
      inkscape:window-maximized="0"
-     inkscape:current-layer="components"
+     inkscape:current-layer="faceplate"
      inkscape:document-units="mm" />
   <defs
      id="defs4">
@@ -229,17 +229,17 @@
        y1="79.005547"
        x2="28.799999"
        y2="98.005547"
-       style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10"
+       style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10;stroke-width:0.99212069;stroke-dasharray:none"
        id="line33" />
     <line
        x1="28.799999"
        y1="175.36554"
        x2="28.799999"
        y2="194.36554"
-       style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10"
+       style="fill:#ffffff;stroke:#231f20;stroke-miterlimit:10;stroke-width:0.99212069;stroke-dasharray:none"
        id="line34" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.94081;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:1.32283465;stroke-dasharray:none;stroke-opacity:1"
        d="m 38.573544,292.11061 v 60.86666"
        id="path24-0"
        transform="scale(0.749996)" />
