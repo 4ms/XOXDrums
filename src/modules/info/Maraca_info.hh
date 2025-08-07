@@ -11,21 +11,21 @@ struct MaracaInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Maraca DrumModule"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Maraca.svg"};
-    static constexpr std::string_view png_filename{"4ms-XOXDrums/Maraca.png"};
+    static constexpr std::string_view png_filename{"4ms/Maraca.png"};
 
     using enum Coords;
 
     static constexpr std::array<Element, 5> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(38.4), to_mm<96>(291.111), Center, "Trigger", ""}},
 		Knob9mm{{to_mm<96>(38.56), to_mm<96>(67.382), Center, "Decay", ""}, 0.5f, 2.0, 20.0, "ms"},
+		WhiteMomentary7mm{{to_mm<96>(38.4), to_mm<96>(291.111), Center, "Trigger", ""}},
 		AnalogJackInput4ms{{to_mm<96>(38.56), to_mm<96>(132.635), Center, "Decay CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(341.8), Center, "Trigger In", ""}},
 		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.867), Center, "Audio Out", ""}},
 }};
 
     enum class Elem {
-        TriggerButton,
         DecayKnob,
+        TriggerButton,
         DecayCvIn,
         TriggerIn,
         AudioOut,
