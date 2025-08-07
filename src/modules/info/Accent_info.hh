@@ -11,13 +11,13 @@ struct AccentInfo : ModuleInfoBase {
     static constexpr std::string_view description{"DrumAccentModule"};
     static constexpr uint32_t width_hp = 4;
     static constexpr std::string_view svg_filename{"res/Accent.svg"};
-    static constexpr std::string_view png_filename{"4ms-XOXDrums/Accent.png"};
+    static constexpr std::string_view png_filename{"4ms/Accent.png"};
 
     using enum Coords;
 
     static constexpr std::array<Element, 6> Elements{{
-		WhiteMomentary7mm{{to_mm<96>(38.24), to_mm<96>(222.068), Center, "Trigger", ""}},
 		Knob9mm{{to_mm<96>(38.4), to_mm<96>(73.373), Center, "Amount", ""}, 0.0f},
+		WhiteMomentary7mm{{to_mm<96>(38.24), to_mm<96>(222.068), Center, "Trigger", ""}},
 		AnalogJackInput4ms{{to_mm<96>(38.4), to_mm<96>(137.626), Center, "Amount CV In", ""}},
 		GateJackInput4ms{{to_mm<96>(38.4), to_mm<96>(277.337), Center, "Trigger In", ""}},
 		AnalogJackInput4ms{{to_mm<96>(38.24), to_mm<96>(341.577), Center, "Audio In", ""}},
@@ -25,8 +25,8 @@ struct AccentInfo : ModuleInfoBase {
 }};
 
     enum class Elem {
-        TriggerButton,
         AmountKnob,
+        TriggerButton,
         AmountCvIn,
         TriggerIn,
         AudioIn,
