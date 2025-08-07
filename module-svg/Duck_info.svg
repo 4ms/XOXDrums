@@ -5,8 +5,8 @@
    viewBox="0 0 76.800412 485.66929"
    version="1.1"
    id="svg44"
-   sodipodi:docname="Duck_info_fix.svg"
-   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   sodipodi:docname="Duck_info.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -21,13 +21,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="1.4444389"
-     inkscape:cx="-197.65461"
-     inkscape:cy="105.92349"
-     inkscape:window-width="1920"
+     inkscape:cx="-198.00076"
+     inkscape:cy="105.92348"
+     inkscape:window-width="1200"
      inkscape:window-height="1027"
      inkscape:window-x="0"
      inkscape:window-y="25"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <defs
@@ -277,6 +277,14 @@
   <g
      id="components">
     <circle
+       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
+       id="pushButton"
+       cx="38.400208"
+       cy="238.63757"
+       r="15.118111"
+       inkscape:label="pushButton"
+       data-name="Trigger" />
+    <circle
        id="Out"
        cx="38.400208"
        cy="406.8526"
@@ -368,13 +376,5 @@
          y="483.2688"
          id="tspan44"
          style="stroke-width:1.33334">odule</tspan></text>
-    <circle
-       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
-       id="pushButton"
-       cx="38.400208"
-       cy="238.63757"
-       r="15.118111"
-       inkscape:label="pushButton"
-       data-name="Trigger" />
   </g>
 </svg>
