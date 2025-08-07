@@ -25,10 +25,10 @@
      inkscape:cy="376.68791"
      inkscape:window-width="1920"
      inkscape:window-height="1027"
-     inkscape:window-x="640"
-     inkscape:window-y="204"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="faceplate"
+     inkscape:current-layer="components"
      inkscape:document-units="mm" />
   <defs
      id="defs4">
@@ -247,6 +247,14 @@
   <g
      id="components">
     <circle
+       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
+       id="pushButton"
+       cx="38.573544"
+       cy="297.94858"
+       r="15.118111"
+       inkscape:label="pushButton"
+       data-name="Trigger" />
+    <circle
        id="Out"
        cx="38.400208"
        cy="406.83234"
@@ -328,13 +336,5 @@
          y="483.56381"
          style="letter-spacing:0em;stroke-width:1.33334"
          id="tspan41">odule</tspan></text>
-    <circle
-       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
-       id="pushButton"
-       cx="38.573544"
-       cy="297.94858"
-       r="15.118111"
-       inkscape:label="pushButton"
-       data-name="Trigger" />
   </g>
 </svg>
