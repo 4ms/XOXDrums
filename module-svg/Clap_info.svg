@@ -24,14 +24,14 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="2.1013262"
-     inkscape:cx="97.795383"
+     inkscape:cx="97.557438"
      inkscape:cy="472.08282"
      inkscape:window-width="1392"
      inkscape:window-height="1027"
-     inkscape:window-x="1168"
+     inkscape:window-x="528"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="faceplate"
+     inkscape:current-layer="components"
      inkscape:document-units="mm"
      showguides="false" />
   <g
@@ -375,6 +375,14 @@
   <g
      id="components">
     <circle
+       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
+       id="pushButton"
+       cx="39.674023"
+       cy="309.46835"
+       r="15.118111"
+       inkscape:label="pushButton"
+       data-name="Trigger" />
+    <circle
        id="Out"
        cx="153.04083"
        cy="418.4556"
@@ -498,13 +506,5 @@
          y="482.457"
          id="tspan531"
          style="stroke-width:1.33334">odule</tspan></text>
-    <circle
-       style="fill:#ffc000;stroke:none;stroke-width:1.06126"
-       id="pushButton"
-       cx="39.674023"
-       cy="309.46835"
-       r="15.118111"
-       inkscape:label="pushButton"
-       data-name="Trigger" />
   </g>
 </svg>
