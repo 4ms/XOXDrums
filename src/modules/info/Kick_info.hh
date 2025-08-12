@@ -11,7 +11,7 @@ struct KickInfo : ModuleInfoBase {
     static constexpr std::string_view description{"Kick DrumModule"};
     static constexpr uint32_t width_hp = 10;
     static constexpr std::string_view svg_filename{"res/Kick.svg"};
-    static constexpr std::string_view png_filename{"4ms/Kick.png"};
+    static constexpr std::string_view png_filename{"4ms-XOXDrums/Kick.png"};
 
     using enum Coords;
 
