@@ -48,14 +48,13 @@ public:
 
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			amplitudeEnvelope = 1.0f;
+			brightness = 1.0f; 
 		}
 
-		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
-            setLED<TriggerButton>(1.f);
-        }
-        else {
-            setLED<TriggerButton>(0.f);
-        }
+		if (brightness > 0.f) {
+			brightness *= ledDecayAlpha;
+		}
+		setLED<TriggerButton>(brightness);
 
 		amplitudeEnvelope *= ampDecayAlpha;
 
@@ -73,6 +72,7 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
 		recalc_decay();
 	}
@@ -92,6 +92,9 @@ private:
 	float sampleRate{48000};
 
 	RisingEdgeDetector trig{};
+
+	float ledDecayAlpha{};  
+	float brightness = 0.f; 
 };
 
 } // namespace MetaModule
