@@ -54,15 +54,13 @@ public:
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			envelopeValue1 = 1.f;
 			delayCounter1 = 0;
+			brightness = 1; 
 		}
 
-
-		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
-            setLED<TriggerButton>(1.f);
-        }
-        else {
-            setLED<TriggerButton>(0.f);
-        }
+		if (brightness > 0.f) {
+			brightness *= ledDecayAlpha;
+		}
+		setLED<TriggerButton>(brightness);
 
 		// Envelope decay times 1-3 (short) 5-15ms
 		float decayTimeShort = MathTools::map_value(energyControl, 0.0f, 1.0f, 10.0f, 20.f);
@@ -128,6 +126,7 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 	}
 
 private:
@@ -153,6 +152,9 @@ private:
 	int delayCounter1 = 0;
 
 	RisingEdgeDetector trig{};
+
+	float ledDecayAlpha{};  
+	float brightness = 0.f; 
 };
 
 } // namespace MetaModule
