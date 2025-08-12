@@ -41,7 +41,6 @@ public:
 
 		if (brightness > 0.f) {
 			brightness *= ledDecayAlpha;
-			if (brightness < 0.001f) brightness = 0.f; // Clamp to zero to avoid float noise
 		}
 		setLED<TriggerButton>(brightness);
 
@@ -57,7 +56,7 @@ public:
 	void set_samplerate(float sr) override {
 		constexpr auto ampDecayTime = 70.f;
 		ampDecayAlpha = std::exp(-1.0f / (sr * (ampDecayTime / 1000.0f)));
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); // LED fade decay rate
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 		}
 
 private:
