@@ -43,51 +43,54 @@ public:
 		if (trigToneLo.update(getInputAsGate<ToneLoTriggerIn>() | toneLoTriggerButton)) {
 			phase1 = 0.0f;
 			amplitudeEnvelopeToneLo = 1.0f;
+			brightness1 = 1.f; 
 		}
-		if(toneLoTriggerButton || ((getInputAsGate<ToneLoTriggerIn>()) > 0.5f)){
-            setLED<ToneLoTriggerButton>(1.f);
-        }
-        else {
-            setLED<ToneLoTriggerButton>(0.f);
-        }
-		
+	
 		// Slap Lo
 		if (trigSlapLo.update(getInputAsGate<SlapLoTriggerIn>() | slapLoTriggerButton)) {
 			amplitudeEnvelopeToneLo = 0.f;
 			phase1 = 0.0f;
 			amplitudeEnvelopeSlapLo = 1.0f;
+			brightness2 = 1.f;
 		}
-		if(slapLoTriggerButton || ((getInputAsGate<SlapLoTriggerIn>()) > 0.5f)){
-            setLED<SlapLoTriggerButton>(1.f);
-        }
-        else {
-            setLED<SlapLoTriggerButton>(0.f);
-        }
+
 
 		// Tone Hi
 		if (trigToneHi.update(getInputAsGate<ToneHiTriggerIn>() | toneHiTriggerButton)) {
 			phase2 = 0.0f;
 			amplitudeEnvelopeToneHigh = 1.0f;
+			brightness3 =  1.f;
 		}
-		if(toneHiTriggerButton || ((getInputAsGate<ToneHiTriggerIn>()) > 0.5f)){
-            setLED<ToneHiTriggerButton>(1.f);
-        }
-        else {
-            setLED<ToneHiTriggerButton>(0.f);
-        }
+
 
 		// Slap Hi
 		if (trigSlapHi.update(getInputAsGate<SlapHiTriggerIn>() | slapHiTriggerButton)) {
 			amplitudeEnvelopeToneHigh = 0.f;
 			phase2 = 0.0f;
 			amplitudeEnvelopeSlapHigh = 1.0f;
+			brightness4 = 1.f; 
 		}
-		if(slapHiTriggerButton || ((getInputAsGate<SlapHiTriggerIn>()) > 0.5f)){
-            setLED<SlapHiTriggerButton>(1.f);
-        }
-        else {
-            setLED<SlapHiTriggerButton>(0.f);
-        }
+
+
+		if (brightness1 > 0.f) {
+			brightness1 *= ledDecayAlpha1;
+		}
+		setLED<ToneLoTriggerButton>(brightness1);
+
+		if (brightness2 > 0.f) {
+			brightness2 *= ledDecayAlpha2;
+		}
+		setLED<SlapLoTriggerButton>(brightness2);
+
+		if (brightness3 > 0.f) {
+			brightness3 *= ledDecayAlpha3;
+		}
+		setLED<ToneHiTriggerButton>(brightness3);
+
+		if (brightness4 > 0.f) {
+			brightness4 *= ledDecayAlpha4;
+		}
+		setLED<SlapHiTriggerButton>(brightness4);
 
 		// Osc 1
 		using MathTools::M_PIF;
@@ -118,6 +121,10 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		ampDecaySlapAlpha = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
+		ledDecayAlpha1 = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha2 = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha3 = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha4 = std::exp(-1.0f / (sr * 0.05)); 
 		recalc();
 	}
 
@@ -170,6 +177,16 @@ private:
 	RisingEdgeDetector trigSlapLo{};
 	RisingEdgeDetector trigToneHi{};
 	RisingEdgeDetector trigSlapHi{};
+
+	float ledDecayAlpha1{};  
+	float ledDecayAlpha2{};  
+	float ledDecayAlpha3{};  
+	float ledDecayAlpha4{};  
+
+	float brightness1 = 0.f; 
+	float brightness2 = 0.f; 
+	float brightness3 = 0.f; 
+	float brightness4 = 0.f; 
 };
 
 } // namespace MetaModule
