@@ -63,27 +63,23 @@ public:
 			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
 				decay_ohh_choked = 0.f;
 			}
-		}
-
-	
-		if(pushButtonCh || ((getInputAsGate<ClosedHihatTriggerIn>()) > 0.5f)){
-			setLED<ChTriggerButton>(1.f);
-		}
-		else {
-			setLED<ChTriggerButton>(0.f);
-		}
-
-
-		if(pushButtonOh || ((getInputAsGate<OpenHihatTriggerIn>()) > 0.5f)){
-			setLED<OhTriggerButton>(1.f);
-		}
-		else {
-			setLED<OhTriggerButton>(0.f);
+			brightness1 = 1.f; 
 		}
 
 		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>() | pushButtonOh)) {
 			envelopeValue2 = 1.0f;
+			brightness2 = 1.f; 
 		}
+
+		if (brightness1 > 0.f) {
+			brightness1 *= ledDecayAlpha1;
+		}
+		setLED<ChTriggerButton>(brightness1);
+
+		if (brightness2 > 0.f) {
+			brightness2 *= ledDecayAlpha2;
+		}
+		setLED<OhTriggerButton>(brightness2);
 
 		// Square wave VCO x6 for two channels
 		float oscSum = 0.f;
@@ -120,6 +116,8 @@ public:
 		sampleRate = sr;
 		constexpr float decayTimeClosedMs = 10.f;
 		decay_chh = std::exp(-1.0f / (sampleRate * (decayTimeClosedMs / 1000.0f)));
+		ledDecayAlpha1 = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha2 = std::exp(-1.0f / (sr * 0.05)); 
 		recalc_bpf();
 		recalc_hpfs();
 		recalc_decay();
@@ -194,6 +192,11 @@ private:
 
 	RisingEdgeDetector chh_trig{};
 	RisingEdgeDetector ohh_trig{};
+
+	float ledDecayAlpha1{};  
+	float ledDecayAlpha2{};  
+	float brightness1 = 0.f; 
+	float brightness2 = 0.f; 
 };
 
 } // namespace MetaModule
