@@ -59,23 +59,23 @@ public:
 			level = 0.f; 
 			}
 			count = 0;
+			brightness = 1.f; 
 		}
+
+		if (brightness > 0.f) {
+			brightness *= ledDecayAlpha;
+		}
+		setLED<TriggerButton>(brightness);
 
 		const auto impulse = count >= impulse_num_samples ? 0.f : level;
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
 
-		if(pushButton || ((getInput<TriggerIn>()) > 0.5f)){
-            setLED<TriggerButton>(1.f);
-        }
-        else {
-            setLED<TriggerButton>(0.f);
-        }
-
 		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 		sampleRate = sr;
 		recalc_hpf();
 	}
@@ -88,6 +88,9 @@ private:
 	float sampleRate{48000};
 
 	RisingEdgeDetector trig{};
+
+	float ledDecayAlpha{};  
+	float brightness = 0.f; 
 };
 
 } // namespace MetaModule
