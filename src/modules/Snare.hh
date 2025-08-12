@@ -62,14 +62,13 @@ public:
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			noiseEnvelope = 1.0f;
+			brightness = 1.f; 
 		}
 
-		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
-            setLED<TriggerButton>(1.f);
-        }
-        else {
-            setLED<TriggerButton>(0.f);
-        }
+		if (brightness > 0.f) {
+			brightness *= ledDecayAlpha;
+		}
+		setLED<TriggerButton>(brightness);
 
 		// Osc
 		using MathTools::M_PIF;
@@ -102,6 +101,7 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		rSampleRate = 1.f / sampleRate;
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 		recalc_amp_decay();
 		recalc_pitch_decay();
 		recalc_noise_decay();
@@ -175,6 +175,10 @@ private:
 	float saturation = 0.0f;
 
 	RisingEdgeDetector trig{};
+
+	float ledDecayAlpha{};  
+	float brightness = 0.f; 
+
 };
 
 } // namespace MetaModule
