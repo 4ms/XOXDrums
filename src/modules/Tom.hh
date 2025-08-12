@@ -46,16 +46,13 @@ public:
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			envelopeValueAmp = 1.0f;
 			envelopeValuePitch = 1.0f;
+			brightness = 1.f; 
 		}
 
-	
-		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
-			setLED<TriggerButton>(1.f);
+		if (brightness > 0.f) {
+			brightness *= ledDecayAlpha;
 		}
-		else {
-			setLED<TriggerButton>(0.f);
-		}
-
+		setLED<TriggerButton>(brightness);
 
 		envelopeValueAmp *= decayAlphaAmp;
 		envelopeValuePitch *= decayAlphaPitch;
@@ -91,6 +88,7 @@ public:
 	}
 
 	void set_samplerate(float sr) override {
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 		sampleRate = sr;
 		rSampleRate = 1.f / sampleRate;
 		recalc_amp_decay();
@@ -135,6 +133,9 @@ private:
 	float rSampleRate{1.f / 48000};
 
 	RisingEdgeDetector trig{};
+
+	float ledDecayAlpha{};  
+	float brightness = 0.f; 
 };
 
 } // namespace MetaModule
