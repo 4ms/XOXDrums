@@ -36,15 +36,14 @@ public:
 
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			amplitudeEnvelope = 1.f;
+			brightness = 1; 
 		}
 
-		if(pushButton || ((getInputAsGate<TriggerIn>()) > 0.5f)){
-            setLED<TriggerButton>(1.f);
-        }
-        else {
-            setLED<TriggerButton>(0.f);
-        }
-
+		if (brightness > 0.f) {
+			brightness *= ledDecayAlpha;
+			if (brightness < 0.001f) brightness = 0.f; // Clamp to zero to avoid float noise
+		}
+		setLED<TriggerButton>(brightness);
 
 		amplitudeEnvelope *= ampDecayAlpha;
 
@@ -58,7 +57,8 @@ public:
 	void set_samplerate(float sr) override {
 		constexpr auto ampDecayTime = 70.f;
 		ampDecayAlpha = std::exp(-1.0f / (sr * (ampDecayTime / 1000.0f)));
-	}
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); // LED fade decay rate
+		}
 
 private:
 	void recalc_decay() {
@@ -75,7 +75,9 @@ private:
 
 	float amplitudeEnvelope = 0.f;
 	float ampDecayAlpha{};
+	float ledDecayAlpha{};  
 	float amount{1.f};
+	float brightness = 0.f; 
 };
 
 } // namespace MetaModule
