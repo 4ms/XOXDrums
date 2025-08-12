@@ -178,7 +178,6 @@ private:
 
 	float ledDecayAlpha{};  
 	float brightness = 0.f; 
-
 };
 
 } // namespace MetaModule
