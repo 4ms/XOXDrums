@@ -41,7 +41,7 @@ public:
 	}
 
 	void update(void) override {
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			phase = 0.f;
@@ -129,6 +129,7 @@ private:
 	float sampleRate = 48000.f;
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{};
 
 	float ledDecayAlpha = 0.f;
 	float brightness = 0.f;
