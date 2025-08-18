@@ -35,7 +35,7 @@ public:
 
 	void update(void) override {
 		const float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			phase = 0.f;
@@ -89,6 +89,7 @@ private:
 	float decayAlpha{};
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{}; 
 
 	float ledDecayAlpha{};  
 	float brightness = 0.f; 
