@@ -57,15 +57,15 @@ public:
 		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
 		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
 			noiseEnvelope = 1.0f;
-			brightness = 1.f; 
+			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
@@ -101,7 +101,7 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		rSampleRate = 1.f / sampleRate;
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 		recalc_amp_decay();
 		recalc_pitch_decay();
 		recalc_noise_decay();
@@ -160,8 +160,8 @@ private:
 	float amplitudeEnvelope = 0.0f; // Envelope output value (for volume control)
 	float ampDecayAlpha = 0.0f;		// Decay time in ms (5ms as requested)
 
-	float sampleRate{48000};
-	float rSampleRate{1.f / 48000};
+	float sampleRate = 48000.f;
+	float rSampleRate = 1.f / 48000.f;
 
 	// Pitch decay envelope
 	float pitchEnvelope = 0.0f;
@@ -176,8 +176,8 @@ private:
 
 	RisingEdgeDetector trig{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

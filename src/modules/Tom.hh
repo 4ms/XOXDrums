@@ -43,10 +43,10 @@ public:
 		float envDepthControl = combineKnobBipolarCV(getState<EnvDepthKnob>(), getInput<EnvDepthCvIn>());
 		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			envelopeValueAmp = 1.0f;
 			envelopeValuePitch = 1.0f;
-			brightness = 1.f; 
+			brightness = 1.f;
 		}
 
 		if (brightness > 0.f) {
@@ -88,7 +88,7 @@ public:
 	}
 
 	void set_samplerate(float sr) override {
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 		sampleRate = sr;
 		rSampleRate = 1.f / sampleRate;
 		recalc_amp_decay();
@@ -129,13 +129,13 @@ private:
 	float decayAlphaPitch = 0.f;
 	float decayAlphaAmp = 0.f;
 
-	float sampleRate{48000};
-	float rSampleRate{1.f / 48000};
+	float sampleRate = 48000.f;
+	float rSampleRate = 1.f / 48000.f;
 
 	RisingEdgeDetector trig{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

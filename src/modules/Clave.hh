@@ -40,7 +40,7 @@ public:
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			phase = 0.f;
 			amplitudeEnvelope = 1.f;
-			brightness = 1.f; 
+			brightness = 1.f;
 		}
 
 		if (brightness > 0.f) {
@@ -65,7 +65,7 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		rSampleRate = 1.f / sampleRate;
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 	}
 
 private:
@@ -82,17 +82,17 @@ private:
 
 	// Sine oscillator
 	float phase = 0.0f;
-	float amplitudeEnvelope = 1.0f; // Envelope output value (for volume control)
-	float sampleRate = 48000;
-	float rSampleRate = 1 / 48000.f;
+	float amplitudeEnvelope = 1.0f;
+	float sampleRate = 48000.f;
+	float rSampleRate = 1.f / 48000.f;
 
-	float decayAlpha{};
+	float decayAlpha = 0.f;
 
 	RisingEdgeDetector trig{};
 	RisingEdgeDetector button{}; 
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

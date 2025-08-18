@@ -46,12 +46,12 @@ public:
 	void update(void) override {
 		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			amplitudeEnvelope = 1.0f;
-			brightness = 1.0f; 
+			brightness = 1.0f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
@@ -72,7 +72,7 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05));
 		hpf.setBiquad(highpass_fc, sampleRate, highpass_q);
 		recalc_decay();
 	}
@@ -93,8 +93,8 @@ private:
 
 	RisingEdgeDetector trig{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha{};
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

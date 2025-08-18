@@ -33,75 +33,52 @@ public:
 		}
 	}
 
+	template<Info::Elem TriggerIn, Info::Elem Button>
+	bool update_trigger(auto &edgeDetector, float &brightness) {
+		auto buttonPressed = getState<Button>() == MomentaryButton::State_t::PRESSED;
+
+		bool is_hit = edgeDetector.update(getInputAsGate<TriggerIn>() || buttonPressed);
+		if (is_hit) {
+			brightness = 1.f;
+		}
+		if (brightness > 0.004f) {
+			brightness *= ledDecayAlpha;
+		}
+		setLED<Button>(brightness);
+
+		return is_hit;
+	}
+
 	void update(void) override {
-		auto toneHiTriggerButton = getState<ToneHiTriggerButton>() == MomentaryButton::State_t::PRESSED;
-		auto slapHiTriggerButton = getState<SlapHiTriggerButton>() == MomentaryButton::State_t::PRESSED;
-		auto toneLoTriggerButton = getState<ToneLoTriggerButton>() == MomentaryButton::State_t::PRESSED;
-		auto slapLoTriggerButton = getState<SlapLoTriggerButton>() == MomentaryButton::State_t::PRESSED;
-       
-		// Tone Lo
-		if (trigToneLo.update(getInputAsGate<ToneLoTriggerIn>() | toneLoTriggerButton)) {
-			phase1 = 0.0f;
+		if (update_trigger<ToneLoTriggerIn, ToneLoTriggerButton>(trigToneLo, brightnessToneLo)) {
+			phaseLo = 0.0f;
 			amplitudeEnvelopeToneLo = 1.0f;
-			brightness1 = 1.f; 
 		}
-	
-		// Slap Lo
-		if (trigSlapLo.update(getInputAsGate<SlapLoTriggerIn>() | slapLoTriggerButton)) {
+		if (update_trigger<SlapLoTriggerIn, SlapLoTriggerButton>(trigSlapLo, brightnessSlapLo)) {
 			amplitudeEnvelopeToneLo = 0.f;
-			phase1 = 0.0f;
+			phaseLo = 0.0f;
 			amplitudeEnvelopeSlapLo = 1.0f;
-			brightness2 = 1.f;
 		}
-
-
-		// Tone Hi
-		if (trigToneHi.update(getInputAsGate<ToneHiTriggerIn>() | toneHiTriggerButton)) {
-			phase2 = 0.0f;
+		if (update_trigger<ToneHiTriggerIn, ToneHiTriggerButton>(trigToneHi, brightnessToneHi)) {
+			phaseHi = 0.0f;
 			amplitudeEnvelopeToneHigh = 1.0f;
-			brightness3 =  1.f;
 		}
-
-
-		// Slap Hi
-		if (trigSlapHi.update(getInputAsGate<SlapHiTriggerIn>() | slapHiTriggerButton)) {
+		if (update_trigger<SlapHiTriggerIn, SlapHiTriggerButton>(trigSlapHi, brightnessSlapHi)) {
 			amplitudeEnvelopeToneHigh = 0.f;
-			phase2 = 0.0f;
+			phaseHi = 0.0f;
 			amplitudeEnvelopeSlapHigh = 1.0f;
-			brightness4 = 1.f; 
 		}
-
-
-		if (brightness1 > 0.f) {
-			brightness1 *= ledDecayAlpha1;
-		}
-		setLED<ToneLoTriggerButton>(brightness1);
-
-		if (brightness2 > 0.f) {
-			brightness2 *= ledDecayAlpha2;
-		}
-		setLED<SlapLoTriggerButton>(brightness2);
-
-		if (brightness3 > 0.f) {
-			brightness3 *= ledDecayAlpha3;
-		}
-		setLED<ToneHiTriggerButton>(brightness3);
-
-		if (brightness4 > 0.f) {
-			brightness4 *= ledDecayAlpha4;
-		}
-		setLED<SlapHiTriggerButton>(brightness4);
 
 		// Osc 1
 		using MathTools::M_PIF;
-		phase1 += phaseInc1;
-		phase1 -= static_cast<int>(phase1);
-		float sineWave1 = 5.0f * std::sin(2 * M_PIF * phase1);
+		phaseLo += phaseInc1;
+		phaseLo -= static_cast<int>(phaseLo);
+		float sineWave1 = 5.0f * std::sin(2 * M_PIF * phaseLo);
 
 		// Osc 2
-		phase2 += phaseInc2;
-		phase2 -= static_cast<int>(phase2);
-		float sineWave2 = 5.0f * std::sin(2 * M_PIF * phase2);
+		phaseHi += phaseInc2;
+		phaseHi -= static_cast<int>(phaseHi);
+		float sineWave2 = 5.0f * std::sin(2 * M_PIF * phaseHi);
 
 		amplitudeEnvelopeToneLo *= ampDecayToneAlpha;
 		amplitudeEnvelopeToneHigh *= ampDecayToneAlpha;
@@ -121,10 +98,7 @@ public:
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
 		ampDecaySlapAlpha = std::exp(-1.0f / (sampleRate * 0.01f)); // Slap time
-		ledDecayAlpha1 = std::exp(-1.0f / (sr * 0.05)); 
-		ledDecayAlpha2 = std::exp(-1.0f / (sr * 0.05)); 
-		ledDecayAlpha3 = std::exp(-1.0f / (sr * 0.05)); 
-		ledDecayAlpha4 = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05));
 		recalc();
 	}
 
@@ -159,8 +133,8 @@ private:
 	// Sine oscillator
 	float phaseInc1 = 0.f;
 	float phaseInc2 = 0.f;
-	float phase1 = 0.0f;
-	float phase2 = 0.0f;
+	float phaseLo = 0.0f;
+	float phaseHi = 0.0f;
 
 	// Amp decay envelope
 	float amplitudeEnvelopeToneLo = 0.f;
@@ -171,22 +145,19 @@ private:
 	float ampDecayToneAlpha = 0.0f; // Exponential decay coefficient
 	float ampDecaySlapAlpha = 0.0f; // Exponential decay coefficient
 
-	float sampleRate{48000};
+	float sampleRate = 48000.f;
 
 	RisingEdgeDetector trigToneLo{};
 	RisingEdgeDetector trigSlapLo{};
 	RisingEdgeDetector trigToneHi{};
 	RisingEdgeDetector trigSlapHi{};
 
-	float ledDecayAlpha1{};  
-	float ledDecayAlpha2{};  
-	float ledDecayAlpha3{};  
-	float ledDecayAlpha4{};  
+	float ledDecayAlpha = 0.f;
 
-	float brightness1 = 0.f; 
-	float brightness2 = 0.f; 
-	float brightness3 = 0.f; 
-	float brightness4 = 0.f; 
+	float brightnessToneLo = 0.f;
+	float brightnessSlapLo = 0.f;
+	float brightnessToneHi = 0.f;
+	float brightnessSlapHi = 0.f;
 };
 
 } // namespace MetaModule

@@ -34,19 +34,19 @@ public:
 	void update(void) override {
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			amplitudeEnvelope = 1.f;
-			brightness = 1; 
+			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
 
 		amplitudeEnvelope *= ampDecayAlpha;
 
-		const auto scale = amplitudeEnvelope * amount + (1.f - amount);
+		const auto scale = amplitudeEnvelope * accentAmount + (1.f - accentAmount);
 
 		const auto rawInput = getInput<AudioIn>().value_or(0.f);
 
@@ -56,13 +56,13 @@ public:
 	void set_samplerate(float sr) override {
 		constexpr auto ampDecayTime = 70.f;
 		ampDecayAlpha = std::exp(-1.0f / (sr * (ampDecayTime / 1000.0f)));
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
-		}
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
+	}
 
 private:
 	void recalc_decay() {
 		const auto rawAmount = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
-		amount = 0.2f + (rawAmount * 0.9f);
+		accentAmount = 0.2f + (rawAmount * 0.9f);
 	}
 
 	template<Info::Elem EL>
@@ -74,10 +74,10 @@ private:
 	RisingEdgeDetector button{};
 
 	float amplitudeEnvelope = 0.f;
-	float ampDecayAlpha{};
-	float ledDecayAlpha{};  
-	float amount{1.f};
-	float brightness = 0.f; 
+	float ampDecayAlpha = 0.f;
+	float ledDecayAlpha = 0.f;
+	float accentAmount = 1.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

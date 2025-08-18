@@ -51,13 +51,13 @@ public:
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			envelopeValue1 = 1.f;
-			delayCounter1 = 0;
-			brightness = 1; 
+			delayCounter = 0;
+			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
@@ -76,23 +76,23 @@ public:
 		float delayTime3 = MathTools::map_value(spreadControl, 0.0f, 1.0f, 45.0f, 60.f);
 
 		// Samples to ms conversion
-		int delayInSamples1 = delayTime1 * (sampleRate / 1000);
-		int delayInSamples2 = delayTime2 * (sampleRate / 1000);
-		int delayInSamples3 = delayTime3 * (sampleRate / 1000);
+		int delayInSamples1 = delayTime1 * (sampleRate / 1000.f);
+		int delayInSamples2 = delayTime2 * (sampleRate / 1000.f);
+		int delayInSamples3 = delayTime3 * (sampleRate / 1000.f);
 
-		delayCounter1++;
+		delayCounter++;
 		// Env 2 delay
-		if (delayCounter1 == delayInSamples1) {
+		if (delayCounter == delayInSamples1) {
 			envelopeValue2 = 1.0f;
 		}
 
 		// Env 3 delay
-		if (delayCounter1 == delayInSamples2) {
+		if (delayCounter == delayInSamples2) {
 			envelopeValue3 = 1.0f;
 		}
 
 		// Env 4 delay
-		if (delayCounter1 == delayInSamples3) {
+		if (delayCounter == delayInSamples3) {
 			envelopeValue4 = 1.0f;
 		}
 
@@ -126,7 +126,7 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 	}
 
 private:
@@ -143,19 +143,19 @@ private:
 
 	BiquadBPF bpf{};
 
-	float sampleRate = {48000};
+	float sampleRate = 48000.f;
 	float envelopeValue1 = 0.0f;
 	float envelopeValue2 = 0.0f;
 	float envelopeValue3 = 0.0f;
 	float envelopeValue4 = 0.0f;
 
-	int delayCounter1 = 0;
+	int delayCounter = 0;
 
 	RisingEdgeDetector trig{};
 	RisingEdgeDetector button{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

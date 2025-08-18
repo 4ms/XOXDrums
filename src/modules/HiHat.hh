@@ -56,28 +56,27 @@ public:
 		auto pushButtonCh = getState<ChTriggerButton>() == MomentaryButton::State_t::PRESSED;
 		auto pushButtonOh = getState<OhTriggerButton>() == MomentaryButton::State_t::PRESSED;
 
-
-		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>() | pushButtonCh)) {
+		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>() || pushButtonCh)) {
 			envelopeValue1 = 1.0f;
 			// Choke mode: Silence the open hihat decay if the closed hihat gets a trigger
 			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
 				decay_ohh_choked = 0.f;
 			}
-			brightness1 = 1.f; 
+			brightness1 = 1.f;
 		}
 
 		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>() | pushButtonOh)) {
 			envelopeValue2 = 1.0f;
-			brightness2 = 1.f; 
+			brightness2 = 1.f;
 		}
 
-		if (brightness1 > 0.f) {
-			brightness1 *= ledDecayAlpha1;
+		if (brightness1 > 0.004f) {
+			brightness1 *= ledDecayAlpha;
 		}
 		setLED<ChTriggerButton>(brightness1);
 
-		if (brightness2 > 0.f) {
-			brightness2 *= ledDecayAlpha2;
+		if (brightness2 > 0.004f) {
+			brightness2 *= ledDecayAlpha;
 		}
 		setLED<OhTriggerButton>(brightness2);
 
@@ -116,8 +115,7 @@ public:
 		sampleRate = sr;
 		constexpr float decayTimeClosedMs = 10.f;
 		decay_chh = std::exp(-1.0f / (sampleRate * (decayTimeClosedMs / 1000.0f)));
-		ledDecayAlpha1 = std::exp(-1.0f / (sr * 0.05)); 
-		ledDecayAlpha2 = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05));
 		recalc_bpf();
 		recalc_hpfs();
 		recalc_decay();
@@ -177,26 +175,25 @@ private:
 	BiquadHPF chh_hpf{};
 	BiquadHPF ohh_hpf{};
 
-	float sampleRate{48000};
+	float sampleRate = 48000.f;
 
-	float finalMakeup{1.f};
+	float finalMakeup = 1.f;
 
 	// Decay envelopes
 	float envelopeValue1 = 0.0f;
 
 	float decay_ohh = 0.f;
 
-	float envelopeValue2 = 0.0f;
+	float envelopeValue2 = 0.f;
 
-	float decay_chh{};
+	float decay_chh = 0.f;
 
 	RisingEdgeDetector chh_trig{};
 	RisingEdgeDetector ohh_trig{};
 
-	float ledDecayAlpha1{};  
-	float ledDecayAlpha2{};  
-	float brightness1 = 0.f; 
-	float brightness2 = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness1 = 0.f;
+	float brightness2 = 0.f;
 };
 
 } // namespace MetaModule

@@ -43,24 +43,24 @@ public:
 	void update(void) override {
 		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
-			phase_0 = 0.f;
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
+			phase = 0.f;
 			amplitudeEnvelope = 1.f;
-			brightness = 1.f; 
+			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
-		
+
 		amplitudeEnvelope *= ampDecayAlpha;
 
 		// Osc 1
 		using MathTools::M_PIF;
-		phase_0 += phase_inc_0;
-		phase_0 -= static_cast<int>(phase_0);
-		float squareWave = (phase_0 < .5f) ? 2.5f : -2.5f;
+		phase += phase_inc_0;
+		phase -= static_cast<int>(phase);
+		float squareWave = (phase < .5f) ? 2.5f : -2.5f;
 
 		// Osc 2
 		phase_1 += phase_inc_1;
@@ -86,7 +86,7 @@ public:
 
 	void set_samplerate(float sr) override {
 		sampleRate = sr;
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 		recalc_decay();
 		recalc_freq();
 	}
@@ -116,7 +116,7 @@ private:
 	float amplitudeEnvelope = 0.f;
 
 	// Sine oscillator
-	float phase_0 = 0.0f;
+	float phase = 0.0f;
 	float phase_1 = 0.0f;
 	float phase_inc_0 = 0.f;
 	float phase_inc_1 = 0.f;
@@ -128,12 +128,12 @@ private:
 	float highpassOutput = 0.f;
 	float prevHighpassOutput = 0.0f;
 
-	float sampleRate{48000};
+	float sampleRate = 48000.f;
 
 	RisingEdgeDetector trig{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule

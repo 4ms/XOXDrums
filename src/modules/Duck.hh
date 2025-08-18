@@ -39,12 +39,12 @@ public:
 		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
 
-		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			amplitudeEnvelope = 1.0f;
 			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
@@ -61,7 +61,7 @@ public:
 	}
 
 	void set_samplerate(float sr) override {
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
+		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 		sampleRate = sr;
 		recalc_decay();
 	}
@@ -79,13 +79,13 @@ private:
 	}
 
 	float amplitudeEnvelope = 1.0f;
-	float sampleRate{48000};
-	float ampDecayAlpha{};
+	float sampleRate = 48000.f;
+	float ampDecayAlpha = 0.f;
 
 	RisingEdgeDetector trig{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha = 0.f;
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule
