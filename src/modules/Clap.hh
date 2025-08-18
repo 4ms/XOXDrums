@@ -57,9 +57,7 @@ public:
 			brightness = 1.f;
 		}
 
-		if (brightness > 0.004f) {
-			brightness *= ledDecayAlpha;
-		}
+		brightness *= ledDecayAlpha;
 		setLED<TriggerButton>(brightness);
 
 		// Envelope decay times 1-3 (short) 5-15ms

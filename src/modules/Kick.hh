@@ -50,9 +50,7 @@ public:
 			brightness = 1.0f;
 		}
 
-		if (brightness > 0.004f) {
-			brightness *= ledDecayAlpha;
-		}
+		brightness *= ledDecayAlpha;
 		setLED<TriggerButton>(brightness);
 
 		// Osc

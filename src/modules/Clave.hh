@@ -43,9 +43,7 @@ public:
 			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
-			brightness *= ledDecayAlpha;
-		}
+		brightness *= ledDecayAlpha;
 		setLED<TriggerButton>(brightness);
 
 		// Osc
@@ -89,7 +87,7 @@ private:
 	float decayAlpha = 0.f;
 
 	RisingEdgeDetector trig{};
-	RisingEdgeDetector button{}; 
+	RisingEdgeDetector button{};
 
 	float ledDecayAlpha = 0.f;
 	float brightness = 0.f;

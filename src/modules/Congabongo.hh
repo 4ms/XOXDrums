@@ -41,9 +41,7 @@ public:
 		if (is_hit) {
 			brightness = 1.f;
 		}
-		if (brightness > 0.004f) {
-			brightness *= ledDecayAlpha;
-		}
+		brightness *= ledDecayAlpha;
 		setLED<Button>(brightness);
 
 		return is_hit;

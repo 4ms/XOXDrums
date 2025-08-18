@@ -62,23 +62,19 @@ public:
 			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
 				decay_ohh_choked = 0.f;
 			}
-			brightness1 = 1.f;
+			brightnessCh = 1.f;
 		}
 
 		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>() | pushButtonOh)) {
 			envelopeValue2 = 1.0f;
-			brightness2 = 1.f;
+			brightnessOh = 1.f;
 		}
 
-		if (brightness1 > 0.004f) {
-			brightness1 *= ledDecayAlpha;
-		}
-		setLED<ChTriggerButton>(brightness1);
+		brightnessCh *= ledDecayAlpha;
+		setLED<ChTriggerButton>(brightnessCh);
 
-		if (brightness2 > 0.004f) {
-			brightness2 *= ledDecayAlpha;
-		}
-		setLED<OhTriggerButton>(brightness2);
+		brightnessOh *= ledDecayAlpha;
+		setLED<OhTriggerButton>(brightnessOh);
 
 		// Square wave VCO x6 for two channels
 		float oscSum = 0.f;
@@ -192,8 +188,8 @@ private:
 	RisingEdgeDetector ohh_trig{};
 
 	float ledDecayAlpha = 0.f;
-	float brightness1 = 0.f;
-	float brightness2 = 0.f;
+	float brightnessCh = 0.f;
+	float brightnessOh = 0.f;
 };
 
 } // namespace MetaModule

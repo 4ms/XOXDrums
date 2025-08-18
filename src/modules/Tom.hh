@@ -49,9 +49,7 @@ public:
 			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
-			brightness *= ledDecayAlpha;
-		}
+		brightness *= ledDecayAlpha;
 		setLED<TriggerButton>(brightness);
 
 		envelopeValueAmp *= decayAlphaAmp;
