@@ -34,39 +34,38 @@ public:
 	}
 
 	template<Info::Elem TriggerIn, Info::Elem Button>
-	bool update_trigger(auto &edgeDetector, float &brightness) {
-		auto buttonPressed = getState<Button>() == MomentaryButton::State_t::PRESSED;
+	bool update_trigger(RisingEdgeDetector& triggerEdge, RisingEdgeDetector& buttonEdge, float& brightness) {
+	bool buttonPressed = buttonEdge.update(getState<Button>() == MomentaryButton::State_t::PRESSED);
+	bool triggerReceived = triggerEdge.update(getInputAsGate<TriggerIn>());
 
-		bool is_hit = edgeDetector.update(getInputAsGate<TriggerIn>() || buttonPressed);
-		if (is_hit) {
-			brightness = 1.f;
-		}
-		brightness *= ledDecayAlpha;
-		setLED<Button>(brightness);
-
-		return is_hit;
+	bool is_hit = buttonPressed || triggerReceived;
+	if (is_hit) {
+		brightness = 1.f;
 	}
+	if (brightness > 0.004f) {
+		brightness *= ledDecayAlpha;
+	}
+	setLED<Button>(brightness);
+
+	return is_hit;
+}
 
 	void update(void) override {
-		if (update_trigger<ToneLoTriggerIn, ToneLoTriggerButton>(trigToneLo, brightnessToneLo)) {
+		if (update_trigger<ToneLoTriggerIn, ToneLoTriggerButton>(trigToneLo, buttonToneLo, brightnessToneLo)) {
 			phaseLo = 0.0f;
-			amplitudeEnvelopeToneLo = 1.0f;
-		}
-		if (update_trigger<SlapLoTriggerIn, SlapLoTriggerButton>(trigSlapLo, brightnessSlapLo)) {
+			amplitudeEnvelopeToneLo = 1.0f;		}
+		if (update_trigger<SlapLoTriggerIn, SlapLoTriggerButton>(trigSlapLo, buttonSlapLo, brightnessSlapLo)) {
 			amplitudeEnvelopeToneLo = 0.f;
 			phaseLo = 0.0f;
-			amplitudeEnvelopeSlapLo = 1.0f;
-		}
-		if (update_trigger<ToneHiTriggerIn, ToneHiTriggerButton>(trigToneHi, brightnessToneHi)) {
+			amplitudeEnvelopeSlapLo = 1.0f;		}
+		if (update_trigger<ToneHiTriggerIn, ToneHiTriggerButton>(trigToneHi, buttonToneHi, brightnessToneHi)) {
 			phaseHi = 0.0f;
-			amplitudeEnvelopeToneHigh = 1.0f;
-		}
-		if (update_trigger<SlapHiTriggerIn, SlapHiTriggerButton>(trigSlapHi, brightnessSlapHi)) {
+			amplitudeEnvelopeToneHigh = 1.0f;		}
+		if (update_trigger<SlapHiTriggerIn, SlapHiTriggerButton>(trigSlapHi, buttonSlapHi, brightnessSlapHi)) {
 			amplitudeEnvelopeToneHigh = 0.f;
 			phaseHi = 0.0f;
-			amplitudeEnvelopeSlapHigh = 1.0f;
-		}
-
+			amplitudeEnvelopeSlapHigh = 1.0f;		}
+			
 		// Osc 1
 		using MathTools::M_PIF;
 		phaseLo += phaseInc1;
@@ -149,6 +148,11 @@ private:
 	RisingEdgeDetector trigSlapLo{};
 	RisingEdgeDetector trigToneHi{};
 	RisingEdgeDetector trigSlapHi{};
+
+	RisingEdgeDetector buttonToneLo{};
+	RisingEdgeDetector buttonSlapLo{};
+	RisingEdgeDetector buttonToneHi{};
+	RisingEdgeDetector buttonSlapHi{};
 
 	float ledDecayAlpha = 0.f;
 
