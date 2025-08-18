@@ -46,7 +46,7 @@ public:
 	}
 
 	void update(void) override {
-		auto trigger = trig.update(getInput<TriggerIn>().value_or(0.f));
+		auto trigger = trig.update(getInput<TriggerIn>().value_or(0.f) > 0.5f);
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trigger || pushButton) {
@@ -86,7 +86,7 @@ private:
 
 	float ledDecayAlpha{};
 	float brightness = 0.f;
-	float level = 0.f; 
+	float level = 0.f;
 };
 
 } // namespace MetaModule
