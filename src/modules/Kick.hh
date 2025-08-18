@@ -41,7 +41,7 @@ public:
 		float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 		float envDepthControl = combineKnobBipolarCV(getState<PitchDepthKnob>(), getInput<DepthCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
 			phase = 0.0f; // reset sine phase for 0 crossing
@@ -129,6 +129,7 @@ private:
 	float saturation = 0.0f;
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{};
 
 	float ledDecayAlpha = 0.f;
 	float brightness = 0.f;
