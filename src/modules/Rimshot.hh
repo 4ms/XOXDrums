@@ -14,8 +14,6 @@ class Rimshot : public SmartCoreProcessor<RimshotInfo> {
 	using Info = RimshotInfo;
 	using enum Info::Elem;
 
-	static constexpr auto impulse_num_samples{2};
-
 public:
 	Rimshot() = default;
 
@@ -50,24 +48,21 @@ public:
 	void update(void) override {
 		auto level = getInput<TriggerIn>().value_or(0.f);
 		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
- 
-		if (trig.update((level > .5f) | pushButton)) {
-			if(pushButton == 1){
-			level = 5.f;
-			}
-			else{
-			level = 0.f; 
+
+		if (trig.update(level > 0.5f || pushButton)) {
+			if (pushButton) {
+				level = 5.f;
 			}
 			count = 0;
-			brightness = 1.f; 
+			brightness = 1.f;
 		}
 
-		if (brightness > 0.f) {
+		if (brightness > 0.004f) {
 			brightness *= ledDecayAlpha;
 		}
 		setLED<TriggerButton>(brightness);
 
-		const auto impulse = count >= impulse_num_samples ? 0.f : level;
+		const auto impulse = count >= impulseNumSamples ? 0.f : level;
 		count++;
 		const auto finalOutput = std::clamp(hpf.process(impulse) * 3, -5.0f, 5.0f);
 
@@ -75,8 +70,9 @@ public:
 	}
 
 	void set_samplerate(float sr) override {
-		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05)); 
 		sampleRate = sr;
+		ledDecayAlpha = std::exp(-1.0f / (sampleRate * 0.05f));
+		impulseNumSamples = sampleRate * impulseMs / 1000.f;
 		recalc_hpf();
 	}
 
@@ -85,12 +81,14 @@ private:
 
 	unsigned count{};
 
-	float sampleRate{48000};
+	float sampleRate = 48000.f;
+	static constexpr float impulseMs = 0.084f;
+	unsigned impulseNumSamples = sampleRate * impulseMs / 1000.f;
 
 	RisingEdgeDetector trig{};
 
-	float ledDecayAlpha{};  
-	float brightness = 0.f; 
+	float ledDecayAlpha{};
+	float brightness = 0.f;
 };
 
 } // namespace MetaModule
