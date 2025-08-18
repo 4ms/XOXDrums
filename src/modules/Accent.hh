@@ -32,7 +32,7 @@ public:
 	}
 
 	void update(void) override {
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			amplitudeEnvelope = 1.f;
@@ -71,6 +71,7 @@ private:
 	}
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{};
 
 	float amplitudeEnvelope = 0.f;
 	float ampDecayAlpha{};

@@ -49,7 +49,7 @@ public:
 		float verbDecayControl = combineKnobBipolarCV(getState<VerbDecayKnob>(), getInput<VerbDecayCvIn>());
 		float verbVolumeControl = combineKnobBipolarCV(getState<VerbVolumeKnob>(), getInput<VerbVolumeCvIn>());
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trig.update(getInputAsGate<TriggerIn>() | pushButton)) {
 			envelopeValue1 = 1.f;
@@ -152,6 +152,7 @@ private:
 	int delayCounter1 = 0;
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{};
 
 	float ledDecayAlpha{};  
 	float brightness = 0.f; 
