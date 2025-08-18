@@ -1,5 +1,9 @@
 # CHANGES
 
+## v2.1
+- Add trigger buttons with LED to all modules
+- Fix Rimshot changing sound at different sample rates
+
 ## v2.0.6
 - Update jack names and set all knob ranges and units
 
