@@ -53,8 +53,9 @@ public:
 
 	void update(void) override {
 		float decay_ohh_choked = decay_ohh;
-		auto pushButtonCh = getState<ChTriggerButton>() == MomentaryButton::State_t::PRESSED;
-		auto pushButtonOh = getState<OhTriggerButton>() == MomentaryButton::State_t::PRESSED;
+		
+		auto pushButtonCh = chh_button.update(getState<ChTriggerButton>() == MomentaryButton::State_t::PRESSED);
+		auto pushButtonOh = ohh_button.update(getState<OhTriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>() || pushButtonCh)) {
 			envelopeValue1 = 1.0f;
@@ -186,6 +187,9 @@ private:
 
 	RisingEdgeDetector chh_trig{};
 	RisingEdgeDetector ohh_trig{};
+
+	RisingEdgeDetector chh_button{};
+	RisingEdgeDetector ohh_button{};
 
 	float ledDecayAlpha = 0.f;
 	float brightnessCh = 0.f;
