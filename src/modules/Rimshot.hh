@@ -46,13 +46,11 @@ public:
 	}
 
 	void update(void) override {
-		auto level = getInput<TriggerIn>().value_or(0.f);
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto trigger = trig.update(getInput<TriggerIn>().value_or(0.f));
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(level > 0.5f || pushButton)) {
-			if (pushButton) {
-				level = 5.f;
-			}
+		if (trigger || pushButton) {
+			level = 5.f;
 			count = 0;
 			brightness = 1.f;
 		}
@@ -84,9 +82,11 @@ private:
 	unsigned impulseNumSamples = sampleRate * impulseMs / 1000.f;
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{};
 
 	float ledDecayAlpha{};
 	float brightness = 0.f;
+	float level = 0.f; 
 };
 
 } // namespace MetaModule
