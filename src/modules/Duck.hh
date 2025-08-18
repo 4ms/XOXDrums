@@ -34,7 +34,7 @@ public:
 	}
 
 	void update(void) override {
-		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
+		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
@@ -81,6 +81,7 @@ private:
 	float ampDecayAlpha = 0.f;
 
 	RisingEdgeDetector trig{};
+	RisingEdgeDetector button{};
 
 	float ledDecayAlpha = 0.f;
 	float brightness = 0.f;
