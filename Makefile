@@ -10,6 +10,7 @@ SOURCES += src/plugin-vcv.cc
 INCLUDES = -Isrc \
 		   -Isrc/modules \
 		   -I$(METAMODULE_SDK_DIR)/metamodule-core-interface \
+		   -I$(METAMODULE_SDK_DIR)/core-interface \
 		   -I$(METAMODULE_SDK_DIR)/cpputil
 
 FLAGS += $(INCLUDES) -std=c++20
