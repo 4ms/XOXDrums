@@ -57,7 +57,7 @@ public:
 		auto pushButtonCh = chh_button.update(getState<ChTriggerButton>() == MomentaryButton::State_t::PRESSED);
 		auto pushButtonOh = ohh_button.update(getState<OhTriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>() || pushButtonCh)) {
+		if (chh_trig.update(getInputAsGate<ClosedHihatTriggerIn>()) || pushButtonCh) {
 			envelopeValue1 = 1.0f;
 			// Choke mode: Silence the open hihat decay if the closed hihat gets a trigger
 			if (getState<ChokeSwitch>() == Toggle2pos::State_t::UP) {
@@ -66,7 +66,7 @@ public:
 			brightnessCh = 1.f;
 		}
 
-		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>() | pushButtonOh)) {
+		if (ohh_trig.update(getInputAsGate<OpenHihatTriggerIn>()) | pushButtonOh) {
 			envelopeValue2 = 1.0f;
 			brightnessOh = 1.f;
 		}
