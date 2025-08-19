@@ -34,7 +34,7 @@ public:
 	void update(void) override {
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
 			amplitudeEnvelope = 1.f;
 			brightness = 1.f;
 		}
