@@ -39,7 +39,7 @@ public:
 		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
 		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
 
-		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
 			amplitudeEnvelope = 1.0f;
 			brightness = 1.f;
 		}
