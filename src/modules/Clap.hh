@@ -51,7 +51,7 @@ public:
 		float saturationControl = combineKnobBipolarCV(getState<SaturationKnob>(), getInput<SaturationCvIn>());
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
 			envelopeValue1 = 1.f;
 			delayCounter = 0;
 			brightness = 1.f;
