@@ -43,7 +43,7 @@ public:
 		float envDepthControl = combineKnobBipolarCV(getState<EnvDepthKnob>(), getInput<EnvDepthCvIn>());
 		auto pushButton = getState<TriggerButton>() == MomentaryButton::State_t::PRESSED;
 
-		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
 			envelopeValueAmp = 1.0f;
 			envelopeValuePitch = 1.0f;
 			brightness = 1.f;
