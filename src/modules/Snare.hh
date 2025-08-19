@@ -57,7 +57,7 @@ public:
 		float noiseColorControl = combineKnobBipolarCV(getState<NoiseColorKnob>(), getInput<NoiseColorCvIn>());
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(getInputAsGate<TriggerIn>() || pushButton)) {
+		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
 			phase = 0.0f; // reset sine phase for 0 crossing
 			amplitudeEnvelope = 1.0f;
 			pitchEnvelope = 1.0f;
