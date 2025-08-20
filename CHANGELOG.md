@@ -1,6 +1,9 @@
 # CHANGES
 
-## v2.1
+## v2.1.1
+- Fix holding down buttons muting gates, and vice-versa
+
+## v2.1.0
 - Add trigger buttons with LED to all modules
 - Fix Rimshot changing sound at different sample rates
 
