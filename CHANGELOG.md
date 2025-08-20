@@ -1,5 +1,8 @@
 # CHANGES
 
+## v2.1.2
+- Fix Tom button muting gates
+
 ## v2.1.1
 - Fix holding down buttons muting gates, and vice-versa
 
