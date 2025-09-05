@@ -9,8 +9,8 @@ Use this document to understand the behavior, controls, and design inspirations 
 **All CV inputs are bipolar and clamped to 10vpp. Each knob functions as a 10vpp offset.**
 
 ---
-![Accent](https://github.com/4ms/XOXDrums/blob/main/doc/Accent.png) 
 ## ACCENT
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Accent.png" width="48">
 
 Incoming triggers dynamically increase the volume of a sound source.
 
@@ -20,9 +20,8 @@ Incoming triggers dynamically increase the volume of a sound source.
 - **Output**: Audio output
 
 ---
-![Clap](https://github.com/4ms/XOXDrums/blob/main/doc/Clap.png)
-
 ## CLAP
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Clap.png" width="120">
 
 Clap emulates the iconic 808 clap. A filtered noise source is shaped by four staggered decay envelopes to simulate multiple people clapping at slightly different times. The fourth envelope features a longer decay, perceived by the listener as reverb.
 
@@ -35,9 +34,8 @@ Clap emulates the iconic 808 clap. A filtered noise source is shaped by four sta
 - **Saturation**: Amount of distortion applied
 
 ---
-![Clave](https://github.com/4ms/XOXDrums/blob/main/doc/Clave.png)
-
 ## CLAVE
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Clave.png" width="48">
 
 Clave is inspired by the 808 clave and other classic transistor drum machines of the ’70s and ’80s. A sine wave oscillator is amplitude-modulated by a decay envelope.
 
@@ -46,9 +44,8 @@ Clave is inspired by the 808 clave and other classic transistor drum machines of
 - **Decay**: Envelope decay time for amplitude control (5–25 ms)
 
 ---
-![CongaBongo](https://github.com/4ms/XOXDrums/blob/main/doc/Congabongo.png)
-
 ## CONGABONGO
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Congabongo.png" width="120">
 
 Inspired by the 808 and other transistor drum machines from the ’70s, Congabongo features two fixed-pitch drums tuned a perfect fourth apart, mimicking traditional conga and bongo tuning. The Slap input both generates a short envelope and chokes the Tone input to replicate the sound of muting a drum while striking its edge.
 
@@ -61,9 +58,8 @@ Inspired by the 808 and other transistor drum machines from the ’70s, Congabon
 - **Conga/Bongo**: Switches between Conga (98–198 Hz, 40–80 ms) and Bongo (200–400 Hz, 15–25 ms)
 
 ---
-![Cowbell](https://github.com/4ms/XOXDrums/blob/main/doc/Cowbell.png)
-
 ## COWBELL
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Cowbell.png" width="48">
 
 Cowbell combines synthesis techniques from '70s transistor drum machines with the 808 cymbal/cowbell circuitry. Two detuned square waves are summed, filtered, and shaped by a decay envelope.
 
@@ -72,9 +68,8 @@ Cowbell combines synthesis techniques from '70s transistor drum machines with th
 - **Decay**: Amplitude decay time (20–120 ms)
 
 ---
-![Duck](https://github.com/4ms/XOXDrums/blob/main/doc/Duck.png)
-
 ## DUCK
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Duck.png" width="48">
 
 Duck applies an inverse envelope to the input audio, emulating the sidechain compression effect popularized by DJs and producers. This creates a dynamic "pumping" sensation.
 
@@ -83,9 +78,8 @@ Duck applies an inverse envelope to the input audio, emulating the sidechain com
 - **Time**: Duration for the volume to return to normal (50 ms – 2 s)
 
 ---
-![Hi-Hat](https://github.com/4ms/XOXDrums/blob/main/doc/Hi%20hat.png)
-
 ## HI-HAT
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/HiHat.png" width="120">
 
 Modeled after the 808 hi-hat, this circuit uses four square wave oscillators mixed and processed through multiple filters. A decay envelope controls amplitude. Closed hi-hat uses a fixed decay, while open hi-hat uses a variable one. When choke is enabled, a closed hi-hat trigger immediately silences the open hi-hat.
 
@@ -98,9 +92,8 @@ Modeled after the 808 hi-hat, this circuit uses four square wave oscillators mix
 - **Choke**: Enables/disables the choke function between open and closed hi-hat triggers
 
 ---
-![Kick](https://github.com/4ms/XOXDrums/blob/main/doc/Kick.png)
-
 ## KICK
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Kick.png" width="120">
 
 Kick is a hybrid of the 808 and 909 bass drum circuits, enhanced with output saturation. Two simultaneous envelopes control amplitude and pitch, fine-tuned for bass drum synthesis.
 
@@ -113,9 +106,8 @@ Kick is a hybrid of the 808 and 909 bass drum circuits, enhanced with output sat
 - **L/M/H**: Selects saturation intensity: Low (2x), Medium (10x), High (100x)
 
 ---
-![](https://github.com/4ms/XOXDrums/blob/main/doc/Maraca.png)
-
 ## MARACA
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Maraca.png" width="48">
 
 Maraca draws from the 808 and other vintage transistor drum machines. A white noise source with a fixed highpass filter is controlled by a decay envelope to create short, snappy bursts.
 
@@ -123,9 +115,8 @@ Maraca draws from the 808 and other vintage transistor drum machines. A white no
 - **Decay**: Decay time of the amplitude envelope (2–20 ms)
 
 ---
-![Rimshot](https://github.com/4ms/XOXDrums/blob/main/doc/Rim.png)
-
 ## RIMSHOT
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Rimshot.png" width="48">
 
 Inspired by the 808 rimshot and Kraftwerk’s "electro click," this circuit uses a short trigger pulse to excite a resonant bandpass filter. The same trigger also modulates the filter’s cutoff slightly to add articulation.
 
@@ -134,9 +125,8 @@ Inspired by the 808 rimshot and Kraftwerk’s "electro click," this circuit uses
 - **Ring**: Resonance of the bandpass filter
 
 ---
-![Snare](https://github.com/4ms/XOXDrums/blob/main/doc/Snare.png)
-
 ## SNARE
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Snare.png" width="180">
 
 The snare circuit blends elements of the 808 and 909 snares. A sine oscillator and filtered noise each have individual amplitude envelopes. A crossfader blends the two, while saturation is added post-mix for aggressive tones.
 
@@ -152,9 +142,8 @@ The snare circuit blends elements of the 808 and 909 snares. A sine oscillator a
 - **L/M/H**: Saturation gain level: Low (2x), Medium (10x), High (100x)
 
 ---
-![Tom](https://github.com/4ms/XOXDrums/blob/main/doc/Tom.png)
-
 ## TOM
+<img src="https://github.com/4ms/XOXDrums/blob/main/doc/res/Tom.png" width="120">
 
 Tom is based on 808 toms and other vintage transistor drums. A sine wave’s pitch and amplitude are each controlled by dedicated decay envelopes.
 
