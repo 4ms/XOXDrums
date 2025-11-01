@@ -15,16 +15,22 @@ on:
         required: true
         default: false
         type: boolean
+      win_x64:
+        description: 'Build on Windows instead of Linux'
+        required: true
+        default: false
+        type: boolean
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
   build-lin:
+    if: ${{ !inputs.win_x64 }}
     strategy:
       matrix:
         gcc: ['12.3.Rel1']
-    name: 'Build firmware on linux'
+    name: 'Build plugin on linux'
     runs-on: ubuntu-24.04
     steps:
       - name: Install Arm GNU Toolchain (arm-none-eabi-gcc)
@@ -68,3 +74,36 @@ jobs:
           name: 'Release: ${{ env.CI_REF_NAME }}'
           files: |
             metamodule-plugins/*.mmplugin
+
+
+  build-win:
+    if: ${{ inputs.win_x64 }}
+    name: "Build on windows"
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - name: Install windows dependencies
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja
+          path-type: inherit
+
+      - name: Install Arm GNU Toolchain (arm-none-eabi-gcc)
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+        with:
+          release: '12.3.Rel1'
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Build
+        run: |
+          cmake -B build -G Ninja -DMETAMODULE_SDK_DIR=metamodule-plugin-sdk
+          cmake --build build
+
