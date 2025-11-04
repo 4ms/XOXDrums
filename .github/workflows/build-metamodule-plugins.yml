@@ -104,6 +104,6 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -G Ninja -DMETAMODULE_SDK_DIR=metamodule-plugin-sdk
+          cmake -B build -G "MSYS Makefiles" -DMETAMODULE_SDK_DIR=metamodule-plugin-sdk
           cmake --build build
 
