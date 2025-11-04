@@ -89,7 +89,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja
+          install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake
           path-type: inherit
 
       - name: Install Arm GNU Toolchain (arm-none-eabi-gcc)
