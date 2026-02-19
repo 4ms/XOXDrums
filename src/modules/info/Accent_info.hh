@@ -24,6 +24,8 @@ struct AccentInfo : ModuleInfoBase {
 		AnalogJackOutput4ms{{to_mm<96>(38.24), to_mm<96>(406.644), Center, "Accented Out", ""}},
 }};
 
+    static constexpr std::array<BypassRoute, 1> bypass_routes{{{2, 0}}};
+
     enum class Elem {
         AmountKnob,
         TriggerButton,

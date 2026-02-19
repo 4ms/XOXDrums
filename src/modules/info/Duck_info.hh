@@ -26,6 +26,8 @@ struct DuckInfo : ModuleInfoBase {
 		AnalogJackOutput4ms{{to_mm<96>(38.4), to_mm<96>(406.853), Center, "Audio Out", ""}},
 }};
 
+    static constexpr std::array<BypassRoute, 1> bypass_routes{{{3, 0}}};
+
     enum class Elem {
         AmountKnob,
         TimeKnob,

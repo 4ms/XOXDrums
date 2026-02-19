@@ -1,5 +1,15 @@
 #include "comm_module.hh"
 
+void CommModule::processBypass(const ProcessArgs &) {
+	for (auto &out : outJacks) {
+		out.setValue(0.f);
+	}
+	for (auto &route : bypassRoutes) {
+		if (route.inputId >= 0 && route.outputId >= 0)
+			outputs[route.outputId].setVoltage(inputs[route.inputId].getVoltage());
+	}
+}
+
 void CommModule::onSampleRateChange() {
 	sampleRateChanged = true;
 }
