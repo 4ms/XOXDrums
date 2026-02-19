@@ -46,6 +46,7 @@ public:
 	}
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		auto trigger = trig.update(getInput<TriggerIn>().value_or(0.f) > 0.5f);
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 

@@ -34,6 +34,7 @@ public:
 	}
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());

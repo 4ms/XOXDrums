@@ -52,6 +52,7 @@ public:
 	}
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		float decay_ohh_choked = decay_ohh;
 		
 		auto pushButtonCh = chh_button.update(getState<ChTriggerButton>() == MomentaryButton::State_t::PRESSED);

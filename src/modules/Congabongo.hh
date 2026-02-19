@@ -51,6 +51,7 @@ public:
 }
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		if (update_trigger<ToneLoTriggerIn, ToneLoTriggerButton>(trigToneLo, buttonToneLo, brightnessToneLo)) {
 			phaseLo = 0.0f;
 			amplitudeEnvelopeToneLo = 1.0f;		}

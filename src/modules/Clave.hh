@@ -34,6 +34,7 @@ public:
 	}
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		const float pitchControl = combineKnobBipolarCV(getState<PitchKnob>(), getInput<PitchCvIn>());
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 

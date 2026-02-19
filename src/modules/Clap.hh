@@ -44,6 +44,7 @@ public:
 	}
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		float energyControl = combineKnobBipolarCV(getState<EnergyKnob>(), getInput<EnergyCvIn>());
 		float spreadControl = combineKnobBipolarCV(getState<SpreadKnob>(), getInput<SpreadCvIn>());
 		float verbDecayControl = combineKnobBipolarCV(getState<VerbDecayKnob>(), getInput<VerbDecayCvIn>());

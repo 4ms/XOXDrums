@@ -44,6 +44,7 @@ public:
 	}
 
 	void update(void) override {
+		if (bypassed) { handle_bypass(); return; }
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
 		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
