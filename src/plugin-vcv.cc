@@ -17,7 +17,7 @@ using namespace MetaModule;
 
 rack::Plugin *pluginInstance;
 
-extern rack::Model *modelClapPoly;
+extern rack::Model *modelClap;
 
 void init(rack::Plugin *p) {
 	pluginInstance = p;
@@ -37,7 +37,7 @@ void init(rack::Plugin *p) {
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
 	p->addModel(modelAccent);
-	p->addModel(modelClapPoly);
+	p->addModel(modelClap);
 	p->addModel(modelCongabongo);
 	p->addModel(modelHiHat);
 	p->addModel(modelMaraca);

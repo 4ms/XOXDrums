@@ -8,7 +8,8 @@
 using namespace rack;
 using namespace MetaModule;
 
-struct ClapPolyModule : rack::Module {
+// VCV-level struct uses ClapVcv to avoid collision with the MetaModule Clap core.
+struct ClapVcv : rack::Module {
 	Clap cores[PORT_MAX_CHANNELS];
 
 	enum ParamId {
@@ -34,7 +35,7 @@ struct ClapPolyModule : rack::Module {
 	enum OutputId { AUDIO_OUTPUT, OUTPUTS_LEN };
 	enum LightId { TRIGGER_LIGHT, LIGHTS_LEN };
 
-	ClapPolyModule() {
+	ClapVcv() {
 		auto cnt = ElementCount::count<ClapInfo>();
 		config(cnt.num_params, cnt.num_inputs, cnt.num_outputs, cnt.num_lights);
 
@@ -55,7 +56,7 @@ struct ClapPolyModule : rack::Module {
 
 	void process(const ProcessArgs &args) override {
 		// Channel count = max across every connected input.
-		// A mono cable on any port broadcasts to all voices (same as poly VCO + mono V/OCT).
+		// A mono cable on any port broadcasts to all voices.
 		const int n = std::max({1,
 			inputs[TRIGGERIN_INPUT].getChannels(),
 			inputs[ENERGYCV_INPUT].getChannels(),
@@ -67,13 +68,13 @@ struct ClapPolyModule : rack::Module {
 		});
 		outputs[AUDIO_OUTPUT].setChannels(n);
 
-		const float energyNorm    = getParamQuantity(ENERGY_PARAM)->toScaled(params[ENERGY_PARAM].getValue());
-		const float spreadNorm    = getParamQuantity(SPREAD_PARAM)->toScaled(params[SPREAD_PARAM].getValue());
-		const float colorNorm     = getParamQuantity(COLOR_PARAM)->toScaled(params[COLOR_PARAM].getValue());
-		const float verbDecayNorm = getParamQuantity(VERBDECAY_PARAM)->toScaled(params[VERBDECAY_PARAM].getValue());
+		const float energyNorm     = getParamQuantity(ENERGY_PARAM)->toScaled(params[ENERGY_PARAM].getValue());
+		const float spreadNorm     = getParamQuantity(SPREAD_PARAM)->toScaled(params[SPREAD_PARAM].getValue());
+		const float colorNorm      = getParamQuantity(COLOR_PARAM)->toScaled(params[COLOR_PARAM].getValue());
+		const float verbDecayNorm  = getParamQuantity(VERBDECAY_PARAM)->toScaled(params[VERBDECAY_PARAM].getValue());
 		const float verbVolumeNorm = getParamQuantity(VERBVOLUME_PARAM)->toScaled(params[VERBVOLUME_PARAM].getValue());
-		const float satNorm       = getParamQuantity(SATURATION_PARAM)->toScaled(params[SATURATION_PARAM].getValue());
-		const float triggerButton = params[TRIGGER_PARAM].getValue();
+		const float satNorm        = getParamQuantity(SATURATION_PARAM)->toScaled(params[SATURATION_PARAM].getValue());
+		const float triggerButton  = params[TRIGGER_PARAM].getValue();
 
 		const int trigChans = inputs[TRIGGERIN_INPUT].getChannels();
 		const int enChans   = inputs[ENERGYCV_INPUT].getChannels();
@@ -118,8 +119,8 @@ struct ClapPolyModule : rack::Module {
 	}
 };
 
-struct ClapPolyWidget : rack::app::ModuleWidget {
-	ClapPolyWidget(ClapPolyModule *module) {
+struct ClapWidget : rack::app::ModuleWidget {
+	ClapWidget(ClapVcv *module) {
 		setModule(module);
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, ClapInfo::svg_filename.data())));
 
@@ -135,4 +136,4 @@ struct ClapPolyWidget : rack::app::ModuleWidget {
 	}
 };
 
-rack::Model *modelClapPoly = rack::createModel<ClapPolyModule, ClapPolyWidget>("Clap");
+rack::Model *modelClap = rack::createModel<ClapVcv, ClapWidget>("Clap");

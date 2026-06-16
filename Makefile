@@ -5,7 +5,7 @@ BRAND_SLUG := 4ms-XOXDrums
 
 SOURCES =
 SOURCES += src/vcv/comm_module.cc
-SOURCES += src/vcv/ClapPoly.cpp
+SOURCES += src/vcv/Clap.cpp
 SOURCES += src/plugin-vcv.cc
 
 INCLUDES = -Isrc \
