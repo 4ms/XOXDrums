@@ -4,7 +4,6 @@
 #include "Accent.hh"
 #include "Congabongo.hh"
 #include "Duck.hh"
-#include "HiHat.hh"
 #include "Kick.hh"
 #include "Maraca.hh"
 #include "Rimshot.hh"
@@ -18,13 +17,13 @@ rack::Plugin *pluginInstance;
 extern rack::Model *modelClap;
 extern rack::Model *modelClave;
 extern rack::Model *modelCowbell;
+extern rack::Model *modelHiHat;
 
 void init(rack::Plugin *p) {
 	pluginInstance = p;
 
 	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
 	rack::Model *modelCongabongo = GenericModule<CongabongoInfo, Congabongo>::create();
-	rack::Model *modelHiHat = GenericModule<HiHatInfo, HiHat>::create();
 	rack::Model *modelMaraca = GenericModule<MaracaInfo, Maraca>::create();
 	rack::Model *modelRimshot = GenericModule<RimshotInfo, Rimshot>::create();
 	rack::Model *modelKick = GenericModule<KickInfo, Kick>::create();
