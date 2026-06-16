@@ -1,10 +1,4 @@
 #include "plugin-vcv.hh"
-#include "vcv/generic_module.hh"
-
-#include "Accent.hh"
-#include "Duck.hh"
-
-using namespace MetaModule;
 
 rack::Plugin *pluginInstance;
 
@@ -18,12 +12,12 @@ extern rack::Model *modelRimshot;
 extern rack::Model *modelSnare;
 extern rack::Model *modelTom;
 extern rack::Model *modelCongabongo;
+extern rack::Model *modelDuck;
+extern rack::Model *modelAccent;
 
 void init(rack::Plugin *p) {
 	pluginInstance = p;
 
-	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
-	rack::Model *modelDuck = GenericModule<DuckInfo, Duck>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);

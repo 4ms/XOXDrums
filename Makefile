@@ -15,6 +15,8 @@ SOURCES += src/vcv/Rimshot.cpp
 SOURCES += src/vcv/Snare.cpp
 SOURCES += src/vcv/Tom.cpp
 SOURCES += src/vcv/Congabongo.cpp
+SOURCES += src/vcv/Duck.cpp
+SOURCES += src/vcv/Accent.cpp
 SOURCES += src/plugin-vcv.cc
 
 INCLUDES = -Isrc \
