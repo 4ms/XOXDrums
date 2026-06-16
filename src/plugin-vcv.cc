@@ -4,7 +4,6 @@
 #include "Accent.hh"
 #include "Congabongo.hh"
 #include "Duck.hh"
-#include "Snare.hh"
 #include "Tom.hh"
 
 using namespace MetaModule;
@@ -18,6 +17,7 @@ extern rack::Model *modelHiHat;
 extern rack::Model *modelKick;
 extern rack::Model *modelMaraca;
 extern rack::Model *modelRimshot;
+extern rack::Model *modelSnare;
 
 void init(rack::Plugin *p) {
 	pluginInstance = p;
@@ -26,7 +26,6 @@ void init(rack::Plugin *p) {
 	rack::Model *modelCongabongo = GenericModule<CongabongoInfo, Congabongo>::create();
 	rack::Model *modelTom = GenericModule<TomInfo, Tom>::create();
 	rack::Model *modelDuck = GenericModule<DuckInfo, Duck>::create();
-	rack::Model *modelSnare = GenericModule<SnareInfo, Snare>::create();
 
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);

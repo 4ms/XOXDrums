@@ -12,6 +12,7 @@ SOURCES += src/vcv/HiHat.cpp
 SOURCES += src/vcv/Kick.cpp
 SOURCES += src/vcv/Maraca.cpp
 SOURCES += src/vcv/Rimshot.cpp
+SOURCES += src/vcv/Snare.cpp
 SOURCES += src/plugin-vcv.cc
 
 INCLUDES = -Isrc \
