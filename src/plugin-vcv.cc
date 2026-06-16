@@ -2,7 +2,6 @@
 #include "vcv/generic_module.hh"
 
 #include "Accent.hh"
-#include "Clap.hh"
 #include "Clave.hh"
 #include "Congabongo.hh"
 #include "Cowbell.hh"
@@ -18,13 +17,14 @@ using namespace MetaModule;
 
 rack::Plugin *pluginInstance;
 
+extern rack::Model *modelClapPoly;
+
 void init(rack::Plugin *p) {
 	pluginInstance = p;
 
 	rack::Model *modelClave = GenericModule<ClaveInfo, Clave>::create();
 	rack::Model *modelCowbell = GenericModule<CowbellInfo, Cowbell>::create();
 	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
-	rack::Model *modelClap = GenericModule<ClapInfo, Clap>::create();
 	rack::Model *modelCongabongo = GenericModule<CongabongoInfo, Congabongo>::create();
 	rack::Model *modelHiHat = GenericModule<HiHatInfo, HiHat>::create();
 	rack::Model *modelMaraca = GenericModule<MaracaInfo, Maraca>::create();
@@ -37,7 +37,7 @@ void init(rack::Plugin *p) {
 	p->addModel(modelClave);
 	p->addModel(modelCowbell);
 	p->addModel(modelAccent);
-	p->addModel(modelClap);
+	p->addModel(modelClapPoly);
 	p->addModel(modelCongabongo);
 	p->addModel(modelHiHat);
 	p->addModel(modelMaraca);
