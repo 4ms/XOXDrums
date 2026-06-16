@@ -4,6 +4,22 @@ Use this document to understand the behavior, controls, and design inspirations 
 
 ---
 
+## Polyphony
+
+All XOX Drums modules are fully polyphonic in VCV Rack.
+
+**Channel count is automatic.** The number of output channels equals the highest channel count across all connected inputs. No menu settings or configuration are needed.
+
+**Mono cables broadcast.** A standard (1-channel) cable on any input is broadcast to every voice — all voices share the same value for that parameter.
+
+**Poly cables route per-channel.** A polyphonic cable routes each channel independently to its corresponding voice.
+
+Each voice runs a fully independent synthesis engine, so envelopes, pitch, and all internal state are isolated per channel.
+
+For modules with multiple outputs (Hi-Hat CH/OH, Congabongo LO/HI), all outputs carry the same number of channels.
+
+---
+
 ## CV + Knob Behavior
 
 **All CV inputs are bipolar and clamped to 10vpp. Each knob functions as a 10vpp offset.**
