@@ -3,7 +3,6 @@
 
 #include "Accent.hh"
 #include "Congabongo.hh"
-#include "Cowbell.hh"
 #include "Duck.hh"
 #include "HiHat.hh"
 #include "Kick.hh"
@@ -18,11 +17,11 @@ rack::Plugin *pluginInstance;
 
 extern rack::Model *modelClap;
 extern rack::Model *modelClave;
+extern rack::Model *modelCowbell;
 
 void init(rack::Plugin *p) {
 	pluginInstance = p;
 
-	rack::Model *modelCowbell = GenericModule<CowbellInfo, Cowbell>::create();
 	rack::Model *modelAccent = GenericModule<AccentInfo, Accent>::create();
 	rack::Model *modelCongabongo = GenericModule<CongabongoInfo, Congabongo>::create();
 	rack::Model *modelHiHat = GenericModule<HiHatInfo, HiHat>::create();

@@ -7,6 +7,7 @@ SOURCES =
 SOURCES += src/vcv/comm_module.cc
 SOURCES += src/vcv/Clap.cpp
 SOURCES += src/vcv/Clave.cpp
+SOURCES += src/vcv/Cowbell.cpp
 SOURCES += src/plugin-vcv.cc
 
 INCLUDES = -Isrc \
