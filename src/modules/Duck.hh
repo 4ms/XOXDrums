@@ -1,87 +1,88 @@
 #pragma once
 
-#include "CoreModules/SmartCoreProcessor.hh"
+#include "CoreModules/SmartCoreProcessorPoly.hh"
 #include "helpers/param_cv.hh"
 #include "info/Duck_info.hh"
 #include "util/edge_detector.hh"
 #include "util/math.hh"
+#include <array>
 #include <cmath>
 
 namespace MetaModule
 {
 
-class Duck : public SmartCoreProcessor<DuckInfo> {
+class Duck : public SmartCoreProcessorPoly<DuckInfo> {
 	using Info = DuckInfo;
 	using enum Info::Elem;
 
 public:
 	Duck() = default;
 
-	void set_param(int param_id, float val) override {
-		SmartCoreProcessor::set_param(param_id, val);
-
-		if (param_id == param_idx<TimeKnob>) {
-			recalc_decay();
-		}
-	}
-
-	void set_input(int input_id, float val) override {
-		SmartCoreProcessor::set_input(input_id, val);
-
-		if (input_id == input_idx<TimeCvIn>) {
-			recalc_decay();
-		}
-	}
-
 	void update(void) override {
 		if (bypassed) { handle_bypass(); return; }
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
-		float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
+		unsigned n = std::max({numChannels<TriggerIn>(), numChannels<AmountCvIn>(),
+		                       numChannels<TimeCvIn>(), numChannels<AudioIn>()});
+		if (n == 0) n = 1;
+		setChannels<AudioOut>(n);
 
-		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
-			amplitudeEnvelope = 1.0f;
-			brightness = 1.f;
+		for (unsigned c = 0; c < n; c++) {
+			// Only recompute the decay coefficient when the time CV actually changes.
+			const auto timeControl = combineKnobBipolarCV(getState<TimeKnob>(), getInputNorm<TimeCvIn>(c));
+			if (timeControl != cachedTimeCv[c]) {
+				cachedTimeCv[c] = timeControl;
+				const auto ampDecayTime = 50.0f + (timeControl * 1950.0f);
+				ampDecayAlpha[c] = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+			}
+
+			float amountControl = combineKnobBipolarCV(getState<AmountKnob>(), getInputNorm<AmountCvIn>(c));
+			float agc = MathTools::map_value(amountControl, 0.f, 1.f, 0.5f, 1.f);
+
+			if (trig[c].update(getInputAsGate<TriggerIn>(c)) || pushButton) {
+				amplitudeEnvelope[c] = 1.0f;
+				brightness = 1.f;
+			}
+
+			amplitudeEnvelope[c] *= ampDecayAlpha[c];
+
+			float scaled = (1.f - amountControl) + ((1.f - amplitudeEnvelope[c]) * amountControl);
+			float VCAOut = getInputNorm<AudioIn>(c).value_or(0.f) * scaled * agc;
+
+			setOutput<AudioOut>(std::clamp(VCAOut, -5.0f, 5.0f), c);
 		}
 
 		brightness *= ledDecayAlpha;
 		setLED<TriggerButton>(brightness);
-
-		amplitudeEnvelope *= ampDecayAlpha;
-
-		float scaled = (1.f - (amountControl)) + ((1.f - (amplitudeEnvelope)*amountControl));
-
-		float VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc;
-
-		float finalOutput = VCAOut;
-		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
-		setOutput<AudioOut>(finalOutput);
 	}
 
 	void set_samplerate(float sr) override {
 		ledDecayAlpha = std::exp(-1.0f / (sr * 0.05f));
 		sampleRate = sr;
-		recalc_decay();
+		cachedTimeCv.fill(-999.f); // invalidate cached decay coefficients
 	}
 
 private:
+	// Returns the input value for channel c, clamping to the last valid channel for mono sources.
 	template<Info::Elem EL>
-	bool getInputAsGate() {
-		return getInput<EL>().value_or(0.f) > 0.5f;
+	std::optional<float> getInputNorm(unsigned c) {
+		auto nch = numChannels<EL>();
+		if (nch == 0) return std::nullopt;
+		return getInput<EL>(std::min(c, nch - 1u));
 	}
 
-	void recalc_decay() {
-		const auto timeControl = combineKnobBipolarCV(getState<TimeKnob>(), getInput<TimeCvIn>());
-		const auto ampDecayTime = 50.0f + (timeControl * 1950.0f);
-		ampDecayAlpha = std::exp(-1.0f / (sampleRate * (ampDecayTime / 1000.0f)));
+	template<Info::Elem EL>
+	bool getInputAsGate(unsigned c) {
+		return getInputNorm<EL>(c).value_or(0.f) > 0.5f;
 	}
 
-	float amplitudeEnvelope = 1.0f;
+	std::array<float, MaxPolyChannels> amplitudeEnvelope{};
 	float sampleRate = 48000.f;
-	float ampDecayAlpha = 0.f;
 
-	RisingEdgeDetector trig{};
+	std::array<float, MaxPolyChannels> ampDecayAlpha{};
+	std::array<float, MaxPolyChannels> cachedTimeCv{-999.f, -999.f, -999.f, -999.f};
+
+	std::array<RisingEdgeDetector, MaxPolyChannels> trig{};
 	RisingEdgeDetector button{};
 
 	float ledDecayAlpha = 0.f;

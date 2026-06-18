@@ -72,10 +72,12 @@ struct DuckVcv : rack::Module {
 			core.set_param(TRIGGER_PARAM, trigButton);
 
 			auto setIn = [&](int id, InputId port, int numChans) {
-				if (inputs[port].isConnected())
+				if (inputs[port].isConnected()) {
+					core.mark_input_patched(id);
 					core.set_input(id, inputs[port].getPolyVoltage(std::min(c, numChans - 1)));
-				else
+				} else {
 					core.mark_input_unpatched(id);
+				}
 			};
 			setIn(AMOUNTCV_INPUT,  AMOUNTCV_INPUT,  amountChans);
 			setIn(TIMECV_INPUT,    TIMECV_INPUT,     timeChans);
