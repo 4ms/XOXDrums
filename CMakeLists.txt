@@ -45,8 +45,8 @@ target_compile_options(XOXDrums
 
 set_property(TARGET XOXDrums PROPERTY CXX_STANDARD 20)
 
-if("${MM_INSTALL_DIR}" STREQUAL "")
-    set(MM_INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/metamodule-plugins)
+if("${INSTALL_DIR}" STREQUAL "")
+    set(INSTALL_DIR ${CMAKE_CURRENT_LIST_DIR}/metamodule-plugins)
 endif()
 
 create_plugin(
@@ -54,6 +54,6 @@ create_plugin(
     PLUGIN_NAME     4ms-XOXDrums
     PLUGIN_JSON     ${CMAKE_CURRENT_LIST_DIR}/plugin.json
     SOURCE_ASSETS   ${CMAKE_CURRENT_LIST_DIR}/assets
-    DESTINATION     ${MM_INSTALL_DIR}
+    DESTINATION     ${INSTALL_DIR}
 )
 
