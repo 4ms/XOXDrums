@@ -1,55 +1,47 @@
 #pragma once
 
-#include "CoreModules/SmartCoreProcessor.hh"
+#include "CoreModules/SmartCoreProcessorPoly.hh"
 #include "helpers/param_cv.hh"
 #include "info/Accent_info.hh"
 #include "util/edge_detector.hh"
+#include <array>
 
 namespace MetaModule
 {
 
-class Accent : public SmartCoreProcessor<AccentInfo> {
+class Accent : public SmartCoreProcessorPoly<AccentInfo> {
 	using Info = AccentInfo;
 	using enum Info::Elem;
 
 public:
 	Accent() = default;
 
-	void set_param(int param_id, float val) override {
-		SmartCoreProcessor::set_param(param_id, val);
-
-		if (param_id == param_idx<AmountKnob>) {
-			recalc_decay();
-		}
-	}
-
-	void set_input(int input_id, float val) override {
-		SmartCoreProcessor::set_input(input_id, val);
-
-		if (input_id == input_idx<AmountCvIn>) {
-			recalc_decay();
-		}
-	}
-
 	void update(void) override {
 		if (bypassed) { handle_bypass(); return; }
 		auto pushButton = button.update(getState<TriggerButton>() == MomentaryButton::State_t::PRESSED);
 
-		if (trig.update(getInputAsGate<TriggerIn>()) || pushButton) {
-			amplitudeEnvelope = 1.f;
-			brightness = 1.f;
+		unsigned n = std::max({numChannels<TriggerIn>(), numChannels<AmountCvIn>(), numChannels<AudioIn>()});
+		if (n == 0) n = 1;
+		setChannels<AccentedOut>(n);
+
+		for (unsigned c = 0; c < n; c++) {
+			if (trig[c].update(getInputAsGate<TriggerIn>(c)) || pushButton) {
+				amplitudeEnvelope[c] = 1.f;
+				brightness = 1.f;
+			}
+
+			amplitudeEnvelope[c] *= ampDecayAlpha;
+
+			const auto rawAmount = combineKnobBipolarCV(getState<AmountKnob>(), getInputNorm<AmountCvIn>(c));
+			const auto accentAmount = 0.2f + (rawAmount * 0.9f);
+			const auto scale = amplitudeEnvelope[c] * accentAmount + (1.f - accentAmount);
+
+			const auto rawInput = getInputNorm<AudioIn>(c).value_or(0.f);
+			setOutput<AccentedOut>(std::clamp(rawInput * scale, -5.f, 5.f), c);
 		}
 
 		brightness *= ledDecayAlpha;
 		setLED<TriggerButton>(brightness);
-
-		amplitudeEnvelope *= ampDecayAlpha;
-
-		const auto scale = amplitudeEnvelope * accentAmount + (1.f - accentAmount);
-
-		const auto rawInput = getInput<AudioIn>().value_or(0.f);
-
-		setOutput<AccentedOut>(std::clamp(rawInput * scale, -5.f, 5.f));
 	}
 
 	void set_samplerate(float sr) override {
@@ -59,23 +51,25 @@ public:
 	}
 
 private:
-	void recalc_decay() {
-		const auto rawAmount = combineKnobBipolarCV(getState<AmountKnob>(), getInput<AmountCvIn>());
-		accentAmount = 0.2f + (rawAmount * 0.9f);
+	// Returns the input value for channel c, clamping to the last valid channel for mono sources.
+	template<Info::Elem EL>
+	std::optional<float> getInputNorm(unsigned c) {
+		auto nch = numChannels<EL>();
+		if (nch == 0) return std::nullopt;
+		return getInput<EL>(std::min(c, nch - 1u));
 	}
 
 	template<Info::Elem EL>
-	bool getInputAsGate() {
-		return getInput<EL>().value_or(0.f) > 0.5f;
+	bool getInputAsGate(unsigned c) {
+		return getInputNorm<EL>(c).value_or(0.f) > 0.5f;
 	}
 
-	RisingEdgeDetector trig{};
+	std::array<RisingEdgeDetector, MaxPolyChannels> trig{};
 	RisingEdgeDetector button{};
 
-	float amplitudeEnvelope = 0.f;
+	std::array<float, MaxPolyChannels> amplitudeEnvelope{};
 	float ampDecayAlpha = 0.f;
 	float ledDecayAlpha = 0.f;
-	float accentAmount = 1.f;
 	float brightness = 0.f;
 };
 
