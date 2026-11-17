@@ -49,7 +49,7 @@ public:
 
 		const auto rawInput = getInput<AudioIn>().value_or(0.f);
 
-		setOutput<AccentedOut>(std::clamp(rawInput * scale, -5.f, 5.f));
+		setOutput<AccentedOut>(std::clamp(rawInput * scale, -10.f, 10.f));
 	}
 
 	void set_samplerate(float sr) override {

@@ -55,7 +55,7 @@ public:
 		float VCAOut = (getInput<AudioIn>().value_or(0.f) * scaled) * agc;
 
 		float finalOutput = VCAOut;
-		finalOutput = std::clamp(finalOutput, -5.0f, 5.0f);
+		finalOutput = std::clamp(finalOutput, -10.0f, 10.0f);
 		setOutput<AudioOut>(finalOutput);
 	}
 
